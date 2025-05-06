@@ -8,7 +8,20 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative bg-orthodox-blue text-white">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581337537305-9a16f3c3e2c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-20"></div>
+      {/* Background video */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video 
+          className="absolute w-full h-full object-cover"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src="https://storage.googleapis.com/church-videos-samples/orthodox-church-candles.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+      </div>
       
       <div className="container-custom relative z-10 py-24 md:py-32 text-center">
         <div className="mx-auto max-w-3xl">
@@ -25,7 +38,7 @@ const HeroSection: React.FC = () => {
             <Link to="/about" className="btn-secondary">
               {t('home.learnMore')}
             </Link>
-            <Link to="/services" className="bg-white text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors">
+            <Link to="/calendar" className="bg-white text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors">
               {t('services.schedule')}
             </Link>
           </div>

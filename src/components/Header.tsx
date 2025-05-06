@@ -22,7 +22,11 @@ const Header: React.FC = () => {
   const languages = [
     { code: 'en', label: 'English' },
     { code: 'sv', label: 'Svenska' },
-    { code: 'sr', label: 'Српски' },
+    { code: 'sr_lat', label: 'Srpski (latinica)' },
+    { code: 'sr_cyr', label: 'Српски (ћирилица)' },
+    { code: 'ru', label: 'Русский' },
+    { code: 'el', label: 'Ελληνικά' },
+    { code: 'mk', label: 'Македонски' },
   ];
 
   const handleLanguageChange = (lang: Language) => {
@@ -48,8 +52,8 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex gap-6 items-center">
             <Link to="/" className="nav-link">{t('nav.home')}</Link>
             <Link to="/about" className="nav-link">{t('nav.about')}</Link>
-            <Link to="/services" className="nav-link">{t('nav.services')}</Link>
-            <Link to="/events" className="nav-link">{t('nav.events')}</Link>
+            <Link to="/calendar" className="nav-link">{t('nav.calendar')}</Link>
+            <Link to="/blog" className="nav-link">{t('nav.blog')}</Link>
             <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
 
@@ -107,8 +111,8 @@ const Header: React.FC = () => {
           <nav className="md:hidden py-4 flex flex-col gap-4 animate-fade-in">
             <Link to="/" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.home')}</Link>
             <Link to="/about" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.about')}</Link>
-            <Link to="/services" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.services')}</Link>
-            <Link to="/events" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.events')}</Link>
+            <Link to="/calendar" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.calendar')}</Link>
+            <Link to="/blog" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.blog')}</Link>
             <Link to="/contact" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>
