@@ -1,10 +1,10 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { Clock } from 'lucide-react';
+import { Clock, MapPin } from 'lucide-react';
 import Gallery from '../components/Gallery';
+import Map from '../components/Map';
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -39,8 +39,8 @@ const AboutPage: React.FC = () => {
       alt: 'Church Dome'
     },
     {
-      src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: 'Candles'
+      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: 'Cathedral Interior'
     }
   ];
 
@@ -181,24 +181,36 @@ const AboutPage: React.FC = () => {
           </div>
         </section>
         
-        {/* Working Hours Section */}
+        {/* Gallery Section - Moved up for better flow */}
         <section className="section bg-orthodox-cream">
           <div className="container-custom">
             <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
-                <Clock className="text-orthodox-gold" />
-                Church Office Hours
+              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                Church Gallery
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Gallery images={galleryImages} />
+            </div>
+          </div>
+        </section>
+        
+        {/* Location and Working Hours Section */}
+        <section className="section">
+          <div className="container-custom">
+            <div className="card">
+              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
+                <MapPin className="text-orthodox-gold" /> 
+                Church Location and Hours
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <p className="mb-6">
-                    Our church office is open during the following hours for administrative matters, inquiries, and scheduling of sacraments. 
-                    Outside of these hours, please contact us by email or phone for urgent matters.
-                  </p>
+                  <h3 className="text-xl font-serif mb-4 flex items-center gap-2">
+                    <Clock className="text-orthodox-gold" /> 
+                    Opening Hours
+                  </h3>
                   
-                  <div className="bg-orthodox-cream p-6 rounded-lg">
-                    <h3 className="text-xl font-serif mb-4">Opening Hours</h3>
+                  <div className="bg-orthodox-cream p-6 rounded-lg mb-6">
                     <ul className="space-y-4">
                       {workingHours.map((item, index) => (
                         <li key={index} className="flex justify-between items-center border-b border-dashed border-gray-300 pb-2">
@@ -208,14 +220,12 @@ const AboutPage: React.FC = () => {
                       ))}
                     </ul>
                   </div>
-                </div>
-                
-                <div>
+                  
                   <h3 className="text-xl font-serif mb-4">Contact Information</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-2">
                       <span className="font-bold min-w-[100px]">Address:</span>
-                      <span>Birger Jarlsgatan 98, 114 20 Stockholm</span>
+                      <span>Bägerstavägen 68, 120 47 Enskede Gård, Sweden</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold min-w-[100px]">Phone:</span>
@@ -230,27 +240,19 @@ const AboutPage: React.FC = () => {
                       <span>Father Nicholas Petrovic<br />+46 70 123 45 67</span>
                     </li>
                   </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-xl font-serif mb-4">Find Us</h3>
+                  <p className="mb-4">
+                    Sveti Sava Church is located in Enskede Gård, a peaceful area in Stockholm, 
+                    easily accessible by public transportation. The nearest tram station is a 5-minute walk away.
+                  </p>
                   
-                  <div className="mt-6 aspect-video bg-gray-200 rounded overflow-hidden">
-                    <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                      Map placeholder
-                    </div>
-                  </div>
+                  {/* Map Component */}
+                  <Map className="mt-4" />
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Gallery Section */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                Church Gallery
-              </h2>
-              
-              <Gallery images={galleryImages} />
             </div>
           </div>
         </section>
