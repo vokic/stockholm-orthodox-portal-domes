@@ -9,11 +9,12 @@ import { LanguageProvider } from "./context/LanguageContext";
 // Pages
 import Index from "./pages/Index";
 import About from "./pages/About";
-import Services from "./pages/Services";
-import Events from "./pages/Events";
+import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -27,10 +28,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

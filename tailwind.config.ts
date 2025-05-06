@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Orthodox Church color palette
+				// Orthodox Church color palette - updated colors
 				orthodox: {
-					blue: '#1A365D',
-					gold: '#C8A951',
-					red: '#7D1F2C',
-					cream: '#F5F0E6',
-					gray: '#403E43',
+					blue: '#1C3F7C',  // Slightly more vivid blue
+					gold: '#D4AF37',  // More traditional gold color
+					red: '#9B2226',   // Deeper red
+					cream: '#F4F1E8', // Slightly warmer cream color
+					gray: '#3D4044',  // Slightly darker gray
 				}
 			},
 			borderRadius: {
