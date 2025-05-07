@@ -26,7 +26,7 @@ const Map: React.FC<MapProps> = ({ className = '' }) => {
     <div className={`relative w-full h-96 rounded-lg overflow-hidden ${className}`}>
       {/* Map container */}
       <MapContainer 
-        center={coordinates} 
+        center={coordinates as L.LatLngExpression} 
         zoom={14} 
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
