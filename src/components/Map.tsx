@@ -16,7 +16,7 @@ const Map: React.FC<MapProps> = ({
   // Create a Google Maps embed URL without an API key
   // Format: https://www.google.com/maps/embed/v1/place?q=LOCATION_QUERY
   const encodedAddress = encodeURIComponent(address);
-  const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.4768582526775!2d${coordinates[1]}!3d${coordinates[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77d45a792a45%3A0x77d50356d9e38b9!2sSveti%20Sava%20Serbian%20Orthodox%20Church!5e0!3m2!1sen!2sus!4v1620392301654!5m2!1sen!2sus`;
+  const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.4768582526775!2d${coordinates[1]}!3d${coordinates[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77d45a792a45%3A0x77d50356d9e38b9!2sB%C3%A4gerstav%C3%A4gen%2068%2C%20120%2047%20Stockholm!5e0!3m2!1sen!2sus!4v1620392301654!5m2!1sen!2sus`;
 
   return (
     <div className={`relative w-full h-96 rounded-lg overflow-hidden ${className}`}>
@@ -30,10 +30,10 @@ const Map: React.FC<MapProps> = ({
         title="Google Map"
       ></iframe>
       
-      {/* Title overlay */}
+      {/* Pin location overlay - only visible marker will be from Google Maps */}
       <div className="absolute top-4 left-4 bg-white px-3 py-2 rounded-md shadow-md flex items-center z-10">
         <MapPin className="w-4 h-4 text-orthodox-gold mr-2" />
-        <span className="text-sm font-medium">Sveti Sava Church</span>
+        <span className="text-sm font-medium">Bägerstavägen 68</span>
       </div>
     </div>
   );

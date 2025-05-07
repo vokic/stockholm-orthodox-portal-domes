@@ -53,8 +53,7 @@ const Header: React.FC = () => {
             <Link to="/" className="nav-link">{t('nav.home')}</Link>
             <Link to="/about" className="nav-link">{t('nav.about')}</Link>
             <Link to="/calendar" className="nav-link">{t('nav.calendar')}</Link>
-            <Link to="/customs" className="nav-link">OBICAJI</Link>
-            <Link to="/desavanja" className="nav-link">DESAVANJA/VESTI</Link>
+            <Link to="/clanci" className="nav-link">Članci</Link>
             <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
 
@@ -133,8 +132,7 @@ const Header: React.FC = () => {
             <Link to="/" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.home')}</Link>
             <Link to="/about" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.about')}</Link>
             <Link to="/calendar" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.calendar')}</Link>
-            <Link to="/customs" className="nav-link text-lg" onClick={toggleMenu}>OBICAJI</Link>
-            <Link to="/desavanja" className="nav-link text-lg" onClick={toggleMenu}>DESAVANJA/VESTI</Link>
+            <Link to="/clanci" className="nav-link text-lg" onClick={toggleMenu}>Članci</Link>
             <Link to="/contact" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>
