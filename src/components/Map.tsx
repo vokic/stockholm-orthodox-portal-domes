@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MapPin } from 'lucide-react';
 import L from 'leaflet';
@@ -14,6 +14,17 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
+// This component sets the view of the map after it's mounted
+const SetViewOnMount = ({ coords }: { coords: [number, number] }) => {
+  const map = useMap();
+  
+  useEffect(() => {
+    map.setView(coords, 14);
+  }, [map, coords]);
+  
+  return null;
+};
+
 interface MapProps {
   className?: string;
 }
@@ -26,15 +37,13 @@ const Map: React.FC<MapProps> = ({ className = '' }) => {
     <div className={`relative w-full h-96 rounded-lg overflow-hidden ${className}`}>
       {/* Map container */}
       <MapContainer 
-        center={coordinates as L.LatLngExpression} 
-        zoom={14} 
-        scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
         className="z-0 rounded-lg"
       >
+        <SetViewOnMount coords={coordinates} />
+        
         {/* OpenStreetMap tile layer */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
