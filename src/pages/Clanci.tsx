@@ -72,7 +72,7 @@ const ClanciPage: React.FC = () => {
     {
       id: 7,
       title: 'Traditional Serbian Slava Customs',
-      excerpt: 'The Slava is a unique Serbian Orthodox tradition honoring a family's patron saint. Discover the rituals and meanings behind this important custom.',
+      excerpt: "The Slava is a unique Serbian Orthodox tradition honoring a family's patron saint. Discover the rituals and meanings behind this important custom.",
       date: 'February 5, 2025',
       author: 'Cultural Heritage Committee',
       category: 'history',
