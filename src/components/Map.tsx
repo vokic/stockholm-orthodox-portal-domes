@@ -1,65 +1,37 @@
 
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import React from 'react';
 import { MapPin } from 'lucide-react';
-import L from 'leaflet';
-
-// Fix for default marker icons in Leaflet with webpack/vite
-// This is needed because Leaflet's default marker icons reference files that aren't properly bundled
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
-
-// This component sets the view of the map after it's mounted
-const SetViewOnMount = ({ coords }: { coords: [number, number] }) => {
-  const map = useMap();
-  
-  useEffect(() => {
-    map.setView(coords, 14);
-  }, [map, coords]);
-  
-  return null;
-};
 
 interface MapProps {
   className?: string;
+  address?: string;
+  coordinates?: [number, number]; // [latitude, longitude]
 }
 
-const Map: React.FC<MapProps> = ({ className = '' }) => {
-  const address = "Bägerstavägen 68, 120 47 Enskede Gård, Sweden";
-  const coordinates: [number, number] = [59.289213, 18.048665]; // [lat, lng] format for Leaflet
-  
+const Map: React.FC<MapProps> = ({ 
+  className = '', 
+  address = "Bägerstavägen 68, 120 47 Enskede Gård, Sweden",
+  coordinates = [59.289213, 18.048665] 
+}) => {
+  // Create a Google Maps embed URL without an API key
+  // Format: https://www.google.com/maps/embed/v1/place?q=LOCATION_QUERY
+  const encodedAddress = encodeURIComponent(address);
+  const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.4768582526775!2d${coordinates[1]}!3d${coordinates[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77d45a792a45%3A0x77d50356d9e38b9!2sSveti%20Sava%20Serbian%20Orthodox%20Church!5e0!3m2!1sen!2sus!4v1620392301654!5m2!1sen!2sus`;
+
   return (
     <div className={`relative w-full h-96 rounded-lg overflow-hidden ${className}`}>
-      {/* Map container */}
-      <MapContainer 
-        style={{ height: '100%', width: '100%' }}
-        className="z-0 rounded-lg"
-      >
-        <SetViewOnMount coords={coordinates} />
-        
-        {/* OpenStreetMap tile layer */}
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        
-        {/* Marker for the church location */}
-        <Marker position={coordinates}>
-          <Popup>
-            <div className="p-1">
-              <strong>Sveti Sava Church</strong><br />
-              {address}
-            </div>
-          </Popup>
-        </Marker>
-      </MapContainer>
+      {/* Google Maps iframe embed */}
+      <iframe
+        src={mapEmbedUrl}
+        className="absolute inset-0 w-full h-full border-0"
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Google Map"
+      ></iframe>
       
       {/* Title overlay */}
-      <div className="absolute top-4 left-4 bg-white px-3 py-2 rounded-md shadow-md flex items-center z-[400]">
+      <div className="absolute top-4 left-4 bg-white px-3 py-2 rounded-md shadow-md flex items-center z-10">
         <MapPin className="w-4 h-4 text-orthodox-gold mr-2" />
         <span className="text-sm font-medium">Sveti Sava Church</span>
       </div>

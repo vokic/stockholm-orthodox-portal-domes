@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
+import Map from '../components/Map';
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
@@ -138,12 +139,7 @@ const ContactPage: React.FC = () => {
                 Find Us
               </h2>
               
-              <div className="aspect-[16/9] bg-gray-200 rounded overflow-hidden">
-                {/* This would be a map in a real implementation */}
-                <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                  <p className="text-gray-600">Interactive map would be displayed here</p>
-                </div>
-              </div>
+              <Map />
               
               <div className="mt-6">
                 <h3 className="font-serif text-lg mb-2 text-orthodox-blue">Directions</h3>
