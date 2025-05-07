@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 // Define available languages
@@ -24,6 +23,7 @@ const translations = {
     'nav.blog': 'Blog',
     'nav.contact': 'Contact',
     'nav.donate': 'Donate',
+    'nav.articles': 'Articles',
     // Home Page
     'home.welcome': 'Welcome to',
     'home.church': 'Sveti Sava Orthodox Church',
@@ -41,6 +41,16 @@ const translations = {
     'services.specialServices': 'Special Services',
     'services.time': 'Time',
     'services.calendar': 'Calendar',
+    // Articles
+    'articles.title': 'Articles',
+    'articles.subtitle': 'News, events, texts and content from our community',
+    'articles.filter.all': 'All',
+    'articles.filter.news': 'News',
+    'articles.filter.happenings': 'Events',
+    'articles.filter.texts': 'Texts',
+    'articles.filter.community': 'Community',
+    'articles.filter.history': 'History',
+    'articles.readMore': 'Read More',
     // About
     'about.title': 'About Our Church',
     'about.history': 'Our History',
@@ -61,6 +71,7 @@ const translations = {
     'footer.phone': 'Phone',
     'footer.email': 'Email',
     'footer.rights': 'All Rights Reserved',
+    'nav.services': 'Services',
   },
   sv: {
     // Navigation
@@ -70,6 +81,7 @@ const translations = {
     'nav.blog': 'Blogg',
     'nav.contact': 'Kontakt',
     'nav.donate': 'Donera',
+    'nav.articles': 'Artiklar',
     // Home Page
     'home.welcome': 'Välkommen till',
     'home.church': 'Sveti Sava Ortodoxa Kyrkan',
@@ -87,6 +99,16 @@ const translations = {
     'services.specialServices': 'Speciella Tjänster',
     'services.time': 'Tid',
     'services.calendar': 'Kalender',
+    // Articles
+    'articles.title': 'Artiklar',
+    'articles.subtitle': 'Nyheter, evenemang, texter och innehåll från vår gemenskap',
+    'articles.filter.all': 'Alla',
+    'articles.filter.news': 'Nyheter',
+    'articles.filter.happenings': 'Evenemang',
+    'articles.filter.texts': 'Texter',
+    'articles.filter.community': 'Gemenskap',
+    'articles.filter.history': 'Historia',
+    'articles.readMore': 'Läs Mer',
     // About
     'about.title': 'Om Vår Kyrka',
     'about.history': 'Vår Historia',
@@ -107,6 +129,7 @@ const translations = {
     'footer.phone': 'Telefon',
     'footer.email': 'E-post',
     'footer.rights': 'Alla rättigheter förbehållna',
+    'nav.services': 'Tjänster',
   },
   sr_lat: {
     // Navigation
@@ -116,6 +139,7 @@ const translations = {
     'nav.blog': 'Blog',
     'nav.contact': 'Kontakt',
     'nav.donate': 'Doniraj',
+    'nav.articles': 'Članci',
     // Home Page
     'home.welcome': 'Dobrodošli u',
     'home.church': 'Pravoslavna Crkva Sveti Sava',
@@ -133,6 +157,16 @@ const translations = {
     'services.specialServices': 'Posebne službe',
     'services.time': 'Vreme',
     'services.calendar': 'Kalendar',
+    // Articles
+    'articles.title': 'Članci',
+    'articles.subtitle': 'Vesti, događaji, tekstovi i sadržaj iz naše zajednice',
+    'articles.filter.all': 'Sve',
+    'articles.filter.news': 'Vesti',
+    'articles.filter.happenings': 'Događaji',
+    'articles.filter.texts': 'Tekstovi',
+    'articles.filter.community': 'Zajednica',
+    'articles.filter.history': 'Istorija',
+    'articles.readMore': 'Pročitaj više',
     // About
     'about.title': 'O našoj crkvi',
     'about.history': 'Naša istorija',
@@ -153,6 +187,7 @@ const translations = {
     'footer.phone': 'Telefon',
     'footer.email': 'E-pošta',
     'footer.rights': 'Sva prava zadržana',
+    'nav.services': 'Službe',
   },
   sr_cyr: {
     // Navigation
@@ -162,6 +197,7 @@ const translations = {
     'nav.blog': 'Блог',
     'nav.contact': 'Контакт',
     'nav.donate': 'Донирај',
+    'nav.articles': 'Чланци',
     // Home Page
     'home.welcome': 'Добродошли у',
     'home.church': 'Православна Црква Свети Сава',
@@ -179,6 +215,16 @@ const translations = {
     'services.specialServices': 'Посебне службе',
     'services.time': 'Време',
     'services.calendar': 'Календар',
+    // Articles
+    'articles.title': 'Чланци',
+    'articles.subtitle': 'Вести, догађаји, текстови и садржај из наше заједнице',
+    'articles.filter.all': 'Све',
+    'articles.filter.news': 'Вести',
+    'articles.filter.happenings': 'Догађаји',
+    'articles.filter.texts': 'Текстови',
+    'articles.filter.community': 'Заједница',
+    'articles.filter.history': 'Историја',
+    'articles.readMore': 'Прочитај више',
     // About
     'about.title': 'О нашој цркви',
     'about.history': 'Наша историја',
@@ -199,6 +245,7 @@ const translations = {
     'footer.phone': 'Телефон',
     'footer.email': 'Е-пошта',
     'footer.rights': 'Сва права задржана',
+    'nav.services': 'Службе',
   },
   ru: {
     // Navigation
@@ -208,6 +255,7 @@ const translations = {
     'nav.blog': 'Блог',
     'nav.contact': 'Контакты',
     'nav.donate': 'Пожертвовать',
+    'nav.articles': 'Статьи',
     // Home Page
     'home.welcome': 'Добро пожаловать в',
     'home.church': 'Православную Церковь Святого Саввы',
@@ -225,6 +273,16 @@ const translations = {
     'services.specialServices': 'Особые службы',
     'services.time': 'Время',
     'services.calendar': 'Календарь',
+    // Articles
+    'articles.title': 'Статьи',
+    'articles.subtitle': 'Новости, события, тексты и содержание из нашей общины',
+    'articles.filter.all': 'Все',
+    'articles.filter.news': 'Новости',
+    'articles.filter.happenings': 'События',
+    'articles.filter.texts': 'Тексты',
+    'articles.filter.community': 'Община',
+    'articles.filter.history': 'История',
+    'articles.readMore': 'Читать далее',
     // About
     'about.title': 'О нашей церкви',
     'about.history': 'Наша история',
@@ -245,6 +303,7 @@ const translations = {
     'footer.phone': 'Телефон',
     'footer.email': 'Электронная почта',
     'footer.rights': 'Все права защищены',
+    'nav.services': 'Службы',
   },
   el: {
     // Navigation
@@ -254,6 +313,7 @@ const translations = {
     'nav.blog': 'Ιστολόγιο',
     'nav.contact': 'Επικοινωνία',
     'nav.donate': 'Δωρεά',
+    'nav.articles': 'Άρθρα',
     // Home Page
     'home.welcome': 'Καλώς ήρθατε στην',
     'home.church': 'Ορθόδοξη Εκκλησία του Αγίου Σάββα',
@@ -271,6 +331,16 @@ const translations = {
     'services.specialServices': 'Ειδικές Λειτουργίες',
     'services.time': 'Ώρα',
     'services.calendar': 'Ημερολόγιο',
+    // Articles
+    'articles.title': 'Άρθρα',
+    'articles.subtitle': 'Νέα, εκδηλώσεις, κείμενα και περιεχόμενο από την κοινότητά μας',
+    'articles.filter.all': 'Όλα',
+    'articles.filter.news': 'Νέα',
+    'articles.filter.happenings': 'Εκδηλώσεις',
+    'articles.filter.texts': 'Κείμενα',
+    'articles.filter.community': 'Κοινότητα',
+    'articles.filter.history': 'Ιστορία',
+    'articles.readMore': 'Διαβάστε περισσότερα',
     // About
     'about.title': 'Σχετικά με την Εκκλησία μας',
     'about.history': 'Η Ιστορία μας',
@@ -291,6 +361,7 @@ const translations = {
     'footer.phone': 'Τηλέφωνο',
     'footer.email': 'Email',
     'footer.rights': 'Με επιφύλαξη παντός δικαιώματος',
+    'nav.services': 'Υπηρεσίες',
   },
   mk: {
     // Navigation
@@ -300,6 +371,7 @@ const translations = {
     'nav.blog': 'Блог',
     'nav.contact': 'Контакт',
     'nav.donate': 'Донирај',
+    'nav.articles': 'Статии',
     // Home Page
     'home.welcome': 'Добредојдовте во',
     'home.church': 'Православната Црква Свети Сава',
@@ -317,6 +389,16 @@ const translations = {
     'services.specialServices': 'Посебни служби',
     'services.time': 'Време',
     'services.calendar': 'Календар',
+    // Articles
+    'articles.title': 'Статии',
+    'articles.subtitle': 'Вести, настани, текстови и содржина од нашата заедница',
+    'articles.filter.all': 'Сите',
+    'articles.filter.news': 'Вести',
+    'articles.filter.happenings': 'Настани',
+    'articles.filter.texts': 'Текстови',
+    'articles.filter.community': 'Заедница',
+    'articles.filter.history': 'Историја',
+    'articles.readMore': 'Прочитај повеќе',
     // About
     'about.title': 'За нашата црква',
     'about.history': 'Нашата историја',
@@ -337,6 +419,7 @@ const translations = {
     'footer.phone': 'Телефон',
     'footer.email': 'Е-пошта',
     'footer.rights': 'Сите права се задржани',
+    'nav.services': 'Служби',
   }
 };
 

@@ -93,9 +93,9 @@ const ClanciPage: React.FC = () => {
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              Članci
+              {t('articles.title')}
             </h1>
-            <p className="text-lg">Vesti, događaji, tekstovi i sadržaj iz naše zajednice</p>
+            <p className="text-lg">{t('articles.subtitle')}</p>
           </div>
         </div>
 
@@ -114,11 +114,7 @@ const ClanciPage: React.FC = () => {
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     } transition-colors`}
                   >
-                    {category === 'all' ? 'Sve' : 
-                     category === 'news' ? 'Vesti' : 
-                     category === 'happenings' ? 'Događaji' : 
-                     category === 'texts' ? 'Tekstovi' : 
-                     category === 'community' ? 'Zajednica' : 'Istorija'}
+                    {t(`articles.filter.${category}`)}
                   </button>
                 ))}
               </div>
@@ -144,15 +140,12 @@ const ClanciPage: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">By {article.author}</span>
                       <span className="inline-block px-2 py-1 text-xs rounded-full bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                        {article.category === 'news' ? 'Vesti' : 
-                         article.category === 'happenings' ? 'Događaji' : 
-                         article.category === 'texts' ? 'Tekstovi' : 
-                         article.category === 'community' ? 'Zajednica' : 'Istorija'}
+                        {t(`articles.filter.${article.category}`)}
                       </span>
                     </div>
                     <div className="mt-4">
                       <Link to={`/clanci/${article.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
-                        Pročitaj više →
+                        {t('articles.readMore')} →
                       </Link>
                     </div>
                   </div>

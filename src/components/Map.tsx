@@ -29,12 +29,6 @@ const Map: React.FC<MapProps> = ({
         referrerPolicy="no-referrer-when-downgrade"
         title="Google Map"
       ></iframe>
-      
-      {/* Pin location overlay - only visible marker will be from Google Maps */}
-      <div className="absolute top-4 left-4 bg-white px-3 py-2 rounded-md shadow-md flex items-center z-10">
-        <MapPin className="w-4 h-4 text-orthodox-gold mr-2" />
-        <span className="text-sm font-medium">Bägerstavägen 68</span>
-      </div>
     </div>
   );
 };
