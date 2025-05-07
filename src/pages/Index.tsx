@@ -9,8 +9,11 @@ import PriestMessage from '../components/PriestMessage';
 import DonationSection from '../components/DonationSection';
 import HolidayPopup from '../components/HolidayPopup';
 import Map from '../components/Map';
+import { useLanguage } from '../context/LanguageContext';
 
 const HomePage: React.FC = () => {
+  const { t } = useLanguage();
+  
   // Holiday service information for the popup
   const holidayService = {
     title: "Feast of Saint Sava",
@@ -48,8 +51,8 @@ const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Location */}
               <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">Visit Us</h3>
-                <p className="mb-4">Bägerstavägen 68, 120 47 Enskede Gård, Sweden</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">{t('home.visitUs')}</h3>
+                <p className="mb-4">{t('home.location')}</p>
                 <div className="aspect-video rounded overflow-hidden">
                   <Map />
                 </div>
@@ -57,11 +60,11 @@ const HomePage: React.FC = () => {
               
               {/* Quick Contact */}
               <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">Contact</h3>
-                <p className="mb-2"><strong>Phone:</strong> +46 8 123 456 78</p>
-                <p className="mb-2"><strong>Email:</strong> info@svetisava-stockholm.se</p>
-                <p className="mb-4"><strong>Office Hours:</strong> Monday to Friday, 9:00 - 16:00</p>
-                <Link to="/contact" className="btn-primary inline-block mt-2">Contact Us</Link>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">{t('home.contactInfo')}</h3>
+                <p className="mb-2">{t('home.phone')}</p>
+                <p className="mb-2">{t('home.email')}</p>
+                <p className="mb-4">{t('home.officeHours')}</p>
+                <Link to="/contact" className="btn-primary inline-block mt-2">{t('home.contactUs')}</Link>
               </div>
             </div>
           </div>
