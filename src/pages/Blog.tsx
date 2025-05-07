@@ -74,7 +74,7 @@ const BlogPage: React.FC = () => {
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              {t('blog.title')}
+              DESAVANJA/VESTI
             </h1>
           </div>
         </div>
@@ -119,7 +119,7 @@ const BlogPage: React.FC = () => {
                     <p className="text-gray-600 mb-4">{post.excerpt}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">By {post.author}</span>
-                      <Link to={`/blog/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
+                      <Link to={`/desavanja/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
                         Read More →
                       </Link>
                     </div>

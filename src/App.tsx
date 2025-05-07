@@ -15,6 +15,7 @@ import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Customs from "./pages/Customs";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +32,9 @@ const App = () => (
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/desavanja" element={<Blog />} />
+            <Route path="/desavanja/:id" element={<BlogPost />} />
+            <Route path="/customs" element={<Customs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

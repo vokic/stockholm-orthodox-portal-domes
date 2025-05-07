@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
-import ServiceSchedule from '../components/ServiceSchedule';
-import EventsList from '../components/EventsList';
+import CombinedEventsSchedule from '../components/CombinedEventsSchedule';
 import PriestMessage from '../components/PriestMessage';
 import DonationSection from '../components/DonationSection';
 import HolidayPopup from '../components/HolidayPopup';
+import Map from '../components/Map';
 
 const HomePage: React.FC = () => {
   // Holiday service information for the popup
@@ -29,9 +29,8 @@ const HomePage: React.FC = () => {
         {/* Service & Events Section */}
         <section className="section bg-orthodox-cream">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ServiceSchedule />
-              <EventsList />
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+              <CombinedEventsSchedule />
             </div>
           </div>
         </section>
@@ -50,12 +49,9 @@ const HomePage: React.FC = () => {
               {/* Location */}
               <div className="card">
                 <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">Visit Us</h3>
-                <p className="mb-4">Birger Jarlsgatan 98, 114 20 Stockholm</p>
-                <div className="aspect-video bg-gray-200 rounded overflow-hidden">
-                  {/* This would be a map in a real implementation */}
-                  <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                    Map placeholder
-                  </div>
+                <p className="mb-4">Bägerstavägen 68, 120 47 Enskede Gård, Sweden</p>
+                <div className="aspect-video rounded overflow-hidden">
+                  <Map />
                 </div>
               </div>
               

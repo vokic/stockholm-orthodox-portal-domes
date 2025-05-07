@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
-import { Menu } from 'lucide-react';
+import { Menu, Facebook, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -53,9 +53,20 @@ const Header: React.FC = () => {
             <Link to="/" className="nav-link">{t('nav.home')}</Link>
             <Link to="/about" className="nav-link">{t('nav.about')}</Link>
             <Link to="/calendar" className="nav-link">{t('nav.calendar')}</Link>
-            <Link to="/blog" className="nav-link">{t('nav.blog')}</Link>
+            <Link to="/customs" className="nav-link">OBICAJI</Link>
+            <Link to="/desavanja" className="nav-link">DESAVANJA/VESTI</Link>
             <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-2 ml-2">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Facebook size={20} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Instagram size={20} />
+              </a>
+            </div>
 
             {/* Language Selector */}
             <DropdownMenu>
@@ -80,6 +91,16 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
+            {/* Social Media Icons for Mobile */}
+            <div className="flex items-center gap-2 mr-2">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Facebook size={18} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Instagram size={18} />
+              </a>
+            </div>
+            
             {/* Language Selector for Mobile */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -112,7 +133,8 @@ const Header: React.FC = () => {
             <Link to="/" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.home')}</Link>
             <Link to="/about" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.about')}</Link>
             <Link to="/calendar" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.calendar')}</Link>
-            <Link to="/blog" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.blog')}</Link>
+            <Link to="/customs" className="nav-link text-lg" onClick={toggleMenu}>OBICAJI</Link>
+            <Link to="/desavanja" className="nav-link text-lg" onClick={toggleMenu}>DESAVANJA/VESTI</Link>
             <Link to="/contact" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>

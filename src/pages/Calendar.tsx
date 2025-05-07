@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar as CalendarIcon, Clock } from 'lucide-react';
 
 const CalendarPage: React.FC = () => {
   const { t } = useLanguage();
-  const [date, setDate] = useState<Date | undefined>(new Date());
   const [view, setView] = useState<'services' | 'events' | 'all'>('all');
   
   // Sample service schedule data
@@ -129,154 +127,141 @@ const CalendarPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             <div className="card">
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="md:w-1/3 flex justify-center">
-                  <CalendarComponent
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    className="rounded-md border shadow"
-                  />
-                </div>
+              <Tabs defaultValue="all">
+                <TabsList className="mb-4">
+                  <TabsTrigger 
+                    value="all" 
+                    onClick={() => setView('all')}
+                  >
+                    All
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="services" 
+                    onClick={() => setView('services')}
+                  >
+                    Services
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="events" 
+                    onClick={() => setView('events')}
+                  >
+                    Events
+                  </TabsTrigger>
+                </TabsList>
                 
-                <div className="md:w-2/3">
-                  <Tabs defaultValue="all">
-                    <TabsList className="mb-4">
-                      <TabsTrigger 
-                        value="all" 
-                        onClick={() => setView('all')}
-                      >
-                        All
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="services" 
-                        onClick={() => setView('services')}
-                      >
-                        Services
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="events" 
-                        onClick={() => setView('events')}
-                      >
-                        Events
-                      </TabsTrigger>
-                    </TabsList>
-                    
-                    <TabsContent value="all" className="mt-0">
-                      <h2 className="text-2xl font-serif mb-4">Upcoming Services & Events</h2>
-                      {filteredItems.length > 0 ? (
-                        <div className="divide-y">
-                          {filteredItems.map((item, index) => (
-                            <div key={index} className="py-4">
-                              <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                                <div className="flex items-center gap-2">
-                                  <CalendarIcon size={18} className="text-orthodox-blue" />
-                                  <span className="font-medium">{item.date}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Clock size={18} className="text-orthodox-blue" />
-                                  <span>{item.time}</span>
-                                </div>
-                              </div>
-                              <h3 className="text-xl font-semibold mb-1">{item.name}</h3>
-                              {item.type === 'event' && (
-                                <>
-                                  <p className="text-gray-700 mb-2">{(item as any).description}</p>
-                                  <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
-                                </>
-                              )}
-                              <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                                {item.type === 'service' ? 'Service' : 'Event'}
-                              </span>
+                <TabsContent value="all" className="mt-0">
+                  <h2 className="text-2xl font-serif mb-4">Upcoming Services & Events</h2>
+                  {filteredItems.length > 0 ? (
+                    <div className="divide-y">
+                      {filteredItems.map((item, index) => (
+                        <div key={index} className="py-4">
+                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <CalendarIcon size={18} className="text-orthodox-blue" />
+                              <span className="font-medium">{item.date}</span>
                             </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-gray-600">No upcoming items to display.</p>
-                      )}
-                    </TabsContent>
-                    
-                    <TabsContent value="services" className="mt-0">
-                      {/* This content will be shown when selecting the Services tab */}
-                      <div className="mb-8">
-                        <h2 className="text-2xl font-serif mb-4">Regular Services</h2>
-                        <div className="overflow-x-auto">
-                          <table className="w-full">
-                            <thead>
-                              <tr className="bg-orthodox-blue text-white">
-                                <th className="px-4 py-2 text-left">Day</th>
-                                <th className="px-4 py-2 text-left">Service</th>
-                                <th className="px-4 py-2 text-left">Time</th>
-                                <th className="px-4 py-2 text-left">Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {regularServices.map((service, index) => (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                                  <td className="px-4 py-3 font-medium">{service.day}</td>
-                                  <td className="px-4 py-3">{service.name}</td>
-                                  <td className="px-4 py-3">{service.time}</td>
-                                  <td className="px-4 py-3">{service.description}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      
-                      <h2 className="text-2xl font-serif mb-4">Special Services</h2>
-                      {specialServices.length > 0 ? (
-                        <div className="divide-y">
-                          {specialServices.map((service, index) => (
-                            <div key={index} className="py-4">
-                              <div className="flex items-center justify-between mb-1">
-                                <div className="flex items-center gap-2">
-                                  <CalendarIcon size={18} className="text-orthodox-blue" />
-                                  <span className="font-medium">{service.date}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Clock size={18} className="text-orthodox-blue" />
-                                  <span>{service.time}</span>
-                                </div>
-                              </div>
-                              <h3 className="text-xl font-semibold">{service.name}</h3>
+                            <div className="flex items-center gap-2">
+                              <Clock size={18} className="text-orthodox-blue" />
+                              <span>{item.time}</span>
                             </div>
-                          ))}
+                          </div>
+                          <h3 className="text-xl font-semibold mb-1">{item.name}</h3>
+                          {item.type === 'event' && (
+                            <>
+                              <p className="text-gray-700 mb-2">{(item as any).description}</p>
+                              <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
+                            </>
+                          )}
+                          <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
+                            {item.type === 'service' ? 'Service' : 'Event'}
+                          </span>
                         </div>
-                      ) : (
-                        <p className="text-gray-600">No special services currently scheduled.</p>
-                      )}
-                    </TabsContent>
-                    
-                    <TabsContent value="events" className="mt-0">
-                      <h2 className="text-2xl font-serif mb-4">Community Events</h2>
-                      {events.length > 0 ? (
-                        <div className="divide-y">
-                          {events.map((event, index) => (
-                            <div key={index} className="py-4">
-                              <div className="flex items-center justify-between mb-1">
-                                <div className="flex items-center gap-2">
-                                  <CalendarIcon size={18} className="text-orthodox-blue" />
-                                  <span className="font-medium">{event.date}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Clock size={18} className="text-orthodox-blue" />
-                                  <span>{event.time}</span>
-                                </div>
-                              </div>
-                              <h3 className="text-xl font-semibold mb-1">{event.name}</h3>
-                              <p className="text-gray-700 mb-2">{event.description}</p>
-                              <p className="text-sm text-gray-600"><strong>Location:</strong> {event.location}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600">No upcoming items to display.</p>
+                  )}
+                </TabsContent>
+                
+                <TabsContent value="services" className="mt-0">
+                  {/* This content will be shown when selecting the Services tab */}
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-serif mb-4">Regular Services</h2>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="bg-orthodox-blue text-white">
+                            <th className="px-4 py-2 text-left">Day</th>
+                            <th className="px-4 py-2 text-left">Service</th>
+                            <th className="px-4 py-2 text-left">Time</th>
+                            <th className="px-4 py-2 text-left">Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {regularServices.map((service, index) => (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                              <td className="px-4 py-3 font-medium">{service.day}</td>
+                              <td className="px-4 py-3">{service.name}</td>
+                              <td className="px-4 py-3">{service.time}</td>
+                              <td className="px-4 py-3">{service.description}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  
+                  <h2 className="text-2xl font-serif mb-4">Special Services</h2>
+                  {specialServices.length > 0 ? (
+                    <div className="divide-y">
+                      {specialServices.map((service, index) => (
+                        <div key={index} className="py-4">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <CalendarIcon size={18} className="text-orthodox-blue" />
+                              <span className="font-medium">{service.date}</span>
                             </div>
-                          ))}
+                            <div className="flex items-center gap-2">
+                              <Clock size={18} className="text-orthodox-blue" />
+                              <span>{service.time}</span>
+                            </div>
+                          </div>
+                          <h3 className="text-xl font-semibold">{service.name}</h3>
                         </div>
-                      ) : (
-                        <p className="text-gray-600">No events currently scheduled.</p>
-                      )}
-                    </TabsContent>
-                  </Tabs>
-                </div>
-              </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600">No special services currently scheduled.</p>
+                  )}
+                </TabsContent>
+                
+                <TabsContent value="events" className="mt-0">
+                  <h2 className="text-2xl font-serif mb-4">Community Events</h2>
+                  {events.length > 0 ? (
+                    <div className="divide-y">
+                      {events.map((event, index) => (
+                        <div key={index} className="py-4">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <CalendarIcon size={18} className="text-orthodox-blue" />
+                              <span className="font-medium">{event.date}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Clock size={18} className="text-orthodox-blue" />
+                              <span>{event.time}</span>
+                            </div>
+                          </div>
+                          <h3 className="text-xl font-semibold mb-1">{event.name}</h3>
+                          <p className="text-gray-700 mb-2">{event.description}</p>
+                          <p className="text-sm text-gray-600"><strong>Location:</strong> {event.location}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600">No events currently scheduled.</p>
+                  )}
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </section>
