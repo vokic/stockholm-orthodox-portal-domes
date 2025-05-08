@@ -2,6 +2,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
+import SerbianCross from './SerbianCross';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -16,7 +17,9 @@ const Footer: React.FC = () => {
             <p className="mb-4">
               {t('footer.description')}
             </p>
-            <div className="text-orthodox-gold text-3xl">☦</div>
+            <div className="text-orthodox-gold text-3xl">
+              <SerbianCross size={32} className="text-orthodox-gold" />
+            </div>
           </div>
 
           <div>

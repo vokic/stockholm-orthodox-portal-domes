@@ -43,7 +43,7 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[500px] border-orthodox-gold">
+      <DialogContent className="sm:max-w-[500px] border-orthodox-gold max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center gap-2">
             <CalendarIcon className="h-6 w-6 text-orthodox-gold" />
@@ -56,13 +56,13 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService }) => {
         
         <div className="py-4 space-y-4">
           <div className="bg-orthodox-cream p-4 rounded-lg">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
               <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
               <span className="font-medium">{holidayService.date}</span>
               <span className="mx-2">•</span>
               <span>{holidayService.time}</span>
             </div>
-            <p className="text-gray-700">{holidayService.description}</p>
+            <p className="text-gray-700 break-words">{holidayService.description}</p>
           </div>
         </div>
         

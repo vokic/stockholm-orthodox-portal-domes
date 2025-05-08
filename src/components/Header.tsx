@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import SerbianCross from './SerbianCross';
 
 const Header: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -39,7 +40,9 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="text-orthodox-gold text-3xl mr-3">☦</div>
+              <div className="text-orthodox-gold text-3xl mr-3">
+                <SerbianCross size={28} className="text-orthodox-gold" />
+              </div>
               <div>
                 <h1 className="text-xl font-serif font-bold text-orthodox-blue">
                   {t('home.church')}
