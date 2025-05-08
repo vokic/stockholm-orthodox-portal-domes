@@ -31,6 +31,7 @@ const ContactPage: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t('nav.contact')}
             </h1>
+            <p className="text-white">{t('home.churchDescription')}</p>
           </div>
         </div>
 

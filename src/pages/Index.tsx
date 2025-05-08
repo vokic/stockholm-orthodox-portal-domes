@@ -32,6 +32,7 @@ const HomePage: React.FC = () => {
         {/* Service & Events Section */}
         <section className="section bg-orthodox-cream">
           <div className="container-custom">
+            <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">{t('home.upcomingEvents')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
               <CombinedEventsSchedule />
             </div>
@@ -64,6 +65,9 @@ const HomePage: React.FC = () => {
                 <p className="mb-2">{t('home.phone')}</p>
                 <p className="mb-2">{t('home.email')}</p>
                 <p className="mb-4">{t('home.officeHours')}</p>
+                <div className="mb-4">
+                  <p>{t('home.churchDescription')}</p>
+                </div>
                 <Link to="/contact" className="btn-primary inline-block mt-2">{t('home.contactUs')}</Link>
               </div>
             </div>
