@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { MapPin } from 'lucide-react';
 
 interface MapProps {
   className?: string;
@@ -27,11 +26,6 @@ const Map: React.FC<MapProps> = ({
         referrerPolicy="no-referrer-when-downgrade"
         title="Google Map"
       ></iframe>
-      
-      {/* Pin overlay - centered in the map */}
-      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orthodox-gold z-10 pointer-events-none">
-        <MapPin size={36} className="drop-shadow-lg" />
-      </div>
     </div>
   );
 };

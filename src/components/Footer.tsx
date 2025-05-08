@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.about')}</h3>
             <p className="mb-4">
-              Orthodox Church in Stockholm serves the spiritual needs of the Orthodox faithful in Stockholm and surrounding areas.
+              {t('footer.description')}
             </p>
             <div className="text-orthodox-gold text-3xl">☦</div>
           </div>
@@ -36,20 +36,20 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.contact')}</h3>
             <ul className="space-y-2">
               <li>
-                <strong>{t('footer.address')}:</strong> Birger Jarlsgatan 98, 114 20 Stockholm
+                <strong>{t('footer.address')}:</strong> {t('footer.addressValue')}
               </li>
               <li>
-                <strong>{t('footer.phone')}:</strong> +46 8 123 456 78
+                <strong>{t('footer.phone')}:</strong> {t('footer.phoneValue')}
               </li>
               <li>
-                <strong>{t('footer.email')}:</strong> info@orthodoxstockholm.se
+                <strong>{t('footer.email')}:</strong> {t('footer.emailValue')}
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-300 text-center">
-          <p>© {currentYear} Orthodox Church in Stockholm. {t('footer.rights')}.</p>
+          <p>© {currentYear} {t('footer.copyright')} {t('footer.rights')}.</p>
         </div>
       </div>
     </footer>
