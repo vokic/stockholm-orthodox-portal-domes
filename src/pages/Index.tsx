@@ -16,10 +16,10 @@ const HomePage: React.FC = () => {
   
   // Holiday service information for the popup
   const holidayService = {
-    title: "Feast of Saint Sava",
-    date: "January 27, 2026",
-    time: "10:00 - 12:30",
-    description: "Join us for the Divine Liturgy celebrating Saint Sava, the first Archbishop of Serbia and our church's patron saint. Following the service, there will be a festive meal in the parish hall."
+    title: t('home.holidayPopup.title'),
+    date: t('home.holidayPopup.date'),
+    time: t('home.holidayPopup.time'),
+    description: t('home.holidayPopup.description')
   };
 
   return (

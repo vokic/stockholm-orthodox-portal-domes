@@ -13,8 +13,8 @@ const ContactPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
-      title: "Message Sent",
-      description: "Thank you for your message. We will respond as soon as possible.",
+      title: t('contact.form.successTitle'),
+      description: t('contact.form.successMessage'),
       duration: 5000,
     });
     // In a real application, this would submit the form data to a server
