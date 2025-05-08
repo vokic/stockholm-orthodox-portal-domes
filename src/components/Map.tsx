@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { MapPin } from 'lucide-react';
 
 interface MapProps {
   className?: string;
@@ -12,10 +13,18 @@ const Map: React.FC<MapProps> = ({
   address = "Bägerstavägen 68, 120 47 Enskede Gård, Sweden",
   coordinates = [59.289213, 18.048665] 
 }) => {
-  // Create a Google Maps embed URL that centers the map on the coordinates
-  // Using default pin by not specifying any custom markers
-  const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2036.4768582526775!2d${coordinates[1]}!3d${coordinates[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77d45a792a45%3A0x77d50356d9e38b9!2sB%C3%A4gerstav%C3%A4gen%2068%2C%20120%2047%20Enskede-Stockholm!5e0!3m2!1sen!2sus!4v1620392301654!5m2!1sen!2sus`;
+  // Create a custom pin for the church location
+  const customPin = encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#1EAEDB" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <line x1="12" y1="6" x2="12" y2="14" stroke="white" stroke-width="1.5"></line>
+      <line x1="8" y1="10" x2="16" y2="10" stroke="white" stroke-width="1.5"></line>
+    </svg>
+  `);
 
+  // Create a Google Maps embed URL with custom marker
+  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(address)}&zoom=15&maptype=roadmap&language=en`;
+  
   return (
     <div className={`relative w-full h-96 rounded-lg overflow-hidden ${className}`}>
       {/* Google Maps iframe embed */}
@@ -27,6 +36,11 @@ const Map: React.FC<MapProps> = ({
         referrerPolicy="no-referrer-when-downgrade"
         title="Google Map"
       ></iframe>
+      
+      {/* Custom pin overlay */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full pointer-events-none">
+        <MapPin size={32} className="text-blue-500 fill-blue-500" />
+      </div>
     </div>
   );
 };
