@@ -11,10 +11,12 @@ interface GalleryProps {
   images: {
     src: string;
     alt: string;
+    size?: 'small' | 'medium' | 'large'; // Optional size property
   }[];
+  className?: string;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images }) => {
+const Gallery: React.FC<GalleryProps> = ({ images, className = '' }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,13 +58,26 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
     setIsLoading(false);
   };
 
+  // Get size class for collage effect
+  const getSizeClass = (size?: string) => {
+    switch (size) {
+      case 'small':
+        return 'col-span-1 row-span-1';
+      case 'large':
+        return 'col-span-2 row-span-2';
+      case 'medium':
+      default:
+        return 'col-span-1 row-span-2';
+    }
+  };
+
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-[minmax(150px,auto)] gap-3 ${className}`}>
         {images.map((image, index) => (
           <div 
             key={index} 
-            className="aspect-square overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+            className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity`}
             onClick={() => setSelectedImageIndex(index)}
           >
             <img 

@@ -17,31 +17,37 @@ const AboutPage: React.FC = () => {
     { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
   ];
 
-  // Gallery images
+  // Gallery images with size variations for collage effect
   const galleryImages = [
     {
       src: 'https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchInterior')
+      alt: t('about.gallery.churchInterior'),
+      size: 'large'
     },
     {
       src: 'https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      alt: t('about.gallery.churchIcons')
+      alt: t('about.gallery.churchIcons'),
+      size: 'small'
     },
     {
       src: 'https://images.unsplash.com/photo-1594905883965-ba245250c1c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchExterior')
+      alt: t('about.gallery.churchExterior'),
+      size: 'medium'
     },
     {
       src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchBellTower')
+      alt: t('about.gallery.churchBellTower'),
+      size: 'small'
     },
     {
       src: 'https://images.unsplash.com/photo-1629111963021-146f7e4651f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchDome')
+      alt: t('about.gallery.churchDome'),
+      size: 'medium'
     },
     {
       src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.cathedralInterior')
+      alt: t('about.gallery.cathedralInterior'),
+      size: 'small'
     }
   ];
 
@@ -59,7 +65,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Gallery Section - Top position */}
+        {/* Gallery Section - Top position with collage style */}
         <section className="section">
           <div className="container-custom">
             <div className="card">
