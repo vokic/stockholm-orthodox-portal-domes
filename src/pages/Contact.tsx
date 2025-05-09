@@ -1,23 +1,90 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import Map from '../components/Map';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCaptchaChange = (value: string | null) => {
+    setCaptchaValue(value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: t('contact.form.successTitle'),
-      description: t('contact.form.successMessage'),
-      duration: 5000,
-    });
-    // In a real application, this would submit the form data to a server
+    
+    // Check if captcha is completed
+    if (!captchaValue) {
+      toast({
+        title: t('contact.form.captchaRequired'),
+        description: t('contact.form.completeCaptcha'),
+        variant: "destructive",
+        duration: 5000,
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Create form data for email service
+      const formData = {
+        name,
+        email,
+        subject,
+        message,
+        captchaToken: captchaValue,
+        recipient: 'crkva@gmail.com'
+      };
+      
+      // Using a service like EmailJS, Formspree, or your own endpoint
+      // This is a mock implementation - replace with your actual email service
+      const response = await fetch('https://formspree.io/f/your-form-id', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        // Reset form on success
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+        setCaptchaValue(null);
+        
+        toast({
+          title: t('contact.form.successTitle'),
+          description: t('contact.form.successMessage'),
+          duration: 5000,
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending form:', error);
+      toast({
+        title: t('contact.form.errorTitle'),
+        description: t('contact.form.errorMessage'),
+        variant: "destructive",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,6 +155,9 @@ const ContactPage: React.FC = () => {
                       id="name"
                       className="w-full p-2 border border-gray-300 rounded"
                       required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -98,6 +168,9 @@ const ContactPage: React.FC = () => {
                       id="email"
                       className="w-full p-2 border border-gray-300 rounded"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -108,6 +181,9 @@ const ContactPage: React.FC = () => {
                       id="subject"
                       className="w-full p-2 border border-gray-300 rounded"
                       required
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -118,12 +194,26 @@ const ContactPage: React.FC = () => {
                       rows={5}
                       className="w-full p-2 border border-gray-300 rounded"
                       required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      disabled={isSubmitting}
                     ></textarea>
                   </div>
                   
+                  {/* reCAPTCHA */}
                   <div className="pt-2">
-                    <button type="submit" className="btn-primary w-full">
-                      {t('contact.form.submit')}
+                    <div className="flex justify-center mb-4">
+                      <ReCAPTCHA
+                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Replace with your actual site key
+                        onChange={handleCaptchaChange}
+                      />
+                    </div>
+                    <button 
+                      type="submit" 
+                      className="btn-primary w-full" 
+                      disabled={isSubmitting || !captchaValue}
+                    >
+                      {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
                     </button>
                   </div>
                 </form>
