@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
             {t('home.welcome')}
           </h2>
           <h1 className="text-3xl md:text-5xl font-bold font-serif mb-6 text-white">
-            {t('home.church')}
+            {t('home.churchFullName')}
           </h1>
           <p className="text-xl md:text-2xl mb-8">
             {t('home.intro')}

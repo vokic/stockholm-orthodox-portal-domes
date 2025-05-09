@@ -9,6 +9,7 @@ import PriestMessage from '../components/PriestMessage';
 import DonationSection from '../components/DonationSection';
 import HolidayPopup from '../components/HolidayPopup';
 import Map from '../components/Map';
+import LatestArticles from '../components/LatestArticles';
 import { useLanguage } from '../context/LanguageContext';
 
 const HomePage: React.FC = () => {
@@ -28,6 +29,17 @@ const HomePage: React.FC = () => {
       
       <main className="flex-grow">
         <HeroSection />
+        
+        {/* Latest Articles Section */}
+        <section className="section">
+          <div className="container-custom">
+            <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">{t('home.latestArticles')}</h2>
+            <LatestArticles />
+            <div className="text-center mt-6">
+              <Link to="/clanci" className="btn-primary inline-block">{t('home.viewAllArticles')}</Link>
+            </div>
+          </div>
+        </section>
         
         {/* Service & Events Section */}
         <section className="section bg-orthodox-cream">

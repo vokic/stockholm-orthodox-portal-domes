@@ -66,7 +66,7 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService }) => {
           </div>
         </div>
         
-        <DialogFooter className="flex sm:justify-between gap-4 sm:gap-0">
+        <DialogFooter className="flex flex-col sm:flex-row sm:justify-between gap-4 sm:gap-0">
           <Button 
             variant="outline" 
             onClick={() => setOpen(false)}

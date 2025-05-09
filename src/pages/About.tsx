@@ -58,9 +58,22 @@ const AboutPage: React.FC = () => {
             </h1>
           </div>
         </div>
+        
+        {/* Gallery Section - Top position */}
+        <section className="section">
+          <div className="container-custom">
+            <div className="card">
+              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                {t('about.gallery.title')}
+              </h2>
+              
+              <Gallery images={galleryImages} />
+            </div>
+          </div>
+        </section>
 
         {/* History Section */}
-        <section className="section">
+        <section className="section bg-orthodox-cream">
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
@@ -112,7 +125,7 @@ const AboutPage: React.FC = () => {
         </section>
         
         {/* Sveti Sava Section */}
-        <section className="section bg-orthodox-cream">
+        <section className="section">
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
@@ -153,7 +166,7 @@ const AboutPage: React.FC = () => {
         </section>
         
         {/* Our Priests Section */}
-        <section className="section">
+        <section className="section bg-orthodox-cream">
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
@@ -215,19 +228,6 @@ const AboutPage: React.FC = () => {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Gallery Section - Moved up for better flow */}
-        <section className="section bg-orthodox-cream">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t('about.gallery.title')}
-              </h2>
-              
-              <Gallery images={galleryImages} />
             </div>
           </div>
         </section>
