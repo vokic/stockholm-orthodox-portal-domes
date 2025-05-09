@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -17,37 +16,55 @@ const AboutPage: React.FC = () => {
     { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
   ];
 
-  // Gallery images with size variations for collage effect
+  // Gallery images with more variety for masonry layout
   const galleryImages = [
     {
       src: 'https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchInterior'),
-      size: 'large' as 'large'
+      alt: t('about.gallery.churchInterior')
     },
     {
       src: 'https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      alt: t('about.gallery.churchIcons'),
-      size: 'small' as 'small'
+      alt: t('about.gallery.churchIcons')
     },
     {
       src: 'https://images.unsplash.com/photo-1594905883965-ba245250c1c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchExterior'),
-      size: 'medium' as 'medium'
+      alt: t('about.gallery.churchExterior')
     },
     {
       src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchBellTower'),
-      size: 'small' as 'small'
+      alt: t('about.gallery.churchBellTower')
     },
     {
       src: 'https://images.unsplash.com/photo-1629111963021-146f7e4651f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchDome'),
-      size: 'medium' as 'medium'
+      alt: t('about.gallery.churchDome')
     },
     {
       src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.cathedralInterior'),
-      size: 'small' as 'small'
+      alt: t('about.gallery.cathedralInterior')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchYard')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchNature')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchFlowers')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1493897065418-2bb6fe8eb4c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCeiling')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1528828085966-aff4e01c5f2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCandle')
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1543179318-f5274a887586?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCross')
     }
   ];
 
@@ -65,7 +82,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Gallery Section - Top position with collage style */}
+        {/* Gallery Section - Top position with masonry layout */}
         <section className="section">
           <div className="container-custom">
             <div className="card">
@@ -73,7 +90,7 @@ const AboutPage: React.FC = () => {
                 {t('about.gallery.title')}
               </h2>
               
-              <Gallery images={galleryImages} />
+              <Gallery images={galleryImages} masonry={true} />
             </div>
           </div>
         </section>
