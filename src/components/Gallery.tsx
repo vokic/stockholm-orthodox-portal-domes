@@ -14,11 +14,32 @@ interface GalleryProps {
     size?: 'small' | 'medium' | 'large'; // Optional size property
   }[];
   className?: string;
+  masonry?: boolean; // New prop to toggle between regular grid and masonry layout
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images, className = '' }) => {
+const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = false }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [columns, setColumns] = useState<number>(3); // Default column count
+
+  // Responsive column count based on screen width
+  useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth < 640) {
+        setColumns(1);
+      } else if (window.innerWidth < 768) {
+        setColumns(2);
+      } else if (window.innerWidth < 1024) {
+        setColumns(3);
+      } else {
+        setColumns(4); // For larger screens
+      }
+    };
+
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -60,33 +81,81 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '' }) => {
 
   // Get size class for collage effect
   const getSizeClass = (size?: string) => {
-    switch (size) {
-      case 'small':
-        return 'col-span-1 row-span-1';
-      case 'large':
-        return 'col-span-2 row-span-2';
-      case 'medium':
-      default:
-        return 'col-span-1 row-span-2';
+    if (!masonry) {
+      switch (size) {
+        case 'small':
+          return 'col-span-1 row-span-1';
+        case 'large':
+          return 'col-span-2 row-span-2';
+        case 'medium':
+        default:
+          return 'col-span-1 row-span-2';
+      }
     }
+    return ''; // For masonry we don't need these classes
   };
+
+  // Create columns for masonry layout
+  const renderMasonryLayout = () => {
+    // Initialize array of column contents
+    const columnContents: JSX.Element[][] = Array.from({ length: columns }, () => []);
+    
+    // Distribute images into columns
+    images.forEach((image, index) => {
+      const columnIndex = index % columns;
+      
+      columnContents[columnIndex].push(
+        <div 
+          key={index}
+          className="mb-4 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+          onClick={() => setSelectedImageIndex(index)}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="w-full h-auto object-cover transition-transform hover:scale-105 duration-500"
+            loading="lazy"
+          />
+        </div>
+      );
+    });
+    
+    // Render columns
+    return (
+      <div className="flex gap-4">
+        {columnContents.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex-1 flex flex-col">
+            {column}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // Standard grid layout
+  const renderGridLayout = () => (
+    <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-[minmax(150px,auto)] gap-3`}>
+      {images.map((image, index) => (
+        <div 
+          key={index} 
+          className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity`}
+          onClick={() => setSelectedImageIndex(index)}
+        >
+          <img 
+            src={image.src} 
+            alt={image.alt} 
+            className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <>
-      <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-[minmax(150px,auto)] gap-3 ${className}`}>
-        {images.map((image, index) => (
-          <div 
-            key={index} 
-            className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity`}
-            onClick={() => setSelectedImageIndex(index)}
-          >
-            <img 
-              src={image.src} 
-              alt={image.alt} 
-              className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-            />
-          </div>
-        ))}
+      <div className={className}>
+        {masonry ? renderMasonryLayout() : renderGridLayout()}
       </div>
 
       <Dialog 
