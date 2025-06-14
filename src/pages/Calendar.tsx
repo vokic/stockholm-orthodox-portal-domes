@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -180,36 +181,24 @@ const CalendarPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             <div className="card">
-              <Tabs defaultValue="all">
+              <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                 <TabsList className="mb-4">
-                  <TabsTrigger 
-                    value="all" 
-                    onClick={() => setView('all')}
-                  >
+                  <TabsTrigger value="all">
                     All
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="services" 
-                    onClick={() => setView('services')}
-                  >
+                  <TabsTrigger value="services">
                     Services
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="events" 
-                    onClick={() => setView('events')}
-                  >
+                  <TabsTrigger value="events">
                     Events
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="slava" 
-                    onClick={() => setView('slava')}
-                  >
+                  <TabsTrigger value="slava">
                     Slava
                   </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="all" className="mt-0">
-                  <h2 className="text-2xl font-serif mb-4">Upcoming Services, Events & Slavas</h2>
+                  <h2 className="text-2xl font-serif mb-4">All Services, Events & Slavas</h2>
                   {filteredItems.length > 0 ? (
                     <div className="divide-y">
                       {filteredItems.map((item, index) => (
@@ -271,9 +260,9 @@ const CalendarPage: React.FC = () => {
                   </div>
                   
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
-                  {specialServices.length > 0 ? (
+                  {filteredItems.length > 0 ? (
                     <div className="divide-y">
-                      {specialServices.map((service, index) => (
+                      {filteredItems.map((service, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -296,9 +285,9 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="events" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
-                  {events.length > 0 ? (
+                  {filteredItems.length > 0 ? (
                     <div className="divide-y">
-                      {events.map((event, index) => (
+                      {filteredItems.map((event, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -311,8 +300,8 @@ const CalendarPage: React.FC = () => {
                             </div>
                           </div>
                           <h3 className="text-xl font-semibold mb-1">{event.name}</h3>
-                          <p className="text-gray-700 mb-2">{event.description}</p>
-                          <p className="text-sm text-gray-600"><strong>Location:</strong> {event.location}</p>
+                          <p className="text-gray-700 mb-2">{(event as any).description}</p>
+                          <p className="text-sm text-gray-600"><strong>Location:</strong> {(event as any).location}</p>
                         </div>
                       ))}
                     </div>
@@ -323,9 +312,9 @@ const CalendarPage: React.FC = () => {
 
                 <TabsContent value="slava" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
-                  {slavas.length > 0 ? (
+                  {filteredItems.length > 0 ? (
                     <div className="divide-y">
-                      {slavas.map((slava, index) => (
+                      {filteredItems.map((slava, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -338,8 +327,8 @@ const CalendarPage: React.FC = () => {
                             </div>
                           </div>
                           <h3 className="text-xl font-semibold mb-1">{slava.name}</h3>
-                          <p className="text-gray-700 mb-2">{slava.description}</p>
-                          <p className="text-sm text-gray-600"><strong>Location:</strong> {slava.location}</p>
+                          <p className="text-gray-700 mb-2">{(slava as any).description}</p>
+                          <p className="text-sm text-gray-600"><strong>Location:</strong> {(slava as any).location}</p>
                         </div>
                       ))}
                     </div>
