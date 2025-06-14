@@ -1,26 +1,39 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { Calendar as CalendarIcon, Clock } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blogData';
+import { getBlogPosts, BlogPost } from '../data/blogData';
 
 const BlogPage: React.FC = () => {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const categories = ['all', 'faith', 'community', 'education', 'history'];
-  
-  const filteredPosts = selectedCategory && selectedCategory !== 'all' 
-    ? blogPosts.filter(post => post.category === selectedCategory)
-    : blogPosts;
+
+  useEffect(() => {
+    let mounted = true;
+    getBlogPosts().then((data) => {
+      if (mounted) {
+        setPosts(data || []);
+        setLoading(false);
+      }
+    });
+    return () => { mounted = false; };
+  }, []);
+
+  const filteredPosts = selectedCategory && selectedCategory !== 'all'
+    ? posts.filter(post => post.category === selectedCategory)
+    : posts;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      
+
       <main className="flex-grow">
         {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-16">
@@ -52,12 +65,20 @@ const BlogPage: React.FC = () => {
               </div>
             </div>
             
+            {loading ? (
+              <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading articles...'}</div>
+            ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (
+              {filteredPosts.length === 0 ? (
+                <div className="col-span-full text-center text-gray-600">
+                  {t('noArticles') || 'No articles found.'}
+                </div>
+              ) : (
+              filteredPosts.map((post) => (
                 <div key={post.id} className="card hover:shadow-lg transition-shadow">
                   <div className="aspect-video overflow-hidden rounded-t-lg">
                     <img 
-                      src="/placeholder.svg" 
+                      src={post.imageUrl || "/placeholder.svg"} 
                       alt={post.title} 
                       className="w-full h-full object-cover"
                     />
@@ -72,17 +93,17 @@ const BlogPage: React.FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">By {post.author}</span>
                       <Link to={`/desavanja/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
-                        Read More →
+                        {t('readMore') || 'Read More'} →
                       </Link>
                     </div>
                   </div>
                 </div>
-              ))}
+              )))}
             </div>
+            )}
           </div>
         </section>
       </main>
-      
       <Footer />
     </div>
   );

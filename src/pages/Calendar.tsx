@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -5,19 +6,51 @@ import { useLanguage } from '../context/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Calendar as CalendarIcon, Clock } from 'lucide-react';
-import { regularServices, specialServices, events, slavas, getAllCalendarItems } from '../data/calendarData';
+import { getEventsByType, getAllCalendarItems, EventItem } from '../data/calendarData';
+
+const regularServices = [
+  {
+    day: 'Sunday',
+    name: 'Divine Liturgy',
+    time: '10:00 AM',
+    description: 'Main service in Serbian and English every Sunday.',
+  },
+  {
+    day: 'Saturday',
+    name: 'Vespers',
+    time: '5:00 PM',
+    description: 'Evening prayers before major feasts and on Saturdays.',
+  },
+  {
+    day: 'Wednesday',
+    name: 'Akathist',
+    time: '7:00 PM',
+    description: 'Midweek prayer service.',
+  },
+];
 
 const CalendarPage: React.FC = () => {
   const { t, language } = useLanguage();
   const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
-  const [allItems, setAllItems] = useState<any[]>([]);
+  const [allItems, setAllItems] = useState<EventItem[]>([]);
+  const [specialServices, setSpecialServices] = useState<EventItem[]>([]);
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [slavas, setSlavas] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     let mounted = true;
-    getAllCalendarItems().then((items) => {
+    Promise.all([
+      getAllCalendarItems(),
+      getEventsByType("service"),
+      getEventsByType("event"),
+      getEventsByType("slava"),
+    ]).then(([all, special, ev, slava]) => {
       if (mounted) {
-        setAllItems(items || []);
+        setAllItems(all || []);
+        setSpecialServices(special || []);
+        setEvents(ev || []);
+        setSlavas(slava || []);
         setLoading(false);
       }
     });
@@ -60,16 +93,13 @@ const CalendarPage: React.FC = () => {
   // Group items by month for the "All" tab
   const groupItemsByMonth = (items: any[]) => {
     const grouped: { [key: string]: any[] } = {};
-    
     items.forEach(item => {
       const monthYear = formatMonthYear(item.date);
-      
       if (!grouped[monthYear]) {
         grouped[monthYear] = [];
       }
       grouped[monthYear].push(item);
     });
-    
     return grouped;
   };
 
@@ -78,7 +108,6 @@ const CalendarPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      
       <main className="flex-grow">
         {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-16">
@@ -192,7 +221,9 @@ const CalendarPage: React.FC = () => {
                   </div>
                   
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
-                  {specialServices.length > 0 ? (
+                  {loading ? (
+                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                  ) : specialServices.length > 0 ? (
                     <div className="divide-y">
                       {specialServices.map((service, index) => (
                         <div key={index} className="py-4">
@@ -217,7 +248,9 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="events" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
-                  {events.length > 0 ? (
+                  {loading ? (
+                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                  ) : events.length > 0 ? (
                     <div className="divide-y">
                       {events.map((event, index) => (
                         <div key={index} className="py-4">
@@ -244,7 +277,9 @@ const CalendarPage: React.FC = () => {
 
                 <TabsContent value="slava" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
-                  {slavas.length > 0 ? (
+                  {loading ? (
+                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                  ) : slavas.length > 0 ? (
                     <div className="divide-y">
                       {slavas.map((slava, index) => (
                         <div key={index} className="py-4">
@@ -273,7 +308,6 @@ const CalendarPage: React.FC = () => {
           </div>
         </section>
       </main>
-      
       <Footer />
     </div>
   );
