@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,7 @@ const HeroSection: React.FC = () => {
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="/placeholder.svg"
+          src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Serbisk_ortodoxa_kyrka_Enskede.jpg"
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
         />
