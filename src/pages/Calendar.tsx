@@ -1,12 +1,11 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { Calendar as CalendarIcon, Clock } from 'lucide-react';
-import { getEventsByType, getAllCalendarItems, EventItem } from '../data/calendarData';
+import { Calendar as CalendarIcon, Clock, MapPin } from 'lucide-react';
+import { fetchEvents, Event } from '../services/eventService';
 
 const regularServices = [
   {
@@ -31,42 +30,35 @@ const regularServices = [
 
 const CalendarPage: React.FC = () => {
   const { t, language } = useLanguage();
-  const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
-  const [allItems, setAllItems] = useState<EventItem[]>([]);
-  const [specialServices, setSpecialServices] = useState<EventItem[]>([]);
-  const [events, setEvents] = useState<EventItem[]>([]);
-  const [slavas, setSlavas] = useState<EventItem[]>([]);
+  const [view, setView] = useState<'all' | 'services' | 'events' | 'slava'>('all');
+  const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     let mounted = true;
-    Promise.all([
-      getAllCalendarItems(),
-      getEventsByType("service"),
-      getEventsByType("event"),
-      getEventsByType("slava"),
-    ]).then(([all, special, ev, slava]) => {
+    
+    fetchEvents().then((data) => {
       if (mounted) {
-        setAllItems(all || []);
-        setSpecialServices(special || []);
-        setEvents(ev || []);
-        setSlavas(slava || []);
+        setEvents(data || []);
+        setLoading(false);
+      }
+    }).catch((error) => {
+      console.error('Error loading events:', error);
+      if (mounted) {
         setLoading(false);
       }
     });
+    
     return () => { mounted = false; };
   }, []);
 
-  const filteredItems = view === 'all' 
-    ? allItems 
-    : view === 'services' 
-      ? specialServices 
-      : view === 'events'
-        ? events
-        : slavas;
+  const filteredEvents = view === 'all' 
+    ? events 
+    : events.filter(event => event.type === view);
 
   // Function to format date based on current language
   const formatDate = (dateString: string) => {
+    if (!dateString) return 'Date TBD';
     const date = new Date(dateString);
     const isSerbian = language === 'sr_cyr' || language === 'sr_lat';
     const locale = isSerbian ? 'sr-RS' : 'en-US';
@@ -80,6 +72,7 @@ const CalendarPage: React.FC = () => {
 
   // Function to format month/year header based on current language
   const formatMonthYear = (dateString: string) => {
+    if (!dateString) return 'Date TBD';
     const date = new Date(dateString);
     const isSerbian = language === 'sr_cyr' || language === 'sr_lat';
     const locale = isSerbian ? 'sr-RS' : 'en-US';
@@ -90,20 +83,22 @@ const CalendarPage: React.FC = () => {
     });
   };
 
-  // Group items by month for the "All" tab
-  const groupItemsByMonth = (items: any[]) => {
-    const grouped: { [key: string]: any[] } = {};
-    items.forEach(item => {
-      const monthYear = formatMonthYear(item.date);
-      if (!grouped[monthYear]) {
-        grouped[monthYear] = [];
+  // Group events by month for the "All" tab
+  const groupEventsByMonth = (events: Event[]) => {
+    const grouped: { [key: string]: Event[] } = {};
+    events.forEach(event => {
+      if (event.date) {
+        const monthYear = formatMonthYear(event.date);
+        if (!grouped[monthYear]) {
+          grouped[monthYear] = [];
+        }
+        grouped[monthYear].push(event);
       }
-      grouped[monthYear].push(item);
     });
     return grouped;
   };
 
-  const groupedItems = groupItemsByMonth(allItems);
+  const groupedEvents = groupEventsByMonth(filteredEvents);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -116,7 +111,7 @@ const CalendarPage: React.FC = () => {
               {t('calendar.title')}
             </h1>
             <p className="text-lg md:text-xl text-white opacity-80 mb-2">
-              This is a dummy subtitle for the Calendar section.
+              Stay informed about our services, events, and celebrations.
             </p>
           </div>
         </div>
@@ -127,27 +122,19 @@ const CalendarPage: React.FC = () => {
             <div className="card">
               <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                 <TabsList className="mb-4">
-                  <TabsTrigger value="all">
-                    All
-                  </TabsTrigger>
-                  <TabsTrigger value="services">
-                    Services
-                  </TabsTrigger>
-                  <TabsTrigger value="events">
-                    Events
-                  </TabsTrigger>
-                  <TabsTrigger value="slava">
-                    Slava
-                  </TabsTrigger>
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="services">Services</TabsTrigger>
+                  <TabsTrigger value="events">Events</TabsTrigger>
+                  <TabsTrigger value="slava">Slavas</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="all" className="mt-0">
-                  <h2 className="text-2xl font-serif mb-4">All Services, Events & Slavas</h2>
+                  <h2 className="text-2xl font-serif mb-4">All Events</h2>
                   {loading ? (
-                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
-                  ) : Object.keys(groupedItems).length > 0 ? (
+                    <div className="text-center py-10 text-gray-400">Loading events...</div>
+                  ) : Object.keys(groupedEvents).length > 0 ? (
                     <div>
-                      {Object.entries(groupedItems).map(([monthYear, items], monthIndex) => (
+                      {Object.entries(groupedEvents).map(([monthYear, monthEvents], monthIndex) => (
                         <div key={monthYear}>
                           {monthIndex > 0 && <Separator className="my-8" />}
                           <div className="mb-6">
@@ -158,27 +145,30 @@ const CalendarPage: React.FC = () => {
                               </h3>
                             </div>
                             <div className="divide-y pl-4">
-                              {items.map((item, index) => (
-                                <div key={index} className="py-4">
+                              {monthEvents.map((event) => (
+                                <div key={event.id} className="py-4">
                                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
                                     <div className="flex items-center gap-2">
                                       <CalendarIcon size={18} className="text-orthodox-blue" />
-                                      <span className="font-medium">{formatDate(item.date)}</span>
+                                      <span className="font-medium">{formatDate(event.date)}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                       <Clock size={18} className="text-orthodox-blue" />
-                                      <span>{item.time}</span>
+                                      <span>{event.time || 'Time TBD'}</span>
                                     </div>
                                   </div>
-                                  <h4 className="text-xl font-semibold mb-1">{item.name}</h4>
-                                  {(item.type === 'event' || item.type === 'slava') && (
-                                    <>
-                                      <p className="text-gray-700 mb-2">{(item as any).description}</p>
-                                      <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
-                                    </>
+                                  <h4 className="text-xl font-semibold mb-1">{event.title}</h4>
+                                  {event.description && (
+                                    <p className="text-gray-700 mb-2">{event.description}</p>
+                                  )}
+                                  {event.location && (
+                                    <div className="flex items-center gap-1 text-sm text-gray-600 mb-2">
+                                      <MapPin size={16} />
+                                      <span>{event.location}</span>
+                                    </div>
                                   )}
                                   <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                                    {item.type === 'service' ? 'Service' : item.type === 'event' ? 'Event' : 'Slava'}
+                                    {event.type === 'service' ? 'Service' : event.type === 'event' ? 'Event' : 'Slava'}
                                   </span>
                                 </div>
                               ))}
@@ -188,12 +178,11 @@ const CalendarPage: React.FC = () => {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-gray-600">No upcoming items to display.</p>
+                    <p className="text-gray-600">No events to display.</p>
                   )}
                 </TabsContent>
                 
                 <TabsContent value="services" className="mt-0">
-                  {/* This content will be shown when selecting the Services tab */}
                   <div className="mb-8">
                     <h2 className="text-2xl font-serif mb-4">Regular Services</h2>
                     <div className="overflow-x-auto">
@@ -222,22 +211,23 @@ const CalendarPage: React.FC = () => {
                   
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
                   {loading ? (
-                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
-                  ) : specialServices.length > 0 ? (
+                    <div className="text-center py-10 text-gray-400">Loading services...</div>
+                  ) : filteredEvents.filter(e => e.type === 'services').length > 0 ? (
                     <div className="divide-y">
-                      {specialServices.map((service, index) => (
-                        <div key={index} className="py-4">
+                      {filteredEvents.filter(e => e.type === 'services').map((event) => (
+                        <div key={event.id} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{formatDate(service.date)}</span>
+                              <span className="font-medium">{formatDate(event.date)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />
-                              <span>{service.time}</span>
+                              <span>{event.time || 'Time TBD'}</span>
                             </div>
                           </div>
-                          <h3 className="text-xl font-semibold">{service.name}</h3>
+                          <h3 className="text-xl font-semibold">{event.title}</h3>
+                          {event.description && <p className="text-gray-700">{event.description}</p>}
                         </div>
                       ))}
                     </div>
@@ -249,7 +239,7 @@ const CalendarPage: React.FC = () => {
                 <TabsContent value="events" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
                   {loading ? (
-                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                    <div className="text-center py-10 text-gray-400">Loading events...</div>
                   ) : events.length > 0 ? (
                     <div className="divide-y">
                       {events.map((event, index) => (
@@ -278,7 +268,7 @@ const CalendarPage: React.FC = () => {
                 <TabsContent value="slava" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
                   {loading ? (
-                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                    <div className="text-center py-10 text-gray-400">Loading slavas...</div>
                   ) : slavas.length > 0 ? (
                     <div className="divide-y">
                       {slavas.map((slava, index) => (
