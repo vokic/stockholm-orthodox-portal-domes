@@ -77,7 +77,7 @@ const ClanciPage: React.FC = () => {
             )}
 
             {!loading && !error && (
-              <div className="px-4 md:px-8">
+              <div className="container-custom px-4 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {articles.length === 0 ? (
                     <div className="col-span-full text-center text-gray-600">
@@ -129,3 +129,4 @@ const ClanciPage: React.FC = () => {
 };
 
 export default ClanciPage;
+
