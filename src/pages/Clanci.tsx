@@ -93,10 +93,8 @@ const ClanciPage: React.FC = () => {
                   articles.map((article) => (
                     <div
                       key={article.id}
-                      className={`card hover:shadow-lg transition-shadow relative ${article.pinned ? 'bg-orthodox-gold/20' : ''}`}
+                      className={`card hover:shadow-lg transition-shadow relative ${article.pinned ? "bg-yellow-200" : ""}`}
                     >
-                      {/* No ribbon, just gold background for pinned */}
-
                       <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
                         {article.imageUrl ? (
                           <img
