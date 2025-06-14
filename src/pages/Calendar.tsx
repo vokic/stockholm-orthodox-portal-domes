@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
 import { Calendar as CalendarIcon, Clock } from 'lucide-react';
 
 const CalendarPage: React.FC = () => {
@@ -163,6 +163,28 @@ const CalendarPage: React.FC = () => {
         ? events
         : slavas;
 
+  // Group items by month for the "All" tab
+  const groupItemsByMonth = (items: any[]) => {
+    const grouped: { [key: string]: any[] } = {};
+    
+    items.forEach(item => {
+      const date = new Date(item.date);
+      const monthYear = date.toLocaleDateString('en-US', { 
+        month: 'long', 
+        year: 'numeric' 
+      });
+      
+      if (!grouped[monthYear]) {
+        grouped[monthYear] = [];
+      }
+      grouped[monthYear].push(item);
+    });
+    
+    return grouped;
+  };
+
+  const groupedItems = groupItemsByMonth(allItems);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -199,30 +221,43 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="all" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">All Services, Events & Slavas</h2>
-                  {filteredItems.length > 0 ? (
-                    <div className="divide-y">
-                      {filteredItems.map((item, index) => (
-                        <div key={index} className="py-4">
-                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{item.date}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Clock size={18} className="text-orthodox-blue" />
-                              <span>{item.time}</span>
+                  {Object.keys(groupedItems).length > 0 ? (
+                    <div>
+                      {Object.entries(groupedItems).map(([monthYear, items], monthIndex) => (
+                        <div key={monthYear}>
+                          {monthIndex > 0 && <Separator className="my-8" />}
+                          <div className="mb-6">
+                            <h3 className="text-xl font-semibold text-orthodox-blue mb-4 flex items-center">
+                              <CalendarIcon size={20} className="mr-2" />
+                              {monthYear}
+                            </h3>
+                            <div className="divide-y pl-6">
+                              {items.map((item, index) => (
+                                <div key={index} className="py-4">
+                                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                    <div className="flex items-center gap-2">
+                                      <CalendarIcon size={18} className="text-orthodox-blue" />
+                                      <span className="font-medium">{item.date}</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <Clock size={18} className="text-orthodox-blue" />
+                                      <span>{item.time}</span>
+                                    </div>
+                                  </div>
+                                  <h4 className="text-xl font-semibold mb-1">{item.name}</h4>
+                                  {(item.type === 'event' || item.type === 'slava') && (
+                                    <>
+                                      <p className="text-gray-700 mb-2">{(item as any).description}</p>
+                                      <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
+                                    </>
+                                  )}
+                                  <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
+                                    {item.type === 'service' ? 'Service' : item.type === 'event' ? 'Event' : 'Slava'}
+                                  </span>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                          <h3 className="text-xl font-semibold mb-1">{item.name}</h3>
-                          {(item.type === 'event' || item.type === 'slava') && (
-                            <>
-                              <p className="text-gray-700 mb-2">{(item as any).description}</p>
-                              <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
-                            </>
-                          )}
-                          <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                            {item.type === 'service' ? 'Service' : item.type === 'event' ? 'Event' : 'Slava'}
-                          </span>
                         </div>
                       ))}
                     </div>
@@ -260,9 +295,9 @@ const CalendarPage: React.FC = () => {
                   </div>
                   
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
-                  {filteredItems.length > 0 ? (
+                  {specialServices.length > 0 ? (
                     <div className="divide-y">
-                      {filteredItems.map((service, index) => (
+                      {specialServices.map((service, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -285,9 +320,9 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="events" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
-                  {filteredItems.length > 0 ? (
+                  {events.length > 0 ? (
                     <div className="divide-y">
-                      {filteredItems.map((event, index) => (
+                      {events.map((event, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -312,9 +347,9 @@ const CalendarPage: React.FC = () => {
 
                 <TabsContent value="slava" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
-                  {filteredItems.length > 0 ? (
+                  {slavas.length > 0 ? (
                     <div className="divide-y">
-                      {filteredItems.map((slava, index) => (
+                      {slavas.map((slava, index) => (
                         <div key={index} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
