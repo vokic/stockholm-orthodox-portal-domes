@@ -9,7 +9,6 @@ import { resolveContentfulAsset, fetchContentfulEntries } from '../lib/contentfu
 const ClanciPage: React.FC = () => {
   const { t } = useLanguage();
 
-  // Use only the correct Contentful Content Type ID, no more input field
   const contentTypeId = 'blogPostModel';
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -68,8 +67,7 @@ const ClanciPage: React.FC = () => {
         </div>
 
         <section className="section">
-          {/* Moved container-custom further down to wrap the grid only */}
-          <div>
+          <div className="container-custom">
             {loading && <div className="py-4 text-gray-500 text-center">Loading...</div>}
 
             {error && (
@@ -79,7 +77,7 @@ const ClanciPage: React.FC = () => {
             )}
 
             {!loading && !error && (
-              <div className="container-custom">
+              <div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {articles.length === 0 ? (
                     <div className="col-span-full text-center text-gray-600">
