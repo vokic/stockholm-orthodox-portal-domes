@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Dialog, 
@@ -96,8 +95,8 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
                 <p className="text-gray-700 break-words mb-1">{event.description}</p>
               )}
 
-              {/* Location and Tag Pill placed in a ROW and centered */}
-              <div className="flex items-center justify-center gap-3 mt-2 w-full">
+              {/* Location and Tag Pill placed in a ROW with spacing between, like date/time */}
+              <div className="flex items-center justify-center w-full gap-4 mt-2">
                 {event.location && (
                   <div className="flex items-center gap-1 text-sm text-gray-600">
                     <MapPin className="h-4 w-4 text-orthodox-gold" />
@@ -135,4 +134,3 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
 };
 
 export default HolidayPopup;
-
