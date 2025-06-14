@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Clock, MapPin } from 'lucide-react';
 import Gallery from '../components/Gallery';
 import Map from '../components/Map';
+import ParishTodaySection from "../components/ParishTodaySection";
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -150,7 +151,12 @@ const AboutPage: React.FC = () => {
             <p className="text-lg mt-2">{t('about.intro')}</p>
           </div>
         </div>
-        
+
+        {/* About Our Church (using about.intro) - this is already in the Hero section above */}
+
+        {/* Parish Today Section */}
+        <ParishTodaySection />
+
         {/* Gallery Section */}
         <section className="section">
           <div className="container-custom">
