@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -6,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Calendar as CalendarIcon, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getBlogPosts, BlogPost } from '../data/blogData';
+import { Button } from '../components/ui/button';
 
 const BlogPage: React.FC = () => {
   const { t } = useLanguage();
@@ -101,11 +101,16 @@ const BlogPage: React.FC = () => {
                         />
                       </div>
                       <div className="p-6">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2 text-sm text-gray-500">
-                            <CalendarIcon size={16} />
-                            <span>{post.date}</span>
-                          </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                          <CalendarIcon size={16} />
+                          <span>{post.date}</span>
+                        </div>
+                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-sm text-gray-500">By {post.author}</span>
                           {post.category && (
                             <div className="flex items-center gap-1 text-sm text-orthodox-blue bg-orthodox-gold/10 px-2 py-1 rounded-full">
                               <Tag size={14} />
@@ -113,19 +118,11 @@ const BlogPage: React.FC = () => {
                             </div>
                           )}
                         </div>
-                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
-                          {post.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">By {post.author}</span>
-                          <Link 
-                            to={`/clanci/${post.id}`} 
-                            className="text-orthodox-blue hover:text-orthodox-gold font-medium"
-                          >
-                            {t('readMore') || 'Read More'} →
-                          </Link>
-                        </div>
+                        <Link to={`/clanci/${post.id}`}>
+                          <Button className="w-full bg-orthodox-blue hover:bg-orthodox-gold text-white">
+                            {t('readMore') || 'Read More'}
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   ))
