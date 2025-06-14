@@ -35,7 +35,7 @@ const BlogPage: React.FC = () => {
       <Header />
 
       <main className="flex-grow">
-        {/* Hero Section - MATCH Contact page exactly */}
+        {/* Hero Section (match Contact/Index exactly) */}
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
@@ -47,62 +47,66 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Filter Bar */}
+        <div className="bg-white shadow-sm">
+          <div className="container-custom py-4">
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full ${
+                    selectedCategory === category || (category === 'all' && !selectedCategory)
+                      ? 'bg-orthodox-gold text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  } transition-colors`}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Blog Content */}
         <section className="section">
           <div className="container-custom">
-            <div className="mb-8">
-              <div className="flex flex-wrap gap-2 justify-center">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full ${
-                      selectedCategory === category || (category === 'all' && !selectedCategory)
-                        ? 'bg-orthodox-gold text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    } transition-colors`}
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
             {loading ? (
               <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading articles...'}</div>
             ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.length === 0 ? (
-                <div className="col-span-full text-center text-gray-600">
-                  {t('noArticles') || 'No articles found.'}
-                </div>
-              ) : (
-              filteredPosts.map((post) => (
-                <div key={post.id} className="card hover:shadow-lg transition-shadow">
-                  <div className="aspect-video overflow-hidden rounded-t-lg">
-                    <img 
-                      src={post.imageUrl || "/placeholder.svg"} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover"
-                    />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPosts.length === 0 ? (
+                  <div className="col-span-full text-center text-gray-600">
+                    {t('noArticles') || 'No articles found.'}
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                      <CalendarIcon size={16} />
-                      <span>{post.date}</span>
+                ) : (
+                  filteredPosts.map((post) => (
+                    <div key={post.id} className="card hover:shadow-lg transition-shadow">
+                      <div className="aspect-video overflow-hidden rounded-t-lg">
+                        <img 
+                          src={post.imageUrl || "/placeholder.svg"} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                          <CalendarIcon size={16} />
+                          <span>{post.date}</span>
+                        </div>
+                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{post.title}</h3>
+                        <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-500">By {post.author}</span>
+                          <Link to={`/desavanja/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
+                            {t('readMore') || 'Read More'} →
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{post.title}</h3>
-                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">By {post.author}</span>
-                      <Link to={`/desavanja/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
-                        {t('readMore') || 'Read More'} →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )))}
-            </div>
+                  ))
+                )}
+              </div>
             )}
           </div>
         </section>
@@ -113,4 +117,3 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
-
