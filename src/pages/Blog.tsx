@@ -13,7 +13,7 @@ const BlogPage: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const categories = ['all', 'faith', 'community', 'education', 'history'];
+  const categories = ['all', 'news', 'events', 'texts', 'community', 'history'];
 
   useEffect(() => {
     let mounted = true;
@@ -28,7 +28,19 @@ const BlogPage: React.FC = () => {
 
   const filteredPosts = selectedCategory === 'all'
     ? posts
-    : posts.filter(post => post.category === selectedCategory);
+    : posts.filter(post => post.category?.toLowerCase() === selectedCategory);
+
+  const getCategoryDisplayName = (category: string) => {
+    switch (category) {
+      case 'all': return 'All';
+      case 'news': return 'News';
+      case 'events': return 'Events';
+      case 'texts': return 'Texts';
+      case 'community': return 'Community';
+      case 'history': return 'History';
+      default: return category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -58,7 +70,7 @@ const BlogPage: React.FC = () => {
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {getCategoryDisplayName(category)}
                 </button>
               ))}
             </div>
