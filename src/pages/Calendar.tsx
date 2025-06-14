@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,7 +9,7 @@ import { Calendar as CalendarIcon, Clock } from 'lucide-react';
 import { regularServices, specialServices, events, slavas, getAllCalendarItems } from '../data/calendarData';
 
 const CalendarPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
   
   // Combine all items for display
@@ -22,16 +23,35 @@ const CalendarPage: React.FC = () => {
         ? events
         : slavas;
 
+  // Function to format date based on current language
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const locale = language === 'sr' ? 'sr-RS' : 'en-US';
+    
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  // Function to format month/year header based on current language
+  const formatMonthYear = (dateString: string) => {
+    const date = new Date(dateString);
+    const locale = language === 'sr' ? 'sr-RS' : 'en-US';
+    
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long'
+    });
+  };
+
   // Group items by month for the "All" tab
   const groupItemsByMonth = (items: any[]) => {
     const grouped: { [key: string]: any[] } = {};
     
     items.forEach(item => {
-      const date = new Date(item.date);
-      const monthYear = date.toLocaleDateString('en-US', { 
-        month: 'long', 
-        year: 'numeric' 
-      });
+      const monthYear = formatMonthYear(item.date);
       
       if (!grouped[monthYear]) {
         grouped[monthYear] = [];
@@ -98,7 +118,7 @@ const CalendarPage: React.FC = () => {
                                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
                                     <div className="flex items-center gap-2">
                                       <CalendarIcon size={18} className="text-orthodox-blue" />
-                                      <span className="font-medium">{item.date}</span>
+                                      <span className="font-medium">{formatDate(item.date)}</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                       <Clock size={18} className="text-orthodox-blue" />
@@ -163,7 +183,7 @@ const CalendarPage: React.FC = () => {
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{service.date}</span>
+                              <span className="font-medium">{formatDate(service.date)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />
@@ -188,7 +208,7 @@ const CalendarPage: React.FC = () => {
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{event.date}</span>
+                              <span className="font-medium">{formatDate(event.date)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />
@@ -215,7 +235,7 @@ const CalendarPage: React.FC = () => {
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{slava.date}</span>
+                              <span className="font-medium">{formatDate(slava.date)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, MapPin } from 'lucide-react';
@@ -5,10 +6,22 @@ import { Link } from 'react-router-dom';
 import { getUpcomingEvents } from '../data/calendarData';
 
 const CombinedEventsSchedule: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   // Get first 5 upcoming events from all calendar data (services, events, slavas)
   const upcomingEvents = getUpcomingEvents(5);
+
+  // Function to format date based on current language
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const locale = language === 'sr' ? 'sr-RS' : 'en-US';
+    
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
   const getEventTypeLabel = (type: string) => {
     switch (type) {
@@ -58,7 +71,7 @@ const CombinedEventsSchedule: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                 <div className="flex items-center gap-2 mb-1 sm:mb-0">
                   <Calendar size={16} className="text-orthodox-blue" />
-                  <span className="font-medium text-orthodox-blue">{event.date}</span>
+                  <span className="font-medium text-orthodox-blue">{formatDate(event.date)}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock size={16} className="text-orthodox-blue" />
