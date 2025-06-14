@@ -11,27 +11,58 @@ import HolidayPopup from '../components/HolidayPopup';
 import Map from '../components/Map';
 import LatestArticles from '../components/LatestArticles';
 import { useLanguage } from '../context/LanguageContext';
+import { fetchEvents, Event } from '../services/eventService';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
-  
-  // Holiday service information for the popup
-  const holidayService = {
-    title: t('home.holidayPopup.title'),
-    date: t('home.holidayPopup.date'),
-    time: t('home.holidayPopup.time'),
-    description: t('home.holidayPopup.description')
-  };
+  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
+  const [eventsLoading, setEventsLoading] = useState(true);
+
+  // Fetch events and get the first upcoming event
+  useEffect(() => {
+    let mounted = true;
+    
+    fetchEvents().then((events) => {
+      if (mounted) {
+        const today = new Date();
+        const thirtyDaysFromNow = new Date();
+        thirtyDaysFromNow.setDate(today.getDate() + 30);
+        
+        // Find the first upcoming event within the next 30 days
+        const nextEvent = events
+          .filter(event => {
+            if (!event.date) return false;
+            const eventDate = new Date(event.date);
+            return eventDate >= today && eventDate <= thirtyDaysFromNow;
+          })
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+        
+        setUpcomingEvent(nextEvent || null);
+        setEventsLoading(false);
+      }
+    }).catch((error) => {
+      console.error('Error loading events for popup:', error);
+      if (mounted) {
+        setEventsLoading(false);
+      }
+    });
+    
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   // Automatic popup logic with conditions
   useEffect(() => {
     const hasSeenPopup = sessionStorage.getItem('hasSeenHolidayPopup');
     const isFirstVisit = !hasSeenPopup;
     
-    // Show popup automatically only if user hasn't seen it in this session
-    // and after a small delay to not be too intrusive
-    if (isFirstVisit) {
+    // Show popup automatically only if:
+    // 1. User hasn't seen it in this session
+    // 2. There's an upcoming event within 30 days
+    // 3. Events have finished loading
+    if (isFirstVisit && !eventsLoading && upcomingEvent) {
       const timer = setTimeout(() => {
         setShowHolidayPopup(true);
         sessionStorage.setItem('hasSeenHolidayPopup', 'true');
@@ -39,7 +70,7 @@ const HomePage: React.FC = () => {
       
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [eventsLoading, upcomingEvent]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -125,12 +156,14 @@ const HomePage: React.FC = () => {
       
       <Footer onHolidayPopupOpen={() => setShowHolidayPopup(true)} />
       
-      {/* Holiday popup */}
-      <HolidayPopup 
-        holidayService={holidayService} 
-        open={showHolidayPopup}
-        onOpenChange={setShowHolidayPopup}
-      />
+      {/* Holiday popup - only render if there's an upcoming event */}
+      {upcomingEvent && (
+        <HolidayPopup 
+          event={upcomingEvent}
+          open={showHolidayPopup}
+          onOpenChange={setShowHolidayPopup}
+        />
+      )}
     </div>
   );
 };
