@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -5,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import Map from '../components/Map';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { ExternalLink } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
@@ -44,7 +46,7 @@ const ContactPage: React.FC = () => {
         subject,
         message,
         captchaToken: captchaValue,
-        recipient: 'crkva@gmail.com'
+        recipient: 'info@serbianorthodoxchurch.se'
       };
       
       // Using a service like EmailJS, Formspree, or your own endpoint
@@ -86,6 +88,12 @@ const ContactPage: React.FC = () => {
     }
   };
 
+  const handleGetDirections = () => {
+    const address = "Birger Jarlsgatan 98, 114 20 Stockholm, Sweden";
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -114,9 +122,16 @@ const ContactPage: React.FC = () => {
                 <div className="space-y-6">
                   <div>
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.address.title')}</h3>
-                    <p>{t('contact.address.line1')}</p>
-                    <p>{t('contact.address.line2')}</p>
-                    <p>{t('contact.address.line3')}</p>
+                    <p>Birger Jarlsgatan 98</p>
+                    <p>114 20 Stockholm</p>
+                    <p>Sweden</p>
+                    <button
+                      onClick={handleGetDirections}
+                      className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                    >
+                      <ExternalLink size={16} />
+                      Get directions
+                    </button>
                   </div>
                   
                   <div>
@@ -139,7 +154,7 @@ const ContactPage: React.FC = () => {
                   
                   <div>
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.email.title')}</h3>
-                    <p>{t('contact.email.general')}</p>
+                    <p>info@serbianorthodoxchurch.se</p>
                     <p>{t('contact.email.priest')}</p>
                   </div>
                   
@@ -241,7 +256,10 @@ const ContactPage: React.FC = () => {
                 {t('contact.findus')}
               </h2>
               
-              <Map />
+              <Map 
+                address="Birger Jarlsgatan 98, 114 20 Stockholm, Sweden"
+                coordinates={[59.3348, 18.0686]}
+              />
               
               <div className="mt-6">
                 <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.directions.title')}</h3>
