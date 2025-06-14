@@ -6,6 +6,8 @@ import { Clock, MapPin } from 'lucide-react';
 import Gallery from '../components/Gallery';
 import Map from '../components/Map';
 import ParishTodaySection from "../components/ParishTodaySection";
+import OurMissionSection from "../components/OurMissionSection";
+import OurCommunitySection from "../components/OurCommunitySection";
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -156,6 +158,12 @@ const AboutPage: React.FC = () => {
 
         {/* Parish Today Section */}
         <ParishTodaySection />
+
+        {/* Our Mission Section */}
+        <OurMissionSection />
+
+        {/* Our Community Section */}
+        <OurCommunitySection />
 
         {/* Gallery Section */}
         <section className="section">
