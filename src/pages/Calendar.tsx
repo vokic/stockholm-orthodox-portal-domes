@@ -24,7 +24,14 @@ const CalendarPage: React.FC = () => {
     fetchEvents().then((data) => {
       if (mounted) {
         console.log('Fetched events:', data); // Debug log
-        setEvents(data || []);
+        // Sort events by date (oldest first)
+        const sortedEvents = (data || []).sort((a, b) => {
+          if (!a.date && !b.date) return 0;
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        setEvents(sortedEvents);
         setLoading(false);
       }
     }).catch((error) => {
@@ -84,7 +91,21 @@ const CalendarPage: React.FC = () => {
         grouped[monthYear].push(event);
       }
     });
-    return grouped;
+    
+    // Sort grouped events by month/year
+    const sortedGrouped: { [key: string]: Event[] } = {};
+    Object.keys(grouped)
+      .sort((a, b) => {
+        // Parse the month/year strings to compare dates
+        const dateA = new Date(a + ' 1'); // Add day to make it a valid date
+        const dateB = new Date(b + ' 1');
+        return dateA.getTime() - dateB.getTime();
+      })
+      .forEach(key => {
+        sortedGrouped[key] = grouped[key];
+      });
+    
+    return sortedGrouped;
   };
 
   const groupedEvents = groupEventsByMonth(filteredEvents);

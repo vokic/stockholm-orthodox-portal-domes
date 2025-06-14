@@ -93,7 +93,7 @@ const BlogPage: React.FC = () => {
 
         {/* Category Filter Bar */}
         <div className="bg-orthodox-cream">
-          <div className="container-custom py-4">
+          <div className="container-custom py-2">
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
