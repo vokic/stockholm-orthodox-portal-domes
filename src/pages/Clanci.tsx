@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -13,7 +12,7 @@ const ClanciPage: React.FC = () => {
   // Article categories
   const categories = ['all', 'news', 'happenings', 'texts', 'community', 'history'];
   
-  // Sample articles data with proper church images
+  // Sample articles data with working placeholder images
   const articles = [
     {
       id: 1,
@@ -22,7 +21,7 @@ const ClanciPage: React.FC = () => {
       date: 'December 10, 2024',
       author: 'Father Nicholas',
       category: 'texts',
-      imageUrl: 'https://images.unsplash.com/photo-1601455763557-db1bea8a9a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 2,
@@ -31,7 +30,7 @@ const ClanciPage: React.FC = () => {
       date: 'December 5, 2024',
       author: 'Father Nicholas',
       category: 'texts',
-      imageUrl: 'https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1335&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 3,
@@ -40,7 +39,7 @@ const ClanciPage: React.FC = () => {
       date: 'January 27, 2024',
       author: 'Parish Council',
       category: 'happenings',
-      imageUrl: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 4,
@@ -49,7 +48,7 @@ const ClanciPage: React.FC = () => {
       date: 'November 15, 2024',
       author: 'Education Committee',
       category: 'community',
-      imageUrl: 'https://images.unsplash.com/photo-1584697964400-2af6a2f6204c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 5,
@@ -58,7 +57,7 @@ const ClanciPage: React.FC = () => {
       date: 'January 27, 2024',
       author: 'Father Nicholas',
       category: 'history',
-      imageUrl: 'https://images.unsplash.com/photo-1581337204873-1a38e3b8d49b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 6,
@@ -67,7 +66,7 @@ const ClanciPage: React.FC = () => {
       date: 'October 20, 2024',
       author: 'Building Committee',
       category: 'news',
-      imageUrl: 'https://images.unsplash.com/photo-1596806931387-a13d736b2c55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 7,
@@ -76,7 +75,7 @@ const ClanciPage: React.FC = () => {
       date: 'September 10, 2024',
       author: 'Cultural Heritage Committee',
       category: 'history',
-      imageUrl: 'https://images.unsplash.com/photo-1577215288662-090a88cc2bac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 8,
@@ -85,7 +84,7 @@ const ClanciPage: React.FC = () => {
       date: 'August 25, 2024',
       author: 'Youth Ministry',
       category: 'community',
-      imageUrl: 'https://images.unsplash.com/photo-1515923152115-758a6b16f35e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      imageUrl: '/placeholder.svg',
     }
   ];
   

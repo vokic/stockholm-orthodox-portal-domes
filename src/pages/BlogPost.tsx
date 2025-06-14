@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -32,36 +31,36 @@ const BlogPostPage: React.FC = () => {
     date: 'April 20, 2025',
     author: 'Father Nicholas',
     category: 'faith',
-    imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80',
+    imageUrl: '/placeholder.svg',
     // Enhanced gallery images for the blog post
     galleryImages: [
       {
-        src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80',
+        src: '/placeholder.svg',
         alt: 'Orthodox church iconostasis with golden icons',
         size: 'large' as const
       },
       {
-        src: 'https://images.unsplash.com/photo-1519491050282-cf00c82424b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1335&q=80',
+        src: '/placeholder.svg',
         alt: 'Divine Liturgy ceremony with congregation',
         size: 'medium' as const
       },
       {
-        src: 'https://images.unsplash.com/photo-1548625149-fc4a29cf7092?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+        src: '/placeholder.svg',
         alt: 'Church altar with beautiful Orthodox decorations',
         size: 'small' as const
       },
       {
-        src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        src: '/placeholder.svg',
         alt: 'Traditional Orthodox wedding ceremony',
         size: 'medium' as const
       },
       {
-        src: 'https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+        src: '/placeholder.svg',
         alt: 'Church choir during Divine Liturgy',
         size: 'large' as const
       },
       {
-        src: 'https://images.unsplash.com/photo-1544531585-bb351f39f4a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        src: '/placeholder.svg',
         alt: 'Orthodox baptism with holy water',
         size: 'small' as const
       }

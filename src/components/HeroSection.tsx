@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=2070&auto=format&fit=crop"
+          src="/placeholder.svg"
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
         />
