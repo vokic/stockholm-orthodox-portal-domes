@@ -1,8 +1,6 @@
 
-import { strapiAPI, StrapiEvent } from '../lib/strapi';
-
-// Fallback data (existing static data)
-const fallbackRegularServices = [
+// Static calendar data - no API calls
+const regularServices = [
   {
     day: 'Sunday',
     name: 'Divine Liturgy',
@@ -23,7 +21,7 @@ const fallbackRegularServices = [
   },
 ];
 
-const fallbackSpecialServices = [
+const specialServices = [
   {
     date: 'May 21, 2025',
     name: 'Feast of Saints Constantine and Helen',
@@ -44,7 +42,7 @@ const fallbackSpecialServices = [
   },
 ];
 
-const fallbackEvents = [
+const events = [
   {
     date: 'May 10, 2025',
     name: 'Parish Feast Day',
@@ -63,7 +61,7 @@ const fallbackEvents = [
   },
 ];
 
-const fallbackSlavas = [
+const slavas = [
   {
     date: 'May 6, 2025',
     name: 'Sveti Đorđe (Saint George)',
@@ -74,83 +72,35 @@ const fallbackSlavas = [
   },
 ];
 
-// Transform Strapi event to match existing interface
-const transformStrapiEvent = (strapiEvent: StrapiEvent) => ({
-  date: new Date(strapiEvent.attributes.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }),
-  name: strapiEvent.attributes.name,
-  time: strapiEvent.attributes.time,
-  type: strapiEvent.attributes.type,
-  description: strapiEvent.attributes.description || '',
-  location: strapiEvent.attributes.location || '',
-});
-
-// Get events from Strapi by type
-export const getEventsByType = async (type: 'service' | 'event' | 'slava') => {
-  try {
-    const response = await strapiAPI.getEvents(`filters[type][$eq]=${type}&sort=date:asc`);
-    return response.data.map(transformStrapiEvent);
-  } catch (error) {
-    console.warn(`Failed to fetch ${type}s from Strapi, using fallback data:`, error);
-    switch (type) {
-      case 'service': return fallbackSpecialServices;
-      case 'event': return fallbackEvents;
-      case 'slava': return fallbackSlavas;
-      default: return [];
-    }
+// Synchronous functions - no async/await needed
+export const getEventsByType = (type: 'service' | 'event' | 'slava') => {
+  switch (type) {
+    case 'service': return specialServices;
+    case 'event': return events;
+    case 'slava': return slavas;
+    default: return [];
   }
 };
 
-// Get all events from Strapi
-export const getAllEvents = async () => {
-  try {
-    const response = await strapiAPI.getEvents();
-    return response.data.map(transformStrapiEvent);
-  } catch (error) {
-    console.warn('Failed to fetch events from Strapi, using fallback data:', error);
-    return [...fallbackSpecialServices, ...fallbackEvents, ...fallbackSlavas];
-  }
+export const getAllEvents = () => {
+  return [...specialServices, ...events, ...slavas];
 };
 
-// Export existing functions with Strapi integration
-export const regularServices = fallbackRegularServices;
-
-// These need to be synchronous for existing usage, so we return the fallback data
-export const specialServices = fallbackSpecialServices;
-export const events = fallbackEvents;
-export const slavas = fallbackSlavas;
-
-// Combine all items and sort by date
-export const getAllCalendarItems = async () => {
-  try {
-    const allEvents = await getAllEvents();
-    return allEvents.sort((a, b) => 
-      new Date(a.date).getTime() - new Date(b.date).getTime()
-    );
-  } catch (error) {
-    console.warn('Failed to get all calendar items:', error);
-    return [...fallbackSpecialServices, ...fallbackEvents, ...fallbackSlavas]
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  }
+export const getAllCalendarItems = () => {
+  const allItems = [...specialServices, ...events, ...slavas];
+  return allItems.sort((a, b) => 
+    new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
 };
 
-// Get next N upcoming events
-export const getUpcomingEvents = async (limit: number = 10) => {
-  try {
-    const today = new Date();
-    const allItems = await getAllCalendarItems();
-    
-    return allItems
-      .filter(item => new Date(item.date) >= today)
-      .slice(0, limit);
-  } catch (error) {
-    console.warn('Failed to get upcoming events:', error);
-    const today = new Date();
-    return [...fallbackSpecialServices, ...fallbackEvents, ...fallbackSlavas]
-      .filter(item => new Date(item.date) >= today)
-      .slice(0, limit);
-  }
+export const getUpcomingEvents = (limit: number = 10) => {
+  const today = new Date();
+  const allItems = getAllCalendarItems();
+  
+  return allItems
+    .filter(item => new Date(item.date) >= today)
+    .slice(0, limit);
 };
+
+// Export static data
+export { regularServices, specialServices, events, slavas };

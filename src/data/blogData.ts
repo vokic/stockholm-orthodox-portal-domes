@@ -1,8 +1,6 @@
 
-import { strapiAPI, StrapiArticle } from '../lib/strapi';
-
-// Fallback data (existing static data)
-const fallbackBlogPosts = [
+// Static blog data - no API calls
+const blogPosts = [
   {
     id: 1,
     title: 'Understanding the Divine Liturgy',
@@ -50,53 +48,18 @@ const fallbackBlogPosts = [
   },
 ];
 
-// Transform Strapi article to match existing interface
-const transformStrapiArticle = (strapiArticle: StrapiArticle) => ({
-  id: strapiArticle.id,
-  title: strapiArticle.attributes.title,
-  excerpt: strapiArticle.attributes.excerpt,
-  date: new Date(strapiArticle.attributes.publishedAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }),
-  author: strapiArticle.attributes.author,
-  category: strapiArticle.attributes.category,
-  imageUrl: strapiArticle.attributes.imageUrl || '/placeholder.svg',
-});
-
-// Get blog posts from Strapi or fallback to static data
-export const getBlogPosts = async () => {
-  try {
-    const response = await strapiAPI.getArticles('filters[published][$eq]=true');
-    return response.data.map(transformStrapiArticle);
-  } catch (error) {
-    console.warn('Failed to fetch articles from Strapi, using fallback data:', error);
-    return fallbackBlogPosts;
-  }
+// Synchronous functions - no async/await needed
+export const getBlogPosts = () => {
+  return blogPosts;
 };
 
-// Get blog post by ID from Strapi or fallback
-export const getBlogPost = async (id: number) => {
-  try {
-    const response = await strapiAPI.getArticle(id);
-    return transformStrapiArticle(response.data);
-  } catch (error) {
-    console.warn('Failed to fetch article from Strapi, using fallback data:', error);
-    return fallbackBlogPosts.find(post => post.id === id);
-  }
+export const getBlogPost = (id: number) => {
+  return blogPosts.find(post => post.id === id);
 };
 
-// Get the latest N articles - always returns a promise
-export const getLatestArticles = async (limit: number = 3) => {
-  try {
-    const posts = await getBlogPosts();
-    return posts.slice(0, limit);
-  } catch (error) {
-    console.warn('Failed to fetch latest articles:', error);
-    return fallbackBlogPosts.slice(0, limit);
-  }
+export const getLatestArticles = (limit: number = 3) => {
+  return blogPosts.slice(0, limit);
 };
 
-// Export fallback data for compatibility
-export const blogPosts = fallbackBlogPosts;
+// Export the static data
+export { blogPosts };

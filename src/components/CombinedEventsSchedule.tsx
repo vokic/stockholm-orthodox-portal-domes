@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,24 +7,8 @@ import { getUpcomingEvents } from '../data/calendarData';
 
 const CombinedEventsSchedule: React.FC = () => {
   const { t, language } = useLanguage();
-  const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const upcomingEvents = getUpcomingEvents(5);
   
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const events = await getUpcomingEvents(5);
-        setUpcomingEvents(events);
-      } catch (error) {
-        console.error('Failed to fetch events:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchEvents();
-  }, []);
-
   // Function to format date based on current language
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -63,28 +47,6 @@ const CombinedEventsSchedule: React.FC = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
-
-  if (loading) {
-    return (
-      <div className="card">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center text-orthodox-blue">
-            <Calendar className="mr-2" size={24} />
-            <h3 className="text-xl font-serif">{t('home.upcomingEvents')}</h3>
-          </div>
-        </div>
-        <div className="space-y-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="border-l-4 border-orthodox-gold pl-4 py-3 bg-gray-50 rounded-r animate-pulse">
-              <div className="h-4 bg-gray-200 rounded mb-2"></div>
-              <div className="h-6 bg-gray-200 rounded mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="card">

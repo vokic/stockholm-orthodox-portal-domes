@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,25 +10,8 @@ import { regularServices, specialServices, events, slavas, getAllCalendarItems }
 const CalendarPage: React.FC = () => {
   const { t, language } = useLanguage();
   const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
-  const [allItems, setAllItems] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
   
-  useEffect(() => {
-    const fetchCalendarItems = async () => {
-      try {
-        const items = await getAllCalendarItems();
-        setAllItems(items);
-      } catch (error) {
-        console.error('Failed to fetch calendar items:', error);
-        // Fallback to static data
-        setAllItems([...specialServices, ...events, ...slavas]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchCalendarItems();
-  }, []);
+  const allItems = getAllCalendarItems();
   
   const filteredItems = view === 'all' 
     ? allItems 
@@ -120,13 +103,7 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="all" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">All Services, Events & Slavas</h2>
-                  {loading ? (
-                    <div className="space-y-4">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="h-20 bg-gray-200 rounded animate-pulse"></div>
-                      ))}
-                    </div>
-                  ) : Object.keys(groupedItems).length > 0 ? (
+                  {Object.keys(groupedItems).length > 0 ? (
                     <div>
                       {Object.entries(groupedItems).map(([monthYear, items], monthIndex) => (
                         <div key={monthYear}>
