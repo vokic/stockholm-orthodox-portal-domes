@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, MapPin } from 'lucide-react';
@@ -8,8 +7,8 @@ import { getUpcomingEvents } from '../data/calendarData';
 const CombinedEventsSchedule: React.FC = () => {
   const { t } = useLanguage();
   
-  // Get first 4 upcoming events from calendar data
-  const upcomingEvents = getUpcomingEvents(4);
+  // Get first 5 upcoming events from all calendar data (services, events, slavas)
+  const upcomingEvents = getUpcomingEvents(5);
 
   const getEventTypeLabel = (type: string) => {
     switch (type) {
