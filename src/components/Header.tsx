@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
 import { Menu, Facebook, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
@@ -15,6 +15,7 @@ import SerbianCross from './SerbianCross';
 const Header: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -32,6 +33,20 @@ const Header: React.FC = () => {
 
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang);
+  };
+
+  // Function to determine if a link is active
+  const isActiveLink = (path: string) => {
+    return location.pathname === path;
+  };
+
+  // Function to get nav link classes
+  const getNavLinkClasses = (path: string) => {
+    const baseClasses = "nav-link transition-all duration-200";
+    if (isActiveLink(path)) {
+      return `${baseClasses} text-orthodox-gold border-b-2 border-orthodox-gold font-semibold`;
+    }
+    return baseClasses;
   };
 
   return (
@@ -53,11 +68,11 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6 items-center">
-            <Link to="/" className="nav-link">{t('nav.home')}</Link>
-            <Link to="/about" className="nav-link">{t('nav.about')}</Link>
-            <Link to="/calendar" className="nav-link">{t('nav.calendar')}</Link>
-            <Link to="/clanci" className="nav-link">{t('nav.articles')}</Link>
-            <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
+            <Link to="/" className={getNavLinkClasses('/')}>{t('nav.home')}</Link>
+            <Link to="/about" className={getNavLinkClasses('/about')}>{t('nav.about')}</Link>
+            <Link to="/calendar" className={getNavLinkClasses('/calendar')}>{t('nav.calendar')}</Link>
+            <Link to="/clanci" className={getNavLinkClasses('/clanci')}>{t('nav.articles')}</Link>
+            <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
 
             {/* Social Media Icons */}
@@ -132,11 +147,11 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 flex flex-col gap-4 animate-fade-in">
-            <Link to="/" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.home')}</Link>
-            <Link to="/about" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.about')}</Link>
-            <Link to="/calendar" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.calendar')}</Link>
-            <Link to="/clanci" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.articles')}</Link>
-            <Link to="/contact" className="nav-link text-lg" onClick={toggleMenu}>{t('nav.contact')}</Link>
+            <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={toggleMenu}>{t('nav.home')}</Link>
+            <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={toggleMenu}>{t('nav.about')}</Link>
+            <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={toggleMenu}>{t('nav.calendar')}</Link>
+            <Link to="/clanci" className={`${getNavLinkClasses('/clanci')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
+            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={toggleMenu}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>
         )}
