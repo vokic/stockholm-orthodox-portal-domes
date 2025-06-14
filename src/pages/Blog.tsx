@@ -106,9 +106,8 @@ const BlogPage: React.FC = () => {
                 {currentPosts.length === 0 ? <div className="col-span-full text-center text-gray-600">
                     {t('noArticles') || 'No articles found.'}
                   </div> : currentPosts.map(post => {
-              console.log('Rendering post:', post.id, 'with image:', post.imageUrl);
-              // Apply gold background if post.pinned
-              return <div key={post.id} className={`card hover:shadow-lg transition-shadow${post.pinned ? ' bg-orthodox-gold/30' : ''}`}>
+              // Use "bg-orthodox-blue/10" for a soft light blue on pinned posts
+              return <div key={post.id} className={`card hover:shadow-lg transition-shadow${post.pinned ? ' bg-orthodox-blue/10' : ''}`}>
                         <div className="aspect-video overflow-hidden rounded-t-lg">
                           <img src={post.imageUrl || "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"} alt={post.title} className="w-full h-full object-cover" onError={e => {
                     console.log('Image failed to load:', post.imageUrl);
