@@ -95,6 +95,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               open={showHolidayPopup}
               onOpenChange={setShowHolidayPopup}
               event={{
+                id: "demo", // <-- added missing id property
                 title: "Sample Service",
                 date: new Date().toISOString().slice(0, 10),
                 time: "10:00",
