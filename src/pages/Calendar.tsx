@@ -26,8 +26,9 @@ const CalendarPage: React.FC = () => {
   // Function to format date based on current language
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const locale = language === 'sr' ? 'sr-RS' : 'en-US';
-    
+    const isSerbian = language === 'sr_cyr' || language === 'sr_lat';
+    const locale = isSerbian ? 'sr-RS' : 'en-US';
+
     return date.toLocaleDateString(locale, {
       year: 'numeric',
       month: 'long',
@@ -38,8 +39,9 @@ const CalendarPage: React.FC = () => {
   // Function to format month/year header based on current language
   const formatMonthYear = (dateString: string) => {
     const date = new Date(dateString);
-    const locale = language === 'sr' ? 'sr-RS' : 'en-US';
-    
+    const isSerbian = language === 'sr_cyr' || language === 'sr_lat';
+    const locale = isSerbian ? 'sr-RS' : 'en-US';
+
     return date.toLocaleDateString(locale, {
       year: 'numeric',
       month: 'long'
