@@ -3,21 +3,35 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getUpcomingEvents } from '../data/calendarData';
+import { fetchEvents, Event } from '../services/eventService';
 
 const CombinedEventsSchedule: React.FC = () => {
   const { t, language } = useLanguage();
-  const [upcomingEvents, setUpcomingEvents] = useState<Array<any>>([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     let mounted = true;
-    getUpcomingEvents(5).then((events) => {
+    
+    fetchEvents().then((events) => {
       if (mounted) {
-        setUpcomingEvents(events || []);
+        // Filter to get upcoming events (next 5)
+        const today = new Date();
+        const upcoming = events
+          .filter(event => event.date && new Date(event.date) >= today)
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          .slice(0, 5);
+        
+        setUpcomingEvents(upcoming);
+        setLoading(false);
+      }
+    }).catch((error) => {
+      console.error('Error loading events:', error);
+      if (mounted) {
         setLoading(false);
       }
     });
+    
     return () => {
       mounted = false;
     };
@@ -88,8 +102,8 @@ const CombinedEventsSchedule: React.FC = () => {
       
       {upcomingEvents.length > 0 ? (
         <div className="space-y-4">
-          {upcomingEvents.map((event, index) => (
-            <div key={index} className="border-l-4 border-orthodox-gold pl-4 py-3 bg-gray-50 rounded-r">
+          {upcomingEvents.map((event) => (
+            <div key={event.id} className="border-l-4 border-orthodox-gold pl-4 py-3 bg-gray-50 rounded-r">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                 <div className="flex items-center gap-2 mb-1 sm:mb-0">
                   <Calendar size={16} className="text-orthodox-blue" />
@@ -101,19 +115,19 @@ const CombinedEventsSchedule: React.FC = () => {
                 </div>
               </div>
               
-              <h4 className="font-semibold text-lg mb-1">{event.name}</h4>
+              <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
               
-              {(event as any).description && (
+              {event.description && (
                 <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                  {(event as any).description}
+                  {event.description}
                 </p>
               )}
               
               <div className="flex items-center justify-between">
-                {(event as any).location && (
+                {event.location && (
                   <div className="flex items-center gap-1 text-sm text-gray-600">
                     <MapPin size={14} />
-                    <span>{(event as any).location}</span>
+                    <span>{event.location}</span>
                   </div>
                 )}
                 
