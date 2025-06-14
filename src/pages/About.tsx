@@ -6,6 +6,8 @@ import { Clock, MapPin } from 'lucide-react';
 import Gallery from '../components/Gallery';
 import Map from '../components/Map';
 import AboutIntroSection from '../components/AboutIntroSection';
+import AboutOurChurchSection from '../components/AboutOurChurchSection';
+import ParishTodaySection from '../components/ParishTodaySection';
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -142,8 +144,11 @@ const AboutPage: React.FC = () => {
       <Header />
 
       <main className="flex-grow">
-        {/* NEW: Parish Today / Introduction Section */}
-        <AboutIntroSection />
+        {/* NEW: About Our Church Section comes first */}
+        <AboutOurChurchSection />
+
+        {/* Parish Today Section follows */}
+        <ParishTodaySection />
 
         {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-16" style={{ backgroundImage: "url('/placeholder.svg')", backgroundSize: "cover", backgroundPosition: "center" }}>
