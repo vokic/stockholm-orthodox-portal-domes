@@ -8,15 +8,15 @@ To connect your app to Strapi CMS, you need to set up the following environment 
 Create a `.env` file in your project root with:
 
 ```
-REACT_APP_STRAPI_URL=https://your-strapi-instance.herokuapp.com
-REACT_APP_STRAPI_API_TOKEN=your-api-token-here
+VITE_STRAPI_URL=https://your-strapi-instance.herokuapp.com
+VITE_STRAPI_API_TOKEN=your-api-token-here
 ```
 
 ## Local Development
 
 For local development, use:
 ```
-REACT_APP_STRAPI_URL=http://localhost:1337
+VITE_STRAPI_URL=http://localhost:1337
 ```
 
 ## Strapi Setup Instructions
@@ -56,7 +56,7 @@ REACT_APP_STRAPI_URL=http://localhost:1337
 
 5. **Deploy Strapi**
    - Deploy to Heroku, Railway, or other platform
-   - Update REACT_APP_STRAPI_URL with your deployed URL
+   - Update VITE_STRAPI_URL with your deployed URL
 
 ## Fallback Behavior
 

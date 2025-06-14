@@ -87,7 +87,7 @@ export const getBlogPost = async (id: number) => {
   }
 };
 
-// Get the latest N articles
+// Get the latest N articles - always returns a promise
 export const getLatestArticles = async (limit: number = 3) => {
   try {
     const posts = await getBlogPosts();

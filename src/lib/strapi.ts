@@ -1,7 +1,7 @@
 
 // Strapi API configuration and utilities
-const STRAPI_URL = process.env.REACT_APP_STRAPI_URL || 'http://localhost:1337';
-const STRAPI_API_TOKEN = process.env.REACT_APP_STRAPI_API_TOKEN || '';
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
+const STRAPI_API_TOKEN = import.meta.env.VITE_STRAPI_API_TOKEN || '';
 
 export interface StrapiResponse<T> {
   data: T;
@@ -58,13 +58,13 @@ class StrapiAPI {
   private async fetchFromStrapi<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}/api${endpoint}`;
     
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...(options.headers as Record<string, string>),
     };
 
     if (this.token) {
-      headers.Authorization = `Bearer ${this.token}`;
+      headers['Authorization'] = `Bearer ${this.token}`;
     }
 
     try {

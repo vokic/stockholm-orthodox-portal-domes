@@ -118,9 +118,10 @@ export const getAllEvents = async () => {
 // Export existing functions with Strapi integration
 export const regularServices = fallbackRegularServices;
 
-export const specialServices = await getEventsByType('service').catch(() => fallbackSpecialServices);
-export const events = await getEventsByType('event').catch(() => fallbackEvents);
-export const slavas = await getEventsByType('slava').catch(() => fallbackSlavas);
+// These need to be synchronous for existing usage, so we return the fallback data
+export const specialServices = fallbackSpecialServices;
+export const events = fallbackEvents;
+export const slavas = fallbackSlavas;
 
 // Combine all items and sort by date
 export const getAllCalendarItems = async () => {
