@@ -65,12 +65,12 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px] border-orthodox-gold max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          {/* Up top, show description centered */}
-          <DialogDescription className="text-lg text-center mb-1">
+          {/* Up top, show description NOT centered */}
+          <DialogDescription className="text-lg mb-1">
             {t('popup.upcomingService')}
           </DialogDescription>
-          {/* Event title below description, with icon */}
-          <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center justify-center gap-2 mb-2">
+          {/* Event title below description, with icon, NOT centered */}
+          <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center gap-2 mb-2">
             <CalendarIcon className="h-6 w-6 text-orthodox-gold" />
             {event.title}
           </DialogTitle>
@@ -80,7 +80,7 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
           <div className="bg-orthodox-cream p-4 rounded-lg">
             <div className="flex flex-col gap-2">
               {/* Date/time row */}
-              <div className="flex items-center flex-wrap w-full justify-center mb-2">
+              <div className="flex items-center flex-wrap w-full mb-2">
                 <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
                 <span className="font-medium mx-2">{formatDate(event.date)}</span>
                 {event.time && (
@@ -91,13 +91,13 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
                 )}
               </div>
 
-              {/* Event description */}
+              {/* Event description, not centered */}
               {event.description && (
-                <p className="text-gray-700 break-words mb-1 text-center">{event.description}</p>
+                <p className="text-gray-700 break-words mb-1">{event.description}</p>
               )}
 
               {/* Location and Tag Pill placed BELOW description, stacked for mobile friendliness */}
-              <div className="flex flex-col gap-2 mt-2 items-center w-full">
+              <div className="flex flex-col gap-2 mt-2 w-full">
                 {event.location && (
                   <div className="flex items-center gap-1 text-sm text-gray-600">
                     <MapPin className="h-4 w-4 text-orthodox-gold" />
