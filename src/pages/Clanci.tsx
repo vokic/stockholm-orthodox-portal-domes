@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -92,14 +91,12 @@ const ClanciPage: React.FC = () => {
                   </div>
                 ) : (
                   articles.map((article) => (
-                    <div key={article.id} className="card hover:shadow-lg transition-shadow relative">
-                      {article.pinned && (
-                        <div className="absolute -top-2 -right-2 z-10">
-                          <div className="bg-orthodox-gold text-orthodox-blue px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-lg transform rotate-12">
-                            Izdvojeno
-                          </div>
-                        </div>
-                      )}
+                    <div
+                      key={article.id}
+                      className={`card hover:shadow-lg transition-shadow relative ${article.pinned ? 'bg-orthodox-gold/20' : ''}`}
+                    >
+                      {/* No ribbon, just gold background for pinned */}
+
                       <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
                         {article.imageUrl ? (
                           <img
