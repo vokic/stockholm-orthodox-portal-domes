@@ -23,6 +23,7 @@ const CalendarPage: React.FC = () => {
     
     fetchEvents().then((data) => {
       if (mounted) {
+        console.log('Fetched events:', data); // Debug log
         setEvents(data || []);
         setLoading(false);
       }
@@ -36,9 +37,13 @@ const CalendarPage: React.FC = () => {
     return () => { mounted = false; };
   }, []);
 
+  // Filter events based on the current view
   const filteredEvents = view === 'all' 
     ? events 
     : events.filter(event => event.type === view);
+
+  console.log('Current view:', view); // Debug log
+  console.log('Filtered events:', filteredEvents); // Debug log
 
   // Function to format date based on current language
   const formatDate = (dateString: string) => {
@@ -126,7 +131,10 @@ const CalendarPage: React.FC = () => {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-gray-600">No events to display.</p>
+                    <div>
+                      <p className="text-gray-600">No events to display.</p>
+                      <p className="text-sm text-gray-500 mt-2">Total events loaded: {events.length}</p>
+                    </div>
                   )}
                 </TabsContent>
                 
@@ -140,7 +148,7 @@ const CalendarPage: React.FC = () => {
                     <EventsList 
                       events={events} 
                       formatDate={formatDate} 
-                      eventType="service" 
+                      eventType="services" 
                     />
                   )}
                 </TabsContent>
@@ -153,7 +161,7 @@ const CalendarPage: React.FC = () => {
                     <EventsList 
                       events={events} 
                       formatDate={formatDate} 
-                      eventType="event" 
+                      eventType="events" 
                     />
                   )}
                 </TabsContent>

@@ -6,16 +6,35 @@ import { Event } from '../../services/eventService';
 interface EventsListProps {
   events: Event[];
   formatDate: (dateString: string) => string;
-  eventType?: 'service' | 'event' | 'slava';
+  eventType?: 'services' | 'events' | 'slava';
 }
 
 const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }) => {
-  const filteredEvents = eventType ? events.filter(e => e.type === eventType) : events;
+  // Fix the filtering logic - map the prop values to actual event types
+  const getFilterType = (eventType?: string) => {
+    switch (eventType) {
+      case 'services':
+        return 'service';
+      case 'events':
+        return 'event';
+      case 'slava':
+        return 'slava';
+      default:
+        return null;
+    }
+  };
+
+  const filterType = getFilterType(eventType);
+  const filteredEvents = filterType ? events.filter(e => e.type === filterType) : events;
+
+  console.log('EventsList - eventType prop:', eventType); // Debug log
+  console.log('EventsList - filterType:', filterType); // Debug log
+  console.log('EventsList - filteredEvents:', filteredEvents); // Debug log
 
   if (filteredEvents.length === 0) {
-    const message = eventType === 'service' 
+    const message = eventType === 'services' 
       ? 'No special services currently scheduled.'
-      : eventType === 'event'
+      : eventType === 'events'
       ? 'No events currently scheduled.'
       : eventType === 'slava'
       ? 'No slavas currently scheduled.'
