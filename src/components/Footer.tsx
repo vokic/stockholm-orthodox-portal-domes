@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -126,20 +125,6 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               event={upcomingEvent}
             />
           )}
-          {/* Add created by Viktor line */}
-          <div className="mt-3 text-xs text-gray-400 flex flex-col items-center">
-            <span>
-              Created by <span className="text-orthodox-gold font-semibold">Viktor</span>
-              {' '}
-              <a
-                href="mailto:viktor@example.com"
-                className="underline hover:text-orthodox-gold ml-1"
-                title="Contact Viktor"
-              >
-                (contact me)
-              </a>
-            </span>
-          </div>
         </div>
       </div>
     </footer>
@@ -147,4 +132,3 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 };
 
 export default Footer;
-

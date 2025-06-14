@@ -68,7 +68,8 @@ const ClanciPage: React.FC = () => {
         </div>
 
         <section className="section">
-          <div className="container-custom">
+          {/* Moved container-custom further down to wrap the grid only */}
+          <div>
             {loading && <div className="py-4 text-gray-500 text-center">Loading...</div>}
 
             {error && (
@@ -78,44 +79,46 @@ const ClanciPage: React.FC = () => {
             )}
 
             {!loading && !error && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {articles.length === 0 ? (
-                  <div className="col-span-full text-center text-gray-600">
-                    Nema pronađenih članaka.
-                  </div>
-                ) : (
-                  articles.map((article) => (
-                    <div key={article.id} className="card hover:shadow-lg transition-shadow">
-                      <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
-                        {article.imageUrl ? (
-                          <img
-                            src={article.imageUrl}
-                            alt={article.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <span className="flex items-center justify-center h-full text-gray-400">No image</span>
-                        )}
-                      </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                          <CalendarIcon size={16} />
-                          <span>{article.date}</span>
-                        </div>
-                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{article.title}</h3>
-                        <p className="text-gray-600 mb-4">{article.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500 italic">By {article.author || '-'}</span>
-                          {article.category && (
-                            <span className="inline-block px-2 py-1 text-xs rounded-full bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                              {article.category}
-                            </span>
+              <div className="container-custom">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {articles.length === 0 ? (
+                    <div className="col-span-full text-center text-gray-600">
+                      Nema pronađenih članaka.
+                    </div>
+                  ) : (
+                    articles.map((article) => (
+                      <div key={article.id} className="card hover:shadow-lg transition-shadow">
+                        <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
+                          {article.imageUrl ? (
+                            <img
+                              src={article.imageUrl}
+                              alt={article.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <span className="flex items-center justify-center h-full text-gray-400">No image</span>
                           )}
                         </div>
+                        <div className="p-6">
+                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                            <CalendarIcon size={16} />
+                            <span>{article.date}</span>
+                          </div>
+                          <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{article.title}</h3>
+                          <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-500 italic">By {article.author || '-'}</span>
+                            {article.category && (
+                              <span className="inline-block px-2 py-1 text-xs rounded-full bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
+                                {article.category}
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))
-                )}
+                    ))
+                  )}
+                </div>
               </div>
             )}
           </div>
