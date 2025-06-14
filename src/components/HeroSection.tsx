@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -17,8 +18,8 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
       
-      <div className="container-custom relative z-10 py-32 md:py-44 text-center">
-        {/* Increased py-24 md:py-32 to py-32 md:py-44 for more height */}
+      <div className="container-custom relative z-10 py-40 md:py-56 text-center">
+        {/* Increased from py-32 md:py-44 to py-40 md:py-56 for much more height */}
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl md:text-3xl font-serif mb-2 text-orthodox-gold">
             {t('home.welcome')}
