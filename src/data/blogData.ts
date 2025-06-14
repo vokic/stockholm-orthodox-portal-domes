@@ -1,6 +1,8 @@
 
-// Sample blog posts data - this would come from CMS later
-export const blogPosts = [
+import { strapiAPI, StrapiArticle } from '../lib/strapi';
+
+// Fallback data (existing static data)
+const fallbackBlogPosts = [
   {
     id: 1,
     title: 'Understanding the Divine Liturgy',
@@ -48,7 +50,53 @@ export const blogPosts = [
   },
 ];
 
-// Get the latest N articles
-export const getLatestArticles = (limit: number = 3) => {
-  return blogPosts.slice(0, limit);
+// Transform Strapi article to match existing interface
+const transformStrapiArticle = (strapiArticle: StrapiArticle) => ({
+  id: strapiArticle.id,
+  title: strapiArticle.attributes.title,
+  excerpt: strapiArticle.attributes.excerpt,
+  date: new Date(strapiArticle.attributes.publishedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }),
+  author: strapiArticle.attributes.author,
+  category: strapiArticle.attributes.category,
+  imageUrl: strapiArticle.attributes.imageUrl || '/placeholder.svg',
+});
+
+// Get blog posts from Strapi or fallback to static data
+export const getBlogPosts = async () => {
+  try {
+    const response = await strapiAPI.getArticles('filters[published][$eq]=true');
+    return response.data.map(transformStrapiArticle);
+  } catch (error) {
+    console.warn('Failed to fetch articles from Strapi, using fallback data:', error);
+    return fallbackBlogPosts;
+  }
 };
+
+// Get blog post by ID from Strapi or fallback
+export const getBlogPost = async (id: number) => {
+  try {
+    const response = await strapiAPI.getArticle(id);
+    return transformStrapiArticle(response.data);
+  } catch (error) {
+    console.warn('Failed to fetch article from Strapi, using fallback data:', error);
+    return fallbackBlogPosts.find(post => post.id === id);
+  }
+};
+
+// Get the latest N articles
+export const getLatestArticles = async (limit: number = 3) => {
+  try {
+    const posts = await getBlogPosts();
+    return posts.slice(0, limit);
+  } catch (error) {
+    console.warn('Failed to fetch latest articles:', error);
+    return fallbackBlogPosts.slice(0, limit);
+  }
+};
+
+// Export fallback data for compatibility
+export const blogPosts = fallbackBlogPosts;
