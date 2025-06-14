@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getBlogPosts, BlogPost } from '../data/blogData';
 
@@ -28,17 +28,17 @@ const BlogPage: React.FC = () => {
 
   const filteredPosts = selectedCategory === 'all'
     ? posts
-    : posts.filter(post => post.category?.toLowerCase() === selectedCategory);
+    : posts.filter(post => post.category?.toLowerCase() === selectedCategory.toLowerCase());
 
   const getCategoryDisplayName = (category: string) => {
-    switch (category) {
+    switch (category?.toLowerCase()) {
       case 'all': return 'All';
       case 'news': return 'News';
       case 'events': return 'Events';
       case 'texts': return 'Texts';
       case 'community': return 'Community';
       case 'history': return 'History';
-      default: return category.charAt(0).toUpperCase() + category.slice(1);
+      default: return category?.charAt(0).toUpperCase() + category?.slice(1) || 'Other';
     }
   };
 
@@ -101,9 +101,17 @@ const BlogPage: React.FC = () => {
                         />
                       </div>
                       <div className="p-6">
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                          <CalendarIcon size={16} />
-                          <span>{post.date}</span>
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <CalendarIcon size={16} />
+                            <span>{post.date}</span>
+                          </div>
+                          {post.category && (
+                            <div className="flex items-center gap-1 text-sm text-orthodox-blue bg-orthodox-gold/10 px-2 py-1 rounded-full">
+                              <Tag size={14} />
+                              <span>{getCategoryDisplayName(post.category)}</span>
+                            </div>
+                          )}
                         </div>
                         <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
                           {post.title}
