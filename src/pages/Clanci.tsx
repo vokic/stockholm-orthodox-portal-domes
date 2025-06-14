@@ -91,11 +91,11 @@ const ClanciPage: React.FC = () => {
                     Nema pronađenih članaka.
                   </div>
                 ) : (
-                  articles.map((article, idx) => (
+                  articles.map((article) => (
                     <div
                       key={article.id}
                       className={`card hover:shadow-lg transition-shadow relative ${
-                        idx === 0 ? 'bg-yellow-200' : ''
+                        article.pinned ? 'bg-yellow-200' : ''
                       }`}
                     >
                       <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
