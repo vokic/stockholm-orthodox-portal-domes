@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,9 +10,20 @@ import { regularServices, specialServices, events, slavas, getAllCalendarItems }
 const CalendarPage: React.FC = () => {
   const { t, language } = useLanguage();
   const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
-  
-  const allItems = getAllCalendarItems();
-  
+  const [allItems, setAllItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    let mounted = true;
+    getAllCalendarItems().then((items) => {
+      if (mounted) {
+        setAllItems(items || []);
+        setLoading(false);
+      }
+    });
+    return () => { mounted = false; };
+  }, []);
+
   const filteredItems = view === 'all' 
     ? allItems 
     : view === 'services' 
@@ -103,7 +114,9 @@ const CalendarPage: React.FC = () => {
                 
                 <TabsContent value="all" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">All Services, Events & Slavas</h2>
-                  {Object.keys(groupedItems).length > 0 ? (
+                  {loading ? (
+                    <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading...'}</div>
+                  ) : Object.keys(groupedItems).length > 0 ? (
                     <div>
                       {Object.entries(groupedItems).map(([monthYear, items], monthIndex) => (
                         <div key={monthYear}>

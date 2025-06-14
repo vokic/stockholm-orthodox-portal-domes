@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,8 +7,22 @@ import { getUpcomingEvents } from '../data/calendarData';
 
 const CombinedEventsSchedule: React.FC = () => {
   const { t, language } = useLanguage();
-  const upcomingEvents = getUpcomingEvents(5);
-  
+  const [upcomingEvents, setUpcomingEvents] = useState<Array<any>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    let mounted = true;
+    getUpcomingEvents(5).then((events) => {
+      if (mounted) {
+        setUpcomingEvents(events || []);
+        setLoading(false);
+      }
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   // Function to format date based on current language
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -25,13 +39,13 @@ const CombinedEventsSchedule: React.FC = () => {
   const getEventTypeLabel = (type: string) => {
     switch (type) {
       case 'service':
-        return 'Service';
+        return t('service') || 'Service';
       case 'event':
-        return 'Event';
+        return t('event') || 'Event';
       case 'slava':
         return 'Slava';
       default:
-        return 'Event';
+        return t('event') || 'Event';
     }
   };
 
@@ -47,6 +61,15 @@ const CombinedEventsSchedule: React.FC = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
+
+  if (loading) {
+    return (
+      <div className="card text-center py-8 text-gray-400">
+        <Calendar size={32} className="mx-auto mb-2" />
+        {t('loading') || 'Loading events...'}
+      </div>
+    );
+  }
 
   return (
     <div className="card">
