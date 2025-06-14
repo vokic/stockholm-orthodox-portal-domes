@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   Dialog, 
   DialogContent, 
@@ -18,31 +18,16 @@ interface HolidayPopupProps {
     date: string;
     time: string;
     description: string;
-  }
+  };
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService }) => {
-  const [open, setOpen] = useState(false);
+const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService, open, onOpenChange }) => {
   const { t } = useLanguage();
 
-  useEffect(() => {
-    // Check if we've shown the popup recently
-    const lastShown = localStorage.getItem('holidayPopupLastShown');
-    const currentDate = new Date().toDateString();
-    
-    if (!lastShown || lastShown !== currentDate) {
-      // Show popup after a short delay
-      const timer = setTimeout(() => {
-        setOpen(true);
-        localStorage.setItem('holidayPopupLastShown', currentDate);
-      }, 2000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px] border-orthodox-gold max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center gap-2">
@@ -69,14 +54,14 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ holidayService }) => {
         <DialogFooter className="flex flex-col sm:flex-row sm:justify-between gap-4 sm:gap-0">
           <Button 
             variant="outline" 
-            onClick={() => setOpen(false)}
+            onClick={() => onOpenChange(false)}
           >
             {t('popup.close')}
           </Button>
           <Button 
             onClick={() => {
               window.location.href = '/calendar';
-              setOpen(false);
+              onOpenChange(false);
             }}
             className="bg-orthodox-gold hover:bg-orthodox-gold/90 text-white"
           >
