@@ -34,7 +34,7 @@ const BlogPage: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Hero Section - matching Contact page exactly */}
+        {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
