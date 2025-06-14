@@ -252,28 +252,37 @@ const AboutPage: React.FC = () => {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="md:col-span-1">
+                <div className="md:col-span-1 flex flex-col gap-4">
                   <img 
-                    src="/placeholder.svg" 
-                    alt={t('about.svetiSava.imageAlt')} 
+                    src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop" 
+                    alt="Orthodox cathedral interior" 
+                    className="rounded-lg w-full"
+                  />
+                  <img 
+                    src="https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop"
+                    alt="Serbian church building under stars"
                     className="rounded-lg w-full"
                   />
                 </div>
                 
-                <div className="md:col-span-3">
+                <div className="md:col-span-3 flex flex-col gap-3">
                   <h3 className="text-xl font-serif mb-3">{t('about.svetiSava.subtitle')}</h3>
-                  
-                  <p className="mb-4">
-                    {t('about.svetiSava.p1')}
+                  <p>
+                    Saint Sava, the first Archbishop of the independent Serbian Church, is a beloved spiritual father, educator, and founder of the Serbian Orthodox Church. Born as Rastko Nemanjić, he embraced monastic life at a young age, guided by a deep love for Christ and his people.
                   </p>
-                  <p className="mb-4">
-                    {t('about.svetiSava.p2')}
+                  <p>
+                    As a priest and archbishop, St. Sava united the faithful, worked tirelessly to foster peace among rulers, and laid the foundations for ecclesiastical education, monasticism, and culture throughout Serbia and the Orthodox world. He is remembered for his wisdom, humility, and pastoral care for all.
                   </p>
-                  <p className="mb-4">
-                    {t('about.svetiSava.p3')}
+                  <img
+                    src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop"
+                    alt="Orthodox icons and candles inside church"
+                    className="rounded-lg w-full my-2"
+                  />
+                  <p>
+                    Under his guidance, churches were built and monastic life flourished. St. Sava is celebrated for his commitment to truth, reconciliation, and spiritual renewal, serving as a bridge between his people and God.
                   </p>
-                  <p className="mb-4">
-                    {t('about.svetiSava.p4')}
+                  <p>
+                    The memory of St. Sava inspires generations to honor faith, heritage, and a life of service rooted in the Gospel. Every year, Orthodox communities cherish his feast with gratitude, prayer, and joyful gatherings, recognizing him as the “Enlightener” and unifier of the Serbian nation and Church.
                   </p>
                   <p>
                     {t('about.svetiSava.p5')}
