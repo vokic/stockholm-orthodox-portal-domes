@@ -17,7 +17,7 @@ const LatestArticles: React.FC = () => {
         <div key={article.id} className="card hover:shadow-lg transition-shadow">
           <div className="aspect-video overflow-hidden rounded-t-lg">
             <img 
-              src={article.imageUrl} 
+              src="/placeholder.svg" 
               alt={article.title} 
               className="w-full h-full object-cover"
             />

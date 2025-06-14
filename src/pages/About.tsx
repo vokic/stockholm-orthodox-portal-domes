@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -17,54 +16,54 @@ const AboutPage: React.FC = () => {
     { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
   ];
 
-  // Gallery images (dummy images filled as before)
+  // Gallery images (using placeholder images)
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchInterior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchIcons')
     },
     {
-      src: 'https://images.unsplash.com/photo-1594905883965-ba245250c1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchExterior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchBellTower')
     },
     {
-      src: 'https://images.unsplash.com/photo-1629111963021-146f7e4651f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchDome')
     },
     {
-      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.cathedralInterior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchYard')
     },
     {
-      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchNature')
     },
     {
-      src: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchFlowers')
     },
     {
-      src: 'https://images.unsplash.com/photo-1493897065418-2bb6fe8eb4c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchCeiling')
     },
     {
-      src: 'https://images.unsplash.com/photo-1528828085966-aff4e01c5f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchCandle')
     },
     {
-      src: 'https://images.unsplash.com/photo-1543179318-f5274a887586?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      src: '/placeholder.svg',
       alt: t('about.gallery.churchCross')
     }
   ];
@@ -75,7 +74,7 @@ const AboutPage: React.FC = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <div className="bg-orthodox-blue text-white py-16" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="bg-orthodox-blue text-white py-16" style={{ backgroundImage: "url('/placeholder.svg')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="container-custom rounded-lg p-8">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t('about.title')}
@@ -91,7 +90,6 @@ const AboutPage: React.FC = () => {
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                 {t('about.gallery.title')}
               </h2>
-              {/* If any image src is missing, the array ensures at least dummy images. */}
               <Gallery images={galleryImages} masonry={true} />
             </div>
           </div>
@@ -128,12 +126,12 @@ const AboutPage: React.FC = () => {
                 </div>
                 <div className="space-y-4">
                   <img 
-                    src="https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80" 
+                    src="/placeholder.svg" 
                     alt={t('about.gallery.churchHistory')} 
                     className="rounded-lg w-full"
                   />
                   <img 
-                    src="https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80" 
+                    src="/placeholder.svg" 
                     alt={t('about.gallery.churchInterior')} 
                     className="rounded-lg w-full"
                   />
@@ -154,7 +152,7 @@ const AboutPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="md:col-span-1">
                   <img 
-                    src="https://images.unsplash.com/photo-1581337204873-1a38e3b8d49b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80" 
+                    src="/placeholder.svg" 
                     alt={t('about.svetiSava.imageAlt')} 
                     className="rounded-lg w-full"
                   />
@@ -196,7 +194,7 @@ const AboutPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div className="md:col-span-1">
                   <img 
-                    src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" 
+                    src="/placeholder.svg" 
                     alt={t('about.priest1.imageAlt')} 
                     className="rounded-lg w-full"
                   />
@@ -224,7 +222,7 @@ const AboutPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="md:col-span-1">
                   <img 
-                    src="https://images.unsplash.com/photo-1542282811-943ef1a977c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80" 
+                    src="/placeholder.svg" 
                     alt={t('about.priest2.imageAlt')} 
                     className="rounded-lg w-full"
                   />
