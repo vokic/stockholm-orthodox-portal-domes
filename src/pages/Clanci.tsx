@@ -105,7 +105,7 @@ const ClanciPage: React.FC = () => {
                         <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{article.title}</h3>
                         <p className="text-gray-600 mb-4">{article.excerpt}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">By {article.author || '-'}</span>
+                          <span className="text-sm text-gray-500 italic">By {article.author || '-'}</span>
                           {article.category && (
                             <span className="inline-block px-2 py-1 text-xs rounded-full bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
                               {article.category}
@@ -128,4 +128,3 @@ const ClanciPage: React.FC = () => {
 };
 
 export default ClanciPage;
-

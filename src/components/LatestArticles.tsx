@@ -23,6 +23,17 @@ const LatestArticles: React.FC = () => {
     };
   }, []);
 
+  // Function to format date properly
+  const formatDate = (dateString: string) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
   if (loading) {
     return <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading articles...'}</div>;
   }
@@ -41,12 +52,12 @@ const LatestArticles: React.FC = () => {
           <div className="p-6">
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
               <CalendarIcon size={16} />
-              <span>{article.date}</span>
+              <span>{formatDate(article.date)}</span>
             </div>
             <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{article.title}</h3>
             <p className="text-gray-600 mb-4 line-clamp-2">{article.excerpt}</p>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-500">By {article.author}</span>
+              <span className="text-sm text-gray-500 italic">By {article.author}</span>
               <Link to={`/clanci/${article.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
                 {t('readMore') || 'Read More'} →
               </Link>
