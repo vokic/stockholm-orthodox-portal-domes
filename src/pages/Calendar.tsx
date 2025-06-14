@@ -212,9 +212,9 @@ const CalendarPage: React.FC = () => {
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
                   {loading ? (
                     <div className="text-center py-10 text-gray-400">Loading services...</div>
-                  ) : filteredEvents.filter(e => e.type === 'services').length > 0 ? (
+                  ) : filteredEvents.filter(e => e.type === 'service').length > 0 ? (
                     <div className="divide-y">
-                      {filteredEvents.filter(e => e.type === 'services').map((event) => (
+                      {filteredEvents.filter(e => e.type === 'service').map((event) => (
                         <div key={event.id} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
@@ -240,10 +240,10 @@ const CalendarPage: React.FC = () => {
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
                   {loading ? (
                     <div className="text-center py-10 text-gray-400">Loading events...</div>
-                  ) : events.length > 0 ? (
+                  ) : filteredEvents.filter(e => e.type === 'event').length > 0 ? (
                     <div className="divide-y">
-                      {events.map((event, index) => (
-                        <div key={index} className="py-4">
+                      {filteredEvents.filter(e => e.type === 'event').map((event) => (
+                        <div key={event.id} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
@@ -251,12 +251,16 @@ const CalendarPage: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />
-                              <span>{event.time}</span>
+                              <span>{event.time || 'Time TBD'}</span>
                             </div>
                           </div>
-                          <h3 className="text-xl font-semibold mb-1">{event.name}</h3>
-                          <p className="text-gray-700 mb-2">{(event as any).description}</p>
-                          <p className="text-sm text-gray-600"><strong>Location:</strong> {(event as any).location}</p>
+                          <h3 className="text-xl font-semibold mb-1">{event.title}</h3>
+                          <p className="text-gray-700 mb-2">{event.description}</p>
+                          {event.location && (
+                            <p className="text-sm text-gray-600">
+                              <strong>Location:</strong> {event.location}
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -269,23 +273,27 @@ const CalendarPage: React.FC = () => {
                   <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
                   {loading ? (
                     <div className="text-center py-10 text-gray-400">Loading slavas...</div>
-                  ) : slavas.length > 0 ? (
+                  ) : filteredEvents.filter(e => e.type === 'slava').length > 0 ? (
                     <div className="divide-y">
-                      {slavas.map((slava, index) => (
-                        <div key={index} className="py-4">
+                      {filteredEvents.filter(e => e.type === 'slava').map((event) => (
+                        <div key={event.id} className="py-4">
                           <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <CalendarIcon size={18} className="text-orthodox-blue" />
-                              <span className="font-medium">{formatDate(slava.date)}</span>
+                              <span className="font-medium">{formatDate(event.date)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <Clock size={18} className="text-orthodox-blue" />
-                              <span>{slava.time}</span>
+                              <span>{event.time || 'Time TBD'}</span>
                             </div>
                           </div>
-                          <h3 className="text-xl font-semibold mb-1">{slava.name}</h3>
-                          <p className="text-gray-700 mb-2">{(slava as any).description}</p>
-                          <p className="text-sm text-gray-600"><strong>Location:</strong> {(slava as any).location}</p>
+                          <h3 className="text-xl font-semibold mb-1">{event.title}</h3>
+                          <p className="text-gray-700 mb-2">{event.description}</p>
+                          {event.location && (
+                            <p className="text-sm text-gray-600">
+                              <strong>Location:</strong> {event.location}
+                            </p>
+                          )}
                         </div>
                       ))}
                     </div>
