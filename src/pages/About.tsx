@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,55 +17,83 @@ const AboutPage: React.FC = () => {
     { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
   ];
 
-  // Gallery images (using placeholder images)
-  const galleryImages = [
+  // Old photos gallery images
+  const oldPhotosImages = [
     {
-      src: '/placeholder.svg',
-      alt: t('about.gallery.churchInterior')
+      src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop',
+      alt: 'Historic church construction in 1950s'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop',
+      alt: 'First Orthodox service in Stockholm 1960'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=800&h=600&fit=crop',
+      alt: 'Church community gathering 1965'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchIcons')
+      alt: 'Blessing of the foundation stone 1958'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchExterior')
+      alt: 'First Easter celebration 1962'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchBellTower')
+      alt: 'Community volunteers building interior 1970'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchDome')
+      alt: 'Historic church wedding ceremony 1975'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.cathedralInterior')
+      alt: 'Installation of church bells 1963'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchYard')
+      alt: 'First baptism ceremony 1961'
+    }
+  ];
+
+  // Interior gallery images
+  const interiorImages = [
+    {
+      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop',
+      alt: 'Main altar with golden iconostasis'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop',
+      alt: 'Orthodox church interior with dome'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop',
+      alt: 'Beautiful church architecture details'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchNature')
+      alt: 'Holy icons on the iconostasis'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchFlowers')
+      alt: 'Church nave with wooden pews'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchCeiling')
+      alt: 'Sanctuary area with holy table'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchCandle')
+      alt: 'Choir area with church books'
     },
     {
       src: '/placeholder.svg',
-      alt: t('about.gallery.churchCross')
+      alt: 'Candle stand with prayer candles'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Church ceiling with religious paintings'
     }
   ];
 
@@ -90,7 +119,20 @@ const AboutPage: React.FC = () => {
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                 {t('about.gallery.title')}
               </h2>
-              <Gallery images={galleryImages} masonry={true} />
+              
+              {/* Old Photos Section */}
+              <div className="mb-12">
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Old Photos</h3>
+                <p className="text-gray-600 mb-6">Historical moments from our church's founding and early years in Stockholm.</p>
+                <Gallery images={oldPhotosImages} />
+              </div>
+              
+              {/* Interior Section */}
+              <div>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Interior</h3>
+                <p className="text-gray-600 mb-6">The sacred spaces within our church where we gather for worship and prayer.</p>
+                <Gallery images={interiorImages} />
+              </div>
             </div>
           </div>
         </section>
