@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -14,6 +14,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
+  const [showHolidayPopup, setShowHolidayPopup] = useState(false);
   
   // Holiday service information for the popup
   const holidayService = {
@@ -108,7 +109,11 @@ const HomePage: React.FC = () => {
       <Footer />
       
       {/* Holiday popup */}
-      <HolidayPopup holidayService={holidayService} />
+      <HolidayPopup 
+        holidayService={holidayService} 
+        open={showHolidayPopup}
+        onOpenChange={setShowHolidayPopup}
+      />
     </div>
   );
 };
