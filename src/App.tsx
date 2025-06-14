@@ -14,7 +14,7 @@ import Calendar from "./pages/Calendar";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
-import Clanci from "./pages/Clanci";
+import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
@@ -35,7 +35,7 @@ const AppRoutes = () => {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
-        <Route path="/clanci" element={<Clanci />} />
+        <Route path="/clanci" element={<Blog />} />
         <Route path="/clanci/:id" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
