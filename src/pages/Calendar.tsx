@@ -24,13 +24,25 @@ const CalendarPage: React.FC = () => {
     fetchEvents().then((data) => {
       if (mounted) {
         console.log('Fetched events:', data); // Debug log
+        
+        // Filter events to only include those from current month onwards
+        const today = new Date();
+        const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        
+        const filteredEvents = (data || []).filter(event => {
+          if (!event.date) return false;
+          const eventDate = new Date(event.date);
+          return eventDate >= currentMonth;
+        });
+        
         // Sort events by date (oldest first)
-        const sortedEvents = (data || []).sort((a, b) => {
+        const sortedEvents = filteredEvents.sort((a, b) => {
           if (!a.date && !b.date) return 0;
           if (!a.date) return 1;
           if (!b.date) return -1;
           return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
+        
         setEvents(sortedEvents);
         setLoading(false);
       }

@@ -103,37 +103,39 @@ const CombinedEventsSchedule: React.FC = () => {
       {upcomingEvents.length > 0 ? (
         <div className="space-y-4">
           {upcomingEvents.map((event) => (
-            <div key={event.id} className="border-l-4 border-orthodox-gold pl-4 py-3 bg-gray-50 rounded-r">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                <div className="flex items-center gap-2 mb-1 sm:mb-0">
-                  <Calendar size={16} className="text-orthodox-blue" />
-                  <span className="font-medium text-orthodox-blue">{formatDate(event.date)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-orthodox-blue" />
-                  <span className="text-sm">{event.time}</span>
-                </div>
-              </div>
-              
-              <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
-              
-              {event.description && (
-                <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                  {event.description}
-                </p>
-              )}
-              
-              <div className="flex items-center justify-between">
-                {event.location && (
-                  <div className="flex items-center gap-1 text-sm text-gray-600">
-                    <MapPin size={14} />
-                    <span>{event.location}</span>
+            <div key={event.id} className="border-l-4 border-orthodox-gold py-3 bg-gray-50 rounded-r">
+              <div className="px-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <div className="flex items-center gap-2 mb-1 sm:mb-0">
+                    <Calendar size={16} className="text-orthodox-blue" />
+                    <span className="font-medium text-orthodox-blue">{formatDate(event.date)}</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <Clock size={16} className="text-orthodox-blue" />
+                    <span className="text-sm">{event.time}</span>
+                  </div>
+                </div>
+                
+                <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
+                
+                {event.description && (
+                  <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                    {event.description}
+                  </p>
                 )}
                 
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
-                  {getEventTypeLabel(event.type)}
-                </span>
+                <div className="flex items-center justify-between">
+                  {event.location && (
+                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <MapPin size={14} />
+                      <span>{event.location}</span>
+                    </div>
+                  )}
+                  
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
+                    {getEventTypeLabel(event.type)}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
