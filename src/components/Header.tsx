@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
@@ -60,7 +59,7 @@ const Header: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl font-serif font-bold text-orthodox-blue">
-                  {t('home.church')}
+                  Sveti Sava Orthodox Church Stockholm
                 </h1>
               </div>
             </Link>
