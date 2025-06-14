@@ -2,10 +2,14 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { Pencil } from 'lucide-react';
+import { Pencil, Info } from 'lucide-react';
 import SerbianCross from './SerbianCross';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onHolidayPopupOpen?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
@@ -63,6 +67,15 @@ const Footer: React.FC = () => {
             >
               <Pencil size={14} />
             </a>
+            {onHolidayPopupOpen && (
+              <button
+                onClick={onHolidayPopupOpen}
+                className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
+                aria-label="Test holiday popup"
+              >
+                <Info size={14} />
+              </button>
+            )}
           </p>
         </div>
       </div>

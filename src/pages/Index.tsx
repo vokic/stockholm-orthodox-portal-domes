@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -23,6 +23,23 @@ const HomePage: React.FC = () => {
     time: t('home.holidayPopup.time'),
     description: t('home.holidayPopup.description')
   };
+
+  // Automatic popup logic with conditions
+  useEffect(() => {
+    const hasSeenPopup = sessionStorage.getItem('hasSeenHolidayPopup');
+    const isFirstVisit = !hasSeenPopup;
+    
+    // Show popup automatically only if user hasn't seen it in this session
+    // and after a small delay to not be too intrusive
+    if (isFirstVisit) {
+      const timer = setTimeout(() => {
+        setShowHolidayPopup(true);
+        sessionStorage.setItem('hasSeenHolidayPopup', 'true');
+      }, 2000); // 2 second delay
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -106,7 +123,7 @@ const HomePage: React.FC = () => {
         <DonationSection />
       </main>
       
-      <Footer />
+      <Footer onHolidayPopupOpen={() => setShowHolidayPopup(true)} />
       
       {/* Holiday popup */}
       <HolidayPopup 
