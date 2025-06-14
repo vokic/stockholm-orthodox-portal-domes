@@ -41,6 +41,7 @@ const BlogPage: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               DESAVANJA/VESTI
             </h1>
+            <p className="text-white text-base md:text-lg">{t('blog.subtitle') || "Pratite najnovije vesti, događaje i najave iz naše zajednice."}</p>
           </div>
         </div>
 
@@ -110,3 +111,4 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
+
