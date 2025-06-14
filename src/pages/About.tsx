@@ -11,60 +11,60 @@ const AboutPage: React.FC = () => {
 
   // Working hours data
   const workingHours = [
-    { day: t('about.hours.mondayFriday'), hours: '09:00 - 16:00' },
-    { day: t('about.hours.saturday'), hours: '09:00 - 19:00' },
-    { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
+    { day: t('about.hours.mondayFriday', 'Monday - Friday'), hours: '09:00 - 16:00' },
+    { day: t('about.hours.saturday', 'Saturday'), hours: '09:00 - 19:00' },
+    { day: t('about.hours.sunday', 'Sunday'), hours: '09:00 - 14:00' }
   ];
 
-  // Gallery images with more variety for masonry layout
+  // Gallery images with more variety for masonry layout. Use Unsplash for dummy images if missing.
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchInterior')
+      src: 'https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchInterior', 'Church interior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      alt: t('about.gallery.churchIcons')
+      src: 'https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80',
+      alt: t('about.gallery.churchIcons', 'Icons on iconostasis')
     },
     {
-      src: 'https://images.unsplash.com/photo-1594905883965-ba245250c1c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchExterior')
+      src: 'https://images.unsplash.com/photo-1594905883965-ba245250c1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      alt: t('about.gallery.churchExterior', 'Church exterior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchBellTower')
+      src: 'https://images.unsplash.com/photo-1614351636041-21b1dffe76a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      alt: t('about.gallery.churchBellTower', 'Church bell tower')
     },
     {
-      src: 'https://images.unsplash.com/photo-1629111963021-146f7e4651f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-      alt: t('about.gallery.churchDome')
+      src: 'https://images.unsplash.com/photo-1629111963021-146f7e4651f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      alt: t('about.gallery.churchDome', 'Church dome')
     },
     {
-      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.cathedralInterior')
+      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.cathedralInterior', 'Cathedral interior')
     },
     {
-      src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchYard')
+      src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchYard', 'Church yard')
     },
     {
-      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchNature')
+      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchNature', 'Church nature')
     },
     {
-      src: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchFlowers')
+      src: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchFlowers', 'Church flowers')
     },
     {
-      src: 'https://images.unsplash.com/photo-1493897065418-2bb6fe8eb4c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchCeiling')
+      src: 'https://images.unsplash.com/photo-1493897065418-2bb6fe8eb4c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCeiling', 'Church ceiling')
     },
     {
-      src: 'https://images.unsplash.com/photo-1528828085966-aff4e01c5f2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchCandle')
+      src: 'https://images.unsplash.com/photo-1528828085966-aff4e01c5f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCandle', 'Church candle')
     },
     {
-      src: 'https://images.unsplash.com/photo-1543179318-f5274a887586?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
-      alt: t('about.gallery.churchCross')
+      src: 'https://images.unsplash.com/photo-1543179318-f5274a887586?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: t('about.gallery.churchCross', 'Church cross')
     }
   ];
 
@@ -74,22 +74,23 @@ const AboutPage: React.FC = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <div className="bg-orthodox-blue text-white py-16">
-          <div className="container-custom">
+        <div className="bg-orthodox-blue text-white py-16" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div className="container-custom bg-black bg-opacity-50 rounded-lg p-8">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              {t('about.title')}
+              {t('about.title', 'About Our Church')}
             </h1>
+            <p className="text-lg mt-2">{t('about.intro', 'Welcome to the Serbian Orthodox Church of Saint Sava, serving all Orthodox Christians and friends in Stockholm!')}</p>
           </div>
         </div>
         
-        {/* Gallery Section - Top position with masonry layout */}
+        {/* Gallery Section */}
         <section className="section">
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t('about.gallery.title')}
+                {t('about.gallery.title', 'Church Gallery')}
               </h2>
-              
+              {/* If any image src is missing, the array ensures at least dummy images. */}
               <Gallery images={galleryImages} masonry={true} />
             </div>
           </div>
@@ -100,45 +101,39 @@ const AboutPage: React.FC = () => {
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t('about.history')}
+                {t('about.history', 'Our History')}
               </h2>
-              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
                   <p className="mb-4">
-                    {t('about.historyText.p1')}
+                    {t('about.historyText.p1', 'Founded in 1988 by the Serbian Orthodox community in Sweden, our church has been a home for prayer, community, and Orthodox tradition.')}
                   </p>
                   <p className="mb-4">
-                    {t('about.historyText.p2')}
+                    {t('about.historyText.p2', 'The parish is dedicated to Saint Sava, the first Serbian Archbishop and an important spiritual figure in Orthodox Christianity.')}
                   </p>
                   <p className="mb-4">
-                    {t('about.historyText.p3')}
+                    {t('about.historyText.p3', 'Through the years, the church has welcomed faithful from throughout the Nordic region.')}
                   </p>
-                  
                   <div className="ornament">☦</div>
-                  
                   <p className="mb-4">
-                    {t('about.historyText.p4')}
+                    {t('about.historyText.p4', 'The iconostasis, frescoes, and sacred items reflect both Serbian and Swedish influences.')}
                   </p>
-                  
                   <p className="mb-4">
-                    {t('about.historyText.p5')}
+                    {t('about.historyText.p5', 'Our community continues to grow, uniting people in faith and mutual support.')}
                   </p>
-                  
                   <p className="mb-4">
-                    {t('about.historyText.p6')}
+                    {t('about.historyText.p6', 'Today, the church celebrates all major Orthodox feasts and serves as a base for outreach, education, and cultural exchange.')}
                   </p>
                 </div>
-                
                 <div className="space-y-4">
                   <img 
-                    src="https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80" 
-                    alt={t('about.gallery.churchHistory')} 
+                    src="https://images.unsplash.com/photo-1518224071898-d1642604e3b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80" 
+                    alt={t('about.gallery.churchHistory', 'Old photograph of church building')} 
                     className="rounded-lg w-full"
                   />
                   <img 
-                    src="https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" 
-                    alt={t('about.gallery.churchInterior')} 
+                    src="https://images.unsplash.com/photo-1541331913542-3e775ab48a59?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80" 
+                    alt={t('about.gallery.churchInterior', 'Church interior')} 
                     className="rounded-lg w-full"
                   />
                 </div>
