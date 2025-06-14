@@ -18,8 +18,8 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
       
-      <div className="container-custom relative z-10 py-40 md:py-56 text-center">
-        {/* Increased from py-32 md:py-44 to py-40 md:py-56 for much more height */}
+      <div className="container-custom relative z-10 py-48 md:py-72 text-center">
+        {/* Increased from py-40 md:py-56 to py-48 md:py-72 for even more height */}
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl md:text-3xl font-serif mb-2 text-orthodox-gold">
             {t('home.welcome')}
