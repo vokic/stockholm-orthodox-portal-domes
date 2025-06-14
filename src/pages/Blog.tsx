@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -66,7 +67,7 @@ const BlogPage: React.FC = () => {
         </div>
 
         {/* Category Filter Bar */}
-        <div className="bg-white shadow-sm">
+        <div className="bg-orthodox-cream">
           <div className="container-custom py-4">
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
@@ -119,7 +120,7 @@ const BlogPage: React.FC = () => {
                         </h3>
                         <p className="text-gray-600 mb-3">{post.excerpt}</p>
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-sm text-gray-500">By {post.author}</span>
+                          <span className="text-sm text-gray-400">By {post.author}</span>
                           {post.category && (
                             <div className="flex items-center gap-1 text-sm text-orthodox-blue bg-orthodox-gold/10 px-2 py-1 rounded-full">
                               <Tag size={14} />
@@ -148,3 +149,4 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
+
