@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -91,7 +90,6 @@ const AboutPage: React.FC = () => {
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                 {t('about.gallery.title')}
               </h2>
-              {/* If any image src is missing, the array ensures at least dummy images. */}
               <Gallery images={galleryImages} masonry={true} />
             </div>
           </div>
