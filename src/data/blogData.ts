@@ -18,10 +18,22 @@ export interface BlogPost {
 // Fetch all blog posts from Contentful, sorted by latest date descending
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const data = await fetchContentfulEntries('blogPost');
+    // Try both content type IDs to match what you have in Contentful
+    let data;
+    try {
+      data = await fetchContentfulEntries('blogPost');
+    } catch (e) {
+      // If blogPost doesn't exist, try blogPostModel
+      data = await fetchContentfulEntries('blogPostModel');
+    }
+    
     if (!data || !Array.isArray(data.items) || data.items.length === 0) {
+      console.log('No blog posts found or empty response');
       return [];
     }
+    
+    console.log('Fetched blog posts:', data.items.length);
+    
     const posts = data.items.map((entry: any) => {
       const fields = entry.fields || {};
       let imageUrl = undefined;
@@ -31,11 +43,11 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       }
       return {
         id: entry.sys.id,
-        title: fields.title,
-        excerpt: fields.excerpt,
+        title: fields.title || 'Untitled',
+        excerpt: fields.excerpt || '',
         content: fields.content,
-        date: fields.date,
-        author: fields.author,
+        date: fields.date || new Date().toISOString().split('T')[0],
+        author: fields.author || 'Unknown',
         category: fields.category,
         imageUrl,
       };
@@ -43,6 +55,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     // Sort by date descending
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (e) {
+    console.error('Error fetching blog posts:', e);
     return [];
   }
 };
