@@ -65,54 +65,49 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px] border-orthodox-gold max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center gap-2">
+          {/* Up top, show description centered */}
+          <DialogDescription className="text-lg text-center mb-1">
+            {t('popup.upcomingService')}
+          </DialogDescription>
+          {/* Event title below description, with icon */}
+          <DialogTitle className="text-2xl font-serif text-orthodox-blue flex items-center justify-center gap-2 mb-2">
             <CalendarIcon className="h-6 w-6 text-orthodox-gold" />
             {event.title}
           </DialogTitle>
-          <DialogDescription className="text-lg">
-            {t('popup.upcomingService')}
-          </DialogDescription>
         </DialogHeader>
         
         <div className="py-4 space-y-4">
           <div className="bg-orthodox-cream p-4 rounded-lg">
             <div className="flex flex-col gap-2">
-              {/* Date/time/tag row */}
-              <div className="flex items-center flex-wrap w-full justify-between">
-                <div className="flex items-center gap-2 min-w-0 overflow-hidden flex-shrink">
-                  <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
-                  <span className="font-medium mr-2">{formatDate(event.date)}</span>
-                  {event.time && (
-                    <>
-                      <Clock className="h-4 w-4 text-orthodox-gold ml-2" />
-                      <span className="ml-1">{event.time}</span>
-                    </>
-                  )}
-                </div>
-                {/* Tag pill, if no location show here, else move down */}
-                {!event.location && (
-                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)} ml-2`}>
-                    {getEventTypeLabel(event.type)}
-                  </span>
+              {/* Date/time row */}
+              <div className="flex items-center flex-wrap w-full justify-center mb-2">
+                <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
+                <span className="font-medium mx-2">{formatDate(event.date)}</span>
+                {event.time && (
+                  <>
+                    <Clock className="h-4 w-4 text-orthodox-gold ml-2" />
+                    <span className="ml-1">{event.time}</span>
+                  </>
                 )}
               </div>
-              
-              {event.location && (
-                <div className="flex items-center gap-2 text-sm text-gray-600 mb-2 justify-between">
-                  <div className="flex items-center gap-1 min-w-0 overflow-hidden">
+
+              {/* Event description */}
+              {event.description && (
+                <p className="text-gray-700 break-words mb-1 text-center">{event.description}</p>
+              )}
+
+              {/* Location and Tag Pill placed BELOW description, stacked for mobile friendliness */}
+              <div className="flex flex-col gap-2 mt-2 items-center w-full">
+                {event.location && (
+                  <div className="flex items-center gap-1 text-sm text-gray-600">
                     <MapPin className="h-4 w-4 text-orthodox-gold" />
                     <span className="truncate">{event.location}</span>
                   </div>
-                  {/* Tag pill here if location present */}
-                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)} ml-2`}>
-                    {getEventTypeLabel(event.type)}
-                  </span>
-                </div>
-              )}
-              
-              {event.description && (
-                <p className="text-gray-700 break-words mb-1 mt-2">{event.description}</p>
-              )}
+                )}
+                <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
+                  {getEventTypeLabel(event.type)}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -140,3 +135,4 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
 };
 
 export default HolidayPopup;
+
