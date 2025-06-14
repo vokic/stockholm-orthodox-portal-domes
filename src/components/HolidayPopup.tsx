@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Dialog, 
@@ -78,15 +79,17 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
         <div className="py-4 space-y-4">
           <div className="bg-orthodox-cream p-4 rounded-lg">
             <div className="flex flex-col gap-2">
-              {/* Date/time row */}
-              <div className="flex items-center flex-wrap w-full mb-2">
-                <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
-                <span className="font-medium mx-2">{formatDate(event.date)}</span>
+              {/* Date/time row - date on left, time on right */}
+              <div className="flex items-center justify-between w-full mb-2">
+                <div className="flex items-center">
+                  <CalendarIcon className="h-5 w-5 text-orthodox-gold" />
+                  <span className="font-medium ml-2">{formatDate(event.date)}</span>
+                </div>
                 {event.time && (
-                  <>
-                    <Clock className="h-4 w-4 text-orthodox-gold ml-2" />
+                  <div className="flex items-center">
+                    <Clock className="h-4 w-4 text-orthodox-gold" />
                     <span className="ml-1">{event.time}</span>
-                  </>
+                  </div>
                 )}
               </div>
 
@@ -95,8 +98,8 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
                 <p className="text-gray-700 break-words mb-1">{event.description}</p>
               )}
 
-              {/* Location and Tag Pill placed in a ROW with spacing between, like date/time */}
-              <div className="flex items-center justify-center w-full gap-4 mt-2">
+              {/* Location and Tag Pill - location on left, tag on right */}
+              <div className="flex items-center justify-between w-full mt-2">
                 {event.location && (
                   <div className="flex items-center gap-1 text-sm text-gray-600">
                     <MapPin className="h-4 w-4 text-orthodox-gold" />
