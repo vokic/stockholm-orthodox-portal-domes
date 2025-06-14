@@ -41,21 +41,20 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       
       console.log('Processing entry:', entry.sys.id, 'Fields:', fields);
       
-      // Try multiple image field names that might exist in Contentful
-      const imageField = fields.image || fields.coverImage || fields.featuredImage || fields.thumbnail;
+      // Handle the image field - it's an array of asset links
+      const imageField = fields.image;
       
-      if (imageField) {
-        console.log('Found image field:', imageField);
+      if (imageField && Array.isArray(imageField) && imageField.length > 0) {
+        // Get the first image from the array
+        const firstImage = imageField[0];
+        console.log('Found image field:', firstImage);
         
-        if (imageField.sys && imageField.sys.id) {
-          imageUrl = resolveContentfulAsset(data.includes, imageField.sys.id);
+        if (firstImage.sys && firstImage.sys.id) {
+          imageUrl = resolveContentfulAsset(data.includes, firstImage.sys.id);
           console.log('Resolved image URL:', imageUrl);
           if (imageUrl && !imageUrl.startsWith("http")) {
             imageUrl = `https:${imageUrl}`;
           }
-        } else if (typeof imageField === 'string') {
-          // Direct URL
-          imageUrl = imageField.startsWith('http') ? imageField : `https:${imageField}`;
         }
       } else {
         console.log('No image field found for entry:', entry.sys.id);
