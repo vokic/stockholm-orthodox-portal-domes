@@ -13,6 +13,7 @@ export interface BlogPost {
   author: string;
   category?: string;
   imageUrl?: string;
+  images?: string[]; // Array of all images
 }
 
 // Fetch all blog posts from Contentful, sorted by latest date descending
@@ -38,6 +39,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     const posts = data.items.map((entry: any) => {
       const fields = entry.fields || {};
       let imageUrl = undefined;
+      let images: string[] = [];
       
       console.log('Processing entry:', entry.sys.id, 'Fields:', fields);
       
@@ -45,17 +47,21 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       const imageField = fields.image;
       
       if (imageField && Array.isArray(imageField) && imageField.length > 0) {
-        // Get the first image from the array
-        const firstImage = imageField[0];
-        console.log('Found image field:', firstImage);
-        
-        if (firstImage.sys && firstImage.sys.id) {
-          imageUrl = resolveContentfulAsset(data.includes, firstImage.sys.id);
-          console.log('Resolved image URL:', imageUrl);
-          if (imageUrl && !imageUrl.startsWith("http")) {
-            imageUrl = `https:${imageUrl}`;
+        // Get all images from the array
+        images = imageField.map((imageLink: any) => {
+          if (imageLink.sys && imageLink.sys.id) {
+            const resolvedUrl = resolveContentfulAsset(data.includes, imageLink.sys.id);
+            console.log('Resolved image URL:', resolvedUrl);
+            if (resolvedUrl && !resolvedUrl.startsWith("http")) {
+              return `https:${resolvedUrl}`;
+            }
+            return resolvedUrl;
           }
-        }
+          return null;
+        }).filter(Boolean);
+        
+        // Set the first image as the main image URL
+        imageUrl = images[0];
       } else {
         console.log('No image field found for entry:', entry.sys.id);
       }
@@ -69,6 +75,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         author: fields.author || 'Unknown',
         category: fields.category,
         imageUrl,
+        images,
       };
       
       console.log('Final post object:', post);

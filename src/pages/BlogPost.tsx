@@ -90,6 +90,13 @@ const BlogPostPage: React.FC = () => {
     );
   }
 
+  // Prepare gallery images from the blog post
+  const galleryImages = post.images ? post.images.map((imageUrl, index) => ({
+    src: imageUrl.startsWith('http') ? imageUrl : `https:${imageUrl}`,
+    alt: `${post.title} - Image ${index + 1}`,
+    size: 'medium' as const
+  })) : [];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -126,6 +133,14 @@ const BlogPostPage: React.FC = () => {
           <div className="container-custom max-w-4xl">
             <div className="card">
               <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
+              
+              {/* Gallery Section */}
+              {galleryImages.length > 0 && (
+                <div className="mt-8 pt-6 border-t">
+                  <h3 className="text-xl font-serif font-bold text-orthodox-blue mb-4">Gallery</h3>
+                  <Gallery images={galleryImages} className="mb-6" />
+                </div>
+              )}
               
               <div className="mt-8 pt-6 border-t">
                 <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
