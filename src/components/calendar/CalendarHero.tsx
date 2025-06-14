@@ -11,7 +11,7 @@ const CalendarHero: React.FC = () => {
         <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
           {t('calendar.title')}
         </h1>
-        <p className="text-lg md:text-xl text-white/80 max-w-2xl">
+        <p className="text-xl mb-8">
           Stay informed about our services, events, and celebrations.
         </p>
       </div>
