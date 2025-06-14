@@ -93,10 +93,10 @@ const ClanciPage: React.FC = () => {
                   </div>
                 ) : (
                   articles.map((article) => (
-                    <div key={article.id} className="card hover:shadow-lg transition-shadow relative">
+                    <div key={article.id} className="card hover:shadow-lg transition-shadow relative overflow-hidden">
                       {article.pinned && (
-                        <div className="absolute top-4 right-4 z-10">
-                          <Badge variant="default" className="bg-orthodox-gold text-orthodox-blue font-semibold">
+                        <div className="absolute top-2 right-2 z-20">
+                          <Badge className="bg-orthodox-gold text-orthodox-blue font-semibold shadow-md border border-orthodox-blue/20">
                             Featured
                           </Badge>
                         </div>
