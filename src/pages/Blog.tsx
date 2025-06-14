@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -148,9 +147,11 @@ const BlogPage: React.FC = () => {
                               <CalendarIcon size={16} />
                               <span>{formatDate(post.date)}</span>
                             </div>
-                            <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
-                              {post.title}
-                            </h3>
+                            <Link to={`/clanci/${post.id}`}>
+                              <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue hover:text-orthodox-gold transition-colors cursor-pointer">
+                                {post.title}
+                              </h3>
+                            </Link>
                             <p className="text-gray-600 mb-3">{post.excerpt}</p>
                             <div className="flex items-center justify-between mb-3">
                               <span className="text-sm text-gray-400">By {post.author}</span>
