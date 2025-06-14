@@ -11,8 +11,8 @@ const HeroSection: React.FC = () => {
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80"
-          alt="Orthodox church interior"
+          src="https://images.unsplash.com/photo-1643285677419-986d88603216?q=80&w=1932&auto=format&fit=crop"
+          alt="Orthodox church service with people"
           className="absolute w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -21,15 +21,12 @@ const HeroSection: React.FC = () => {
       <div className="container-custom relative z-10 py-24 md:py-32 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl md:text-3xl font-serif mb-2 text-orthodox-gold">
-            {/* Use translated welcome */}
             {t('home.welcome')}
           </h2>
           <h1 className="text-3xl md:text-5xl font-bold font-serif mb-6 text-white">
-            {/* Use translated full name */}
             {t('home.churchFullName')}
           </h1>
           <p className="text-xl md:text-2xl mb-8">
-            {/* Use intro blurb */}
             {t('home.intro')}
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
@@ -47,4 +44,3 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
-
