@@ -57,7 +57,7 @@ const BlogPage: React.FC = () => {
                 <div key={post.id} className="card hover:shadow-lg transition-shadow">
                   <div className="aspect-video overflow-hidden rounded-t-lg">
                     <img 
-                      src={post.imageUrl} 
+                      src="/placeholder.svg" 
                       alt={post.title} 
                       className="w-full h-full object-cover"
                     />

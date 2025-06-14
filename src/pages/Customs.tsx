@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -19,7 +18,7 @@ const CustomsPage: React.FC = () => {
       date: 'April 25, 2025',
       author: 'Father Nicholas',
       category: 'holidays',
-      imageUrl: 'https://images.unsplash.com/photo-1588669095125-be2d01dd9c8a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 2,
@@ -28,7 +27,7 @@ const CustomsPage: React.FC = () => {
       date: 'April 18, 2025',
       author: 'Father Alexander',
       category: 'symbolism',
-      imageUrl: 'https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 3,
@@ -37,7 +36,7 @@ const CustomsPage: React.FC = () => {
       date: 'March 30, 2025',
       author: 'Father Nicholas',
       category: 'practices',
-      imageUrl: 'https://images.unsplash.com/photo-1599771465852-73fd5cd8a168?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 4,
@@ -46,7 +45,7 @@ const CustomsPage: React.FC = () => {
       date: 'March 15, 2025',
       author: 'Father Alexander',
       category: 'sacraments',
-      imageUrl: 'https://images.unsplash.com/photo-1610553556003-9b2ae8e0bf7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+      imageUrl: '/placeholder.svg',
     },
     {
       id: 5,
@@ -55,7 +54,7 @@ const CustomsPage: React.FC = () => {
       date: 'February 27, 2025',
       author: 'Father Nicholas',
       category: 'family',
-      imageUrl: 'https://images.unsplash.com/photo-1515923152115-758a6b16f35e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80',
+      imageUrl: '/placeholder.svg',
     },
   ];
   
