@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,7 +7,7 @@ import { Calendar as CalendarIcon, Clock } from 'lucide-react';
 
 const CalendarPage: React.FC = () => {
   const { t } = useLanguage();
-  const [view, setView] = useState<'services' | 'events' | 'all'>('all');
+  const [view, setView] = useState<'services' | 'events' | 'slava' | 'all'>('all');
   
   // Sample service schedule data
   const regularServices = [
@@ -98,8 +97,60 @@ const CalendarPage: React.FC = () => {
     },
   ];
   
+  // Serbian slavas (saint feast days)
+  const slavas = [
+    {
+      date: 'May 6, 2025',
+      name: 'Sveti Đorđe (Saint George)',
+      time: '09:00 - 11:00',
+      description: 'Celebration of Saint George, patron saint of many Serbian families. Special liturgy and blessing of kolach and wheat.',
+      location: 'Church',
+      type: 'slava'
+    },
+    {
+      date: 'May 21, 2025',
+      name: 'Sveti Konstantin i Jelena',
+      time: '09:00 - 11:00',
+      description: 'Feast of Saints Constantine and Helen, celebrated by many Serbian Orthodox families.',
+      location: 'Church',
+      type: 'slava'
+    },
+    {
+      date: 'July 12, 2025',
+      name: 'Sveti Petar i Pavle',
+      time: '09:00 - 11:00',
+      description: 'Feast of Saints Peter and Paul, one of the most celebrated slavas in Serbian tradition.',
+      location: 'Church',
+      type: 'slava'
+    },
+    {
+      date: 'August 2, 2025',
+      name: 'Sveti Ilija (Saint Elijah)',
+      time: '09:00 - 11:00',
+      description: 'Celebration of Saint Elijah, patron saint of thunder and lightning, celebrated by many families.',
+      location: 'Church',
+      type: 'slava'
+    },
+    {
+      date: 'November 8, 2025',
+      name: 'Sveti Dimitrije',
+      time: '09:00 - 11:00',
+      description: 'Feast of Saint Dimitrius, celebrated by numerous Serbian Orthodox families.',
+      location: 'Church',
+      type: 'slava'
+    },
+    {
+      date: 'December 19, 2025',
+      name: 'Sveti Nikola (Saint Nicholas)',
+      time: '09:00 - 11:00',
+      description: 'Celebration of Saint Nicholas, one of the most beloved saints and patron of many Serbian families.',
+      location: 'Church',
+      type: 'slava'
+    },
+  ];
+  
   // Combine all items for display
-  const allItems = [...specialServices, ...events].sort((a, b) => 
+  const allItems = [...specialServices, ...events, ...slavas].sort((a, b) => 
     new Date(a.date).getTime() - new Date(b.date).getTime()
   );
   
@@ -107,7 +158,9 @@ const CalendarPage: React.FC = () => {
     ? allItems 
     : view === 'services' 
       ? specialServices 
-      : events;
+      : view === 'events'
+        ? events
+        : slavas;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -147,10 +200,16 @@ const CalendarPage: React.FC = () => {
                   >
                     Events
                   </TabsTrigger>
+                  <TabsTrigger 
+                    value="slava" 
+                    onClick={() => setView('slava')}
+                  >
+                    Slava
+                  </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="all" className="mt-0">
-                  <h2 className="text-2xl font-serif mb-4">Upcoming Services & Events</h2>
+                  <h2 className="text-2xl font-serif mb-4">Upcoming Services, Events & Slavas</h2>
                   {filteredItems.length > 0 ? (
                     <div className="divide-y">
                       {filteredItems.map((item, index) => (
@@ -166,14 +225,14 @@ const CalendarPage: React.FC = () => {
                             </div>
                           </div>
                           <h3 className="text-xl font-semibold mb-1">{item.name}</h3>
-                          {item.type === 'event' && (
+                          {(item.type === 'event' || item.type === 'slava') && (
                             <>
                               <p className="text-gray-700 mb-2">{(item as any).description}</p>
                               <p className="text-sm text-gray-600"><strong>Location:</strong> {(item as any).location}</p>
                             </>
                           )}
                           <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-medium bg-orthodox-gold bg-opacity-20 text-orthodox-blue">
-                            {item.type === 'service' ? 'Service' : 'Event'}
+                            {item.type === 'service' ? 'Service' : item.type === 'event' ? 'Event' : 'Slava'}
                           </span>
                         </div>
                       ))}
@@ -259,6 +318,33 @@ const CalendarPage: React.FC = () => {
                     </div>
                   ) : (
                     <p className="text-gray-600">No events currently scheduled.</p>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="slava" className="mt-0">
+                  <h2 className="text-2xl font-serif mb-4">Serbian Slavas</h2>
+                  {slavas.length > 0 ? (
+                    <div className="divide-y">
+                      {slavas.map((slava, index) => (
+                        <div key={index} className="py-4">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <CalendarIcon size={18} className="text-orthodox-blue" />
+                              <span className="font-medium">{slava.date}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Clock size={18} className="text-orthodox-blue" />
+                              <span>{slava.time}</span>
+                            </div>
+                          </div>
+                          <h3 className="text-xl font-semibold mb-1">{slava.name}</h3>
+                          <p className="text-gray-700 mb-2">{slava.description}</p>
+                          <p className="text-sm text-gray-600"><strong>Location:</strong> {slava.location}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600">No slavas currently scheduled.</p>
                   )}
                 </TabsContent>
               </Tabs>
