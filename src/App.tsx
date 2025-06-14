@@ -16,7 +16,6 @@ import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +37,6 @@ const AppRoutes = () => {
         <Route path="/donate" element={<Donate />} />
         <Route path="/clanci" element={<Blog />} />
         <Route path="/clanci/:id" element={<BlogPost />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

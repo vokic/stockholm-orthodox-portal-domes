@@ -2,6 +2,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
+import { Pencil } from 'lucide-react';
 import SerbianCross from './SerbianCross';
 
 const Footer: React.FC = () => {
@@ -52,7 +53,17 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-300 text-center">
-          <p>© {currentYear} {t('footer.copyright')} {t('footer.rights')}.</p>
+          <p className="flex items-center justify-center gap-1">
+            © {currentYear} {t('footer.copyright')} {t('footer.rights')}.
+            <a 
+              href="https://be.contentful.com/login" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-orthodox-gold transition-colors"
+            >
+              <Pencil size={14} />
+            </a>
+          </p>
         </div>
       </div>
     </footer>
