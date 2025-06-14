@@ -59,7 +59,7 @@ const ClanciPage: React.FC = () => {
       <main className="flex-grow">
         {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-8">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
             <h1 className="text-2xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               Članci / Blog
             </h1>
@@ -67,7 +67,7 @@ const ClanciPage: React.FC = () => {
         </div>
 
         <section className="py-8 md:py-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
             {loading && <div className="py-4 text-gray-500 text-center">Loading...</div>}
 
             {error && (
