@@ -77,6 +77,9 @@ const CalendarPage: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t('calendar.title')}
             </h1>
+            <p className="text-lg md:text-xl text-white opacity-80 mb-2">
+              This is a dummy subtitle for the Calendar section.
+            </p>
           </div>
         </div>
 
