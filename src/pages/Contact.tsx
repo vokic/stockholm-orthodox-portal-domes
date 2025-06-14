@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -122,8 +121,20 @@ const ContactPage: React.FC = () => {
                   
                   <div>
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.phone.title')}</h3>
-                    <p>{t('contact.phone.main')}</p>
-                    <p>{t('contact.phone.priest')}</p>
+                    <p>
+                      <a href={`tel:${t('contact.phone.main').replace(/\s+/g, '')}`}
+                         className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                      >
+                        {t('contact.phone.main')}
+                      </a>
+                    </p>
+                    <p>
+                      <a href={`tel:${t('contact.phone.priest').replace(/\s+/g, '')}`}
+                         className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                      >
+                        {t('contact.phone.priest')}
+                      </a>
+                    </p>
                   </div>
                   
                   <div>

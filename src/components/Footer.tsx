@@ -1,9 +1,10 @@
-
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Pencil, Info } from 'lucide-react';
 import SerbianCross from './SerbianCross';
+import { useState } from 'react';
+import HolidayPopup from './HolidayPopup';
 
 interface FooterProps {
   onHolidayPopupOpen?: () => void;
@@ -12,6 +13,18 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  // State to track local popup open if no external handler is passed
+  const [showHolidayPopup, setShowHolidayPopup] = useState(false);
+
+  // We'll render HolidayPopup if local state
+  // But we want to allow parent control (home page) if handler is passed
+  const handlePopupOpen = () => {
+    if (onHolidayPopupOpen) {
+      onHolidayPopupOpen();
+    } else {
+      setShowHolidayPopup(true);
+    }
+  };
 
   return (
     <footer className="bg-orthodox-blue text-white pt-10 pb-4">
@@ -67,16 +80,30 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             >
               <Pencil size={14} />
             </a>
-            {onHolidayPopupOpen && (
-              <button
-                onClick={onHolidayPopupOpen}
-                className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
-                aria-label="Test holiday popup"
-              >
-                <Info size={14} />
-              </button>
-            )}
+            <button
+              onClick={handlePopupOpen}
+              className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
+              aria-label="Test holiday popup"
+            >
+              <Info size={14} />
+            </button>
           </p>
+          {/* Show popup for local footer (e.g., not homepage) */}
+          { !onHolidayPopupOpen && showHolidayPopup && (
+            // We need to import and get the first calendar event here; this is only for test/demo (no actual event logic)
+            <HolidayPopup
+              open={showHolidayPopup}
+              onOpenChange={setShowHolidayPopup}
+              event={{
+                title: "Sample Service",
+                date: new Date().toISOString().slice(0, 10),
+                time: "10:00",
+                description: "Demo event just for popup test!",
+                location: "Storgatan 15, Stockholm",
+                type: "service",
+              }}
+            />
+          )}
         </div>
       </div>
     </footer>

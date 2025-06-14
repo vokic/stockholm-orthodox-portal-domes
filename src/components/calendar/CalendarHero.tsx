@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { Info } from 'lucide-react';
@@ -46,21 +45,11 @@ const CalendarHero: React.FC = () => {
           <h1 className="text-3xl md:text-4xl font-bold font-serif text-orthodox-gold">
             {t('calendar.title')}
           </h1>
-          {upcomingEvent && (
-            <button
-              onClick={() => setShowPopup(true)}
-              className="text-orthodox-gold hover:text-white transition-colors"
-              aria-label="View upcoming holiday service"
-            >
-              <Info size={20} />
-            </button>
-          )}
         </div>
         <p className="text-white">
           Stay informed about our services, events, and celebrations.
         </p>
       </div>
-      
       {upcomingEvent && (
         <HolidayPopup 
           event={upcomingEvent}
