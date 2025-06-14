@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -15,6 +14,46 @@ const AboutPage: React.FC = () => {
     { day: t('about.hours.mondayFriday'), hours: '09:00 - 16:00' },
     { day: t('about.hours.saturday'), hours: '09:00 - 19:00' },
     { day: t('about.hours.sunday'), hours: '09:00 - 14:00' }
+  ];
+
+  // Church Now gallery images
+  const churchNowImages = [
+    {
+      src: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop',
+      alt: 'Church exterior modern'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop',
+      alt: 'Church from a distance'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=600&fit=crop',
+      alt: 'People gathering at church grounds'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Recent community Christmas celebration'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Modern church events interior'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Congregation in worship'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Baptism in recent years'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Recent Pascha celebration'
+    },
+    {
+      src: '/placeholder.svg',
+      alt: 'Current year youth group activity'
+    }
   ];
 
   // Old photos gallery images
@@ -119,6 +158,13 @@ const AboutPage: React.FC = () => {
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                 {t('about.gallery.title')}
               </h2>
+              
+              {/* Church Now Section */}
+              <div className="mb-12">
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Church Now</h3>
+                <p className="text-gray-600 mb-6">A glimpse of our church in present day—our building, community life and ongoing events.</p>
+                <Gallery images={churchNowImages} />
+              </div>
               
               {/* Old Photos Section */}
               <div className="mb-12">
