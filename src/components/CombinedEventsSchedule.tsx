@@ -8,8 +8,8 @@ import { getUpcomingEvents } from '../data/calendarData';
 const CombinedEventsSchedule: React.FC = () => {
   const { t } = useLanguage();
   
-  // Get next 10 upcoming events from calendar data
-  const upcomingEvents = getUpcomingEvents(10);
+  // Get first 4 upcoming events from calendar data
+  const upcomingEvents = getUpcomingEvents(4);
 
   const getEventTypeLabel = (type: string) => {
     switch (type) {
