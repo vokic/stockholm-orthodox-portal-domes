@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -73,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               <li>{t('services.sunday')}: 10:00</li>
               <li>{t('services.vespers')}: 18:00</li>
               <li>
-                <Link to="/services" className="text-orthodox-gold hover:underline">
+                <Link to="/calendar" className="text-orthodox-gold hover:underline">
                   {t('services.calendar')} →
                 </Link>
               </li>
