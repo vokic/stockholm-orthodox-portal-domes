@@ -51,11 +51,12 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
   };
 
   const filterType = getFilterType(eventType);
-  const filteredEvents = filterType ? events.filter(e => e.type === filterType) : events;
+  // Remove the extra filtering here since events are already filtered in Calendar.tsx
+  const filteredEvents = events;
 
   console.log('EventsList - eventType prop:', eventType); // Debug log
   console.log('EventsList - filterType:', filterType); // Debug log
-  console.log('EventsList - filteredEvents:', filteredEvents); // Debug log
+  console.log('EventsList - received events:', events); // Debug log
 
   if (filteredEvents.length === 0) {
     const message = eventType === 'services' 
