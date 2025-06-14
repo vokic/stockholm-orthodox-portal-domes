@@ -35,13 +35,15 @@ const BlogPage: React.FC = () => {
       <Header />
 
       <main className="flex-grow">
-        {/* Hero Section */}
+        {/* Hero Section - Match Contact page exactly */}
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              DESAVANJA/VESTI
+              Članci / Blog
             </h1>
-            <p className="text-white text-base md:text-lg">{t('blog.subtitle') || "Pratite najnovije vesti, događaje i najave iz naše zajednice."}</p>
+            <p className="text-white">
+              {t('home.churchDescription')}
+            </p>
           </div>
         </div>
 
@@ -111,4 +113,3 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
-
