@@ -155,7 +155,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
           return 'col-span-2 row-span-2';
         case 'medium':
         default:
-          return 'col-span-1 row-span-2';
+          return 'col-span-1 row-span-1';
       }
     }
     return '';
@@ -171,13 +171,13 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
       columnContents[columnIndex].push(
         <div 
           key={index}
-          className="mb-4 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+          className="mb-4 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity aspect-square"
           onClick={() => setSelectedImageIndex(index)}
         >
           <img
             src={image.src}
             alt={image.alt}
-            className="w-full h-auto object-cover transition-transform hover:scale-105 duration-500"
+            className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
             loading="lazy"
           />
         </div>
@@ -197,11 +197,11 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
 
   // Standard grid layout
   const renderGridLayout = () => (
-    <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-[minmax(150px,auto)] gap-3`}>
+    <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3`}>
       {displayImages.map((image, index) => (
         <div 
           key={index} 
-          className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity`}
+          className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity aspect-square`}
           onClick={() => setSelectedImageIndex(index)}
         >
           <img 
