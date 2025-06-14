@@ -1,10 +1,11 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Pencil, Info } from 'lucide-react';
 import SerbianCross from './SerbianCross';
-import { useState } from 'react';
 import HolidayPopup from './HolidayPopup';
+import { fetchEvents, Event } from '../services/eventService';
 
 interface FooterProps {
   onHolidayPopupOpen?: () => void;
@@ -13,17 +14,44 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
-  // State to track local popup open if no external handler is passed
+  // State for local popup
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
 
-  // We'll render HolidayPopup if local state
-  // But we want to allow parent control (home page) if handler is passed
+  // --- New state for upcoming event from calendar ---
+  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
+  const [eventsLoading, setEventsLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    // Fetch events and find the first upcoming within next 30 days
+    fetchEvents().then((events) => {
+      if (!mounted) return;
+      const today = new Date();
+      const thirtyDaysFromNow = new Date();
+      thirtyDaysFromNow.setDate(today.getDate() + 30);
+
+      // Find the first upcoming event within 30 days
+      const nextEvent = events
+        .filter(event => {
+          if (!event.date) return false;
+          const eventDate = new Date(event.date);
+          return eventDate >= today && eventDate <= thirtyDaysFromNow;
+        })
+        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+
+      setUpcomingEvent(nextEvent || null);
+      setEventsLoading(false);
+    }).catch((error) => {
+      console.error('Error loading upcoming event for footer popup:', error);
+      if (mounted) setEventsLoading(false);
+    });
+
+    return () => { mounted = false; };
+  }, []);
+
+  // Handler for opening the popup (always available in the footer, all pages)
   const handlePopupOpen = () => {
-    if (onHolidayPopupOpen) {
-      onHolidayPopupOpen();
-    } else {
-      setShowHolidayPopup(true);
-    }
+    setShowHolidayPopup(true);
   };
 
   return (
@@ -83,26 +111,19 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             <button
               onClick={handlePopupOpen}
               className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
-              aria-label="Test holiday popup"
+              aria-label="Open next upcoming holiday popup"
+              disabled={eventsLoading || !upcomingEvent}
+              style={{ cursor: eventsLoading || !upcomingEvent ? 'not-allowed' : 'pointer', opacity: eventsLoading || !upcomingEvent ? 0.5 : 1 }}
             >
               <Info size={14} />
             </button>
           </p>
-          {/* Show popup for local footer (e.g., not homepage) */}
-          { !onHolidayPopupOpen && showHolidayPopup && (
-            // We need to import and get the first calendar event here; this is only for test/demo (no actual event logic)
+          {/* Always render HolidayPopup for test/manual use, only if real next event exists */}
+          {showHolidayPopup && upcomingEvent && (
             <HolidayPopup
               open={showHolidayPopup}
               onOpenChange={setShowHolidayPopup}
-              event={{
-                id: "demo", // <-- added missing id property
-                title: "Sample Service",
-                date: new Date().toISOString().slice(0, 10),
-                time: "10:00",
-                description: "Demo event just for popup test!",
-                location: "Storgatan 15, Stockholm",
-                type: "service",
-              }}
+              event={upcomingEvent}
             />
           )}
         </div>
@@ -112,3 +133,4 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 };
 
 export default Footer;
+
