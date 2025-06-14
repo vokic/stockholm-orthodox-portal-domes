@@ -113,7 +113,7 @@ const BlogPage: React.FC = () => {
         </div>
 
         {/* Blog Content */}
-        <section className="section">
+        <section className="py-6 md:py-8">
           <div className="container-custom">
             {loading ? (
               <div className="text-center py-10 text-gray-400">
