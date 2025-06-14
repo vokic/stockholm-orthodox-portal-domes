@@ -227,11 +227,13 @@ const CalendarPage: React.FC = () => {
                         <div key={monthYear}>
                           {monthIndex > 0 && <Separator className="my-8" />}
                           <div className="mb-6">
-                            <h3 className="text-xl font-semibold text-orthodox-blue mb-4 flex items-center">
-                              <CalendarIcon size={20} className="mr-2" />
-                              {monthYear}
-                            </h3>
-                            <div className="divide-y pl-6">
+                            <div className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg px-6 py-4 mb-6 shadow-lg border-l-4 border-orthodox-gold">
+                              <h3 className="text-2xl font-serif font-bold flex items-center">
+                                <CalendarIcon size={24} className="mr-3 text-orthodox-gold" />
+                                {monthYear}
+                              </h3>
+                            </div>
+                            <div className="divide-y pl-4">
                               {items.map((item, index) => (
                                 <div key={index} className="py-4">
                                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
