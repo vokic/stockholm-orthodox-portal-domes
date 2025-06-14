@@ -1,71 +1,94 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Gallery from '../components/Gallery';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar as CalendarIcon } from 'lucide-react';
+import { getBlogPost, BlogPost } from '../data/blogData';
+import { format } from 'date-fns';
 
 const BlogPostPage: React.FC = () => {
   const { t } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  
-  // In a real application, this would fetch data from an API
-  // For now, we'll use dummy data
-  const post = {
-    id: parseInt(id || '1'),
-    title: 'Understanding the Divine Liturgy',
-    content: `
-      <p>The Divine Liturgy is the primary worship service of the Orthodox Church. It is a beautiful and profound experience that connects us with the heavenly worship and brings us into communion with God.</p>
-      
-      <p>The service is divided into two main parts: the Liturgy of the Word, which includes readings from Scripture, and the Liturgy of the Faithful, which culminates in the reception of Holy Communion.</p>
-      
-      <p>Throughout the service, the priest, deacon, and choir lead the faithful in prayers, hymns, and responses that have been used by Orthodox Christians for centuries. The incense, icons, and ceremonial movements all contribute to an atmosphere of reverence and awe before the holy mysteries.</p>
-      
-      <p>The Divine Liturgy is not merely a historical reenactment but a living participation in the eternal worship of heaven. As we gather together as the Body of Christ, we join with the angels and saints in offering praise to God.</p>
-      
-      <p>For newcomers to Orthodoxy, the Divine Liturgy may seem complex and unfamiliar at first. However, with regular attendance and a willingness to learn, the beauty and depth of this sacred service become increasingly apparent and meaningful.</p>
-      
-      <p>We invite everyone to join us for Divine Liturgy on Sundays at 10:00 AM. Whether you are a lifelong Orthodox Christian or simply curious about our faith, you are welcome to experience this ancient and transformative form of worship.</p>
-    `,
-    date: 'April 20, 2025',
-    author: 'Father Nicholas',
-    category: 'faith',
-    imageUrl: '/placeholder.svg',
-    // Enhanced gallery images for the blog post
-    galleryImages: [
-      {
-        src: '/placeholder.svg',
-        alt: 'Orthodox church iconostasis with golden icons',
-        size: 'large' as const
-      },
-      {
-        src: '/placeholder.svg',
-        alt: 'Divine Liturgy ceremony with congregation',
-        size: 'medium' as const
-      },
-      {
-        src: '/placeholder.svg',
-        alt: 'Church altar with beautiful Orthodox decorations',
-        size: 'small' as const
-      },
-      {
-        src: '/placeholder.svg',
-        alt: 'Traditional Orthodox wedding ceremony',
-        size: 'medium' as const
-      },
-      {
-        src: '/placeholder.svg',
-        alt: 'Church choir during Divine Liturgy',
-        size: 'large' as const
-      },
-      {
-        src: '/placeholder.svg',
-        alt: 'Orthodox baptism with holy water',
-        size: 'small' as const
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+    
+    let mounted = true;
+    getBlogPost(id).then((data) => {
+      if (mounted) {
+        setPost(data || null);
+        setLoading(false);
       }
-    ]
+    });
+    return () => { mounted = false; };
+  }, [id]);
+
+  const formatDate = (dateString: string) => {
+    try {
+      return format(new Date(dateString), 'MMMM d, yyyy');
+    } catch {
+      return dateString;
+    }
   };
+
+  const renderContent = (content: any) => {
+    if (!content) return '';
+    
+    // Handle Contentful rich text format
+    if (content.content && Array.isArray(content.content)) {
+      return content.content
+        .map((node: any) => {
+          if (node.nodeType === 'paragraph' && node.content) {
+            return node.content
+              .map((textNode: any) => textNode.value || '')
+              .join('');
+          }
+          return '';
+        })
+        .filter((text: string) => text.trim())
+        .map((paragraph: string, index: number) => `<p>${paragraph}</p>`)
+        .join('');
+    }
+    
+    // Fallback for other content formats
+    return typeof content === 'string' ? content : '';
+  };
+
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center py-10 text-gray-400">
+            {t('loading') || 'Loading article...'}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center py-10 text-gray-600">
+            <h1 className="text-2xl font-bold mb-4">Article not found</h1>
+            <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
+              ← Back to all Articles
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -76,9 +99,12 @@ const BlogPostPage: React.FC = () => {
         <div className="w-full h-64 md:h-96 relative">
           <div className="absolute inset-0 bg-black/50 z-10"></div>
           <img 
-            src={post.imageUrl}
+            src={post.imageUrl || "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop"}
             alt={post.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop";
+            }}
           />
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <div className="container-custom text-center text-white">
@@ -87,7 +113,7 @@ const BlogPostPage: React.FC = () => {
               </h1>
               <div className="flex items-center justify-center gap-2 text-sm">
                 <CalendarIcon size={16} />
-                <span>{post.date}</span>
+                <span>{formatDate(post.date)}</span>
                 <span className="mx-2">•</span>
                 <span>By {post.author}</span>
               </div>
@@ -99,21 +125,7 @@ const BlogPostPage: React.FC = () => {
         <section className="section">
           <div className="container-custom max-w-4xl">
             <div className="card">
-              <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
-              
-              {/* Gallery Section */}
-              {post.galleryImages && post.galleryImages.length > 0 && (
-                <div className="mt-12 pt-8 border-t">
-                  <h3 className="text-2xl font-serif font-bold mb-6 text-orthodox-blue">
-                    Gallery
-                  </h3>
-                  <Gallery 
-                    images={post.galleryImages} 
-                    masonry={true}
-                    className="mb-8"
-                  />
-                </div>
-              )}
+              <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
               
               <div className="mt-8 pt-6 border-t">
                 <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
