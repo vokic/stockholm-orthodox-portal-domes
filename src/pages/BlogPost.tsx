@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Gallery from '../components/Gallery';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar as CalendarIcon } from 'lucide-react';
 
@@ -32,6 +33,34 @@ const BlogPostPage: React.FC = () => {
     author: 'Father Nicholas',
     category: 'faith',
     imageUrl: 'https://images.unsplash.com/photo-1601455763557-db1bea8a9a5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80',
+    // Sample gallery images - these would come from CMS later
+    galleryImages: [
+      {
+        src: 'https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80',
+        alt: 'Orthodox church interior with beautiful iconostasis',
+        size: 'large' as const
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1601455763557-db1bea8a9a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1335&q=80',
+        alt: 'Divine Liturgy being celebrated',
+        size: 'medium' as const
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+        alt: 'Orthodox church candles and prayer area',
+        size: 'small' as const
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1581337204873-1a38e3b8d49b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        alt: 'Traditional Orthodox icons',
+        size: 'medium' as const
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1515923152115-758a6b16f35e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+        alt: 'Church community gathering',
+        size: 'large' as const
+      }
+    ]
   };
 
   return (
@@ -68,8 +97,22 @@ const BlogPostPage: React.FC = () => {
             <div className="card">
               <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
               
+              {/* Gallery Section */}
+              {post.galleryImages && post.galleryImages.length > 0 && (
+                <div className="mt-12 pt-8 border-t">
+                  <h3 className="text-2xl font-serif font-bold mb-6 text-orthodox-blue">
+                    Gallery
+                  </h3>
+                  <Gallery 
+                    images={post.galleryImages} 
+                    masonry={true}
+                    className="mb-8"
+                  />
+                </div>
+              )}
+              
               <div className="mt-8 pt-6 border-t">
-                <Link to="/blog" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
                   ← Back to Blog
                 </Link>
               </div>
