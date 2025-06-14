@@ -1,4 +1,3 @@
-
 // Static calendar data - no API calls
 const regularServices = [
   {
@@ -72,35 +71,51 @@ const slavas = [
   },
 ];
 
-// Synchronous functions - no async/await needed
-export const getEventsByType = (type: 'service' | 'event' | 'slava') => {
-  switch (type) {
-    case 'service': return specialServices;
-    case 'event': return events;
-    case 'slava': return slavas;
-    default: return [];
-  }
+// Try fetching from Contentful; fallback to static arrays
+export const getEventsByType = async (type: 'service' | 'event' | 'slava') => {
+  try {
+    const { fetchContentfulEntries } = await import('../lib/contentful');
+    const modelName =
+      type === 'service' ? 'specialService' : type === 'event' ? 'event' : 'slava';
+    const data = await fetchContentfulEntries(modelName);
+    if (data && Array.isArray(data.items) && data.items.length) {
+      return data.items.map((item: any) => ({
+        date: item.fields?.date,
+        name: item.fields?.name,
+        time: item.fields?.time,
+        description: item.fields?.description,
+        location: item.fields?.location,
+        type,
+      }));
+    }
+  } catch (e) {}
+  if (type === 'service') return specialServices;
+  if (type === 'event') return events;
+  if (type === 'slava') return slavas;
+  return [];
 };
 
-export const getAllEvents = () => {
-  return [...specialServices, ...events, ...slavas];
+export const getAllEvents = async () => {
+  const services = await getEventsByType('service');
+  const evs = await getEventsByType('event');
+  const slvs = await getEventsByType('slava');
+  return [...services, ...evs, ...slvs];
 };
 
-export const getAllCalendarItems = () => {
-  const allItems = [...specialServices, ...events, ...slavas];
-  return allItems.sort((a, b) => 
+export const getAllCalendarItems = async () => {
+  const items = await getAllEvents();
+  return items.sort((a, b) =>
     new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 };
 
-export const getUpcomingEvents = (limit: number = 10) => {
+export const getUpcomingEvents = async (limit: number = 10) => {
+  const allItems = await getAllCalendarItems();
   const today = new Date();
-  const allItems = getAllCalendarItems();
-  
   return allItems
     .filter(item => new Date(item.date) >= today)
     .slice(0, limit);
 };
 
-// Export static data
+// Export static data for direct import fallback
 export { regularServices, specialServices, events, slavas };

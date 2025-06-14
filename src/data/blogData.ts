@@ -1,4 +1,3 @@
-
 // Static blog data - no API calls
 const blogPosts = [
   {
@@ -48,17 +47,44 @@ const blogPosts = [
   },
 ];
 
-// Synchronous functions - no async/await needed
-export const getBlogPosts = () => {
+// Synchronous functions - no async/await needed for static fallback
+export const getBlogPosts = async () => {
+  // Try Contentful API
+  try {
+    const { fetchContentfulEntries } = await import('../lib/contentful');
+    const data = await fetchContentfulEntries('blogPost');
+    if (data && Array.isArray(data.items) && data.items.length) {
+      // Map entries to your local blog post structure
+      return data.items.map((entry: any) => {
+        const fields = entry.fields || {};
+        return {
+          id: entry.sys.id,
+          title: fields.title,
+          excerpt: fields.excerpt,
+          date: fields.date,
+          author: fields.author,
+          category: fields.category,
+          imageUrl: (fields.image && fields.image.fields && fields.image.fields.file.url)
+            ? `https:${fields.image.fields.file.url}`
+            : undefined,
+        };
+      });
+    }
+  } catch (e) {
+    // fall through to static
+  }
+  // Fallback: return static
   return blogPosts;
 };
 
-export const getBlogPost = (id: number) => {
-  return blogPosts.find(post => post.id === id);
+export const getBlogPost = async (id: number | string) => {
+  const posts = await getBlogPosts();
+  return posts.find((post: any) => post.id === id || post.id == id);
 };
 
-export const getLatestArticles = (limit: number = 3) => {
-  return blogPosts.slice(0, limit);
+export const getLatestArticles = async (limit: number = 3) => {
+  const posts = await getBlogPosts();
+  return posts.slice(0, limit);
 };
 
 // Export the static data
