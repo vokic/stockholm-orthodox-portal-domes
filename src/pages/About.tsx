@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -74,12 +75,12 @@ const AboutPage: React.FC = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <div className="bg-orthodox-blue text-white py-16" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="py-16" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="container-custom bg-black bg-opacity-50 rounded-lg p-8">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t('about.title')}
             </h1>
-            <p className="text-lg mt-2">{t('about.intro')}</p>
+            <p className="text-lg mt-2 text-white">{t('about.intro')}</p>
           </div>
         </div>
         
