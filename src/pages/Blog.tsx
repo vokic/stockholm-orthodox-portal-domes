@@ -100,7 +100,7 @@ const BlogPage: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-500">By {post.author}</span>
                           <Link 
-                            to={`/desavanja/${post.id}`} 
+                            to={`/clanci/${post.id}`} 
                             className="text-orthodox-blue hover:text-orthodox-gold font-medium"
                           >
                             {t('readMore') || 'Read More'} →
