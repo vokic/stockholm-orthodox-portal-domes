@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { CalendarIcon } from 'lucide-react';
 import { resolveContentfulAsset, fetchContentfulEntries } from '../lib/contentful';
+import { Badge } from '../components/ui/badge';
 
 const ClanciPage: React.FC = () => {
   const { t } = useLanguage();
@@ -47,8 +48,16 @@ const ClanciPage: React.FC = () => {
         date: fields.date,
         author: fields.author,
         category: fields.category,
+        pinned: fields.pinned,
         imageUrl,
       };
+    });
+
+    // Sort articles: pinned posts first, then by date descending
+    articles.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   }
 
@@ -84,7 +93,14 @@ const ClanciPage: React.FC = () => {
                   </div>
                 ) : (
                   articles.map((article) => (
-                    <div key={article.id} className="card hover:shadow-lg transition-shadow">
+                    <div key={article.id} className="card hover:shadow-lg transition-shadow relative">
+                      {article.pinned && (
+                        <div className="absolute top-4 right-4 z-10">
+                          <Badge variant="default" className="bg-orthodox-gold text-orthodox-blue font-semibold">
+                            Featured
+                          </Badge>
+                        </div>
+                      )}
                       <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
                         {article.imageUrl ? (
                           <img

@@ -12,11 +12,12 @@ export interface BlogPost {
   date: string;
   author: string;
   category?: string;
+  pinned?: boolean;
   imageUrl?: string;
   images?: string[]; // Array of all images
 }
 
-// Fetch all blog posts from Contentful, sorted by latest date descending
+// Fetch all blog posts from Contentful, sorted by pinned first, then by latest date descending
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     // Try both content type IDs to match what you have in Contentful
@@ -74,6 +75,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         date: fields.date || new Date().toISOString().split('T')[0],
         author: fields.author || 'Unknown',
         category: fields.category,
+        pinned: fields.pinned || false,
         imageUrl,
         images,
       };
@@ -82,8 +84,12 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       return post;
     });
     
-    // Sort by date descending
-    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Sort by pinned first, then by date descending
+    return posts.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
   } catch (e) {
     console.error('Error fetching blog posts:', e);
     return [];
