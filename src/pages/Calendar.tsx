@@ -15,7 +15,7 @@ import MonthHeader from '../components/calendar/MonthHeader';
 
 const CalendarPage: React.FC = () => {
   const { language } = useLanguage();
-  const [view, setView] = useState<'all' | 'services' | 'events' | 'slava'>('all');
+  const [view, setView] = useState<'all' | 'service' | 'event' | 'slava'>('all');
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
@@ -143,8 +143,8 @@ const CalendarPage: React.FC = () => {
                 <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                   <TabsList>
                     <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="services">Services</TabsTrigger>
-                    <TabsTrigger value="events">Events</TabsTrigger>
+                    <TabsTrigger value="service">Services</TabsTrigger>
+                    <TabsTrigger value="event">Events</TabsTrigger>
                     <TabsTrigger value="slava">Slavas</TabsTrigger>
                   </TabsList>
                 </Tabs>
@@ -193,7 +193,7 @@ const CalendarPage: React.FC = () => {
                   )}
                 </TabsContent>
                 
-                <TabsContent value="services" className="mt-0">
+                <TabsContent value="service" className="mt-0">
                   <RegularServicesTable />
                   
                   <h2 className="text-2xl font-serif mb-4">Special Services</h2>
@@ -203,12 +203,12 @@ const CalendarPage: React.FC = () => {
                     <EventsList 
                       events={filteredEvents} 
                       formatDate={formatDate} 
-                      eventType="services" 
+                      eventType="service" 
                     />
                   )}
                 </TabsContent>
                 
-                <TabsContent value="events" className="mt-0">
+                <TabsContent value="event" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">Community Events</h2>
                   {loading ? (
                     <div className="text-center py-10 text-gray-400">Loading events...</div>
@@ -216,7 +216,7 @@ const CalendarPage: React.FC = () => {
                     <EventsList 
                       events={filteredEvents} 
                       formatDate={formatDate} 
-                      eventType="events" 
+                      eventType="event" 
                     />
                   )}
                 </TabsContent>

@@ -6,24 +6,10 @@ import { Event } from '../../services/eventService';
 interface EventsListProps {
   events: Event[];
   formatDate: (dateString: string) => string;
-  eventType?: 'services' | 'events' | 'slava';
+  eventType?: 'service' | 'event' | 'slava';
 }
 
 const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }) => {
-  // Fix the filtering logic - map the prop values to actual event types
-  const getFilterType = (eventType?: string) => {
-    switch (eventType) {
-      case 'services':
-        return 'service';
-      case 'events':
-        return 'event';
-      case 'slava':
-        return 'slava';
-      default:
-        return null;
-    }
-  };
-
   const getEventTypeLabel = (type: string) => {
     switch (type) {
       case 'service':
@@ -50,18 +36,16 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
     }
   };
 
-  const filterType = getFilterType(eventType);
   // Remove the extra filtering here since events are already filtered in Calendar.tsx
   const filteredEvents = events;
 
   console.log('EventsList - eventType prop:', eventType); // Debug log
-  console.log('EventsList - filterType:', filterType); // Debug log
   console.log('EventsList - received events:', events); // Debug log
 
   if (filteredEvents.length === 0) {
-    const message = eventType === 'services' 
+    const message = eventType === 'service' 
       ? 'No special services currently scheduled.'
-      : eventType === 'events'
+      : eventType === 'event'
       ? 'No events currently scheduled.'
       : eventType === 'slava'
       ? 'No slavas currently scheduled.'
