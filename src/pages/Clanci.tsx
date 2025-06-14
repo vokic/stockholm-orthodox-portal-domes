@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -90,13 +91,13 @@ const ClanciPage: React.FC = () => {
                     Nema pronađenih članaka.
                   </div>
                 ) : (
-                  articles.map((article) => (
+                  articles.map((article, idx) => (
                     <div
                       key={article.id}
-                      className={`card hover:shadow-lg transition-shadow relative ${article.pinned ? 'bg-orthodox-gold/20' : ''}`}
+                      className={`card hover:shadow-lg transition-shadow relative ${
+                        idx === 0 ? 'bg-yellow-200' : ''
+                      }`}
                     >
-                      {/* No ribbon, just gold background for pinned */}
-
                       <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100">
                         {article.imageUrl ? (
                           <img
