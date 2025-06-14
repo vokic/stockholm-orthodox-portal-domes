@@ -1,7 +1,6 @@
 import React from 'react';
 import { Event } from '../../services/eventService';
 import EventsList from './EventsList';
-import RegularServicesTable from './RegularServicesTable';
 import { Separator } from "@/components/ui/separator";
 import MonthHeader from './MonthHeader';
 
@@ -80,8 +79,6 @@ const FilteredEventsView: React.FC<FilteredEventsViewProps> = ({
 
   return (
     <div>
-      {eventType === 'service' && <RegularServicesTable />}
-
       <h2 className="text-2xl font-serif mb-4">{title}</h2>
       {/* Insert month grouping */}
       {Object.entries(groupedEvents).map(([monthYear, monthEvents], monthIndex) => (

@@ -7,12 +7,13 @@ import CalendarHero from '../components/calendar/CalendarHero';
 import CalendarFilters from '../components/calendar/CalendarFilters';
 import AllEventsView from '../components/calendar/AllEventsView';
 import FilteredEventsView from '../components/calendar/FilteredEventsView';
+import RegularServicesTable from '../components/calendar/RegularServicesTable';
 import { useCalendarData } from '../hooks/useCalendarData';
 
 const CalendarPage: React.FC = () => {
   const [view, setView] = useState<'all' | 'service' | 'event' | 'slava'>('all');
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
-  
+
   const { events, loading, formatDate, formatMonthYear, getFilteredEvents } = useCalendarData();
   const filteredEvents = getFilteredEvents(view, showPastEvents);
 
@@ -28,6 +29,10 @@ const CalendarPage: React.FC = () => {
 
         <section className="section">
           <div className="container-custom">
+            {/* Regular Services Table: Always visible at top, in card */}
+            <div className="card mb-6">
+              <RegularServicesTable />
+            </div>
             <div className="card">
               <CalendarFilters
                 view={view}
@@ -35,7 +40,7 @@ const CalendarPage: React.FC = () => {
                 showPastEvents={showPastEvents}
                 onShowPastEventsChange={setShowPastEvents}
               />
-              
+
               <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                 <TabsContent value="all" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">All Events</h2>
@@ -47,7 +52,7 @@ const CalendarPage: React.FC = () => {
                     totalEventsCount={events.length}
                   />
                 </TabsContent>
-                
+
                 <TabsContent value="service" className="mt-0">
                   <FilteredEventsView
                     events={filteredEvents}
@@ -57,7 +62,7 @@ const CalendarPage: React.FC = () => {
                     title="Special Services"
                   />
                 </TabsContent>
-                
+
                 <TabsContent value="event" className="mt-0">
                   <FilteredEventsView
                     events={filteredEvents}
