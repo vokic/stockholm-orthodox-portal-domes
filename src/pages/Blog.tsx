@@ -9,7 +9,7 @@ import { getBlogPosts, BlogPost } from '../data/blogData';
 
 const BlogPage: React.FC = () => {
   const { t } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -26,25 +26,25 @@ const BlogPage: React.FC = () => {
     return () => { mounted = false; };
   }, []);
 
-  const filteredPosts = selectedCategory && selectedCategory !== 'all'
-    ? posts.filter(post => post.category === selectedCategory)
-    : posts;
+  const filteredPosts = selectedCategory === 'all'
+    ? posts
+    : posts.filter(post => post.category === selectedCategory);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Hero Section --- copied from Contact for exact match */}
-        <div className="bg-orthodox-blue text-white py-16"> {/* SAME as Contact */}
+        {/* Hero Section - matching Contact page exactly */}
+        <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              Članci / Blog
+              {t('nav.blog') || 'Članci / Blog'}
             </h1>
             <p className="text-white">{t('home.churchDescription')}</p>
           </div>
         </div>
 
-        {/* Category Filter Bar - restored and placed directly below hero */}
+        {/* Category Filter Bar */}
         <div className="bg-white shadow-sm">
           <div className="container-custom py-4">
             <div className="flex flex-wrap gap-2 justify-center">
@@ -52,11 +52,11 @@ const BlogPage: React.FC = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full ${
-                    selectedCategory === category || (category === 'all' && !selectedCategory)
+                  className={`px-4 py-2 rounded-full transition-colors ${
+                    selectedCategory === category
                       ? 'bg-orthodox-gold text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  } transition-colors`}
+                  }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
@@ -69,7 +69,9 @@ const BlogPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             {loading ? (
-              <div className="text-center py-10 text-gray-400">{t('loading') || 'Loading articles...'}</div>
+              <div className="text-center py-10 text-gray-400">
+                {t('loading') || 'Loading articles...'}
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.length === 0 ? (
@@ -91,11 +93,16 @@ const BlogPage: React.FC = () => {
                           <CalendarIcon size={16} />
                           <span>{post.date}</span>
                         </div>
-                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">{post.title}</h3>
+                        <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
+                          {post.title}
+                        </h3>
                         <p className="text-gray-600 mb-4">{post.excerpt}</p>
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-500">By {post.author}</span>
-                          <Link to={`/desavanja/${post.id}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
+                          <Link 
+                            to={`/desavanja/${post.id}`} 
+                            className="text-orthodox-blue hover:text-orthodox-gold font-medium"
+                          >
                             {t('readMore') || 'Read More'} →
                           </Link>
                         </div>
