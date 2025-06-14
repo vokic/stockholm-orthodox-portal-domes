@@ -33,21 +33,18 @@ const BlogPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-
       <main className="flex-grow">
-        {/* Hero Section (match Contact/Index exactly) */}
-        <div className="bg-orthodox-blue text-white py-16">
+        {/* Hero Section --- copied from Contact for exact match */}
+        <div className="bg-orthodox-blue text-white py-16"> {/* SAME as Contact */}
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               Članci / Blog
             </h1>
-            <p className="text-white">
-              {t('home.churchDescription')}
-            </p>
+            <p className="text-white">{t('home.churchDescription')}</p>
           </div>
         </div>
 
-        {/* Filter Bar */}
+        {/* Category Filter Bar - restored and placed directly below hero */}
         <div className="bg-white shadow-sm">
           <div className="container-custom py-4">
             <div className="flex flex-wrap gap-2 justify-center">
