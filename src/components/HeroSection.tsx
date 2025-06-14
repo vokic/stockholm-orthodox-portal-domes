@@ -8,18 +8,13 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative bg-orthodox-blue text-white">
-      {/* Background video */}
+      {/* Background image */}
       <div className="absolute inset-0 overflow-hidden">
-        <video 
+        <img 
+          src="https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80"
+          alt="Orthodox church interior"
           className="absolute w-full h-full object-cover"
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          <source src="https://storage.googleapis.com/church-videos-samples/orthodox-church-candles.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
       

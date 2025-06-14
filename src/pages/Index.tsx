@@ -64,8 +64,12 @@ const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Location */}
               <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">{t('home.visitUs')}</h3>
-                <p className="mb-4">{t('home.location')}</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">Visit Our Church</h3>
+                <p className="mb-4">Located in the heart of Stockholm, our church welcomes all who seek spiritual guidance and community fellowship. Join us for Divine Liturgy every Sunday and experience the beauty of Orthodox worship.</p>
+                <div className="mb-4">
+                  <p className="font-semibold">Address:</p>
+                  <p>Storgatan 15, 114 51 Stockholm, Sweden</p>
+                </div>
                 <div className="aspect-video rounded overflow-hidden">
                   <Map />
                 </div>
@@ -73,14 +77,25 @@ const HomePage: React.FC = () => {
               
               {/* Quick Contact */}
               <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">{t('home.contactInfo')}</h3>
-                <p className="mb-2">{t('home.phone')}</p>
-                <p className="mb-2">{t('home.email')}</p>
-                <p className="mb-4">{t('home.officeHours')}</p>
-                <div className="mb-4">
-                  <p>{t('home.churchDescription')}</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">Contact Information</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold">Phone:</p>
+                    <p>+46 8 123 456 78</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Email:</p>
+                    <p>info@svetisava-stockholm.se</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">Office Hours:</p>
+                    <p>Tuesday - Friday: 10:00 - 16:00<br />Saturday: 09:00 - 12:00</p>
+                  </div>
                 </div>
-                <Link to="/contact" className="btn-primary inline-block mt-2">{t('home.contactUs')}</Link>
+                <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                  <p className="text-sm">The Orthodox Church of Saint Sava serves the Serbian Orthodox community in Stockholm and welcomes all Orthodox Christians and those interested in learning about our faith.</p>
+                </div>
+                <Link to="/contact" className="btn-primary inline-block mt-4">Contact Us</Link>
               </div>
             </div>
           </div>

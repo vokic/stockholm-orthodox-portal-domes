@@ -11,16 +11,62 @@ interface GalleryProps {
   images: {
     src: string;
     alt: string;
-    size?: 'small' | 'medium' | 'large'; // Optional size property
+    size?: 'small' | 'medium' | 'large';
   }[];
   className?: string;
-  masonry?: boolean; // New prop to toggle between regular grid and masonry layout
+  masonry?: boolean;
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = false }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [columns, setColumns] = useState<number>(3); // Default column count
+  const [columns, setColumns] = useState<number>(3);
+
+  // Default church gallery images if none provided
+  const defaultImages = [
+    {
+      src: 'https://images.unsplash.com/photo-1594822381845-2bbeaaa21ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2274&q=80',
+      alt: 'Orthodox church interior with beautiful iconostasis',
+      size: 'large' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1601455763557-db1bea8a9a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1335&q=80',
+      alt: 'Divine Liturgy being celebrated',
+      size: 'medium' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Orthodox church candles and prayer area',
+      size: 'small' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1581337204873-1a38e3b8d49b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Traditional Orthodox icons',
+      size: 'medium' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1515923152115-758a6b16f35e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
+      alt: 'Church community gathering',
+      size: 'large' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1610553556003-9b2ae8e0bf7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Orthodox baptism ceremony',
+      size: 'small' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?ixlib=rb-4.0.3&auto=format&fit=crop&w=1335&q=80',
+      alt: 'Church interior during service',
+      size: 'medium' as const
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      alt: 'Orthodox church exterior architecture',
+      size: 'large' as const
+    }
+  ];
+
+  const displayImages = images.length > 0 ? images : defaultImages;
 
   // Responsive column count based on screen width
   useEffect(() => {
@@ -32,7 +78,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
       } else if (window.innerWidth < 1024) {
         setColumns(3);
       } else {
-        setColumns(4); // For larger screens
+        setColumns(4);
       }
     };
 
@@ -57,7 +103,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImageIndex, images]);
+  }, [selectedImageIndex, displayImages]);
 
   // Navigate through images
   const navigateImages = (direction: 'prev' | 'next') => {
@@ -67,9 +113,9 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
     
     let newIndex;
     if (direction === 'prev') {
-      newIndex = selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1;
+      newIndex = selectedImageIndex === 0 ? displayImages.length - 1 : selectedImageIndex - 1;
     } else {
-      newIndex = selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1;
+      newIndex = selectedImageIndex === displayImages.length - 1 ? 0 : selectedImageIndex + 1;
     }
     
     setSelectedImageIndex(newIndex);
@@ -92,16 +138,14 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
           return 'col-span-1 row-span-2';
       }
     }
-    return ''; // For masonry we don't need these classes
+    return '';
   };
 
   // Create columns for masonry layout
   const renderMasonryLayout = () => {
-    // Initialize array of column contents
     const columnContents: JSX.Element[][] = Array.from({ length: columns }, () => []);
     
-    // Distribute images into columns
-    images.forEach((image, index) => {
+    displayImages.forEach((image, index) => {
       const columnIndex = index % columns;
       
       columnContents[columnIndex].push(
@@ -120,7 +164,6 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
       );
     });
     
-    // Render columns
     return (
       <div className="flex gap-4">
         {columnContents.map((column, columnIndex) => (
@@ -135,7 +178,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
   // Standard grid layout
   const renderGridLayout = () => (
     <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-[minmax(150px,auto)] gap-3`}>
-      {images.map((image, index) => (
+      {displayImages.map((image, index) => (
         <div 
           key={index} 
           className={`${getSizeClass(image.size)} overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity`}
@@ -169,14 +212,12 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
           
           {selectedImageIndex !== null && (
             <div className="w-full h-full flex items-center justify-center p-4 relative">
-              {/* Loading indicator */}
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 border-4 border-t-orthodox-gold border-opacity-50 rounded-full animate-spin"></div>
                 </div>
               )}
               
-              {/* Left navigation button */}
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
@@ -188,15 +229,13 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
                 <ChevronLeft className="h-6 w-6" />
               </button>
               
-              {/* Image */}
               <img 
-                src={images[selectedImageIndex].src} 
-                alt={images[selectedImageIndex].alt} 
+                src={displayImages[selectedImageIndex].src} 
+                alt={displayImages[selectedImageIndex].alt} 
                 className={`max-h-[80vh] max-w-full object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                 onLoad={handleImageLoaded}
               />
               
-              {/* Right navigation button */}
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
@@ -208,9 +247,8 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
                 <ChevronRight className="h-6 w-6" />
               </button>
               
-              {/* Image counter */}
               <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm">
-                {selectedImageIndex + 1} / {images.length}
+                {selectedImageIndex + 1} / {displayImages.length}
               </div>
             </div>
           )}
