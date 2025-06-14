@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -12,6 +11,7 @@ import Map from '../components/Map';
 import LatestArticles from '../components/LatestArticles';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchEvents, Event } from '../services/eventService';
+import { ExternalLink } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
@@ -72,6 +72,12 @@ const HomePage: React.FC = () => {
     }
   }, [eventsLoading, upcomingEvent]);
 
+  const handleGetDirections = () => {
+    const address = "Storgatan 15, 114 51 Stockholm, Sweden";
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -118,6 +124,13 @@ const HomePage: React.FC = () => {
                 <div className="mb-4">
                   <p className="font-semibold">Address:</p>
                   <p>Storgatan 15, 114 51 Stockholm, Sweden</p>
+                  <button
+                    onClick={handleGetDirections}
+                    className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                  >
+                    <ExternalLink size={16} />
+                    Get directions
+                  </button>
                 </div>
                 <div className="aspect-video rounded overflow-hidden">
                   <Map />
