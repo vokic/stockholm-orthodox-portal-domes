@@ -128,42 +128,49 @@ const BlogPage: React.FC = () => {
                       {t('noArticles') || 'No articles found.'}
                     </div>
                   ) : (
-                    currentPosts.map((post) => (
-                      <div key={post.id} className="card hover:shadow-lg transition-shadow">
-                        <div className="aspect-video overflow-hidden rounded-t-lg">
-                          <img 
-                            src={post.imageUrl || "/placeholder.svg"} 
-                            alt={post.title} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-3">
-                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                            <CalendarIcon size={16} />
-                            <span>{formatDate(post.date)}</span>
+                    currentPosts.map((post) => {
+                      console.log('Rendering post:', post.id, 'with image:', post.imageUrl);
+                      return (
+                        <div key={post.id} className="card hover:shadow-lg transition-shadow">
+                          <div className="aspect-video overflow-hidden rounded-t-lg">
+                            <img 
+                              src={post.imageUrl || "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"} 
+                              alt={post.title} 
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                console.log('Image failed to load:', post.imageUrl);
+                                e.currentTarget.src = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop";
+                              }}
+                            />
                           </div>
-                          <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
-                            {post.title}
-                          </h3>
-                          <p className="text-gray-600 mb-3">{post.excerpt}</p>
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="text-sm text-gray-400">By {post.author}</span>
-                            {post.category && (
-                              <div className="flex items-center gap-1 text-sm text-orthodox-blue bg-orthodox-gold/10 px-2 py-1 rounded-full">
-                                <Tag size={14} />
-                                <span>{getCategoryDisplayName(post.category)}</span>
-                              </div>
-                            )}
+                          <div className="p-3">
+                            <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                              <CalendarIcon size={16} />
+                              <span>{formatDate(post.date)}</span>
+                            </div>
+                            <h3 className="text-xl font-serif font-bold mb-2 text-orthodox-blue">
+                              {post.title}
+                            </h3>
+                            <p className="text-gray-600 mb-3">{post.excerpt}</p>
+                            <div className="flex items-center justify-between mb-3">
+                              <span className="text-sm text-gray-400">By {post.author}</span>
+                              {post.category && (
+                                <div className="flex items-center gap-1 text-sm text-orthodox-blue bg-orthodox-gold/10 px-2 py-1 rounded-full">
+                                  <Tag size={14} />
+                                  <span>{getCategoryDisplayName(post.category)}</span>
+                                </div>
+                              )}
+                            </div>
+                            <Link 
+                              to={`/clanci/${post.id}`}
+                              className="text-orthodox-blue hover:text-orthodox-gold font-medium text-left inline-block"
+                            >
+                              {t('readMore') || 'Read More'} →
+                            </Link>
                           </div>
-                          <Link 
-                            to={`/clanci/${post.id}`}
-                            className="text-orthodox-blue hover:text-orthodox-gold font-medium text-left inline-block"
-                          >
-                            {t('readMore') || 'Read More'} →
-                          </Link>
                         </div>
-                      </div>
-                    ))
+                      );
+                    })
                   )}
                 </div>
 
@@ -212,4 +219,3 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
-

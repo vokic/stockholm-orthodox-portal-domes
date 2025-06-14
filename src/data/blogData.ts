@@ -33,15 +33,35 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     }
     
     console.log('Fetched blog posts:', data.items.length);
+    console.log('Raw data:', data);
     
     const posts = data.items.map((entry: any) => {
       const fields = entry.fields || {};
       let imageUrl = undefined;
-      if (fields.image && fields.image.sys && fields.image.sys.id) {
-        imageUrl = resolveContentfulAsset(data.includes, fields.image.sys.id);
-        if (imageUrl && !imageUrl.startsWith("http")) imageUrl = `https:${imageUrl}`;
+      
+      console.log('Processing entry:', entry.sys.id, 'Fields:', fields);
+      
+      // Try multiple image field names that might exist in Contentful
+      const imageField = fields.image || fields.coverImage || fields.featuredImage || fields.thumbnail;
+      
+      if (imageField) {
+        console.log('Found image field:', imageField);
+        
+        if (imageField.sys && imageField.sys.id) {
+          imageUrl = resolveContentfulAsset(data.includes, imageField.sys.id);
+          console.log('Resolved image URL:', imageUrl);
+          if (imageUrl && !imageUrl.startsWith("http")) {
+            imageUrl = `https:${imageUrl}`;
+          }
+        } else if (typeof imageField === 'string') {
+          // Direct URL
+          imageUrl = imageField.startsWith('http') ? imageField : `https:${imageField}`;
+        }
+      } else {
+        console.log('No image field found for entry:', entry.sys.id);
       }
-      return {
+      
+      const post = {
         id: entry.sys.id,
         title: fields.title || 'Untitled',
         excerpt: fields.excerpt || '',
@@ -51,7 +71,11 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         category: fields.category,
         imageUrl,
       };
+      
+      console.log('Final post object:', post);
+      return post;
     });
+    
     // Sort by date descending
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (e) {
