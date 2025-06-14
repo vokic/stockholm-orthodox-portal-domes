@@ -1,21 +1,20 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { CalendarIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { resolveContentfulAsset, fetchContentfulEntries } from '../lib/contentful';
 
 const ClanciPage: React.FC = () => {
   const { t } = useLanguage();
 
-  // Allow the user to pick/test a content type ID, and keep track of fetch results and errors
-  const [contentTypeId, setContentTypeId] = useState('blogPost');
-  const [data, setData] = useState<any>(null); // Raw Contentful API response
+  // Set correct default Contentful Content Type ID
+  const [contentTypeId, setContentTypeId] = useState('blogPostModel');
+  const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // On contentTypeId change, fetch Contentful data
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -33,7 +32,6 @@ const ClanciPage: React.FC = () => {
       });
   }, [contentTypeId]);
 
-  // Parse to display articles if possible
   let articles: any[] = [];
   if (data && data.items) {
     articles = data.items.map((entry: any) => {
@@ -77,7 +75,7 @@ const ClanciPage: React.FC = () => {
                 />
               </label>
               <span className="text-xs text-gray-600">
-                Tip: Check your Contentful model's API ID in Contentful → Content model
+                Tip: Use <b>blogPostModel</b> for your Contentful Content Type ID. Check your Contentful model's API ID in Contentful &rarr; Content model.
               </span>
             </div>
           </div>
@@ -136,7 +134,6 @@ const ClanciPage: React.FC = () => {
                               </span>
                             )}
                           </div>
-                          {/* You can link to details page if desired */}
                         </div>
                       </div>
                     ))
