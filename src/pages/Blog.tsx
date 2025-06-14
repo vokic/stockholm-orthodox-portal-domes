@@ -107,7 +107,8 @@ const BlogPage: React.FC = () => {
                     {t('noArticles') || 'No articles found.'}
                   </div> : currentPosts.map(post => {
               console.log('Rendering post:', post.id, 'with image:', post.imageUrl);
-              return <div key={post.id} className="card hover:shadow-lg transition-shadow">
+              // Apply green background if post.pinned
+              return <div key={post.id} className={`card hover:shadow-lg transition-shadow${post.pinned ? ' bg-green-200' : ''}`}>
                         <div className="aspect-video overflow-hidden rounded-t-lg">
                           <img src={post.imageUrl || "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"} alt={post.title} className="w-full h-full object-cover" onError={e => {
                     console.log('Image failed to load:', post.imageUrl);
