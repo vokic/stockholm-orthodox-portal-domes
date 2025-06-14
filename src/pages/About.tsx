@@ -190,7 +190,7 @@ const AboutPage: React.FC = () => {
                 {t('about.priests')}
               </h2>
               
-              {/* First Priest */}
+              {/* First Priest - Left Side */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div className="md:col-span-1">
                   <img 
@@ -218,17 +218,9 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               
-              {/* Second Priest */}
+              {/* Second Priest - Right Side (Mirrored) */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="md:col-span-1">
-                  <img 
-                    src="/placeholder.svg" 
-                    alt={t('about.priest2.imageAlt')} 
-                    className="rounded-lg w-full"
-                  />
-                </div>
-                
-                <div className="md:col-span-3">
+                <div className="md:col-span-3 md:order-1">
                   <h3 className="text-xl font-serif mb-3">{t('about.priest2.name')}</h3>
                   
                   <p className="mb-4">
@@ -243,6 +235,14 @@ const AboutPage: React.FC = () => {
                   <p>
                     {t('about.priest2.p4')}
                   </p>
+                </div>
+                
+                <div className="md:col-span-1 md:order-2">
+                  <img 
+                    src="/placeholder.svg" 
+                    alt={t('about.priest2.imageAlt')} 
+                    className="rounded-lg w-full"
+                  />
                 </div>
               </div>
             </div>
