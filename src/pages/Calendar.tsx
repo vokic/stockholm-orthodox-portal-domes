@@ -1,10 +1,11 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { Toggle } from "@/components/ui/toggle";
+import { History } from 'lucide-react';
 import { fetchEvents, Event } from '../services/eventService';
 import CalendarHero from '../components/calendar/CalendarHero';
 import RegularServicesTable from '../components/calendar/RegularServicesTable';
@@ -17,6 +18,7 @@ const CalendarPage: React.FC = () => {
   const [view, setView] = useState<'all' | 'services' | 'events' | 'slava'>('all');
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
 
   useEffect(() => {
     let mounted = true;
@@ -25,18 +27,8 @@ const CalendarPage: React.FC = () => {
       if (mounted) {
         console.log('Fetched events:', data); // Debug log
         
-        // Filter events to only include those from current month onwards
-        const today = new Date();
-        const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-        
-        const filteredEvents = (data || []).filter(event => {
-          if (!event.date) return false;
-          const eventDate = new Date(event.date);
-          return eventDate >= currentMonth;
-        });
-        
-        // Sort events by date (oldest first)
-        const sortedEvents = filteredEvents.sort((a, b) => {
+        // Sort all events by date (oldest first)
+        const sortedEvents = (data || []).sort((a, b) => {
           if (!a.date && !b.date) return 0;
           if (!a.date) return 1;
           if (!b.date) return -1;
@@ -56,12 +48,28 @@ const CalendarPage: React.FC = () => {
     return () => { mounted = false; };
   }, []);
 
-  // Filter events based on the current view
-  const filteredEvents = view === 'all' 
-    ? events 
-    : events.filter(event => event.type === view);
+  // Filter events based on current view and past events toggle
+  const getFilteredEvents = () => {
+    let filtered = view === 'all' ? events : events.filter(event => event.type === view);
+    
+    if (!showPastEvents) {
+      const today = new Date();
+      const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      
+      filtered = filtered.filter(event => {
+        if (!event.date) return false;
+        const eventDate = new Date(event.date);
+        return eventDate >= currentMonth;
+      });
+    }
+    
+    return filtered;
+  };
+
+  const filteredEvents = getFilteredEvents();
 
   console.log('Current view:', view); // Debug log
+  console.log('Show past events:', showPastEvents); // Debug log
   console.log('Filtered events:', filteredEvents); // Debug log
 
   // Function to format date based on current language
@@ -131,14 +139,28 @@ const CalendarPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             <div className="card">
-              <Tabs value={view} onValueChange={(value) => setView(value as any)}>
-                <TabsList className="mb-4">
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="services">Services</TabsTrigger>
-                  <TabsTrigger value="events">Events</TabsTrigger>
-                  <TabsTrigger value="slava">Slavas</TabsTrigger>
-                </TabsList>
+              <div className="flex items-center justify-between mb-4">
+                <Tabs value={view} onValueChange={(value) => setView(value as any)}>
+                  <TabsList>
+                    <TabsTrigger value="all">All</TabsTrigger>
+                    <TabsTrigger value="services">Services</TabsTrigger>
+                    <TabsTrigger value="events">Events</TabsTrigger>
+                    <TabsTrigger value="slava">Slavas</TabsTrigger>
+                  </TabsList>
+                </Tabs>
                 
+                <Toggle
+                  pressed={showPastEvents}
+                  onPressedChange={setShowPastEvents}
+                  aria-label="Toggle past events"
+                  className="flex items-center gap-2"
+                >
+                  <History size={16} />
+                  <span className="text-sm">Past Events</span>
+                </Toggle>
+              </div>
+              
+              <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                 <TabsContent value="all" className="mt-0">
                   <h2 className="text-2xl font-serif mb-4">All Events</h2>
                   {loading ? (
@@ -179,7 +201,7 @@ const CalendarPage: React.FC = () => {
                     <div className="text-center py-10 text-gray-400">Loading services...</div>
                   ) : (
                     <EventsList 
-                      events={events} 
+                      events={filteredEvents} 
                       formatDate={formatDate} 
                       eventType="services" 
                     />
@@ -192,7 +214,7 @@ const CalendarPage: React.FC = () => {
                     <div className="text-center py-10 text-gray-400">Loading events...</div>
                   ) : (
                     <EventsList 
-                      events={events} 
+                      events={filteredEvents} 
                       formatDate={formatDate} 
                       eventType="events" 
                     />
@@ -205,7 +227,7 @@ const CalendarPage: React.FC = () => {
                     <div className="text-center py-10 text-gray-400">Loading slavas...</div>
                   ) : (
                     <EventsList 
-                      events={events} 
+                      events={filteredEvents} 
                       formatDate={formatDate} 
                       eventType="slava" 
                     />
