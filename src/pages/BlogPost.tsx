@@ -117,7 +117,7 @@ const BlogPostPage: React.FC = () => {
               
               <div className="mt-8 pt-6 border-t">
                 <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
-                  ← Back to Blog
+                  ← Back to all Articles
                 </Link>
               </div>
             </div>
