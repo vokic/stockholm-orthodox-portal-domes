@@ -429,7 +429,7 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Second Priest */}
+                {/* Second Priest - Shorter text */}
                 <div className="flex flex-col md:flex-row-reverse gap-6 p-6 bg-white rounded-lg shadow-sm">
                   <div className="md:w-1/3">
                     <img 
@@ -444,10 +444,7 @@ const AboutPage: React.FC = () => {
                     <h3 className="text-xl font-serif mb-3">{t('about.priest2.name')}</h3>
                     
                     <p className="mb-3">
-                      Father Stefan joined our parish five years ago and has quickly become an integral part of our spiritual community. His youthful energy and deep theological knowledge bring a fresh perspective to our traditional practices.
-                    </p>
-                    <p className="mb-3">
-                      Educated at the Seminary of Saint Sava in Belgrade and later at the Stockholm School of Theology, he represents a bridge between traditional Orthodox theology and contemporary pastoral approaches.
+                      Father Stefan joined our parish five years ago and brings fresh energy to our spiritual community.
                     </p>
                     
                     <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
@@ -461,7 +458,7 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Third Priest */}
+                {/* Third Priest - Longer text */}
                 <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
                   <div className="md:w-1/3">
                     <img 
@@ -476,10 +473,16 @@ const AboutPage: React.FC = () => {
                     <h3 className="text-xl font-serif mb-3">Father Nikola Petrović</h3>
                     
                     <p className="mb-3">
-                      Father Nikola brings over 20 years of monastic experience to our parish, having served at the Hilandar Monastery on Mount Athos before joining our community. His deep spiritual insight and contemplative approach enrich our liturgical life.
+                      Father Nikola brings over 20 years of monastic experience to our parish, having served at the Hilandar Monastery on Mount Athos before joining our community. His deep spiritual insight and contemplative approach enrich our liturgical life in ways that touch the hearts of all who encounter his wisdom.
                     </p>
                     <p className="mb-3">
-                      As our senior confessor, he provides spiritual counseling and guidance to parishioners seeking deeper understanding of Orthodox mystical traditions and prayer life.
+                      As our senior confessor, he provides spiritual counseling and guidance to parishioners seeking deeper understanding of Orthodox mystical traditions and prayer life. His extensive knowledge of patristic literature and Byzantine theology makes him an invaluable resource for those pursuing advanced spiritual development.
+                    </p>
+                    <p className="mb-3">
+                      Father Nikola also leads our monastery retreat programs and has established strong connections with Orthodox communities across Europe. His multilingual abilities allow him to serve our diverse international congregation with particular expertise in Church Slavonic and ancient Greek liturgical traditions.
+                    </p>
+                    <p className="mb-3">
+                      Beyond his pastoral duties, he is actively involved in interfaith dialogue and has published numerous scholarly articles on Eastern Orthodox theology and spirituality in both Serbian and Swedish academic journals.
                     </p>
                     
                     <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
