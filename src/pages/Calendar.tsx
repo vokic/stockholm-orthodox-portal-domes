@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,7 +8,6 @@ import CalendarFilters from '../components/calendar/CalendarFilters';
 import AllEventsView from '../components/calendar/AllEventsView';
 import FilteredEventsView from '../components/calendar/FilteredEventsView';
 import RegularServicesTable from '../components/calendar/RegularServicesTable';
-import ServiceEntryForm from '../components/calendar/ServiceEntryForm';
 import { useCalendarData } from '../hooks/useCalendarData';
 
 const CalendarPage: React.FC = () => {
@@ -29,16 +29,10 @@ const CalendarPage: React.FC = () => {
 
         <section className="section">
           <div className="container-custom">
-            {/* Service Entry Form: For priests to add new service entries */}
-            <div className="card mb-6">
-              <ServiceEntryForm />
-            </div>
-
-            {/* Regular Services Table: Always visible, in card */}
+            {/* Regular Services Table: Always visible at top, in card */}
             <div className="card mb-6">
               <RegularServicesTable />
             </div>
-            
             <div className="card">
               <CalendarFilters
                 view={view}
