@@ -256,12 +256,7 @@ const ContactPage: React.FC = () => {
                 {t('contact.findus')}
               </h2>
               
-              <Map 
-                address="Birger Jarlsgatan 98, 114 20 Stockholm, Sweden"
-                coordinates={[59.3348, 18.0686]}
-              />
-              
-              <div className="mt-6">
+              <div className="mb-6">
                 <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.directions.title')}</h3>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>{t('about.directions.public')}</li>
@@ -269,6 +264,11 @@ const ContactPage: React.FC = () => {
                   <li>{t('about.directions.car')}</li>
                 </ul>
               </div>
+              
+              <Map 
+                address="Birger Jarlsgatan 98, 114 20 Stockholm, Sweden"
+                coordinates={[59.3348, 18.0686]}
+              />
             </div>
           </div>
         </section>
