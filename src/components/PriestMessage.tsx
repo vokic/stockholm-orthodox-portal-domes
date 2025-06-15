@@ -11,7 +11,7 @@ const PriestMessage: React.FC = () => {
         {t('priests.title')}
       </h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* First Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
@@ -90,33 +90,6 @@ const PriestMessage: React.FC = () => {
               With God's blessing and your prayers.
             </p>
             <p className="mt-3 text-right font-serif italic text-xs">— Father Stefan</p>
-          </div>
-        </div>
-
-        {/* Fourth Priest */}
-        <div className="flex flex-col">
-          <div className="flex flex-col items-center mb-4">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
-              <img 
-                src="/placeholder.svg" 
-                alt="Father Dragan Stojanović" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <p className="font-semibold text-center text-sm">Father Dragan Stojanović</p>
-          </div>
-          
-          <div className="text-sm">
-            <p className="mb-3 italic">
-              "May the Lord's mercy be upon you all."
-            </p>
-            <p className="mb-3">
-              Father Dragan serves as our youth minister and community outreach coordinator.
-            </p>
-            <p>
-              In Christ's love and service.
-            </p>
-            <p className="mt-3 text-right font-serif italic text-xs">— Father Dragan</p>
           </div>
         </div>
       </div>
