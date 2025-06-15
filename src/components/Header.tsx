@@ -10,11 +10,13 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import SerbianCross from './SerbianCross';
+import { useScrollBehavior } from '../hooks/useScrollBehavior';
 
 const Header: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { showNavbar } = useScrollBehavior();
 
   const languages = [
     { code: 'en', label: t('lang.english') || 'English' },
@@ -36,7 +38,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold">
+    <header className={`
+      bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold
+      transition-transform duration-300 ease-in-out
+      ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
+    `}>
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -10,6 +11,7 @@ import HolidayPopup from '../components/HolidayPopup';
 import Map from '../components/Map';
 import LatestArticles from '../components/LatestArticles';
 import ServiceAnnouncements from '../components/calendar/ServiceAnnouncements';
+import GoToTopButton from '../components/GoToTopButton';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchEvents, Event } from '../services/eventService';
 import { ExternalLink } from 'lucide-react';
@@ -181,6 +183,9 @@ const HomePage: React.FC = () => {
           onOpenChange={setShowHolidayPopup}
         />
       )}
+      
+      {/* Go to top button */}
+      <GoToTopButton />
     </div>
   );
 };
