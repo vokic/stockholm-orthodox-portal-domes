@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { Pencil, Info } from 'lucide-react';
+import { Pencil, Info, Facebook, Instagram } from 'lucide-react';
 import SerbianCross from './SerbianCross';
 import HolidayPopup from './HolidayPopup';
 import { fetchEvents, Event } from '../services/eventService';
@@ -104,6 +105,16 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               <li>
                 <strong>{t('footer.email')}:</strong>{" "}
                 {t('footer.emailValue')}
+              </li>
+              <li className="pt-3">
+                <div className="flex items-center gap-3">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-gold hover:text-white transition-colors">
+                    <Facebook size={20} />
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-gold hover:text-white transition-colors">
+                    <Instagram size={20} />
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

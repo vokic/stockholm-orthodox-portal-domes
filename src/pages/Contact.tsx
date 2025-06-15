@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -5,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import Map from '../components/Map';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Facebook, Instagram } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
@@ -174,6 +175,18 @@ const ContactPage: React.FC = () => {
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.email.title')}</h3>
                     <p>info@serbianorthodoxchurch.se</p>
                     <p>{t('contact.email.priest')}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-serif text-lg mb-2 text-orthodox-blue">Social Networks</h3>
+                    <div className="flex items-center gap-3">
+                      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold transition-colors">
+                        <Facebook size={20} />
+                      </a>
+                      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold transition-colors">
+                        <Instagram size={20} />
+                      </a>
+                    </div>
                   </div>
                   
                   <div>
