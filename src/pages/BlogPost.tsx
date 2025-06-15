@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -39,20 +38,65 @@ const BlogPostPage: React.FC = () => {
   const renderContent = (content: any) => {
     if (!content) return '';
     
+    console.log('Rendering content:', content);
+    
     // Handle Contentful rich text format
     if (content.content && Array.isArray(content.content)) {
-      return content.content
-        .map((node: any) => {
-          if (node.nodeType === 'paragraph' && node.content) {
-            return node.content
-              .map((textNode: any) => textNode.value || '')
-              .join('');
-          }
-          return '';
-        })
-        .filter((text: string) => text.trim())
-        .map((paragraph: string, index: number) => `<p>${paragraph}</p>`)
+      const processNode = (node: any): string => {
+        if (!node) return '';
+        
+        if (node.nodeType === 'paragraph' && node.content) {
+          const paragraphText = node.content
+            .map((textNode: any) => {
+              if (textNode.nodeType === 'text') {
+                return textNode.value || '';
+              }
+              return '';
+            })
+            .join('');
+          return paragraphText ? `<p class="mb-4">${paragraphText}</p>` : '';
+        }
+        
+        if (node.nodeType === 'heading-1' && node.content) {
+          const headingText = node.content
+            .map((textNode: any) => textNode.value || '')
+            .join('');
+          return headingText ? `<h1 class="text-3xl font-bold mb-4">${headingText}</h1>` : '';
+        }
+        
+        if (node.nodeType === 'heading-2' && node.content) {
+          const headingText = node.content
+            .map((textNode: any) => textNode.value || '')
+            .join('');
+          return headingText ? `<h2 class="text-2xl font-bold mb-3">${headingText}</h2>` : '';
+        }
+        
+        if (node.nodeType === 'unordered-list' && node.content) {
+          const listItems = node.content
+            .map((listItem: any) => {
+              if (listItem.nodeType === 'list-item' && listItem.content) {
+                const itemText = listItem.content
+                  .map((paragraph: any) => processNode(paragraph))
+                  .join('');
+                return `<li>${itemText.replace(/<\/?p[^>]*>/g, '')}</li>`;
+              }
+              return '';
+            })
+            .filter(Boolean)
+            .join('');
+          return listItems ? `<ul class="list-disc pl-6 mb-4">${listItems}</ul>` : '';
+        }
+        
+        return '';
+      };
+      
+      const renderedContent = content.content
+        .map(processNode)
+        .filter(Boolean)
         .join('');
+      
+      console.log('Final rendered content:', renderedContent);
+      return renderedContent;
     }
     
     // Fallback for other content formats
@@ -132,7 +176,7 @@ const BlogPostPage: React.FC = () => {
         <section className="section">
           <div className="container-custom max-w-4xl">
             <div className="card">
-              <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
+              <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} />
               
               {/* Gallery Section */}
               {galleryImages.length > 0 && (
