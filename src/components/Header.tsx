@@ -50,7 +50,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-orthodox-blue shadow-sm sticky top-0 z-50">
+    <header className="bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
