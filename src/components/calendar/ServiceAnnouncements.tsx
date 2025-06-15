@@ -148,7 +148,7 @@ const ServiceAnnouncements: React.FC = () => {
             <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
             {announcement.description && (
               <div 
-                className="prose max-w-none text-gray-600 mb-3 italic"
+                className="prose max-w-none text-gray-600 mb-3"
                 dangerouslySetInnerHTML={{ __html: announcement.description }}
               />
             )}
