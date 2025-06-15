@@ -41,7 +41,7 @@ const RegularServicesTable: React.FC = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg border-l-4 border-orthodox-gold">
+            <tr className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg">
               <th className="px-6 py-4 text-left font-bold text-lg font-serif rounded-l-lg">Day</th>
               <th className="px-6 py-4 text-left font-bold text-lg font-serif">Service</th>
               <th className="px-6 py-4 text-left font-bold text-lg font-serif">Time</th>
