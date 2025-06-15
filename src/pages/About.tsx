@@ -395,33 +395,27 @@ const AboutPage: React.FC = () => {
                 {t('about.priests')}
               </h2>
               
-              {/* Three Priests - Responsive Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Three Priests - Horizontal Card Layout */}
+              <div className="space-y-8">
                 {/* First Priest */}
-                <div className="flex flex-col">
-                  <div className="mb-4">
+                <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
+                  <div className="md:w-1/3">
                     <img 
                       src="/placeholder.svg" 
                       alt={t('about.priest1.imageAlt')} 
-                      className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
+                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={() => handleImageClick("/placeholder.svg")}
                     />
                   </div>
                   
-                  <div>
+                  <div className="md:w-2/3">
                     <h3 className="text-xl font-serif mb-3">{t('about.priest1.name')}</h3>
                     
-                    <p className="mb-4">
+                    <p className="mb-3">
                       Father Milos has been serving our parish community for over 15 years, bringing wisdom and compassion to all who seek spiritual guidance. His dedication to Orthodox traditions and modern pastoral care has made him a beloved figure in our community.
                     </p>
-                    <p className="mb-4">
-                      With a doctorate in Theology from the University of Belgrade, he specializes in liturgical studies and has authored several articles on Orthodox spirituality. His sermons are known for their depth and accessibility to parishioners of all ages.
-                    </p>
-                    <p className="mb-4">
-                      Beyond his pastoral duties, Father Milos actively participates in interfaith dialogue and community outreach programs, helping to bridge understanding between different religious communities in Stockholm.
-                    </p>
-                    <p className="mb-4">
-                      He is fluent in Serbian, Swedish, and English, making him accessible to our diverse congregation and ensuring that everyone feels welcome in our spiritual family.
+                    <p className="mb-3">
+                      With a doctorate in Theology from the University of Belgrade, he specializes in liturgical studies and has authored several articles on Orthodox spirituality.
                     </p>
                     
                     <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
@@ -436,30 +430,24 @@ const AboutPage: React.FC = () => {
                 </div>
                 
                 {/* Second Priest */}
-                <div className="flex flex-col">
-                  <div className="mb-4">
+                <div className="flex flex-col md:flex-row-reverse gap-6 p-6 bg-white rounded-lg shadow-sm">
+                  <div className="md:w-1/3">
                     <img 
                       src="/placeholder.svg" 
                       alt={t('about.priest2.imageAlt')} 
-                      className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
+                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={() => handleImageClick("/placeholder.svg")}
                     />
                   </div>
                   
-                  <div>
+                  <div className="md:w-2/3">
                     <h3 className="text-xl font-serif mb-3">{t('about.priest2.name')}</h3>
                     
-                    <p className="mb-4">
+                    <p className="mb-3">
                       Father Stefan joined our parish five years ago and has quickly become an integral part of our spiritual community. His youthful energy and deep theological knowledge bring a fresh perspective to our traditional practices.
                     </p>
-                    <p className="mb-4">
+                    <p className="mb-3">
                       Educated at the Seminary of Saint Sava in Belgrade and later at the Stockholm School of Theology, he represents a bridge between traditional Orthodox theology and contemporary pastoral approaches.
-                    </p>
-                    <p className="mb-4">
-                      Father Stefan has a special ministry with young families and children, organizing youth programs and educational activities that help the next generation connect with their Orthodox heritage.
-                    </p>
-                    <p className="mb-4">
-                      His multilingual abilities and understanding of both Serbian and Swedish cultures make him particularly effective in helping new immigrants integrate into both our parish and Swedish society.
                     </p>
                     
                     <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
@@ -474,30 +462,24 @@ const AboutPage: React.FC = () => {
                 </div>
                 
                 {/* Third Priest */}
-                <div className="flex flex-col">
-                  <div className="mb-4">
+                <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
+                  <div className="md:w-1/3">
                     <img 
                       src="/placeholder.svg" 
                       alt="Father Nikola portrait" 
-                      className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
+                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={() => handleImageClick("/placeholder.svg")}
                     />
                   </div>
                   
-                  <div>
+                  <div className="md:w-2/3">
                     <h3 className="text-xl font-serif mb-3">Father Nikola Petrović</h3>
                     
-                    <p className="mb-4">
+                    <p className="mb-3">
                       Father Nikola brings over 20 years of monastic experience to our parish, having served at the Hilandar Monastery on Mount Athos before joining our community. His deep spiritual insight and contemplative approach enrich our liturgical life.
                     </p>
-                    <p className="mb-4">
+                    <p className="mb-3">
                       As our senior confessor, he provides spiritual counseling and guidance to parishioners seeking deeper understanding of Orthodox mystical traditions and prayer life.
-                    </p>
-                    <p className="mb-4">
-                      Father Nikola leads our adult education programs, offering courses on patristic theology, iconography, and the spiritual significance of Orthodox liturgy and traditions.
-                    </p>
-                    <p className="mb-4">
-                      His calm presence and wisdom gained through years of monastic discipline provide our community with a direct connection to the ancient traditions of Orthodox monasticism and spirituality.
                     </p>
                     
                     <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
@@ -514,7 +496,7 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
         </section>
-        
+
         {/* Location and Working Hours Section */}
         <section className="section">
           <div className="container-custom">
