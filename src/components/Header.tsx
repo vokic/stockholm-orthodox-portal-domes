@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             <Link to="/" className={getNavLinkClasses('/')}>{t('nav.home')}</Link>
             <Link to="/about" className={getNavLinkClasses('/about')}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={getNavLinkClasses('/calendar')}>{t('nav.calendar')}</Link>
-            <Link to="/clanci" className={getNavLinkClasses('/clanci')}>{t('nav.articles')}</Link>
+            <Link to="/articles" className={getNavLinkClasses('/articles')}>{t('nav.articles')}</Link>
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
 
@@ -149,7 +149,7 @@ const Header: React.FC = () => {
             <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={toggleMenu}>{t('nav.home')}</Link>
             <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={toggleMenu}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={toggleMenu}>{t('nav.calendar')}</Link>
-            <Link to="/clanci" className={`${getNavLinkClasses('/clanci')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
+            <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
             <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={toggleMenu}>{t('nav.contact')}</Link>
             <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>

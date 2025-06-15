@@ -181,7 +181,7 @@ const BlogPostPage: React.FC = () => {
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center py-10 text-gray-600">
             <h1 className="text-2xl font-bold mb-4">Article not found</h1>
-            <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
+            <Link to="/articles" className="text-orthodox-blue hover:text-orthodox-gold">
               ← Back to all Articles
             </Link>
           </div>
@@ -244,7 +244,7 @@ const BlogPostPage: React.FC = () => {
               )}
               
               <div className="mt-8 pt-6 border-t">
-                <Link to="/clanci" className="text-orthodox-blue hover:text-orthodox-gold">
+                <Link to="/articles" className="text-orthodox-blue hover:text-orthodox-gold">
                   ← Back to all Articles
                 </Link>
               </div>
