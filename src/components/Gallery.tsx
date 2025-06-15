@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -22,65 +21,65 @@ const Gallery: React.FC<GalleryProps> = ({ images, className = '', masonry = fal
   const [isLoading, setIsLoading] = useState(false);
   const [columns, setColumns] = useState<number>(3);
 
-  // Enhanced church gallery images with working placeholder
+  // Enhanced church gallery images with actual church photos
   const defaultImages = [
     {
-      src: '/placeholder.svg',
-      alt: 'Beautiful Orthodox church with golden domes',
+      src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop',
+      alt: 'Beautiful Orthodox church interior with golden iconostasis',
       size: 'large' as const
     },
     {
-      src: '/placeholder.svg',
-      alt: 'Orthodox church iconostasis with golden icons',
+      src: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop',
+      alt: 'Orthodox church exterior architecture',
       size: 'medium' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop',
       alt: 'Church altar with beautiful Orthodox decorations',
       size: 'small' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop',
       alt: 'Orthodox church ceremony with congregation',
       size: 'medium' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop',
       alt: 'Traditional Orthodox wedding ceremony',
       size: 'large' as const
     },
     {
-      src: '/placeholder.svg',
-      alt: 'Orthodox baptism with holy water',
+      src: 'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop',
+      alt: 'Orthodox baptism with holy candles',
       size: 'small' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=600&fit=crop',
       alt: 'Church choir during Divine Liturgy',
       size: 'medium' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?w=800&h=600&fit=crop',
       alt: 'Orthodox church architecture details',
       size: 'large' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1524230572899-a752b3835840?w=800&h=600&fit=crop',
       alt: 'Church community gathering after service',
       size: 'medium' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=600&fit=crop',
       alt: 'Orthodox Christmas celebration',
       size: 'small' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1433832597046-4f10e10ac764?w=800&h=600&fit=crop',
       alt: 'Easter service with paschal candles',
       size: 'large' as const
     },
     {
-      src: '/placeholder.svg',
+      src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
       alt: 'Youth group Bible study session',
       size: 'medium' as const
     }

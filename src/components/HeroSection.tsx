@@ -1,18 +1,31 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="relative bg-orthodox-blue text-white">
+    <div className="relative bg-orthodox-blue text-white overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Serbisk_ortodoxa_kyrka_Enskede.jpg"
+          src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=1920&h=1080&fit=crop"
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
         />
         <div className="absolute inset-0 bg-orthodox-blue opacity-40"></div>
       </div>
