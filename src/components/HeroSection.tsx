@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute inset-0 bg-orthodox-blue opacity-40"></div>
       </div>
       
       <div className="container-custom relative z-10 py-48 md:py-72 text-center">
