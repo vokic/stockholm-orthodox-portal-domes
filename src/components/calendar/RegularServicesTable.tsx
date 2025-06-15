@@ -29,11 +29,11 @@ const RegularServicesTable: React.FC = () => {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-orthodox-blue text-white">
-              <th className="px-4 py-2 text-left">Day</th>
-              <th className="px-4 py-2 text-left">Service</th>
-              <th className="px-4 py-2 text-left">Time</th>
-              <th className="px-4 py-2 text-left">Description</th>
+            <tr className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg shadow border-l-4 border-orthodox-gold">
+              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif first:rounded-l-lg last:rounded-r-lg">Day</th>
+              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Service</th>
+              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Time</th>
+              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Description</th>
             </tr>
           </thead>
           <tbody>
@@ -53,3 +53,4 @@ const RegularServicesTable: React.FC = () => {
 };
 
 export default RegularServicesTable;
+
