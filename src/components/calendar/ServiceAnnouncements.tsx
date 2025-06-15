@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { fetchContentfulEntries } from '../../lib/contentful';
 import { useQuery } from '@tanstack/react-query';
@@ -6,6 +7,7 @@ interface ServiceAnnouncement {
   id: string;
   title: string;
   content: string;
+  description?: string;
   publishedDate: string;
 }
 
@@ -78,6 +80,7 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
         id: item.sys.id,
         title: item.fields.title || 'Service Announcement',
         content: content,
+        description: item.fields.description || '',
         publishedDate: item.fields.publishedDate || item.sys.createdAt
       };
     }).sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
@@ -97,10 +100,9 @@ const ServiceAnnouncements: React.FC = () => {
     return (
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-serif">Service Announcements</h2>
-          <span className="text-sm text-gray-600">Datum Objave</span>
+          <h2 className="text-2xl font-serif">Obavestenje</h2>
+          <span className="text-sm text-gray-600">Datum Objave: Loading...</span>
         </div>
-        <p className="text-gray-600 mb-4">Important announcements and updates about our church services.</p>
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <div className="text-gray-600">Loading announcements...</div>
         </div>
@@ -115,10 +117,18 @@ const ServiceAnnouncements: React.FC = () => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-serif">Service Announcements</h2>
-        <span className="text-sm text-gray-600 font-medium">Datum Objave</span>
+        <h2 className="text-2xl font-serif">Obavestenje</h2>
+        <span className="text-sm text-gray-600 font-medium">
+          Datum Objave: {new Date(announcements[0]?.publishedDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })} {new Date(announcements[0]?.publishedDate).toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })}
+        </span>
       </div>
-      <p className="text-gray-600 mb-4">Important announcements and updates about our church services.</p>
       <div className="space-y-4">
         {announcements.map((announcement) => (
           <div 
@@ -132,9 +142,15 @@ const ServiceAnnouncements: React.FC = () => {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
+                })} {new Date(announcement.publishedDate).toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit'
                 })}
               </div>
             </div>
+            {announcement.description && (
+              <p className="text-gray-600 mb-3 italic">{announcement.description}</p>
+            )}
             <div 
               className="prose max-w-none text-gray-700"
               dangerouslySetInnerHTML={{ __html: announcement.content }}
