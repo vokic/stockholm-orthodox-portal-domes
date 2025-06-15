@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -23,39 +24,39 @@ const AboutPage: React.FC = () => {
   const churchNowImages = [
     {
       src: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop',
-      alt: 'Church exterior modern'
+      alt: t('about.gallery.churchNow.alt1')
     },
     {
       src: 'https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop',
-      alt: 'Church from a distance'
+      alt: t('about.gallery.churchNow.alt2')
     },
     {
       src: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=600&fit=crop',
-      alt: 'People gathering at church grounds'
+      alt: t('about.gallery.churchNow.alt3')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Recent community Christmas celebration'
+      alt: t('about.gallery.churchNow.alt4')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Modern church events interior'
+      alt: t('about.gallery.churchNow.alt5')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Congregation in worship'
+      alt: t('about.gallery.churchNow.alt6')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Baptism in recent years'
+      alt: t('about.gallery.churchNow.alt7')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Recent Pascha celebration'
+      alt: t('about.gallery.churchNow.alt8')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Current year youth group activity'
+      alt: t('about.gallery.churchNow.alt9')
     }
   ];
 
@@ -63,39 +64,39 @@ const AboutPage: React.FC = () => {
   const oldPhotosImages = [
     {
       src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop',
-      alt: 'Historic church construction in 1950s'
+      alt: t('about.gallery.oldPhotos.alt1')
     },
     {
       src: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop',
-      alt: 'First Orthodox service in Stockholm 1960'
+      alt: t('about.gallery.oldPhotos.alt2')
     },
     {
       src: 'https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=800&h=600&fit=crop',
-      alt: 'Church community gathering 1965'
+      alt: t('about.gallery.oldPhotos.alt3')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Blessing of the foundation stone 1958'
+      alt: t('about.gallery.oldPhotos.alt4')
     },
     {
       src: '/placeholder.svg',
-      alt: 'First Easter celebration 1962'
+      alt: t('about.gallery.oldPhotos.alt5')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Community volunteers building interior 1970'
+      alt: t('about.gallery.oldPhotos.alt6')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Historic church wedding ceremony 1975'
+      alt: t('about.gallery.oldPhotos.alt7')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Installation of church bells 1963'
+      alt: t('about.gallery.oldPhotos.alt8')
     },
     {
       src: '/placeholder.svg',
-      alt: 'First baptism ceremony 1961'
+      alt: t('about.gallery.oldPhotos.alt9')
     }
   ];
 
@@ -103,39 +104,39 @@ const AboutPage: React.FC = () => {
   const interiorImages = [
     {
       src: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop',
-      alt: 'Main altar with golden iconostasis'
+      alt: t('about.gallery.interior.alt1')
     },
     {
       src: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop',
-      alt: 'Orthodox church interior with dome'
+      alt: t('about.gallery.interior.alt2')
     },
     {
       src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop',
-      alt: 'Beautiful church architecture details'
+      alt: t('about.gallery.interior.alt3')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Holy icons on the iconostasis'
+      alt: t('about.gallery.interior.alt4')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Church nave with wooden pews'
+      alt: t('about.gallery.interior.alt5')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Sanctuary area with holy table'
+      alt: t('about.gallery.interior.alt6')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Choir area with church books'
+      alt: t('about.gallery.interior.alt7')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Candle stand with prayer candles'
+      alt: t('about.gallery.interior.alt8')
     },
     {
       src: '/placeholder.svg',
-      alt: 'Church ceiling with religious paintings'
+      alt: t('about.gallery.interior.alt9')
     }
   ];
 
@@ -153,8 +154,6 @@ const AboutPage: React.FC = () => {
             <p className="text-lg mt-2">{t('about.intro')}</p>
           </div>
         </div>
-
-        {/* About Our Church (using about.intro) - this is already in the Hero section above */}
 
         {/* Parish Today Section */}
         <ParishTodaySection />
@@ -175,22 +174,22 @@ const AboutPage: React.FC = () => {
               
               {/* Church Now Section */}
               <div className="mb-12">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Church Now</h3>
-                <p className="text-gray-600 mb-6">A glimpse of our church in present day—our building, community life and ongoing events.</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">{t('about.gallery.churchNow.title')}</h3>
+                <p className="text-gray-600 mb-6">{t('about.gallery.churchNow.description')}</p>
                 <Gallery images={churchNowImages} />
               </div>
               
               {/* Old Photos Section */}
               <div className="mb-12">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Old Photos</h3>
-                <p className="text-gray-600 mb-6">Historical moments from our church's founding and early years in Stockholm.</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">{t('about.gallery.oldPhotos.title')}</h3>
+                <p className="text-gray-600 mb-6">{t('about.gallery.oldPhotos.description')}</p>
                 <Gallery images={oldPhotosImages} />
               </div>
               
               {/* Interior Section */}
               <div>
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">Interior</h3>
-                <p className="text-gray-600 mb-6">The sacred spaces within our church where we gather for worship and prayer.</p>
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">{t('about.gallery.interior.title')}</h3>
+                <p className="text-gray-600 mb-6">{t('about.gallery.interior.description')}</p>
                 <Gallery images={interiorImages} />
               </div>
             </div>
@@ -255,12 +254,12 @@ const AboutPage: React.FC = () => {
                 <div className="md:col-span-1 flex flex-col gap-4">
                   <img 
                     src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop" 
-                    alt="Orthodox cathedral interior" 
+                    alt={t('about.svetiSava.image1Alt')} 
                     className="rounded-lg w-full"
                   />
                   <img 
                     src="https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop"
-                    alt="Serbian church building under stars"
+                    alt={t('about.svetiSava.image2Alt')}
                     className="rounded-lg w-full"
                   />
                 </div>
@@ -268,21 +267,21 @@ const AboutPage: React.FC = () => {
                 <div className="md:col-span-3 flex flex-col gap-3">
                   <h3 className="text-xl font-serif mb-3">{t('about.svetiSava.subtitle')}</h3>
                   <p>
-                    Saint Sava, the first Archbishop of the independent Serbian Church, is a beloved spiritual father, educator, and founder of the Serbian Orthodox Church. Born as Rastko Nemanjić, he embraced monastic life at a young age, guided by a deep love for Christ and his people.
+                    {t('about.svetiSava.p1')}
                   </p>
                   <p>
-                    As a priest and archbishop, St. Sava united the faithful, worked tirelessly to foster peace among rulers, and laid the foundations for ecclesiastical education, monasticism, and culture throughout Serbia and the Orthodox world. He is remembered for his wisdom, humility, and pastoral care for all.
+                    {t('about.svetiSava.p2')}
                   </p>
                   <img
                     src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop"
-                    alt="Orthodox icons and candles inside church"
+                    alt={t('about.svetiSava.image3Alt')}
                     className="rounded-lg w-full my-2"
                   />
                   <p>
-                    Under his guidance, churches were built and monastic life flourished. St. Sava is celebrated for his commitment to truth, reconciliation, and spiritual renewal, serving as a bridge between his people and God.
+                    {t('about.svetiSava.p3')}
                   </p>
                   <p>
-                    The memory of St. Sava inspires generations to honor faith, heritage, and a life of service rooted in the Gospel. Every year, Orthodox communities cherish his feast with gratitude, prayer, and joyful gatherings, recognizing him as the “Enlightener” and unifier of the Serbian nation and Church.
+                    {t('about.svetiSava.p4')}
                   </p>
                   <p>
                     {t('about.svetiSava.p5')}
