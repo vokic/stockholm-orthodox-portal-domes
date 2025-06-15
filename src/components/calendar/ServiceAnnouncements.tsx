@@ -17,63 +17,89 @@ const convertRichTextToHtml = (richTextObj: any): string => {
   }
   
   const processNode = (node: any): string => {
+    // Handle MaxDepthReached scenarios
+    if (node._type === 'MaxDepthReached' || !node.nodeType) {
+      return '';
+    }
+
     if (node.nodeType === 'text') {
-      let text = node.value;
+      let text = node.value || '';
       
       // Apply formatting based on marks
       if (node.marks && node.marks.length > 0) {
         node.marks.forEach((mark: any) => {
-          switch (mark.type) {
-            case 'bold':
-              text = `<strong>${text}</strong>`;
-              break;
-            case 'italic':
-              text = `<em>${text}</em>`;
-              break;
-            case 'underline':
-              text = `<u>${text}</u>`;
-              break;
+          if (mark.type && typeof mark.type === 'string') {
+            switch (mark.type) {
+              case 'bold':
+                text = `<strong>${text}</strong>`;
+                break;
+              case 'italic':
+                text = `<em>${text}</em>`;
+                break;
+              case 'underline':
+                text = `<u>${text}</u>`;
+                break;
+            }
           }
         });
       }
       
       return text;
     } else if (node.nodeType === 'paragraph') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<p>${content}</p>`;
     } else if (node.nodeType === 'unordered-list') {
-      const listItems = node.content ? node.content.map(processNode).join('') : '';
-      return `<ul>${listItems}</ul>`;
+      const listItems = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
+      return `<ul class="list-disc ml-4">${listItems}</ul>`;
     } else if (node.nodeType === 'ordered-list') {
-      const listItems = node.content ? node.content.map(processNode).join('') : '';
-      return `<ol>${listItems}</ol>`;
+      const listItems = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
+      return `<ol class="list-decimal ml-4">${listItems}</ol>`;
     } else if (node.nodeType === 'list-item') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<li>${content}</li>`;
     } else if (node.nodeType === 'heading-1') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h1>${content}</h1>`;
     } else if (node.nodeType === 'heading-2') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h2>${content}</h2>`;
     } else if (node.nodeType === 'heading-3') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h3>${content}</h3>`;
     } else if (node.nodeType === 'heading-4') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h4>${content}</h4>`;
     } else if (node.nodeType === 'heading-5') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h5>${content}</h5>`;
     } else if (node.nodeType === 'heading-6') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<h6>${content}</h6>`;
     } else if (node.nodeType === 'hyperlink') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
-      const url = node.data?.uri || '#';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
+      let url = '#';
+      if (node.data && node.data.uri) {
+        if (typeof node.data.uri === 'string') {
+          url = node.data.uri;
+        } else if (node.data.uri.value && typeof node.data.uri.value === 'string') {
+          url = node.data.uri.value;
+        }
+      }
       return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-orthodox-blue hover:text-orthodox-gold underline">${content}</a>`;
     } else if (node.nodeType === 'blockquote') {
-      const content = node.content ? node.content.map(processNode).join('') : '';
+      const content = node.content && Array.isArray(node.content) ? 
+        node.content.map(processNode).join('') : '';
       return `<blockquote>${content}</blockquote>`;
     } else if (node.nodeType === 'hr') {
       return '<hr>';
