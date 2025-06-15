@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { fetchContentfulEntries } from '../../lib/contentful';
 import { useQuery } from '@tanstack/react-query';
@@ -52,15 +51,15 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'unordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ul class="list-disc ml-4">${listItems}</ul>`;
+      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">${listItems}</ul>`;
     } else if (node.nodeType === 'ordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ol class="list-decimal ml-4">${listItems}</ol>`;
+      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0;">${listItems}</ol>`;
     } else if (node.nodeType === 'list-item') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<li>${content}</li>`;
+      return `<li style="margin-bottom: 4px;">${content}</li>`;
     } else if (node.nodeType === 'heading-1') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
@@ -206,12 +205,12 @@ const ServiceAnnouncements: React.FC = () => {
             <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
             {announcement.description && (
               <div 
-                className="prose prose-sm max-w-none text-gray-600 mb-3 prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-strong:font-bold prose-em:italic prose-a:text-orthodox-blue prose-a:underline hover:prose-a:text-orthodox-gold"
+                className="text-gray-600 mb-3"
                 dangerouslySetInnerHTML={{ __html: announcement.description }}
               />
             )}
             <div 
-              className="prose prose-sm max-w-none text-gray-700 prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-strong:font-bold prose-em:italic prose-a:text-orthodox-blue prose-a:underline hover:prose-a:text-orthodox-gold"
+              className="text-gray-700"
               dangerouslySetInnerHTML={{ __html: announcement.content }}
             />
           </div>
