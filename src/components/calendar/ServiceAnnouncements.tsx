@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { fetchContentfulEntries } from '../../lib/contentful';
 import { useQuery } from '@tanstack/react-query';
@@ -97,9 +96,13 @@ const ServiceAnnouncements: React.FC = () => {
   if (isLoading) {
     return (
       <div className="mb-8">
-        <h2 className="text-2xl font-serif mb-4">Service Announcements</h2>
-        <div className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4 border-orthodox-gold p-6">
-          <div className="text-white">Loading announcements...</div>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-serif">Service Announcements</h2>
+          <span className="text-sm text-gray-600">Datum Objave</span>
+        </div>
+        <p className="text-gray-600 mb-4">Important announcements and updates about our church services.</p>
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="text-gray-600">Loading announcements...</div>
         </div>
       </div>
     );
@@ -111,27 +114,31 @@ const ServiceAnnouncements: React.FC = () => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-serif mb-4">Service Announcements</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-serif">Service Announcements</h2>
+        <span className="text-sm text-gray-600 font-medium">Datum Objave</span>
+      </div>
+      <p className="text-gray-600 mb-4">Important announcements and updates about our church services.</p>
       <div className="space-y-4">
         {announcements.map((announcement) => (
           <div 
             key={announcement.id}
-            className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4 border-orthodox-gold p-6"
+            className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6"
           >
-            <div className="text-white">
-              <h3 className="text-xl font-serif mb-3">{announcement.title}</h3>
-              <div 
-                className="prose prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: announcement.content }}
-              />
-              <div className="text-sm text-gray-300 mt-4">
-                Published: {new Date(announcement.publishedDate).toLocaleDateString('en-US', {
+            <div className="flex justify-between items-start mb-3">
+              <h3 className="text-xl font-serif text-orthodox-blue">{announcement.title}</h3>
+              <div className="text-sm text-gray-500 ml-4 flex-shrink-0">
+                {new Date(announcement.publishedDate).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
                 })}
               </div>
             </div>
+            <div 
+              className="prose max-w-none text-gray-700"
+              dangerouslySetInnerHTML={{ __html: announcement.content }}
+            />
           </div>
         ))}
       </div>
