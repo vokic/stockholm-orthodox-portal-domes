@@ -39,22 +39,22 @@ const RegularServicesTable: React.FC = () => {
         </span>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg shadow border-l-4 border-orthodox-gold">
-              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif first:rounded-l-lg last:rounded-r-lg">Day</th>
-              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Service</th>
-              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Time</th>
-              <th className="px-4 py-3 text-left font-bold text-white text-lg font-serif">Description</th>
+            <tr>
+              <th className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white px-6 py-4 text-left font-bold text-lg font-serif border-l-4 border-orthodox-gold first:rounded-l-lg">Day</th>
+              <th className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white px-6 py-4 text-left font-bold text-lg font-serif">Service</th>
+              <th className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white px-6 py-4 text-left font-bold text-lg font-serif">Time</th>
+              <th className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white px-6 py-4 text-left font-bold text-lg font-serif last:rounded-r-lg">Description</th>
             </tr>
           </thead>
           <tbody>
             {regularServices.map((service, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                <td className="px-4 py-3 font-medium">{service.day}</td>
-                <td className="px-4 py-3">{service.name}</td>
-                <td className="px-4 py-3">{service.time}</td>
-                <td className="px-4 py-3">{service.description}</td>
+              <tr key={index} className={`border-b border-gray-200 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+                <td className="px-6 py-4 font-medium">{service.day}</td>
+                <td className="px-6 py-4">{service.name}</td>
+                <td className="px-6 py-4">{service.time}</td>
+                <td className="px-6 py-4">{service.description}</td>
               </tr>
             ))}
           </tbody>
