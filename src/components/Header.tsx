@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
@@ -130,7 +129,7 @@ const Header: React.FC = () => {
             <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.calendar')}</Link>
             <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.articles')}</Link>
-            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={() => setIsMenuStore(false)}>{t('nav.contact')}</Link>
+            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
             <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors text-center text-lg" onClick={() => setIsMenuOpen(false)}>{t('nav.donate')}</Link>
           </nav>
         )}
