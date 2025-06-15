@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
 
   // Function to get nav link classes
   const getNavLinkClasses = (path: string) => {
-    const baseClasses = "nav-link transition-all duration-200";
+    const baseClasses = "transition-all duration-200 text-white hover:text-orthodox-gold";
     if (isActiveLink(path)) {
       return `${baseClasses} text-orthodox-gold border-b-2 border-orthodox-gold font-semibold`;
     }
@@ -49,7 +50,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-orthodox-blue shadow-sm sticky top-0 z-50">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -58,7 +59,7 @@ const Header: React.FC = () => {
                 <SerbianCross size={28} className="text-orthodox-gold" />
               </div>
               <div>
-                <h1 className="text-xl font-serif font-bold text-orthodox-blue">
+                <h1 className="text-xl font-serif font-bold text-white">
                   {t('home.churchFullName')}
                 </h1>
               </div>
@@ -72,14 +73,14 @@ const Header: React.FC = () => {
             <Link to="/calendar" className={getNavLinkClasses('/calendar')}>{t('nav.calendar')}</Link>
             <Link to="/articles" className={getNavLinkClasses('/articles')}>{t('nav.articles')}</Link>
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
-            <Link to="/donate" className="btn-primary">{t('nav.donate')}</Link>
+            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors">{t('nav.donate')}</Link>
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-2 ml-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Instagram size={20} />
               </a>
             </div>
@@ -87,7 +88,7 @@ const Header: React.FC = () => {
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-2">
+                <Button variant="outline" className="ml-2 bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue">
                   {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
@@ -109,10 +110,10 @@ const Header: React.FC = () => {
           <div className="md:hidden flex items-center gap-2">
             {/* Social Media Icons for Mobile */}
             <div className="flex items-center gap-2 mr-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Facebook size={18} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-blue hover:text-orthodox-gold">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Instagram size={18} />
               </a>
             </div>
@@ -120,7 +121,7 @@ const Header: React.FC = () => {
             {/* Language Selector for Mobile */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue">
                   {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
@@ -137,7 +138,7 @@ const Header: React.FC = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Button variant="ghost" size="icon" onClick={toggleMenu}>
+            <Button variant="ghost" size="icon" onClick={toggleMenu} className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20">
               <Menu className="h-6 w-6" />
             </Button>
           </div>
@@ -151,7 +152,7 @@ const Header: React.FC = () => {
             <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={toggleMenu}>{t('nav.calendar')}</Link>
             <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
             <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={toggleMenu}>{t('nav.contact')}</Link>
-            <Link to="/donate" className="btn-primary text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
+            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
           </nav>
         )}
       </div>
