@@ -15,7 +15,7 @@ const PriestMessage: React.FC = () => {
         {/* First Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
+            <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img 
                 src="/placeholder.svg" 
                 alt={t('priests.father1.name')} 
@@ -42,7 +42,7 @@ const PriestMessage: React.FC = () => {
         {/* Second Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
+            <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img 
                 src="/placeholder.svg" 
                 alt={t('priests.father2.name')} 
@@ -69,7 +69,7 @@ const PriestMessage: React.FC = () => {
         {/* Third Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
+            <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img 
                 src="/placeholder.svg" 
                 alt="Father Stefan Marković" 
