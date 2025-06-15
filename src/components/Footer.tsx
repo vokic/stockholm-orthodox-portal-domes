@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -49,6 +48,12 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
     setShowHolidayPopup(true);
   };
 
+  const handleAddressClick = () => {
+    const address = "Birger Jarlsgatan 98, 114 20 Stockholm, Sweden";
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   return (
     <footer className="bg-orthodox-blue text-white pt-10 pb-4">
       <div className="container-custom">
@@ -96,15 +101,30 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             <ul className="space-y-2">
               <li>
                 <strong>{t('footer.address')}:</strong>{" "}
-                {t('footer.addressValue')}
+                <button
+                  onClick={handleAddressClick}
+                  className="text-white hover:text-orthodox-gold transition-colors underline"
+                >
+                  {t('footer.addressValue')}
+                </button>
               </li>
               <li>
                 <strong>{t('footer.phone')}:</strong>{" "}
-                {t('footer.phoneValue')}
+                <a
+                  href={`tel:${t('footer.phoneValue').replace(/\s+/g, '')}`}
+                  className="text-white hover:text-orthodox-gold transition-colors underline"
+                >
+                  {t('footer.phoneValue')}
+                </a>
               </li>
               <li>
                 <strong>{t('footer.email')}:</strong>{" "}
-                {t('footer.emailValue')}
+                <a
+                  href={`mailto:${t('footer.emailValue')}`}
+                  className="text-white hover:text-orthodox-gold transition-colors underline"
+                >
+                  {t('footer.emailValue')}
+                </a>
               </li>
               <li className="pt-3">
                 <div className="flex items-center gap-3">
