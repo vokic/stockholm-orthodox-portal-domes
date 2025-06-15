@@ -6,6 +6,7 @@ import { fetchContentfulEntries, resolveContentfulAsset } from "../lib/contentfu
 // Define types you expect from Contentful
 export interface BlogPost {
   id: string;
+  slug: string; // Add slug field
   title: string;
   excerpt: string;
   content?: any;
@@ -16,6 +17,16 @@ export interface BlogPost {
   imageUrl?: string;
   images?: string[]; // Array of all images
 }
+
+// Helper function to generate URL-friendly slugs
+const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+};
 
 // Fetch all blog posts from Contentful, sorted by pinned first, then by latest date descending
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
@@ -67,9 +78,11 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         console.log('No image field found for entry:', entry.sys.id);
       }
       
+      const title = fields.title || 'Untitled';
       const post = {
         id: entry.sys.id,
-        title: fields.title || 'Untitled',
+        slug: fields.slug || generateSlug(title), // Use Contentful slug if available, otherwise generate from title
+        title,
         excerpt: fields.excerpt || '',
         content: fields.content,
         date: fields.date || new Date().toISOString().split('T')[0],
@@ -96,9 +109,10 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
   }
 };
 
-export const getBlogPost = async (id: string) => {
+export const getBlogPost = async (slugOrId: string) => {
   const posts = await getBlogPosts();
-  return posts.find((p) => p.id === id);
+  // Try to find by slug first, then by ID for backward compatibility
+  return posts.find((p) => p.slug === slugOrId || p.id === slugOrId);
 };
 
 export const getLatestArticles = async (limit: number = 3) => {

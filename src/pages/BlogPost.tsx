@@ -10,22 +10,22 @@ import { format } from 'date-fns';
 
 const BlogPostPage: React.FC = () => {
   const { t } = useLanguage();
-  const { id } = useParams<{ id: string }>();
+  const { slugOrId } = useParams<{ slugOrId: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+    if (!slugOrId) return;
     
     let mounted = true;
-    getBlogPost(id).then((data) => {
+    getBlogPost(slugOrId).then((data) => {
       if (mounted) {
         setPost(data || null);
         setLoading(false);
       }
     });
     return () => { mounted = false; };
-  }, [id]);
+  }, [slugOrId]);
 
   const formatDate = (dateString: string) => {
     try {

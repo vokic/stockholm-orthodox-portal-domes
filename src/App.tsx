@@ -36,7 +36,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/clanci" element={<Blog />} />
-        <Route path="/clanci/:id" element={<BlogPost />} />
+        <Route path="/clanci/:slugOrId" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
