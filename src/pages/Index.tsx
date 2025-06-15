@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -9,6 +10,7 @@ import DonationSection from '../components/DonationSection';
 import HolidayPopup from '../components/HolidayPopup';
 import Map from '../components/Map';
 import LatestArticles from '../components/LatestArticles';
+import ServiceAnnouncements from '../components/calendar/ServiceAnnouncements';
 import { useLanguage } from '../context/LanguageContext';
 import { fetchEvents, Event } from '../services/eventService';
 import { ExternalLink } from 'lucide-react';
@@ -84,6 +86,9 @@ const HomePage: React.FC = () => {
       
       <main className="flex-grow">
         <HeroSection />
+        
+        {/* Service Announcements Section - Added below hero */}
+        <ServiceAnnouncements />
         
         {/* Latest Articles Section */}
         <section className="section">

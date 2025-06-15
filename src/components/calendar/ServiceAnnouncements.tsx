@@ -48,44 +48,44 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'paragraph') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      // Only wrap in <p> if there's actual content
-      return content.trim() ? `<p style="margin-bottom: 12px;">${content}</p>` : '<br>';
+      // Only wrap in <p> if there's actual content, otherwise add line break
+      return content.trim() ? `<p style="margin-bottom: 16px; line-height: 1.6;">${content}</p>` : '<br style="margin-bottom: 16px;">';
     } else if (node.nodeType === 'unordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0; margin-bottom: 12px;">${listItems}</ul>`;
+      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0; margin-bottom: 16px; line-height: 1.6;">${listItems}</ul>`;
     } else if (node.nodeType === 'ordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0; margin-bottom: 12px;">${listItems}</ol>`;
+      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0; margin-bottom: 16px; line-height: 1.6;">${listItems}</ol>`;
     } else if (node.nodeType === 'list-item') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<li style="margin-bottom: 4px;">${content}</li>`;
+      return `<li style="margin-bottom: 8px;">${content}</li>`;
     } else if (node.nodeType === 'heading-1') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h1 style="margin-bottom: 12px;">${content}</h1>`;
+      return `<h1 style="margin-bottom: 16px; line-height: 1.4;">${content}</h1>`;
     } else if (node.nodeType === 'heading-2') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h2 style="margin-bottom: 12px;">${content}</h2>`;
+      return `<h2 style="margin-bottom: 16px; line-height: 1.4;">${content}</h2>`;
     } else if (node.nodeType === 'heading-3') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h3 style="margin-bottom: 12px;">${content}</h3>`;
+      return `<h3 style="margin-bottom: 16px; line-height: 1.4;">${content}</h3>`;
     } else if (node.nodeType === 'heading-4') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h4 style="margin-bottom: 12px;">${content}</h4>`;
+      return `<h4 style="margin-bottom: 16px; line-height: 1.4;">${content}</h4>`;
     } else if (node.nodeType === 'heading-5') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h5 style="margin-bottom: 12px;">${content}</h5>`;
+      return `<h5 style="margin-bottom: 16px; line-height: 1.4;">${content}</h5>`;
     } else if (node.nodeType === 'heading-6') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h6 style="margin-bottom: 12px;">${content}</h6>`;
+      return `<h6 style="margin-bottom: 16px; line-height: 1.4;">${content}</h6>`;
     } else if (node.nodeType === 'hyperlink') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
@@ -101,9 +101,9 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'blockquote') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<blockquote style="margin-bottom: 12px;">${content}</blockquote>`;
+      return `<blockquote style="margin-bottom: 16px; line-height: 1.6;">${content}</blockquote>`;
     } else if (node.nodeType === 'hr') {
-      return '<hr style="margin: 12px 0;">';
+      return '<hr style="margin: 16px 0;">';
     } else if (node.content && Array.isArray(node.content)) {
       return node.content.map(processNode).join('');
     }
@@ -167,43 +167,46 @@ const ServiceAnnouncements: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-serif">Obavestenje</h2>
-          <span className="text-sm text-gray-600">Datum Objave: Loading...</span>
+      <section className="section">
+        <div className="container-custom">
+          <div className="card">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-serif">Obavestenje</h2>
+              <span className="text-sm text-gray-600">Datum Objave: Loading...</span>
+            </div>
+            <div className="text-gray-600">Loading announcements...</div>
+          </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="text-gray-600">Loading announcements...</div>
-        </div>
-      </div>
+      </section>
     );
   }
 
+  // Don't render anything if no announcements
   if (!announcements.length) {
     return null;
   }
 
+  // Only show the first announcement (latest one)
+  const announcement = announcements[0];
+
   return (
-    <div className="mb-8">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-serif">Obavestenje</h2>
-        <span className="text-sm text-gray-600 font-medium">
-          Datum Objave: {new Date(announcements[0]?.publishedDate).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })} {new Date(announcements[0]?.publishedDate).toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit'
-          })}
-        </span>
-      </div>
-      <div className="space-y-4">
-        {announcements.map((announcement) => (
-          <div 
-            key={announcement.id}
-            className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6"
-          >
+    <section className="section">
+      <div className="container-custom">
+        <div className="card">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-serif">Obavestenje</h2>
+            <span className="text-sm text-gray-600 font-medium">
+              Datum Objave: {new Date(announcement.publishedDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })} {new Date(announcement.publishedDate).toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit'
+              })}
+            </span>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6">
             <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
             {announcement.description && (
               <div 
@@ -216,9 +219,9 @@ const ServiceAnnouncements: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: announcement.content }}
             />
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

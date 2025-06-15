@@ -7,7 +7,6 @@ import CalendarHero from '../components/calendar/CalendarHero';
 import CalendarFilters from '../components/calendar/CalendarFilters';
 import AllEventsView from '../components/calendar/AllEventsView';
 import FilteredEventsView from '../components/calendar/FilteredEventsView';
-import ServiceAnnouncements from '../components/calendar/ServiceAnnouncements';
 import RegularServicesTable from '../components/calendar/RegularServicesTable';
 import { useCalendarData } from '../hooks/useCalendarData';
 
@@ -30,11 +29,6 @@ const CalendarPage: React.FC = () => {
 
         <section className="section">
           <div className="container-custom">
-            {/* Service Announcements: Rich text content from Contentful */}
-            <div className="card mb-6">
-              <ServiceAnnouncements />
-            </div>
-
             {/* Regular Services Table: Always visible at top, in card */}
             <div className="card mb-6">
               <RegularServicesTable />
