@@ -11,64 +11,112 @@ const PriestMessage: React.FC = () => {
         {t('priests.title')}
       </h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* First Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
               <img 
                 src="/placeholder.svg" 
                 alt={t('priests.father1.name')} 
                 className="w-full h-full object-cover"
               />
             </div>
-            <p className="font-semibold text-center">{t('priests.father1.name')}</p>
+            <p className="font-semibold text-center text-sm">{t('priests.father1.name')}</p>
           </div>
           
-          <div>
-            <p className="mb-4 italic">
+          <div className="text-sm">
+            <p className="mb-3 italic">
               "{t('priests.father1.greeting')}"
             </p>
-            <p className="mb-4">
+            <p className="mb-3">
               {t('priests.father1.message1')}
-            </p>
-            <p className="mb-4">
-              {t('priests.father1.message2')}
             </p>
             <p>
               {t('priests.father1.blessing')}
             </p>
-            <p className="mt-4 text-right font-serif italic">{t('priests.father1.signature')}</p>
+            <p className="mt-3 text-right font-serif italic text-xs">{t('priests.father1.signature')}</p>
           </div>
         </div>
         
         {/* Second Priest */}
         <div className="flex flex-col">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
               <img 
                 src="/placeholder.svg" 
                 alt={t('priests.father2.name')} 
                 className="w-full h-full object-cover"
               />
             </div>
-            <p className="font-semibold text-center">{t('priests.father2.name')}</p>
+            <p className="font-semibold text-center text-sm">{t('priests.father2.name')}</p>
           </div>
           
-          <div>
-            <p className="mb-4 italic">
+          <div className="text-sm">
+            <p className="mb-3 italic">
               "{t('priests.father2.greeting')}"
             </p>
-            <p className="mb-4">
+            <p className="mb-3">
               {t('priests.father2.message1')}
-            </p>
-            <p className="mb-4">
-              {t('priests.father2.message2')}
             </p>
             <p>
               {t('priests.father2.blessing')}
             </p>
-            <p className="mt-4 text-right font-serif italic">{t('priests.father2.signature')}</p>
+            <p className="mt-3 text-right font-serif italic text-xs">{t('priests.father2.signature')}</p>
+          </div>
+        </div>
+
+        {/* Third Priest */}
+        <div className="flex flex-col">
+          <div className="flex flex-col items-center mb-4">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
+              <img 
+                src="/placeholder.svg" 
+                alt="Father Stefan Marković" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-semibold text-center text-sm">Father Stefan Marković</p>
+          </div>
+          
+          <div className="text-sm">
+            <p className="mb-3 italic">
+              "Grace and peace from our Lord Jesus Christ."
+            </p>
+            <p className="mb-3">
+              Father Stefan brings youthful energy and fresh theological insights to our parish community.
+            </p>
+            <p>
+              With God's blessing and your prayers.
+            </p>
+            <p className="mt-3 text-right font-serif italic text-xs">— Father Stefan</p>
+          </div>
+        </div>
+
+        {/* Fourth Priest */}
+        <div className="flex flex-col">
+          <div className="flex flex-col items-center mb-4">
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-3">
+              <img 
+                src="/placeholder.svg" 
+                alt="Father Dragan Stojanović" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="font-semibold text-center text-sm">Father Dragan Stojanović</p>
+          </div>
+          
+          <div className="text-sm">
+            <p className="mb-3 italic">
+              "May the Lord's mercy be upon you all."
+            </p>
+            <p className="mb-3">
+              Father Dragan serves as our youth minister and community outreach coordinator.
+            </p>
+            <p>
+              In Christ's love and service.
+            </p>
+            <p className="mt-3 text-right font-serif italic text-xs">— Father Dragan</p>
           </div>
         </div>
       </div>
