@@ -24,35 +24,35 @@ const OurMissionSection: React.FC<OurMissionSectionProps> = ({ onImageClick }) =
     <section className="section bg-white">
       <div className="container-custom">
         <div className="card">
-          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+          <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
             {t('about.ourMission.title')}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="mb-6">
-                {t('about.ourMission.p1')}
-              </p>
-              <img
-                src={missionImages[0].src}
-                alt={missionImages[0].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(missionImages[0].src)}
-              />
-              <p className="mb-6">
-                {t('about.ourMission.p2')}
-              </p>
-            </div>
-            <div>
-              <img
-                src={missionImages[1].src}
-                alt={missionImages[1].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(missionImages[1].src)}
-              />
-              <p className="mb-6">
-                {t('about.ourMission.p3')}
-              </p>
-            </div>
+          
+          {/* Text content in centered column */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="mb-6 text-center">
+              {t('about.ourMission.p1')}
+            </p>
+            <p className="mb-6 text-center">
+              {t('about.ourMission.p2')}
+            </p>
+            <p className="text-center">
+              {t('about.ourMission.p3')}
+            </p>
+          </div>
+
+          {/* Images in symmetric grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {missionImages.map((image, index) => (
+              <div key={index} className="flex justify-center">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-md"
+                  onClick={() => onImageClick?.(image.src)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

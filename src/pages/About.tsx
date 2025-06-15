@@ -331,54 +331,61 @@ const AboutPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+              <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
                 {t('about.svetiSava.title')}
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="md:col-span-1 flex flex-col gap-4">
+              {/* Text content in centered column */}
+              <div className="max-w-4xl mx-auto mb-8">
+                <h3 className="text-xl font-serif mb-6 text-center">{t('about.svetiSava.subtitle')}</h3>
+                <p className="mb-6 text-center">
+                  {t('about.svetiSava.p1')}
+                </p>
+                <p className="mb-6 text-center">
+                  {t('about.svetiSava.p2')}
+                </p>
+                <p className="mb-6 text-center">
+                  {t('about.svetiSava.p3')}
+                </p>
+                <p className="mb-6 text-center">
+                  {t('about.svetiSava.p4')}
+                </p>
+                <p className="text-center">
+                  {t('about.svetiSava.p5')}
+                </p>
+              </div>
+
+              {/* Images in symmetric grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="flex justify-center">
                   <img 
                     src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop" 
                     alt={t('about.svetiSava.image1Alt')} 
-                    className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() => handleImageClick("https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop")}
                   />
+                </div>
+                <div className="flex justify-center">
                   <img 
                     src="https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop"
                     alt={t('about.svetiSava.image2Alt')}
-                    className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() => handleImageClick("https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop")}
                   />
                 </div>
-                
-                <div className="md:col-span-3 flex flex-col gap-3">
-                  <h3 className="text-xl font-serif mb-3">{t('about.svetiSava.subtitle')}</h3>
-                  <p>
-                    {t('about.svetiSava.p1')}
-                  </p>
-                  <p>
-                    {t('about.svetiSava.p2')}
-                  </p>
+                <div className="flex justify-center">
                   <img
                     src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop"
                     alt={t('about.svetiSava.image3Alt')}
-                    className="rounded-lg w-full my-2 cursor-pointer hover:opacity-90 transition-opacity"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() => handleImageClick("https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop")}
                   />
-                  <p>
-                    {t('about.svetiSava.p3')}
-                  </p>
-                  <p>
-                    {t('about.svetiSava.p4')}
-                  </p>
-                  <p>
-                    {t('about.svetiSava.p5')}
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        
         
         {/* Our Priests Section */}
         <section className="section bg-orthodox-cream">

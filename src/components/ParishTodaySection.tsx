@@ -28,41 +28,35 @@ const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({ onImageClick })
     <section className="section bg-orthodox-cream">
       <div className="container-custom">
         <div className="card">
-          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+          <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
             {t('about.parishToday.title')}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="mb-6">
-                {t('about.parishToday.p1')}
-              </p>
-              <img
-                src={images[0].src}
-                alt={images[0].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(images[0].src)}
-              />
-              <p className="mb-6">
-                {t('about.parishToday.p2')}
-              </p>
-            </div>
-            <div>
-              <img
-                src={images[1].src}
-                alt={images[1].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(images[1].src)}
-              />
-              <p className="mb-6">
-                {t('about.parishToday.p3')}
-              </p>
-              <img
-                src={images[2].src}
-                alt={images[2].alt}
-                className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(images[2].src)}
-              />
-            </div>
+          
+          {/* Text content in centered column */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="mb-6 text-center">
+              {t('about.parishToday.p1')}
+            </p>
+            <p className="mb-6 text-center">
+              {t('about.parishToday.p2')}
+            </p>
+            <p className="text-center">
+              {t('about.parishToday.p3')}
+            </p>
+          </div>
+
+          {/* Images in symmetric grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {images.map((image, index) => (
+              <div key={index} className="flex justify-center">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
+                  onClick={() => onImageClick?.(image.src)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

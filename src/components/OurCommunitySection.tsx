@@ -24,35 +24,35 @@ const OurCommunitySection: React.FC<OurCommunitySectionProps> = ({ onImageClick 
     <section className="section bg-orthodox-cream">
       <div className="container-custom">
         <div className="card">
-          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
+          <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
             {t('about.ourCommunity.title')}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="mb-6">
-                {t('about.ourCommunity.p1')}
-              </p>
-              <img
-                src={communityImages[0].src}
-                alt={communityImages[0].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(communityImages[0].src)}
-              />
-              <p className="mb-6">
-                {t('about.ourCommunity.p2')}
-              </p>
-            </div>
-            <div>
-              <img
-                src={communityImages[1].src}
-                alt={communityImages[1].alt}
-                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick?.(communityImages[1].src)}
-              />
-              <p className="mb-6">
-                {t('about.ourCommunity.p3')}
-              </p>
-            </div>
+          
+          {/* Text content in centered column */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <p className="mb-6 text-center">
+              {t('about.ourCommunity.p1')}
+            </p>
+            <p className="mb-6 text-center">
+              {t('about.ourCommunity.p2')}
+            </p>
+            <p className="text-center">
+              {t('about.ourCommunity.p3')}
+            </p>
+          </div>
+
+          {/* Images in symmetric grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {communityImages.map((image, index) => (
+              <div key={index} className="flex justify-center">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-md"
+                  onClick={() => onImageClick?.(image.src)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
