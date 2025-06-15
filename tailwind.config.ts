@@ -66,7 +66,7 @@ export default {
 				// Orthodox Church color palette - updated colors
 				orthodox: {
 					blue: '#1C3F7C',  // Slightly more vivid blue
-					gold: '#C7363D',  // Changed from gold to Serbian flag red
+					gold: '#D4AF37',  // More traditional gold color
 					red: '#9B2226',   // Deeper red
 					cream: '#F4F1E8', // Slightly warmer cream color
 					gray: '#3D4044',  // Slightly darker gray
