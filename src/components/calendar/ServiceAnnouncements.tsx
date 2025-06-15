@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { fetchContentfulEntries } from '../../lib/contentful';
 import { useQuery } from '@tanstack/react-query';
@@ -47,15 +48,16 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'paragraph') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<p>${content}</p>`;
+      // Only wrap in <p> if there's actual content
+      return content.trim() ? `<p style="margin-bottom: 12px;">${content}</p>` : '<br>';
     } else if (node.nodeType === 'unordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">${listItems}</ul>`;
+      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0; margin-bottom: 12px;">${listItems}</ul>`;
     } else if (node.nodeType === 'ordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0;">${listItems}</ol>`;
+      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0; margin-bottom: 12px;">${listItems}</ol>`;
     } else if (node.nodeType === 'list-item') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
@@ -63,27 +65,27 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'heading-1') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h1>${content}</h1>`;
+      return `<h1 style="margin-bottom: 12px;">${content}</h1>`;
     } else if (node.nodeType === 'heading-2') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h2>${content}</h2>`;
+      return `<h2 style="margin-bottom: 12px;">${content}</h2>`;
     } else if (node.nodeType === 'heading-3') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h3>${content}</h3>`;
+      return `<h3 style="margin-bottom: 12px;">${content}</h3>`;
     } else if (node.nodeType === 'heading-4') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h4>${content}</h4>`;
+      return `<h4 style="margin-bottom: 12px;">${content}</h4>`;
     } else if (node.nodeType === 'heading-5') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h5>${content}</h5>`;
+      return `<h5 style="margin-bottom: 12px;">${content}</h5>`;
     } else if (node.nodeType === 'heading-6') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h6>${content}</h6>`;
+      return `<h6 style="margin-bottom: 12px;">${content}</h6>`;
     } else if (node.nodeType === 'hyperlink') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
@@ -99,9 +101,9 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'blockquote') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<blockquote>${content}</blockquote>`;
+      return `<blockquote style="margin-bottom: 12px;">${content}</blockquote>`;
     } else if (node.nodeType === 'hr') {
-      return '<hr>';
+      return '<hr style="margin: 12px 0;">';
     } else if (node.content && Array.isArray(node.content)) {
       return node.content.map(processNode).join('');
     }
