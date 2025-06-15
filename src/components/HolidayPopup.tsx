@@ -93,9 +93,12 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
                 )}
               </div>
 
-              {/* Event description, not centered */}
+              {/* Event description, not centered - now properly rendering HTML */}
               {event.description && (
-                <p className="text-gray-700 break-words mb-1">{event.description}</p>
+                <div 
+                  className="text-gray-700 break-words mb-1 prose prose-sm max-w-none"
+                  dangerouslySetInnerHTML={{ __html: event.description }}
+                />
               )}
 
               {/* Location and Tag Pill - location on left, tag on right */}
