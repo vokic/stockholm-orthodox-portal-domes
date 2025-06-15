@@ -76,11 +76,21 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
         }
       }
 
+      // Handle description - convert rich text to HTML
+      let description = '';
+      if (item.fields.description) {
+        if (typeof item.fields.description === 'string') {
+          description = item.fields.description;
+        } else if (item.fields.description.content) {
+          description = convertRichTextToHtml(item.fields.description);
+        }
+      }
+
       return {
         id: item.sys.id,
         title: item.fields.title || 'Service Announcement',
         content: content,
-        description: item.fields.description || '',
+        description: description,
         publishedDate: item.fields.publishedDate || item.sys.createdAt
       };
     }).sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
@@ -135,21 +145,12 @@ const ServiceAnnouncements: React.FC = () => {
             key={announcement.id}
             className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6"
           >
-            <div className="flex justify-between items-start mb-3">
-              <h3 className="text-xl font-serif text-orthodox-blue">{announcement.title}</h3>
-              <div className="text-sm text-gray-500 ml-4 flex-shrink-0">
-                {new Date(announcement.publishedDate).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })} {new Date(announcement.publishedDate).toLocaleTimeString('en-US', {
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </div>
-            </div>
+            <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
             {announcement.description && (
-              <p className="text-gray-600 mb-3 italic">{announcement.description}</p>
+              <div 
+                className="prose max-w-none text-gray-600 mb-3 italic"
+                dangerouslySetInnerHTML={{ __html: announcement.description }}
+              />
             )}
             <div 
               className="prose max-w-none text-gray-700"
