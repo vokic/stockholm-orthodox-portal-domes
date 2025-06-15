@@ -12,6 +12,26 @@ export interface Event {
   highlight?: boolean;
 }
 
+// Helper function to extract plain text from Contentful rich text
+const extractTextFromRichText = (richTextObj: any): string => {
+  if (!richTextObj || !richTextObj.content) {
+    return '';
+  }
+  
+  let text = '';
+  
+  const processNode = (node: any): void => {
+    if (node.nodeType === 'text') {
+      text += node.value;
+    } else if (node.content && Array.isArray(node.content)) {
+      node.content.forEach(processNode);
+    }
+  };
+  
+  richTextObj.content.forEach(processNode);
+  return text.trim();
+};
+
 export const fetchEvents = async (): Promise<Event[]> => {
   try {
     const data = await fetchContentfulEntries('eventModel');
@@ -41,15 +61,15 @@ export const fetchEvents = async (): Promise<Event[]> => {
         time = item.fields.time || '';
       }
 
-      // Ensure description is a string, not a complex object
+      // Handle description - extract text from rich text format
       let description = '';
       if (item.fields.description) {
         if (typeof item.fields.description === 'string') {
           description = item.fields.description;
         } else if (item.fields.description.content) {
-          // If it's a rich text object, extract plain text
+          // Extract plain text from rich text object
           console.log('Description is rich text object:', item.fields.description);
-          description = 'Event description available'; // Fallback text
+          description = extractTextFromRichText(item.fields.description);
         } else {
           description = '';
         }
