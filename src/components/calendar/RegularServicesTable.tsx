@@ -23,7 +23,6 @@ const regularServices = [
 ];
 
 const RegularServicesTable: React.FC = () => {
-  // You can update this date when the services schedule changes
   const lastUpdated = '2024-06-15';
 
   return (

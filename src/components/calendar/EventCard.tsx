@@ -11,27 +11,19 @@ interface EventCardProps {
 const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
   const getEventTypeLabel = (type: string) => {
     switch (type) {
-      case 'service':
-        return 'Service';
-      case 'event':
-        return 'Event';
-      case 'slava':
-        return 'Slava';
-      default:
-        return 'Event';
+      case 'service': return 'Service';
+      case 'event': return 'Event';
+      case 'slava': return 'Slava';
+      default: return 'Event';
     }
   };
 
   const getEventTypeColor = (type: string) => {
     switch (type) {
-      case 'service':
-        return 'bg-blue-100 text-blue-800';
-      case 'event':
-        return 'bg-green-100 text-green-800';
-      case 'slava':
-        return 'bg-purple-100 text-purple-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+      case 'service': return 'bg-blue-100 text-blue-800';
+      case 'event': return 'bg-green-100 text-green-800';
+      case 'slava': return 'bg-purple-100 text-purple-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -70,7 +62,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
         />
       )}
       
-      {/* Location and Tag Pill - location on left, tag on right with proper spacing */}
       <div className="flex items-center justify-between w-full mt-2">
         {event.location && (
           <div className="flex items-center gap-1 text-sm text-gray-600">

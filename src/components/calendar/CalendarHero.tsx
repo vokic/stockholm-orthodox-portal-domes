@@ -1,6 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { Info } from 'lucide-react';
 import HolidayPopup from '../HolidayPopup';
 import { fetchEvents, Event } from '../../services/eventService';
 
@@ -18,7 +18,6 @@ const CalendarHero: React.FC = () => {
         const thirtyDaysFromNow = new Date();
         thirtyDaysFromNow.setDate(today.getDate() + 30);
         
-        // Find the first upcoming event within the next 30 days
         const nextEvent = events
           .filter(event => {
             if (!event.date) return false;
@@ -41,11 +40,9 @@ const CalendarHero: React.FC = () => {
   return (
     <div className="bg-orthodox-blue text-white py-12">
       <div className="container-custom">
-        <div className="flex items-center gap-2 mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold font-serif text-orthodox-gold">
-            {t('calendar.title')}
-          </h1>
-        </div>
+        <h1 className="text-3xl md:text-4xl font-bold font-serif text-orthodox-gold mb-4">
+          {t('calendar.title')}
+        </h1>
         <p className="text-white">
           Stay informed about our services, events, and celebrations.
         </p>

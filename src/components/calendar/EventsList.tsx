@@ -12,37 +12,23 @@ interface EventsListProps {
 const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }) => {
   const getEventTypeLabel = (type: string) => {
     switch (type) {
-      case 'service':
-        return 'Service';
-      case 'event':
-        return 'Event';
-      case 'slava':
-        return 'Slava';
-      default:
-        return 'Event';
+      case 'service': return 'Service';
+      case 'event': return 'Event';
+      case 'slava': return 'Slava';
+      default: return 'Event';
     }
   };
 
   const getEventTypeColor = (type: string) => {
     switch (type) {
-      case 'service':
-        return 'bg-blue-100 text-blue-800';
-      case 'event':
-        return 'bg-green-100 text-green-800';
-      case 'slava':
-        return 'bg-purple-100 text-purple-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+      case 'service': return 'bg-blue-100 text-blue-800';
+      case 'event': return 'bg-green-100 text-green-800';
+      case 'slava': return 'bg-purple-100 text-purple-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
-  // Remove the extra filtering here since events are already filtered in Calendar.tsx
-  const filteredEvents = events;
-
-  console.log('EventsList - eventType prop:', eventType); // Debug log
-  console.log('EventsList - received events:', events); // Debug log
-
-  if (filteredEvents.length === 0) {
+  if (events.length === 0) {
     const message = eventType === 'service' 
       ? 'No special services currently scheduled.'
       : eventType === 'event'
@@ -56,7 +42,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
 
   return (
     <div className="divide-y">
-      {filteredEvents.map((event) => {
+      {events.map((event) => {
         const itemClasses = event.highlight 
           ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-100 via-yellow-50 to-orange-50 pl-4 pr-4 rounded-r-lg shadow-md border border-yellow-200"
           : "py-4";
@@ -92,7 +78,6 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
               />
             )}
             
-            {/* Location and Tag Pill - location on left, tag on right with proper spacing */}
             <div className="flex items-center justify-between w-full mt-2">
               {event.location && (
                 <div className="flex items-center gap-1 text-sm text-gray-600">

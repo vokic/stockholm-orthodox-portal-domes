@@ -20,7 +20,6 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
   formatMonthYear,
   totalEventsCount
 }) => {
-  // Group events by month
   const groupEventsByMonth = (events: Event[]) => {
     const grouped: { [key: string]: Event[] } = {};
     events.forEach(event => {
@@ -33,12 +32,10 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
       }
     });
     
-    // Sort grouped events by month/year
     const sortedGrouped: { [key: string]: Event[] } = {};
     Object.keys(grouped)
       .sort((a, b) => {
-        // Parse the month/year strings to compare dates
-        const dateA = new Date(a + ' 1'); // Add day to make it a valid date
+        const dateA = new Date(a + ' 1');
         const dateB = new Date(b + ' 1');
         return dateA.getTime() - dateB.getTime();
       })
@@ -58,6 +55,7 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
   if (Object.keys(groupedEvents).length === 0) {
     return (
       <div>
+        <h2 className="text-2xl font-serif mb-4">All Events</h2>
         <p className="text-gray-600">No events to display.</p>
         <p className="text-sm text-gray-500 mt-2">Total events loaded: {totalEventsCount}</p>
       </div>
@@ -66,6 +64,7 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
 
   return (
     <div>
+      <h2 className="text-2xl font-serif mb-4">All Events</h2>
       {Object.entries(groupedEvents).map(([monthYear, monthEvents], monthIndex) => (
         <div key={monthYear}>
           {monthIndex > 0 && <Separator className="my-8" />}

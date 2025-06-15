@@ -17,10 +17,6 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   const languages = [
     { code: 'en', label: t('lang.english') || 'English' },
     { code: 'sv', label: t('lang.swedish') || 'Svenska' },
@@ -31,40 +27,27 @@ const Header: React.FC = () => {
     { code: 'mk', label: t('lang.macedonian') || 'Македонски' },
   ];
 
-  const handleLanguageChange = (lang: Language) => {
-    setLanguage(lang);
-  };
+  const isActiveLink = (path: string) => location.pathname === path;
 
-  // Function to determine if a link is active
-  const isActiveLink = (path: string) => {
-    return location.pathname === path;
-  };
-
-  // Function to get nav link classes
   const getNavLinkClasses = (path: string) => {
     const baseClasses = "transition-all duration-200 text-white hover:text-orthodox-gold";
-    if (isActiveLink(path)) {
-      return `${baseClasses} text-orthodox-gold border-b-2 border-orthodox-gold font-semibold`;
-    }
-    return baseClasses;
+    return isActiveLink(path) 
+      ? `${baseClasses} text-orthodox-gold border-b-2 border-orthodox-gold font-semibold`
+      : baseClasses;
   };
 
   return (
     <header className="bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <div className="text-orthodox-gold text-3xl mr-3">
-                <SerbianCross size={28} className="text-orthodox-gold" />
-              </div>
-              <div>
-                <h1 className="text-xl font-serif font-bold text-white">
-                  {t('home.churchFullName')}
-                </h1>
-              </div>
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center">
+            <div className="text-orthodox-gold text-3xl mr-3">
+              <SerbianCross size={28} className="text-orthodox-gold" />
+            </div>
+            <h1 className="text-xl font-serif font-bold text-white">
+              {t('home.churchFullName')}
+            </h1>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6 items-center">
@@ -75,7 +58,6 @@ const Header: React.FC = () => {
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
             <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors">{t('nav.donate')}</Link>
 
-            {/* Social Media Icons */}
             <div className="flex items-center gap-2 ml-2">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Facebook size={20} />
@@ -85,7 +67,6 @@ const Header: React.FC = () => {
               </a>
             </div>
 
-            {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-2 bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue">
@@ -96,7 +77,7 @@ const Header: React.FC = () => {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code as Language)}
+                    onClick={() => setLanguage(lang.code as Language)}
                     className={language === lang.code ? "font-bold" : ""}
                   >
                     {lang.label}
@@ -106,9 +87,8 @@ const Header: React.FC = () => {
             </DropdownMenu>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
-            {/* Social Media Icons for Mobile */}
             <div className="flex items-center gap-2 mr-2">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
                 <Facebook size={18} />
@@ -118,7 +98,6 @@ const Header: React.FC = () => {
               </a>
             </div>
             
-            {/* Language Selector for Mobile */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue">
@@ -129,7 +108,7 @@ const Header: React.FC = () => {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code as Language)}
+                    onClick={() => setLanguage(lang.code as Language)}
                     className={language === lang.code ? "font-bold" : ""}
                   >
                     {lang.label}
@@ -138,7 +117,7 @@ const Header: React.FC = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Button variant="ghost" size="icon" onClick={toggleMenu} className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20">
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20">
               <Menu className="h-6 w-6" />
             </Button>
           </div>
@@ -147,12 +126,12 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 flex flex-col gap-4 animate-fade-in">
-            <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={toggleMenu}>{t('nav.home')}</Link>
-            <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={toggleMenu}>{t('nav.aboutUs')}</Link>
-            <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={toggleMenu}>{t('nav.calendar')}</Link>
-            <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
-            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={toggleMenu}>{t('nav.contact')}</Link>
-            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors text-center text-lg" onClick={toggleMenu}>{t('nav.donate')}</Link>
+            <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.home')}</Link>
+            <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.aboutUs')}</Link>
+            <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.calendar')}</Link>
+            <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.articles')}</Link>
+            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={() => setIsMenuStore(false)}>{t('nav.contact')}</Link>
+            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors text-center text-lg" onClick={() => setIsMenuOpen(false)}>{t('nav.donate')}</Link>
           </nav>
         )}
       </div>

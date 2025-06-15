@@ -1,10 +1,11 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 
-const DonatePage: React.FC = () => {
+const Donate: React.FC = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
 
@@ -22,7 +23,6 @@ const DonatePage: React.FC = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Hero Section */}
         <div className="bg-orthodox-blue text-white py-16">
           <div className="container-custom">
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
@@ -32,7 +32,6 @@ const DonatePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Bank Transfer and SWISH Section */}
         <section className="section">
           <div className="container-custom">
             <div className="card">
@@ -41,7 +40,6 @@ const DonatePage: React.FC = () => {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {/* Bank Transfer Information */}
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">Bank Transfer Details</h3>
                   <p className="mb-4">You can make a direct bank transfer to our church account. All donations are used for church maintenance, religious services, and community programs.</p>
@@ -56,7 +54,6 @@ const DonatePage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* SWISH QR Code */}
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">SWISH Payment</h3>
                   <p className="mb-4">For quick and easy donations, use SWISH to transfer directly to our church account:</p>
@@ -79,7 +76,6 @@ const DonatePage: React.FC = () => {
               
               <div className="ornament mb-8">☦</div>
               
-              {/* Other Ways to Support */}
               <h3 className="font-serif text-xl mb-4 text-orthodox-blue">Other Ways to Support Our Church</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -116,4 +112,4 @@ const DonatePage: React.FC = () => {
   );
 };
 
-export default DonatePage;
+export default Donate;

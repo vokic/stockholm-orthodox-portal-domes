@@ -8,7 +8,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative bg-orthodox-blue text-white">
-      {/* Background image */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Serbisk_ortodoxa_kyrka_Enskede.jpg"
@@ -19,7 +18,6 @@ const HeroSection: React.FC = () => {
       </div>
       
       <div className="container-custom relative z-10 py-48 md:py-72 text-center">
-        {/* Increased from py-40 md:py-56 to py-48 md:py-72 for even more height */}
         <div className="mx-auto max-w-3xl">
           <h2 className="text-2xl md:text-3xl font-serif mb-2 text-orthodox-gold">
             {t('home.welcome')}

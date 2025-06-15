@@ -8,28 +8,25 @@ import CalendarFilters from '../components/calendar/CalendarFilters';
 import AllEventsView from '../components/calendar/AllEventsView';
 import FilteredEventsView from '../components/calendar/FilteredEventsView';
 import RegularServicesTable from '../components/calendar/RegularServicesTable';
+import ServiceAnnouncements from '../components/calendar/ServiceAnnouncements';
 import { useCalendarData } from '../hooks/useCalendarData';
 
-const CalendarPage: React.FC = () => {
+const Calendar: React.FC = () => {
   const [view, setView] = useState<'all' | 'service' | 'event' | 'slava'>('all');
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
 
   const { events, loading, formatDate, formatMonthYear, getFilteredEvents } = useCalendarData();
   const filteredEvents = getFilteredEvents(view, showPastEvents);
 
-  console.log('Current view:', view);
-  console.log('Show past events:', showPastEvents);
-  console.log('Filtered events:', filteredEvents);
-
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
         <CalendarHero />
+        <ServiceAnnouncements />
 
         <section className="section">
           <div className="container-custom">
-            {/* Regular Services Table: Always visible at top, in card */}
             <div className="card mb-6">
               <RegularServicesTable />
             </div>
@@ -44,7 +41,6 @@ const CalendarPage: React.FC = () => {
 
               <Tabs value={view} onValueChange={(value) => setView(value as any)}>
                 <TabsContent value="all" className="mt-0">
-                  <h2 className="text-2xl font-serif mb-4">All Events</h2>
                   <AllEventsView
                     events={filteredEvents}
                     loading={loading}
@@ -59,6 +55,7 @@ const CalendarPage: React.FC = () => {
                     events={filteredEvents}
                     loading={loading}
                     formatDate={formatDate}
+                    formatMonthYear={formatMonthYear}
                     eventType="service"
                     title="Special Services"
                   />
@@ -69,6 +66,7 @@ const CalendarPage: React.FC = () => {
                     events={filteredEvents}
                     loading={loading}
                     formatDate={formatDate}
+                    formatMonthYear={formatMonthYear}
                     eventType="event"
                     title="Community Events"
                   />
@@ -79,6 +77,7 @@ const CalendarPage: React.FC = () => {
                     events={filteredEvents}
                     loading={loading}
                     formatDate={formatDate}
+                    formatMonthYear={formatMonthYear}
                     eventType="slava"
                     title="Serbian Slavas"
                   />
@@ -93,4 +92,4 @@ const CalendarPage: React.FC = () => {
   );
 };
 
-export default CalendarPage;
+export default Calendar;
