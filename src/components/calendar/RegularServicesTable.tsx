@@ -23,9 +23,21 @@ const regularServices = [
 ];
 
 const RegularServicesTable: React.FC = () => {
+  // You can update this date when the services schedule changes
+  const lastUpdated = '2024-06-15';
+
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-serif mb-4">Regular Services</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-serif">Regular Services</h2>
+        <span className="text-sm text-gray-600">
+          Updated on: {new Date(lastUpdated).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </span>
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -53,4 +65,3 @@ const RegularServicesTable: React.FC = () => {
 };
 
 export default RegularServicesTable;
-
