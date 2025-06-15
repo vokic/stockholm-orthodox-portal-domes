@@ -14,23 +14,19 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
-  // State for local popup
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
 
-  // --- New state for upcoming event from calendar ---
   const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
   const [eventsLoading, setEventsLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
-    // Fetch events and find the first upcoming within next 30 days
     fetchEvents().then((events) => {
       if (!mounted) return;
       const today = new Date();
       const thirtyDaysFromNow = new Date();
       thirtyDaysFromNow.setDate(today.getDate() + 30);
 
-      // Find the first upcoming event within 30 days
       const nextEvent = events
         .filter(event => {
           if (!event.date) return false;
@@ -49,7 +45,6 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
     return () => { mounted = false; };
   }, []);
 
-  // Handler for opening the popup (always available in the footer, all pages)
   const handlePopupOpen = () => {
     setShowHolidayPopup(true);
   };
@@ -58,8 +53,9 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
     <footer className="bg-orthodox-blue text-white pt-10 pb-4">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* About Us */}
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.aboutUs')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.aboutUs', t('nav.aboutUs'))}</h3>
             <p className="mb-4">
               {t('footer.description')}
             </p>
@@ -68,30 +64,47 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             </div>
           </div>
 
+          {/* Services */}
           <div>
             <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.services')}</h3>
             <ul className="space-y-2">
-              <li>{t('services.sunday')}: {t('services.sundayTime')}</li>
-              <li>{t('services.saturday')}: {t('services.saturdayTime')}</li>
+              <li>
+                {t('footer.sundayLiturgy') || (
+                  <>
+                    {t('services.sunday')}: {t('services.sundayTime')}
+                  </>
+                )}
+              </li>
+              <li>
+                {t('footer.saturdayVespers') || (
+                  <>
+                    {t('services.saturday')}: {t('services.saturdayTime')}
+                  </>
+                )}
+              </li>
               <li>
                 <Link to="/calendar" className="text-orthodox-gold hover:underline">
-                  {t('services.calendar')} →
+                  {t('footer.calendarLink', t('services.calendar'))} &rarr;
                 </Link>
               </li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
             <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.contact')}</h3>
             <ul className="space-y-2">
               <li>
-                <strong>{t('footer.address')}:</strong> {t('footer.addressValue')}
+                <strong>{t('footer.address')}:</strong>{" "}
+                {t('footer.addressValue')}
               </li>
               <li>
-                <strong>{t('footer.phone')}:</strong> {t('footer.phoneValue')}
+                <strong>{t('footer.phone')}:</strong>{" "}
+                {t('footer.phoneValue')}
               </li>
               <li>
-                <strong>{t('footer.email')}:</strong> {t('footer.emailValue')}
+                <strong>{t('footer.email')}:</strong>{" "}
+                {t('footer.emailValue')}
               </li>
             </ul>
           </div>
@@ -99,12 +112,13 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
         <div className="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-300 text-center">
           <p className="flex items-center justify-center gap-1">
-            © {currentYear} {t('footer.copyright')} {t('footer.rights')}.
-            <a 
-              href="https://be.contentful.com/login" 
-              target="_blank" 
+            &copy; {currentYear} {t('footer.copyright')} {t('footer.rights')}.
+            <a
+              href="https://be.contentful.com/login"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-orthodox-gold transition-colors"
+              aria-label={t('footer.editContent')}
             >
               <Pencil size={14} />
             </a>
@@ -113,12 +127,14 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
               aria-label={t('footer.holidayPopupOpenLabel')}
               disabled={eventsLoading || !upcomingEvent}
-              style={{ cursor: eventsLoading || !upcomingEvent ? 'not-allowed' : 'pointer', opacity: eventsLoading || !upcomingEvent ? 0.5 : 1 }}
+              style={{
+                cursor: eventsLoading || !upcomingEvent ? 'not-allowed' : 'pointer',
+                opacity: eventsLoading || !upcomingEvent ? 0.5 : 1,
+              }}
             >
               <Info size={14} />
             </button>
           </p>
-          {/* Always render HolidayPopup for test/manual use, only if real next event exists */}
           {showHolidayPopup && upcomingEvent && (
             <HolidayPopup
               open={showHolidayPopup}
