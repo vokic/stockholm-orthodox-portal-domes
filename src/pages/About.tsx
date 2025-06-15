@@ -395,11 +395,11 @@ const AboutPage: React.FC = () => {
                 {t('about.priests')}
               </h2>
               
-              {/* Three Priests - Responsive Grid */}
+              {/* Asymmetrical Layout for Three Priests */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* First Priest */}
-                <div className="flex flex-col">
-                  <div className="mb-4">
+                {/* First Priest - Takes full width on mobile, 2 columns on large screens */}
+                <div className="lg:col-span-2 flex flex-col lg:flex-row gap-6">
+                  <div className="lg:w-1/3">
                     <img 
                       src="/placeholder.svg" 
                       alt={t('about.priest1.imageAlt')} 
@@ -408,7 +408,7 @@ const AboutPage: React.FC = () => {
                     />
                   </div>
                   
-                  <div>
+                  <div className="lg:w-2/3">
                     <h3 className="text-xl font-serif mb-3">{t('about.priest1.name')}</h3>
                     
                     <p className="mb-4">
@@ -426,7 +426,7 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Second Priest */}
+                {/* Second Priest - Takes 1 column on large screens */}
                 <div className="flex flex-col">
                   <div className="mb-4">
                     <img 
@@ -455,9 +455,9 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Third Priest */}
-                <div className="flex flex-col">
-                  <div className="mb-4">
+                {/* Third Priest - Separate row for asymmetrical effect */}
+                <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="lg:order-2">
                     <img 
                       src="/placeholder.svg" 
                       alt="Father Nikola portrait" 
@@ -466,7 +466,7 @@ const AboutPage: React.FC = () => {
                     />
                   </div>
                   
-                  <div>
+                  <div className="lg:order-1">
                     <h3 className="text-xl font-serif mb-3">Father Nikola Petrović</h3>
                     
                     <p className="mb-4">
