@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
@@ -38,17 +37,6 @@ const Header: React.FC = () => {
       : baseClasses;
   };
 
-  // Get appropriate church name based on screen size
-  const getChurchName = () => {
-    const fullName = t('home.churchFullName');
-    // Extract "Sveti Sava" or equivalent short name from the full name
-    // This assumes the pattern is "Sveti Sava Orthodox Church" or similar
-    const shortName = fullName?.split(' ').slice(0, 2).join(' ') || 'Sveti Sava';
-    return { fullName, shortName };
-  };
-
-  const { fullName, shortName } = getChurchName();
-
   return (
     <header className={`
       bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold
@@ -63,11 +51,11 @@ const Header: React.FC = () => {
             </div>
             <h1 className="font-serif font-bold text-white leading-tight min-w-0">
               {/* Mobile: Show short name */}
-              <span className="block sm:hidden text-sm truncate">{shortName}</span>
+              <span className="block sm:hidden text-sm truncate">{t('home.churchShortName') || 'Sveti Sava'}</span>
               {/* Small screens: Show short name */}
-              <span className="hidden sm:block md:hidden text-base truncate">{shortName}</span>
+              <span className="hidden sm:block md:hidden text-base truncate">{t('home.churchShortName') || 'Sveti Sava'}</span>
               {/* Medium and up: Show full name */}
-              <span className="hidden md:block text-xl">{fullName}</span>
+              <span className="hidden md:block text-xl">{t('home.churchFullName') || 'Sveti Sava Orthodox Church'}</span>
             </h1>
           </Link>
 
