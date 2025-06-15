@@ -58,7 +58,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
     <div className="divide-y">
       {filteredEvents.map((event) => {
         const itemClasses = event.highlight 
-          ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-50 to-transparent pl-4 rounded-r-lg shadow-sm"
+          ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-100 via-yellow-50 to-orange-50 pl-4 rounded-r-lg shadow-md border border-yellow-200"
           : "py-4";
 
         return (

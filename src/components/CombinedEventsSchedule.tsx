@@ -104,7 +104,7 @@ const CombinedEventsSchedule: React.FC = () => {
         <div className="space-y-4">
           {upcomingEvents.map((event) => {
             const eventClasses = event.highlight 
-              ? "border-l-4 border-orthodox-gold py-3 bg-gradient-to-r from-yellow-50 to-gray-50 rounded-r shadow-md"
+              ? "border-l-4 border-orthodox-gold py-3 bg-gradient-to-r from-yellow-100 via-yellow-50 to-orange-50 rounded-r shadow-md border border-yellow-200"
               : "border-l-4 border-orthodox-gold py-3 bg-gray-50 rounded-r";
 
             return (
