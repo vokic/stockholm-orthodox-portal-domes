@@ -138,7 +138,7 @@ const CombinedEventsSchedule: React.FC = () => {
                     </p>
                   )}
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mr-2">
                     {event.location && (
                       <div className="flex items-center gap-1 text-sm text-gray-600">
                         <MapPin size={14} />
@@ -146,9 +146,11 @@ const CombinedEventsSchedule: React.FC = () => {
                       </div>
                     )}
                     
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
-                      {getEventTypeLabel(event.type)}
-                    </span>
+                    <div className="flex-shrink-0">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
+                        {getEventTypeLabel(event.type)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

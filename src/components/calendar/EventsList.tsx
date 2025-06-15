@@ -58,7 +58,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
     <div className="divide-y">
       {filteredEvents.map((event) => {
         const itemClasses = event.highlight 
-          ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-100 via-yellow-50 to-orange-50 pl-4 rounded-r-lg shadow-md border border-yellow-200"
+          ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-100 via-yellow-50 to-orange-50 pl-4 pr-4 rounded-r-lg shadow-md border border-yellow-200"
           : "py-4";
 
         return (
@@ -87,7 +87,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
             
             {event.description && <p className="text-gray-700 mb-2">{event.description}</p>}
             
-            {/* Location and Tag Pill - location on left, tag on right */}
+            {/* Location and Tag Pill - location on left, tag on right with proper spacing */}
             <div className="flex items-center justify-between w-full mt-2">
               {event.location && (
                 <div className="flex items-center gap-1 text-sm text-gray-600">
@@ -95,9 +95,11 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
                   <span>{event.location}</span>
                 </div>
               )}
-              <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
-                {getEventTypeLabel(event.type)}
-              </span>
+              <div className="flex-shrink-0">
+                <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
+                  {getEventTypeLabel(event.type)}
+                </span>
+              </div>
             </div>
           </div>
         );
