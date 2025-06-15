@@ -420,9 +420,18 @@ const AboutPage: React.FC = () => {
                     <p className="mb-4">
                       Beyond his pastoral duties, Father Milos actively participates in interfaith dialogue and community outreach programs, helping to bridge understanding between different religious communities in Stockholm.
                     </p>
-                    <p>
+                    <p className="mb-4">
                       He is fluent in Serbian, Swedish, and English, making him accessible to our diverse congregation and ensuring that everyone feels welcome in our spiritual family.
                     </p>
+                    
+                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
+                      <p className="font-medium text-orthodox-blue">Contact:</p>
+                      <p>
+                        <a href="tel:+46701234567" className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors">
+                          +46 70 123 45 67
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 
@@ -449,9 +458,18 @@ const AboutPage: React.FC = () => {
                     <p className="mb-4">
                       Father Stefan has a special ministry with young families and children, organizing youth programs and educational activities that help the next generation connect with their Orthodox heritage.
                     </p>
-                    <p>
+                    <p className="mb-4">
                       His multilingual abilities and understanding of both Serbian and Swedish cultures make him particularly effective in helping new immigrants integrate into both our parish and Swedish society.
                     </p>
+                    
+                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
+                      <p className="font-medium text-orthodox-blue">Contact:</p>
+                      <p>
+                        <a href="tel:+46702345678" className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors">
+                          +46 70 234 56 78
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 
@@ -478,9 +496,18 @@ const AboutPage: React.FC = () => {
                     <p className="mb-4">
                       Father Nikola leads our adult education programs, offering courses on patristic theology, iconography, and the spiritual significance of Orthodox liturgy and traditions.
                     </p>
-                    <p>
+                    <p className="mb-4">
                       His calm presence and wisdom gained through years of monastic discipline provide our community with a direct connection to the ancient traditions of Orthodox monasticism and spirituality.
                     </p>
+                    
+                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
+                      <p className="font-medium text-orthodox-blue">Contact:</p>
+                      <p>
+                        <a href="tel:+46703456789" className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors">
+                          +46 70 345 67 89
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

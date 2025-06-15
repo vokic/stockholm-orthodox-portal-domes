@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -136,20 +135,39 @@ const ContactPage: React.FC = () => {
                   
                   <div>
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">{t('contact.phone.title')}</h3>
-                    <p>
-                      <a href={`tel:${t('contact.phone.main').replace(/\s+/g, '')}`}
-                         className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
-                      >
-                        {t('contact.phone.main')}
-                      </a>
-                    </p>
-                    <p>
-                      <a href={`tel:${t('contact.phone.priest').replace(/\s+/g, '')}`}
-                         className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
-                      >
-                        {t('contact.phone.priest')}
-                      </a>
-                    </p>
+                    <div className="space-y-2">
+                      <p>
+                        <a href={`tel:${t('contact.phone.main').replace(/\s+/g, '')}`}
+                           className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                        >
+                          {t('contact.phone.main')} (Main)
+                        </a>
+                      </p>
+                      <p>
+                        <span className="font-medium">Father Milos Petrović:</span>{" "}
+                        <a href="tel:+46701234567"
+                           className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                        >
+                          +46 70 123 45 67
+                        </a>
+                      </p>
+                      <p>
+                        <span className="font-medium">Father Stefan Jovanović:</span>{" "}
+                        <a href="tel:+46702345678"
+                           className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                        >
+                          +46 70 234 56 78
+                        </a>
+                      </p>
+                      <p>
+                        <span className="font-medium">Father Nikola Petrović:</span>{" "}
+                        <a href="tel:+46703456789"
+                           className="text-orthodox-blue underline hover:text-orthodox-gold duration-150"
+                        >
+                          +46 70 345 67 89
+                        </a>
+                      </p>
+                    </div>
                   </div>
                   
                   <div>
