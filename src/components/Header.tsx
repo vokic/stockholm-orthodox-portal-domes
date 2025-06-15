@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, Language } from '../context/LanguageContext';
@@ -52,10 +53,10 @@ const Header: React.FC = () => {
             <h1 className="font-serif font-bold text-white leading-tight min-w-0">
               {/* Mobile: Show short name */}
               <span className="block sm:hidden text-sm truncate">{t('home.churchShortName') || 'Sveti Sava'}</span>
-              {/* Small screens: Show short name */}
-              <span className="hidden sm:block md:hidden text-base truncate">{t('home.churchShortName') || 'Sveti Sava'}</span>
-              {/* Medium and up: Show full name */}
-              <span className="hidden md:block text-xl">{t('home.churchFullName') || 'Sveti Sava Orthodox Church'}</span>
+              {/* Small and medium screens: Show short name */}
+              <span className="hidden sm:block lg:hidden text-base truncate">{t('home.churchShortName') || 'Sveti Sava'}</span>
+              {/* Large screens and up: Show full name */}
+              <span className="hidden lg:block text-xl">{t('home.churchFullName') || 'Sveti Sava Orthodox Church'}</span>
             </h1>
           </Link>
 
