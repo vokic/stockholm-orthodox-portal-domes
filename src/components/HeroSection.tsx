@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
     <div className="relative bg-orthodox-blue text-white overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=1920&h=1080&fit=crop"
+          src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Serbisk_ortodoxa_kyrka_Enskede.jpg"
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
           style={{
