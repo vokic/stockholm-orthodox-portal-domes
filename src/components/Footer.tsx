@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Us */}
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.aboutUs', t('nav.aboutUs'))}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.aboutUs')}</h3>
             <p className="mb-4">
               {t('footer.description')}
             </p>
@@ -84,7 +84,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               </li>
               <li>
                 <Link to="/calendar" className="text-orthodox-gold hover:underline">
-                  {t('footer.calendarLink', t('services.calendar'))} &rarr;
+                  {t('footer.calendarLink')} &rarr;
                 </Link>
               </li>
             </ul>
@@ -149,3 +149,4 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 };
 
 export default Footer;
+
