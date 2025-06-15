@@ -2,7 +2,11 @@
 import React from "react";
 import { useLanguage } from '../context/LanguageContext';
 
-const OurMissionSection: React.FC = () => {
+interface OurMissionSectionProps {
+  onImageClick?: (imageSrc: string) => void;
+}
+
+const OurMissionSection: React.FC<OurMissionSectionProps> = ({ onImageClick }) => {
   const { t } = useLanguage();
 
   const missionImages = [
@@ -31,7 +35,8 @@ const OurMissionSection: React.FC = () => {
               <img
                 src={missionImages[0].src}
                 alt={missionImages[0].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(missionImages[0].src)}
               />
               <p className="mb-6">
                 {t('about.ourMission.p2')}
@@ -41,7 +46,8 @@ const OurMissionSection: React.FC = () => {
               <img
                 src={missionImages[1].src}
                 alt={missionImages[1].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(missionImages[1].src)}
               />
               <p className="mb-6">
                 {t('about.ourMission.p3')}

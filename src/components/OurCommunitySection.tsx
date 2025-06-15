@@ -2,7 +2,11 @@
 import React from "react";
 import { useLanguage } from '../context/LanguageContext';
 
-const OurCommunitySection: React.FC = () => {
+interface OurCommunitySectionProps {
+  onImageClick?: (imageSrc: string) => void;
+}
+
+const OurCommunitySection: React.FC<OurCommunitySectionProps> = ({ onImageClick }) => {
   const { t } = useLanguage();
 
   const communityImages = [
@@ -31,7 +35,8 @@ const OurCommunitySection: React.FC = () => {
               <img
                 src={communityImages[0].src}
                 alt={communityImages[0].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(communityImages[0].src)}
               />
               <p className="mb-6">
                 {t('about.ourCommunity.p2')}
@@ -41,7 +46,8 @@ const OurCommunitySection: React.FC = () => {
               <img
                 src={communityImages[1].src}
                 alt={communityImages[1].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(communityImages[1].src)}
               />
               <p className="mb-6">
                 {t('about.ourCommunity.p3')}

@@ -2,7 +2,11 @@
 import React from "react";
 import { useLanguage } from '../context/LanguageContext';
 
-const ParishTodaySection: React.FC = () => {
+interface ParishTodaySectionProps {
+  onImageClick?: (imageSrc: string) => void;
+}
+
+const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({ onImageClick }) => {
   const { t } = useLanguage();
 
   const images = [
@@ -35,7 +39,8 @@ const ParishTodaySection: React.FC = () => {
               <img
                 src={images[0].src}
                 alt={images[0].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(images[0].src)}
               />
               <p className="mb-6">
                 {t('about.parishToday.p2')}
@@ -45,7 +50,8 @@ const ParishTodaySection: React.FC = () => {
               <img
                 src={images[1].src}
                 alt={images[1].alt}
-                className="rounded-lg mb-6 shadow-md"
+                className="rounded-lg mb-6 shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(images[1].src)}
               />
               <p className="mb-6">
                 {t('about.parishToday.p3')}
@@ -53,7 +59,8 @@ const ParishTodaySection: React.FC = () => {
               <img
                 src={images[2].src}
                 alt={images[2].alt}
-                className="rounded-lg shadow-md"
+                className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => onImageClick?.(images[2].src)}
               />
             </div>
           </div>

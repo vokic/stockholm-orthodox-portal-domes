@@ -48,6 +48,22 @@ const AboutPage: React.FC = () => {
     {
       src: "/placeholder.svg",
       alt: t('about.priest2.imageAlt')
+    },
+    {
+      src: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop",
+      alt: t('about.parishToday.image1Alt')
+    },
+    {
+      src: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop",
+      alt: t('about.ourMission.image1Alt')
+    },
+    {
+      src: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
+      alt: t('about.ourCommunity.image1Alt')
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop",
+      alt: t('about.ourCommunity.image2Alt')
     }
   ];
 
@@ -223,13 +239,13 @@ const AboutPage: React.FC = () => {
         </div>
 
         {/* Parish Today Section */}
-        <ParishTodaySection />
+        <ParishTodaySection onImageClick={handleImageClick} />
 
         {/* Our Mission Section */}
-        <OurMissionSection />
+        <OurMissionSection onImageClick={handleImageClick} />
 
         {/* Our Community Section */}
-        <OurCommunitySection />
+        <OurCommunitySection onImageClick={handleImageClick} />
 
         {/* Gallery Section */}
         <section className="section">
