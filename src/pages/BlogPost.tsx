@@ -49,8 +49,65 @@ const BlogPostPage: React.FC = () => {
           const paragraphText = node.content
             .map((textNode: any) => {
               if (textNode.nodeType === 'text') {
-                return textNode.value || '';
+                let text = textNode.value || '';
+                
+                // Handle text marks (bold, italic, underline, etc.)
+                if (textNode.marks && Array.isArray(textNode.marks)) {
+                  textNode.marks.forEach((mark: any) => {
+                    switch (mark.type) {
+                      case 'bold':
+                        text = `<strong>${text}</strong>`;
+                        break;
+                      case 'italic':
+                        text = `<em>${text}</em>`;
+                        break;
+                      case 'underline':
+                        text = `<u>${text}</u>`;
+                        break;
+                      case 'code':
+                        text = `<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">${text}</code>`;
+                        break;
+                    }
+                  });
+                }
+                
+                return text;
               }
+              
+              // Handle hyperlinks
+              if (textNode.nodeType === 'hyperlink') {
+                const linkText = textNode.content
+                  .map((linkContentNode: any) => {
+                    if (linkContentNode.nodeType === 'text') {
+                      let text = linkContentNode.value || '';
+                      
+                      // Apply marks to link text as well
+                      if (linkContentNode.marks && Array.isArray(linkContentNode.marks)) {
+                        linkContentNode.marks.forEach((mark: any) => {
+                          switch (mark.type) {
+                            case 'bold':
+                              text = `<strong>${text}</strong>`;
+                              break;
+                            case 'italic':
+                              text = `<em>${text}</em>`;
+                              break;
+                            case 'underline':
+                              text = `<u>${text}</u>`;
+                              break;
+                          }
+                        });
+                      }
+                      
+                      return text;
+                    }
+                    return '';
+                  })
+                  .join('');
+                
+                const uri = textNode.data?.uri || '#';
+                return `<a href="${uri}" class="text-orthodox-blue hover:text-orthodox-gold underline" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+              }
+              
               return '';
             })
             .join('');
