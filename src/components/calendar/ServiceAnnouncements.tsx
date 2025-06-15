@@ -49,43 +49,43 @@ const convertRichTextToHtml = (richTextObj: any): string => {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
       // Only wrap in <p> if there's actual content, otherwise add line break
-      return content.trim() ? `<p style="margin-bottom: 16px; line-height: 1.6;">${content}</p>` : '<br style="margin-bottom: 16px;">';
+      return content.trim() ? `<p style="margin-bottom: 12px; line-height: 1.4;">${content}</p>` : '<br style="margin-bottom: 12px;">';
     } else if (node.nodeType === 'unordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0; margin-bottom: 16px; line-height: 1.6;">${listItems}</ul>`;
+      return `<ul style="list-style-type: disc; margin-left: 20px; padding-left: 0; margin-bottom: 12px; line-height: 1.4;">${listItems}</ul>`;
     } else if (node.nodeType === 'ordered-list') {
       const listItems = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0; margin-bottom: 16px; line-height: 1.6;">${listItems}</ol>`;
+      return `<ol style="list-style-type: decimal; margin-left: 20px; padding-left: 0; margin-bottom: 12px; line-height: 1.4;">${listItems}</ol>`;
     } else if (node.nodeType === 'list-item') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<li style="margin-bottom: 8px;">${content}</li>`;
+      return `<li style="margin-bottom: 6px;">${content}</li>`;
     } else if (node.nodeType === 'heading-1') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h1 style="margin-bottom: 16px; line-height: 1.4;">${content}</h1>`;
+      return `<h1 style="margin-bottom: 12px; line-height: 1.3;">${content}</h1>`;
     } else if (node.nodeType === 'heading-2') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h2 style="margin-bottom: 16px; line-height: 1.4;">${content}</h2>`;
+      return `<h2 style="margin-bottom: 12px; line-height: 1.3;">${content}</h2>`;
     } else if (node.nodeType === 'heading-3') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h3 style="margin-bottom: 16px; line-height: 1.4;">${content}</h3>`;
+      return `<h3 style="margin-bottom: 12px; line-height: 1.3;">${content}</h3>`;
     } else if (node.nodeType === 'heading-4') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h4 style="margin-bottom: 16px; line-height: 1.4;">${content}</h4>`;
+      return `<h4 style="margin-bottom: 12px; line-height: 1.3;">${content}</h4>`;
     } else if (node.nodeType === 'heading-5') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h5 style="margin-bottom: 16px; line-height: 1.4;">${content}</h5>`;
+      return `<h5 style="margin-bottom: 12px; line-height: 1.3;">${content}</h5>`;
     } else if (node.nodeType === 'heading-6') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<h6 style="margin-bottom: 16px; line-height: 1.4;">${content}</h6>`;
+      return `<h6 style="margin-bottom: 12px; line-height: 1.3;">${content}</h6>`;
     } else if (node.nodeType === 'hyperlink') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
@@ -101,9 +101,9 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'blockquote') {
       const content = node.content && Array.isArray(node.content) ? 
         node.content.map(processNode).join('') : '';
-      return `<blockquote style="margin-bottom: 16px; line-height: 1.6;">${content}</blockquote>`;
+      return `<blockquote style="margin-bottom: 12px; line-height: 1.4;">${content}</blockquote>`;
     } else if (node.nodeType === 'hr') {
-      return '<hr style="margin: 16px 0;">';
+      return '<hr style="margin: 12px 0;">';
     } else if (node.content && Array.isArray(node.content)) {
       return node.content.map(processNode).join('');
     }
@@ -207,10 +207,10 @@ const ServiceAnnouncements: React.FC = () => {
             </span>
           </div>
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6">
-            <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
+            <h3 className="text-xl font-serif text-orthodox-blue mb-4">{announcement.title}</h3>
             {announcement.description && (
               <div 
-                className="text-gray-600 mb-3"
+                className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
                 dangerouslySetInnerHTML={{ __html: announcement.description }}
               />
             )}
