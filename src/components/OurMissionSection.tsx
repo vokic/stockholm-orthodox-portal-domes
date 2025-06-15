@@ -41,14 +41,14 @@ const OurMissionSection: React.FC<OurMissionSectionProps> = ({ onImageClick }) =
             </p>
           </div>
 
-          {/* Images in symmetric grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Images in 50/50 grid */}
+          <div className="grid grid-cols-2 gap-8">
             {missionImages.map((image, index) => (
               <div key={index} className="flex justify-center">
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-md"
+                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full"
                   onClick={() => onImageClick?.(image.src)}
                 />
               </div>
