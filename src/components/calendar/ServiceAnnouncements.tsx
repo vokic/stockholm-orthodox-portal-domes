@@ -41,10 +41,42 @@ const convertRichTextToHtml = (richTextObj: any): string => {
     } else if (node.nodeType === 'paragraph') {
       const content = node.content ? node.content.map(processNode).join('') : '';
       return `<p>${content}</p>`;
+    } else if (node.nodeType === 'unordered-list') {
+      const listItems = node.content ? node.content.map(processNode).join('') : '';
+      return `<ul>${listItems}</ul>`;
+    } else if (node.nodeType === 'ordered-list') {
+      const listItems = node.content ? node.content.map(processNode).join('') : '';
+      return `<ol>${listItems}</ol>`;
+    } else if (node.nodeType === 'list-item') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<li>${content}</li>`;
+    } else if (node.nodeType === 'heading-1') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h1>${content}</h1>`;
+    } else if (node.nodeType === 'heading-2') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h2>${content}</h2>`;
+    } else if (node.nodeType === 'heading-3') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h3>${content}</h3>`;
+    } else if (node.nodeType === 'heading-4') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h4>${content}</h4>`;
+    } else if (node.nodeType === 'heading-5') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h5>${content}</h5>`;
+    } else if (node.nodeType === 'heading-6') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<h6>${content}</h6>`;
     } else if (node.nodeType === 'hyperlink') {
       const content = node.content ? node.content.map(processNode).join('') : '';
       const url = node.data?.uri || '#';
       return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-orthodox-blue hover:text-orthodox-gold underline">${content}</a>`;
+    } else if (node.nodeType === 'blockquote') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<blockquote>${content}</blockquote>`;
+    } else if (node.nodeType === 'hr') {
+      return '<hr>';
     } else if (node.content && Array.isArray(node.content)) {
       return node.content.map(processNode).join('');
     }
@@ -148,12 +180,12 @@ const ServiceAnnouncements: React.FC = () => {
             <h3 className="text-xl font-serif text-orthodox-blue mb-3">{announcement.title}</h3>
             {announcement.description && (
               <div 
-                className="prose max-w-none text-gray-600 mb-3"
+                className="prose prose-sm max-w-none text-gray-600 mb-3 prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-strong:font-bold prose-em:italic prose-a:text-orthodox-blue prose-a:underline hover:prose-a:text-orthodox-gold"
                 dangerouslySetInnerHTML={{ __html: announcement.description }}
               />
             )}
             <div 
-              className="prose max-w-none text-gray-700"
+              className="prose prose-sm max-w-none text-gray-700 prose-ul:list-disc prose-ol:list-decimal prose-li:ml-4 prose-strong:font-bold prose-em:italic prose-a:text-orthodox-blue prose-a:underline hover:prose-a:text-orthodox-gold"
               dangerouslySetInnerHTML={{ __html: announcement.content }}
             />
           </div>
