@@ -133,9 +133,10 @@ const CombinedEventsSchedule: React.FC = () => {
                   </h4>
                   
                   {event.description && (
-                    <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                      {event.description}
-                    </p>
+                    <div 
+                      className="text-gray-600 text-sm mb-2 line-clamp-2 prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={{ __html: event.description }}
+                    />
                   )}
                   
                   <div className="flex items-center justify-between mr-2">

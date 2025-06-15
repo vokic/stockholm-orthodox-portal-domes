@@ -64,7 +64,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
       </h4>
       
       {event.description && (
-        <p className="text-gray-700 mb-2">{event.description}</p>
+        <div 
+          className="text-gray-700 mb-2 prose prose-sm max-w-none"
+          dangerouslySetInnerHTML={{ __html: event.description }}
+        />
       )}
       
       {/* Location and Tag Pill - location on left, tag on right with proper spacing */}

@@ -85,7 +85,12 @@ const EventsList: React.FC<EventsListProps> = ({ events, formatDate, eventType }
               {event.title}
             </h3>
             
-            {event.description && <p className="text-gray-700 mb-2">{event.description}</p>}
+            {event.description && (
+              <div 
+                className="text-gray-700 mb-2 prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{ __html: event.description }}
+              />
+            )}
             
             {/* Location and Tag Pill - location on left, tag on right with proper spacing */}
             <div className="flex items-center justify-between w-full mt-2">

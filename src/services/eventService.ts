@@ -12,24 +12,49 @@ export interface Event {
   highlight?: boolean;
 }
 
-// Helper function to extract plain text from Contentful rich text
-const extractTextFromRichText = (richTextObj: any): string => {
+// Helper function to convert Contentful rich text to HTML
+const convertRichTextToHtml = (richTextObj: any): string => {
   if (!richTextObj || !richTextObj.content) {
     return '';
   }
   
-  let text = '';
-  
-  const processNode = (node: any): void => {
+  const processNode = (node: any): string => {
     if (node.nodeType === 'text') {
-      text += node.value;
+      let text = node.value;
+      
+      // Apply formatting based on marks
+      if (node.marks && node.marks.length > 0) {
+        node.marks.forEach((mark: any) => {
+          switch (mark.type) {
+            case 'bold':
+              text = `<strong>${text}</strong>`;
+              break;
+            case 'italic':
+              text = `<em>${text}</em>`;
+              break;
+            case 'underline':
+              text = `<u>${text}</u>`;
+              break;
+          }
+        });
+      }
+      
+      return text;
+    } else if (node.nodeType === 'paragraph') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      return `<p>${content}</p>`;
+    } else if (node.nodeType === 'hyperlink') {
+      const content = node.content ? node.content.map(processNode).join('') : '';
+      const url = node.data?.uri || '#';
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-orthodox-blue hover:text-orthodox-gold underline">${content}</a>`;
     } else if (node.content && Array.isArray(node.content)) {
-      node.content.forEach(processNode);
+      return node.content.map(processNode).join('');
     }
+    
+    return '';
   };
   
-  richTextObj.content.forEach(processNode);
-  return text.trim();
+  return richTextObj.content.map(processNode).join('');
 };
 
 export const fetchEvents = async (): Promise<Event[]> => {
@@ -61,15 +86,15 @@ export const fetchEvents = async (): Promise<Event[]> => {
         time = item.fields.time || '';
       }
 
-      // Handle description - extract text from rich text format
+      // Handle description - convert rich text to HTML
       let description = '';
       if (item.fields.description) {
         if (typeof item.fields.description === 'string') {
           description = item.fields.description;
         } else if (item.fields.description.content) {
-          // Extract plain text from rich text object
+          // Convert rich text object to HTML
           console.log('Description is rich text object:', item.fields.description);
-          description = extractTextFromRichText(item.fields.description);
+          description = convertRichTextToHtml(item.fields.description);
         } else {
           description = '';
         }
