@@ -38,17 +38,17 @@ const RegularServicesTable: React.FC = () => {
           })}
         </span>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4 border-orthodox-gold">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 text-white rounded-lg">
-              <th className="px-6 py-4 text-left font-bold text-lg font-serif rounded-l-lg">Day</th>
+            <tr className="text-white">
+              <th className="px-6 py-4 text-left font-bold text-lg font-serif">Day</th>
               <th className="px-6 py-4 text-left font-bold text-lg font-serif">Service</th>
               <th className="px-6 py-4 text-left font-bold text-lg font-serif">Time</th>
-              <th className="px-6 py-4 text-left font-bold text-lg font-serif rounded-r-lg">Description</th>
+              <th className="px-6 py-4 text-left font-bold text-lg font-serif">Description</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white">
             {regularServices.map((service, index) => (
               <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
                 <td className="px-6 py-3 font-medium">{service.day}</td>
