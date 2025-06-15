@@ -38,6 +38,17 @@ const Header: React.FC = () => {
       : baseClasses;
   };
 
+  // Get appropriate church name based on screen size
+  const getChurchName = () => {
+    const fullName = t('home.churchFullName');
+    // Extract "Sveti Sava" or equivalent short name from the full name
+    // This assumes the pattern is "Sveti Sava Orthodox Church" or similar
+    const shortName = fullName?.split(' ').slice(0, 2).join(' ') || 'Sveti Sava';
+    return { fullName, shortName };
+  };
+
+  const { fullName, shortName } = getChurchName();
+
   return (
     <header className={`
       bg-orthodox-blue shadow-sm sticky top-0 z-50 border-b border-orthodox-gold
@@ -45,37 +56,42 @@ const Header: React.FC = () => {
       ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
     `}>
       <div className="container-custom py-4">
-        <div className="flex items-center justify-between min-w-0 gap-2">
-          <Link to="/" className="flex items-center min-w-0 flex-shrink">
-            <div className="text-orthodox-gold text-3xl mr-2 md:mr-3 flex-shrink-0">
-              <SerbianCross size={24} className="text-orthodox-gold md:w-7 md:h-7" />
+        <div className="flex items-center justify-between gap-2">
+          <Link to="/" className="flex items-center gap-2 md:gap-3 min-w-0 flex-1 md:flex-initial">
+            <div className="text-orthodox-gold flex-shrink-0">
+              <SerbianCross size={20} className="text-orthodox-gold sm:w-6 sm:h-6 md:w-7 md:h-7" />
             </div>
-            <h1 className="text-sm md:text-xl font-serif font-bold text-white leading-tight min-w-0 flex-shrink">
-              <span className="block md:inline">{t('home.churchFullName')}</span>
+            <h1 className="font-serif font-bold text-white leading-tight min-w-0">
+              {/* Mobile: Show short name */}
+              <span className="block sm:hidden text-sm truncate">{shortName}</span>
+              {/* Small screens: Show short name */}
+              <span className="hidden sm:block md:hidden text-base truncate">{shortName}</span>
+              {/* Medium and up: Show full name */}
+              <span className="hidden md:block text-xl">{fullName}</span>
             </h1>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-6 items-center flex-shrink-0">
+          <nav className="hidden lg:flex gap-4 xl:gap-6 items-center flex-shrink-0">
             <Link to="/" className={getNavLinkClasses('/')}>{t('nav.home')}</Link>
             <Link to="/about" className={getNavLinkClasses('/about')}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={getNavLinkClasses('/calendar')}>{t('nav.calendar')}</Link>
             <Link to="/articles" className={getNavLinkClasses('/articles')}>{t('nav.articles')}</Link>
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
-            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors whitespace-nowrap">{t('nav.donate')}</Link>
+            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-4 xl:px-6 py-2 rounded font-medium transition-colors whitespace-nowrap text-sm xl:text-base">{t('nav.donate')}</Link>
 
-            <div className="flex items-center gap-2 ml-2">
+            <div className="flex items-center gap-2">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Facebook size={20} />
+                <Facebook size={18} />
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Instagram size={20} />
+                <Instagram size={18} />
               </a>
             </div>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-2 bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue whitespace-nowrap">
+                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue whitespace-nowrap text-xs">
                   {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
@@ -93,16 +109,13 @@ const Header: React.FC = () => {
             </DropdownMenu>
           </nav>
 
-          {/* Mobile Menu */}
-          <div className="md:hidden flex items-center gap-1 flex-shrink-0">
-            <div className="flex items-center gap-1 mr-1">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Facebook size={16} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Instagram size={16} />
-              </a>
-            </div>
+          {/* Medium screens navigation - simplified */}
+          <nav className="hidden md:flex lg:hidden gap-3 items-center flex-shrink-0">
+            <Link to="/" className={`${getNavLinkClasses('/')} text-sm`}>{t('nav.home')}</Link>
+            <Link to="/about" className={`${getNavLinkClasses('/about')} text-sm`}>{t('nav.aboutUs')}</Link>
+            <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-sm`}>{t('nav.calendar')}</Link>
+            <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-sm`}>{t('nav.contact')}</Link>
+            <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-3 py-1 rounded font-medium transition-colors whitespace-nowrap text-sm">{t('nav.donate')}</Link>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -122,14 +135,45 @@ const Header: React.FC = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+          </nav>
+
+          {/* Mobile Menu - for small and medium screens */}
+          <div className="md:hidden flex items-center gap-1 flex-shrink-0">
+            <div className="flex items-center gap-1">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Facebook size={16} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Instagram size={16} />
+              </a>
+            </div>
             
-            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-8 h-8">
-              <Menu className="h-5 w-5" />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue text-xs px-2 h-7">
+                  {language.toUpperCase()}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code as Language)}
+                    className={language === lang.code ? "font-bold" : ""}
+                  >
+                    {lang.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-7 h-7">
+              <Menu className="h-4 w-4" />
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 flex flex-col gap-4 animate-fade-in">
             <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.home')}</Link>
