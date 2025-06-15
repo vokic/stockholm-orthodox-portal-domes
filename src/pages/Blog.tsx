@@ -152,7 +152,7 @@ const BlogPage: React.FC = () => {
                           <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-gray-500 italic">By {post.author}</span>
-                            <Link to={`/clanci/${post.slug}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
+                            <Link to={`/articles/${post.slug}`} className="text-orthodox-blue hover:text-orthodox-gold font-medium">
                               {t('readMore') || 'Read More'} →
                             </Link>
                           </div>

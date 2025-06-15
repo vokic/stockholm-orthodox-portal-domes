@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -96,7 +95,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">{t('home.latestArticles')}</h2>
             <LatestArticles />
             <div className="text-center mt-6">
-              <Link to="/clanci" className="btn-primary inline-block">{t('home.viewAllArticles')}</Link>
+              <Link to="/articles" className="btn-primary inline-block">{t('home.viewAllArticles')}</Link>
             </div>
           </div>
         </section>
