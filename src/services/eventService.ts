@@ -9,6 +9,7 @@ export interface Event {
   time: string;
   location: string;
   type: 'service' | 'event' | 'slava';
+  highlight?: boolean;
 }
 
 export const fetchEvents = async (): Promise<Event[]> => {
@@ -45,7 +46,8 @@ export const fetchEvents = async (): Promise<Event[]> => {
         date: date,
         time: time,
         location: item.fields.location || '',
-        type: item.fields.type || 'event'
+        type: item.fields.type || 'event',
+        highlight: item.fields.highlight || false
       };
     });
   } catch (error) {

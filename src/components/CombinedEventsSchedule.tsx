@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Calendar, Clock, MapPin } from 'lucide-react';
+import { Calendar, Clock, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchEvents, Event } from '../services/eventService';
 
@@ -102,43 +102,58 @@ const CombinedEventsSchedule: React.FC = () => {
       
       {upcomingEvents.length > 0 ? (
         <div className="space-y-4">
-          {upcomingEvents.map((event) => (
-            <div key={event.id} className="border-l-4 border-orthodox-gold py-3 bg-gray-50 rounded-r">
-              <div className="px-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                  <div className="flex items-center gap-2 mb-1 sm:mb-0">
-                    <Calendar size={16} className="text-orthodox-blue" />
-                    <span className="font-medium text-orthodox-blue">{formatDate(event.date)}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Clock size={16} className="text-orthodox-blue" />
-                    <span className="text-sm">{event.time}</span>
-                  </div>
-                </div>
-                
-                <h4 className="font-semibold text-lg mb-1">{event.title}</h4>
-                
-                {event.description && (
-                  <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                    {event.description}
-                  </p>
-                )}
-                
-                <div className="flex items-center justify-between">
-                  {event.location && (
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <MapPin size={14} />
-                      <span>{event.location}</span>
+          {upcomingEvents.map((event) => {
+            const eventClasses = event.highlight 
+              ? "border-l-4 border-orthodox-gold py-3 bg-gradient-to-r from-yellow-50 to-gray-50 rounded-r shadow-md"
+              : "border-l-4 border-orthodox-gold py-3 bg-gray-50 rounded-r";
+
+            return (
+              <div key={event.id} className={eventClasses}>
+                <div className="px-4">
+                  {event.highlight && (
+                    <div className="flex items-center gap-1 mb-2">
+                      <Star size={14} className="text-orthodox-gold fill-orthodox-gold" />
+                      <span className="text-xs font-medium text-orthodox-gold">Featured</span>
                     </div>
                   )}
                   
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
-                    {getEventTypeLabel(event.type)}
-                  </span>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                    <div className="flex items-center gap-2 mb-1 sm:mb-0">
+                      <Calendar size={16} className="text-orthodox-blue" />
+                      <span className="font-medium text-orthodox-blue">{formatDate(event.date)}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock size={16} className="text-orthodox-blue" />
+                      <span className="text-sm">{event.time}</span>
+                    </div>
+                  </div>
+                  
+                  <h4 className={`font-semibold text-lg mb-1 ${event.highlight ? 'text-orthodox-blue' : ''}`}>
+                    {event.title}
+                  </h4>
+                  
+                  {event.description && (
+                    <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                      {event.description}
+                    </p>
+                  )}
+                  
+                  <div className="flex items-center justify-between">
+                    {event.location && (
+                      <div className="flex items-center gap-1 text-sm text-gray-600">
+                        <MapPin size={14} />
+                        <span>{event.location}</span>
+                      </div>
+                    )}
+                    
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(event.type)}`}>
+                      {getEventTypeLabel(event.type)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-8 text-gray-600">

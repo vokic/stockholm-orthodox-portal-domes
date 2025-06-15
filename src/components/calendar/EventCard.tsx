@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar as CalendarIcon, Clock, MapPin } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, MapPin, Star } from 'lucide-react';
 import { Event } from '../../services/eventService';
 
 interface EventCardProps {
@@ -35,8 +35,19 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
     }
   };
 
+  const cardClasses = event.highlight 
+    ? "py-4 border-l-4 border-orthodox-gold bg-gradient-to-r from-yellow-50 to-transparent pl-4 rounded-r-lg shadow-sm"
+    : "py-4";
+
   return (
-    <div className="py-4">
+    <div className={cardClasses}>
+      {event.highlight && (
+        <div className="flex items-center gap-1 mb-2">
+          <Star size={16} className="text-orthodox-gold fill-orthodox-gold" />
+          <span className="text-sm font-medium text-orthodox-gold">Featured Event</span>
+        </div>
+      )}
+      
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <CalendarIcon size={18} className="text-orthodox-blue" />
@@ -47,7 +58,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
           <span>{event.time || 'Time TBD'}</span>
         </div>
       </div>
-      <h4 className="text-xl font-semibold mb-1">{event.title}</h4>
+      
+      <h4 className={`text-xl font-semibold mb-1 ${event.highlight ? 'text-orthodox-blue' : ''}`}>
+        {event.title}
+      </h4>
+      
       {event.description && (
         <p className="text-gray-700 mb-2">{event.description}</p>
       )}
