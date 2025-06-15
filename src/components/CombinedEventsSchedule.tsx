@@ -80,7 +80,7 @@ const CombinedEventsSchedule: React.FC = () => {
     return (
       <div className="card text-center py-8 text-gray-400">
         <Calendar size={32} className="mx-auto mb-2" />
-        {t('loading') || 'Loading events...'}
+        {t('home.loadingEvents')}
       </div>
     );
   }
@@ -96,7 +96,7 @@ const CombinedEventsSchedule: React.FC = () => {
           to="/calendar" 
           className="text-orthodox-blue hover:text-orthodox-gold text-sm font-medium"
         >
-          View All →
+          {t('home.viewAll')}
         </Link>
       </div>
       
@@ -143,7 +143,7 @@ const CombinedEventsSchedule: React.FC = () => {
       ) : (
         <div className="text-center py-8 text-gray-600">
           <Calendar size={48} className="mx-auto mb-4 text-gray-400" />
-          <p>No upcoming events scheduled.</p>
+          <p>{t('home.noUpcomingEvents')}</p>
         </div>
       )}
       
@@ -152,7 +152,7 @@ const CombinedEventsSchedule: React.FC = () => {
           to="/calendar" 
           className="btn-primary inline-block"
         >
-          View Full Calendar
+          {t('home.viewFullCalendar')}
         </Link>
       </div>
     </div>

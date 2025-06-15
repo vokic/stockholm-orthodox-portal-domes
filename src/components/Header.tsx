@@ -21,13 +21,13 @@ const Header: React.FC = () => {
   };
 
   const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'sv', label: 'Svenska' },
-    { code: 'sr_lat', label: 'Srpski (latinica)' },
-    { code: 'sr_cyr', label: 'Српски (ћирилица)' },
-    { code: 'ru', label: 'Русский' },
-    { code: 'el', label: 'Ελληνικά' },
-    { code: 'mk', label: 'Македонски' },
+    { code: 'en', label: t('lang.english') || 'English' },
+    { code: 'sv', label: t('lang.swedish') || 'Svenska' },
+    { code: 'sr_lat', label: t('lang.serbian_lat') || 'Srpski (latinica)' },
+    { code: 'sr_cyr', label: t('lang.serbian_cyr') || 'Српски (ћирилица)' },
+    { code: 'ru', label: t('lang.russian') || 'Русский' },
+    { code: 'el', label: t('lang.greek') || 'Ελληνικά' },
+    { code: 'mk', label: t('lang.macedonian') || 'Македонски' },
   ];
 
   const handleLanguageChange = (lang: Language) => {
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl font-serif font-bold text-orthodox-blue">
-                  Sveti Sava Orthodox Church Stockholm
+                  {t('home.churchFullName')}
                 </h1>
               </div>
             </Link>
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6 items-center">
             <Link to="/" className={getNavLinkClasses('/')}>{t('nav.home')}</Link>
-            <Link to="/about" className={getNavLinkClasses('/about')}>{t('nav.about')}</Link>
+            <Link to="/about" className={getNavLinkClasses('/about')}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={getNavLinkClasses('/calendar')}>{t('nav.calendar')}</Link>
             <Link to="/clanci" className={getNavLinkClasses('/clanci')}>{t('nav.articles')}</Link>
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
@@ -147,7 +147,7 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 flex flex-col gap-4 animate-fade-in">
             <Link to="/" className={`${getNavLinkClasses('/')} text-lg`} onClick={toggleMenu}>{t('nav.home')}</Link>
-            <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={toggleMenu}>{t('nav.about')}</Link>
+            <Link to="/about" className={`${getNavLinkClasses('/about')} text-lg`} onClick={toggleMenu}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-lg`} onClick={toggleMenu}>{t('nav.calendar')}</Link>
             <Link to="/clanci" className={`${getNavLinkClasses('/clanci')} text-lg`} onClick={toggleMenu}>{t('nav.articles')}</Link>
             <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={toggleMenu}>{t('nav.contact')}</Link>

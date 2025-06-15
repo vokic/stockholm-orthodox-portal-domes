@@ -59,7 +59,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.about')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.aboutUs')}</h3>
             <p className="mb-4">
               {t('footer.description')}
             </p>
@@ -69,10 +69,10 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
           </div>
 
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.services')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.services')}</h3>
             <ul className="space-y-2">
-              <li>{t('services.sunday')}: 10:00</li>
-              <li>{t('services.vespers')}: 18:00</li>
+              <li>{t('services.sunday')}: {t('services.sundayTime')}</li>
+              <li>{t('services.saturday')}: {t('services.saturdayTime')}</li>
               <li>
                 <Link to="/calendar" className="text-orthodox-gold hover:underline">
                   {t('services.calendar')} →
@@ -82,7 +82,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
           </div>
 
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('nav.contact')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.contact')}</h3>
             <ul className="space-y-2">
               <li>
                 <strong>{t('footer.address')}:</strong> {t('footer.addressValue')}
@@ -111,7 +111,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             <button
               onClick={handlePopupOpen}
               className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
-              aria-label="Open next upcoming holiday popup"
+              aria-label={t('footer.holidayPopupOpenLabel')}
               disabled={eventsLoading || !upcomingEvent}
               style={{ cursor: eventsLoading || !upcomingEvent ? 'not-allowed' : 'pointer', opacity: eventsLoading || !upcomingEvent ? 0.5 : 1 }}
             >
