@@ -16,7 +16,7 @@ const PriestMessage: React.FC = () => {
           <div className="flex flex-col items-center mb-4">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img
-                src="/placeholder.svg"
+                src="/images/arsenije.jpg"
                 alt={t("priests.father1.name")}
                 className="w-full h-full object-cover"
               />
@@ -41,7 +41,7 @@ const PriestMessage: React.FC = () => {
           <div className="flex flex-col items-center mb-4">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img
-                src="/placeholder.svg"
+                src="/images/dusan.jpg"
                 alt={t("priests.father2.name")}
                 className="w-full h-full object-cover"
               />
