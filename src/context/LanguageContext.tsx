@@ -734,6 +734,7 @@ const translations = {
     // Home Page
     "home.welcome": "Добродошли у",
     "home.churchFullName": "Црква Светог Саве",
+    "home.churchShortName": "Црква Светог Саве",
     "home.church": "Црква Светог Саве",
     "home.intro": "Српска православна црква у Стокхолму",
     "home.learnMore": "О храму и Светом Сави",

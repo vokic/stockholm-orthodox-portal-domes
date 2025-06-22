@@ -74,7 +74,7 @@ const Header: React.FC = () => {
             </div>
             <h1 className="font-serif font-bold text-white leading-tight min-w-0">
               {/* Mobile: Show short name */}
-              <span className="block sm:hidden text-sm truncate">
+              <span className="block sm:hidden text-base truncate">
                 {t("home.churchShortName") || "Sveti Sava"}
               </span>
               {/* Small and medium screens: Show short name */}
@@ -252,14 +252,13 @@ const Header: React.FC = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-
             <Button
               variant="ghost"
               size="icon"
+              className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-10 h-10 [&_svg]:!w-8 [&_svg]:!h-8"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-7 h-7"
             >
-              <Menu className="h-4 w-4" />
+              <Menu />
             </Button>
           </div>
         </div>
