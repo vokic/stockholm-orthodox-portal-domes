@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLanguage, Language } from "../context/LanguageContext";
-import { Menu, Facebook, Instagram } from "lucide-react";
+import { Menu, Facebook, Instagram, X } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -258,7 +258,7 @@ const Header: React.FC = () => {
               className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-10 h-10 [&_svg]:!w-8 [&_svg]:!h-8"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <Menu />
+              {isMenuOpen ? <X /> : <Menu />}
             </Button>
           </div>
         </div>
