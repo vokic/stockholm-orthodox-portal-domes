@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { Link } from 'react-router-dom';
-import { Pencil, Info, Facebook, Instagram } from 'lucide-react';
-import SerbianCross from './SerbianCross';
-import HolidayPopup from './HolidayPopup';
-import { fetchEvents, Event } from '../services/eventService';
+import React, { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
+import { Pencil, Info, Facebook, Instagram } from "lucide-react";
+import SerbianCross from "./SerbianCross";
+import HolidayPopup from "./HolidayPopup";
+import { fetchEvents, Event } from "../services/eventService";
 
 interface FooterProps {
   onHolidayPopupOpen?: () => void;
@@ -20,28 +20,34 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
   useEffect(() => {
     let mounted = true;
-    fetchEvents().then((events) => {
-      if (!mounted) return;
-      const today = new Date();
-      const thirtyDaysFromNow = new Date();
-      thirtyDaysFromNow.setDate(today.getDate() + 30);
+    fetchEvents()
+      .then((events) => {
+        if (!mounted) return;
+        const today = new Date();
+        const thirtyDaysFromNow = new Date();
+        thirtyDaysFromNow.setDate(today.getDate() + 30);
 
-      const nextEvent = events
-        .filter(event => {
-          if (!event.date) return false;
-          const eventDate = new Date(event.date);
-          return eventDate >= today && eventDate <= thirtyDaysFromNow;
-        })
-        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
+        const nextEvent = events
+          .filter((event) => {
+            if (!event.date) return false;
+            const eventDate = new Date(event.date);
+            return eventDate >= today && eventDate <= thirtyDaysFromNow;
+          })
+          .sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          )[0];
 
-      setUpcomingEvent(nextEvent || null);
-      setEventsLoading(false);
-    }).catch((error) => {
-      console.error('Error loading upcoming event for footer popup:', error);
-      if (mounted) setEventsLoading(false);
-    });
+        setUpcomingEvent(nextEvent || null);
+        setEventsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading upcoming event for footer popup:", error);
+        if (mounted) setEventsLoading(false);
+      });
 
-    return () => { mounted = false; };
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const handlePopupOpen = () => {
@@ -50,8 +56,10 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
   const handleAddressClick = () => {
     const address = "Birger Jarlsgatan 98, 114 20 Stockholm, Sweden";
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-    window.open(googleMapsUrl, '_blank');
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      address
+    )}`;
+    window.open(googleMapsUrl, "_blank");
   };
 
   return (
@@ -60,10 +68,10 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Us */}
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.aboutUs')}</h3>
-            <p className="mb-4">
-              {t('footer.description')}
-            </p>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">
+              {t("footer.aboutUs")}
+            </h3>
+            <p className="mb-4">{t("footer.description")}</p>
             <div className="text-orthodox-gold text-3xl">
               <SerbianCross size={32} className="text-orthodox-gold" />
             </div>
@@ -71,25 +79,30 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
           {/* Services */}
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.services')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">
+              {t("footer.services")}
+            </h3>
             <ul className="space-y-2">
               <li>
-                {t('footer.sundayLiturgy') || (
+                {t("footer.sundayLiturgy") || (
                   <>
-                    {t('services.sunday')}: {t('services.sundayTime')}
+                    {t("services.sunday")}: {t("services.sundayTime")}
                   </>
                 )}
               </li>
               <li>
-                {t('footer.saturdayVespers') || (
+                {t("footer.saturdayVespers") || (
                   <>
-                    {t('services.saturday')}: {t('services.saturdayTime')}
+                    {t("services.saturday")}: {t("services.saturdayTime")}
                   </>
                 )}
               </li>
               <li>
-                <Link to="/calendar" className="text-orthodox-gold hover:underline">
-                  {t('footer.calendarLink')} &rarr;
+                <Link
+                  to="/calendar"
+                  className="text-orthodox-gold hover:underline"
+                >
+                  {t("footer.calendarLink")} &rarr;
                 </Link>
               </li>
             </ul>
@@ -97,42 +110,58 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">{t('footer.contact')}</h3>
+            <h3 className="text-xl font-serif mb-4 text-orthodox-gold">
+              {t("footer.contact")}
+            </h3>
             <ul className="space-y-2">
               <li>
-                <strong>{t('footer.address')}:</strong>{" "}
+                <strong>{t("footer.address")}:</strong>{" "}
                 <button
                   onClick={handleAddressClick}
                   className="text-white hover:text-orthodox-gold transition-colors underline"
                 >
-                  {t('footer.addressValue')}
+                  {t("footer.addressValue")}
                 </button>
               </li>
               <li>
-                <strong>{t('footer.phone')}:</strong>{" "}
+                <strong>{t("footer.phone")}:</strong>{" "}
                 <a
-                  href={`tel:${t('footer.phoneValue').replace(/\s+/g, '')}`}
+                  href={`tel:${t("footer.phoneValue").replace(/\s+/g, "")}`}
                   className="text-white hover:text-orthodox-gold transition-colors underline"
                 >
-                  {t('footer.phoneValue')}
+                  {t("footer.phoneValue")}
                 </a>
               </li>
               <li>
-                <strong>{t('footer.email')}:</strong>{" "}
+                <strong>{t("footer.email")}:</strong>{" "}
                 <a
-                  href={`mailto:${t('footer.emailValue')}`}
+                  href={`mailto:${t("footer.emailValue")}`}
                   className="text-white hover:text-orthodox-gold transition-colors underline"
                 >
-                  {t('footer.emailValue')}
+                  {t("footer.emailValue")}
                 </a>
               </li>
               <li className="pt-3">
                 <div className="flex items-center gap-3">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-gold hover:text-white transition-colors">
-                    <Facebook size={20} />
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-orthodox-gold hover:text-white transition-colors"
+                  >
+                    <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-orthodox-gold hover:text-white transition-colors">
-                    <Instagram size={20} />
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-orthodox-gold hover:text-white transition-colors"
+                  >
+                    <Instagram
+                      size={30}
+                      strokeWidth={1.5}
+                      absoluteStrokeWidth
+                    />
                   </a>
                 </div>
               </li>
@@ -142,23 +171,24 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
 
         <div className="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-300 text-center">
           <p className="flex items-center justify-center gap-1">
-            &copy; {currentYear} {t('footer.copyright')} {t('footer.rights')}.
+            &copy; {currentYear} {t("footer.copyright")} {t("footer.rights")}.
             <a
               href="https://be.contentful.com/login"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-orthodox-gold transition-colors"
-              aria-label={t('footer.editContent')}
+              aria-label={t("footer.editContent")}
             >
               <Pencil size={14} />
             </a>
             <button
               onClick={handlePopupOpen}
               className="text-gray-300 hover:text-orthodox-gold transition-colors ml-1"
-              aria-label={t('footer.holidayPopupOpenLabel')}
+              aria-label={t("footer.holidayPopupOpenLabel")}
               disabled={eventsLoading || !upcomingEvent}
               style={{
-                cursor: eventsLoading || !upcomingEvent ? 'not-allowed' : 'pointer',
+                cursor:
+                  eventsLoading || !upcomingEvent ? "not-allowed" : "pointer",
                 opacity: eventsLoading || !upcomingEvent ? 0.5 : 1,
               }}
             >

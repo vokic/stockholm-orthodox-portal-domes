@@ -262,13 +262,13 @@ const ServiceAnnouncements: React.FC = () => {
                   day: "numeric",
                 }
               )}{" "}
-              {new Date(announcement.publishedDate).toLocaleTimeString(
+              {/* {new Date(announcement.publishedDate).toLocaleTimeString(
                 "en-US",
                 {
                   hour: "2-digit",
                   minute: "2-digit",
                 }
-              )}
+              )} */}
             </span>
           </div>
         </div>
