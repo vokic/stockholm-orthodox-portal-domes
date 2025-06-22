@@ -85,7 +85,7 @@ const HomePage: React.FC = () => {
   }, [eventsLoading, upcomingEvent, POPUP_ENABLED]);
 
   const handleGetDirections = () => {
-    const address = "Storgatan 15, 114 51 Stockholm, Sweden";
+    const address = "Bägerstavägen 68, 120 47 Enskede Gård, Stockholm, Sweden";
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
       address
     )}`;
@@ -179,6 +179,7 @@ const HomePage: React.FC = () => {
                   <div>
                     <p className="font-semibold">{t("home.officeHours")}</p>
                     <p>{t("home.officeHoursValue")}</p>
+                    <p>{t("home.officeHoursValue.info")}</p>
                   </div>
                 </div>
                 <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">

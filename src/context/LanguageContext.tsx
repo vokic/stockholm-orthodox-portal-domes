@@ -20,14 +20,14 @@ const translations = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.about": "About Us",
+    "nav.aboutUs": "About Us",
     "nav.calendar": "Calendar",
     "nav.blog": "Blog",
     "nav.contact": "Contact",
     "nav.donate": "Donate",
     "nav.articles": "Articles",
     "nav.services": "Services",
-    "nav.aboutUs": "About Us",
+    "nav.aboutUsUs": "About Us",
 
     // Home Page
     "home.welcome": "Welcome to",
@@ -266,7 +266,7 @@ const translations = {
   sv: {
     // Navigation
     "nav.home": "Hem",
-    "nav.about": "Om Oss",
+    "nav.aboutUs": "Om Oss",
     "nav.calendar": "Kalender",
     "nav.blog": "Blogg",
     "nav.contact": "Kontakt",
@@ -495,7 +495,7 @@ const translations = {
   sr_lat: {
     // Navigation
     "nav.home": "Početna",
-    "nav.about": "O nama",
+    "nav.aboutUs": "O nama",
     "nav.calendar": "Kalendar",
     "nav.blog": "Blog",
     "nav.contact": "Kontakt",
@@ -722,10 +722,10 @@ const translations = {
   },
   sr_cyr: {
     // Navigation
-    "nav.home": "Почетна",
-    "nav.about": "О нама",
-    "nav.calendar": "Календар",
-    "nav.blog": "Блог",
+    "nav.home": "Насловна",
+    "nav.aboutUs": "О храму и Светом Сави",
+    "nav.calendar": "Расрпоред богослужења",
+    "nav.blog": "Актуелно",
     "nav.contact": "Контакт",
     "nav.donate": "Донирај",
     "nav.articles": "Чланци",
@@ -733,9 +733,11 @@ const translations = {
 
     // Home Page
     "home.welcome": "Добродошли у",
-    "home.church": "Православна Црква Свети Сава",
-    "home.intro": "Духовни дом за православне вернике у Стокхолму.",
-    "home.learnMore": "Сазнајте више",
+    "home.churchFullName": "Црква Светог Саве",
+    "home.church": "Црква Светог Саве",
+    "home.intro": "Српска православна црква у Стокхолму",
+    "home.learnMore": "О храму и Светом Сави",
+    "home.announcements": "Обавештење",
     "home.upcomingServices": "Предстојеће службе",
     "home.upcomingEvents": "Предстојећи догађаји",
     "home.priestMessage": "Порука од свештеника",
@@ -743,14 +745,52 @@ const translations = {
     "home.visitUs": "Посетите нас",
     "home.location": "Bägerstavägen 68, 120 47 Enskede Gård, Шведска",
     "home.contactInfo": "Контакт",
-    "home.phone": "Телефон: +46 8 123 456 78",
-    "home.email": "Имејл: info@svetisava-stockholm.se",
-    "home.officeHours": "Радно време: Понедељак до петак, 9:00 - 16:00",
+    "home.phone": "Телефон:",
+    "home.phoneValue": "+46 8 123 456 78",
+    "home.email": "Имејл:",
+    "home.emailValue": "info@svetisava-stockholm.se",
+    "home.officeHours": "Радно време:",
+    "home.officeHoursValue": "Понедељак - петак, 9:00 - 16:00",
+    "home.officeHoursValue.info": "Осим уколико није другачије назначено",
     "home.contactUs": "Контактирајте нас",
+    "home.latestArticles": "Актуелно",
+    "home.viewAllArticles": "Детаљније",
+    "home.viewAll": "Види све",
+    "home.viewFullCalendar": "Види цео распоред",
+    "home.priests.title": "Свештеници",
+    "home.visitOurChurch": "Посетите цркву",
+    "home.visitOurChurchIntro":
+      "Српска православна црква у Стокхолму смештена је у насељу Енскеде, познатом по својим мирним улицама, зеленим површинама и породичној атмосфери. У близини се налазе школе, паркови и јавни превоз, што ово подручје чини лако доступним и пријатним за посету.",
+    "home.addressLabel": "Адреса:",
+    "home.address": "Bägerstavägen 68, 120 47 Enskede Gård, Stockholm, Шведска",
+    "home.getDirections": "Путоказ",
+    "home.churchIntro":
+      "За све информације, питања или духовне разговоре, можете нам се обратити путем телефона или електронске поште. Црква је отворена за све који желе контакт, помоћ или благослов.",
+    "home.publishDate": "Датум објаве: ",
+
+    //Priests
+    "priests.father1.name": "Отац Душан Раковић",
+    "priests.father1.title": "Протојереј Ставрофор",
+    "priests.father1.phone": "Контакт: 073 501 66 95",
+    "priests.father1.greeting":
+      "Отац Душан Раковић дугогодишњи је парох и стуб наше црквене заједнице у Стокхолму. Познат је по својој мудрости, мирноћи и преданој пастирској бризи за све вернике.",
+
+    "priests.father2.name": "Отац Арсеније Гардовић",
+    "priests.father2.title": "Протојереј Ставрофор",
+    "priests.father2.phone": "Контакт: 073 717 14 61",
+    "priests.father2.greeting":
+      "Отац Арсеније Гардовић уноси топлину и присност у свакодневни живот парохије. Посебно је посвећен раду са породицама и очувању православне традиције међу верницима у дијаспори.",
+
+    "priests.father3.name": "Отац Димитрије Раковић",
+    "priests.father3.title": "Протонамесник",
+    "priests.father3.phone": "Контакт: 073 023 67 60",
+    "priests.father3.greeting":
+      "Отац Димитрије Раковић представља млађу снагу свештенства са искреним приступом и блиским односом према омладини. Активно ради на повезивању младих са црквом кроз савремени и отворен дијалог.",
 
     // Services
-    "services.schedule": "Распоред служби",
+    "services.schedule": "Распоред богослужења",
     "services.sunday": "Недељна Литургија",
+
     "services.vespers": "Вечерња служба суботом",
     "services.specialServices": "Посебне службе",
     "services.time": "Време",
@@ -890,9 +930,9 @@ const translations = {
     "contact.directions.title": "Упутства",
 
     // Donate
-    "donate.title": "Подржите нашу цркву",
-    "donate.text": "Помозите да подржимо мисију и рад наше цркве.",
-    "donate.button": "Донирајте",
+    "donate.title": "Пружите подршку нашој цркви",
+    "donate.text": "Укључите се у подршку мисији и раду наше цркве.",
+    "donate.button": "Донирај",
     "donate.options": "Опције за донирање",
     "donate.onetime": "Једнократна донација",
     "donate.onetime.desc":
@@ -946,11 +986,23 @@ const translations = {
     "footer.phone": "Телефон",
     "footer.email": "Е-пошта",
     "footer.rights": "Сва права задржана",
+    "footer.description":
+      "Црква Светог Саве је православна црква у Стокхолму, у градској четврти Еншеде Горд. Црква припада Епархији британско-скандинавској која је органски део Српске православне цркве.",
+    "footer.aboutUs": "О храму",
+    "footer.services": "Богослужења",
+    "footer.contact": "Контакт",
+    "footer.sundayLiturgy": "Свакидашње јутрење",
+    "footer.saturdayVespers": "Света литургија",
+    "footer.calendarLink": "Расрпоред богослужења",
+    "footer.addressValue": "Bägerstavägen 68, 120 47, Enskede Gård",
+    "footer.phoneValue": "+46 31 70 70 70",
+    "footer.emailValue": "adresa_crkve@crkva_svetog_save.com",
+    "footer.copyright": "Садржај је власништво његових аутора.",
   },
   ru: {
     // Navigation
     "nav.home": "Главная",
-    "nav.about": "О нас",
+    "nav.aboutUs": "О нас",
     "nav.calendar": "Календарь",
     "nav.blog": "Блог",
     "nav.contact": "Контакты",
@@ -1182,7 +1234,7 @@ const translations = {
   el: {
     // Navigation
     "nav.home": "Αρχική",
-    "nav.about": "Σχετικά με εμάς",
+    "nav.aboutUs": "Σχετικά με εμάς",
     "nav.calendar": "Ημερολόγιο",
     "nav.blog": "Ιστολόγιο",
     "nav.contact": "Επικοινωνία",
@@ -1414,7 +1466,7 @@ const translations = {
   mk: {
     // Navigation
     "nav.home": "Почетна",
-    "nav.about": "За нас",
+    "nav.aboutUs": "За нас",
     "nav.calendar": "Календар",
     "nav.blog": "Блог",
     "nav.contact": "Контакт",

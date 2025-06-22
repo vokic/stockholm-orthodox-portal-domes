@@ -16,7 +16,7 @@ const PriestMessage: React.FC = () => {
           <div className="flex flex-col items-center mb-4">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img
-                src="/images/arsenije.jpg"
+                src="/images/dusan.webp"
                 alt={t("priests.father1.name")}
                 className="w-full h-full object-cover"
               />
@@ -24,15 +24,17 @@ const PriestMessage: React.FC = () => {
             <p className="font-semibold text-center text-sm">
               {t("priests.father1.name")}
             </p>
+            <p className="text-center text-sm">{t("priests.father1.title")}</p>
           </div>
 
           <div className="text-sm">
             <p className="mb-3 italic">"{t("priests.father1.greeting")}"</p>
-            <p className="mb-3">{t("priests.father1.message1")}</p>
+            <p className="text-center text-sm">{t("priests.father1.phone")}</p>
+            {/* <p className="mb-3">{t("priests.father1.message1")}</p>
             <p>{t("priests.father1.blessing")}</p>
             <p className="mt-3 text-right font-serif italic text-xs">
               {t("priests.father1.signature")}
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -41,7 +43,7 @@ const PriestMessage: React.FC = () => {
           <div className="flex flex-col items-center mb-4">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img
-                src="/images/dusan.jpg"
+                src="/images/arsenije.jpg"
                 alt={t("priests.father2.name")}
                 className="w-full h-full object-cover"
               />
@@ -49,15 +51,17 @@ const PriestMessage: React.FC = () => {
             <p className="font-semibold text-center text-sm">
               {t("priests.father2.name")}
             </p>
+            <p className="text-center text-sm">{t("priests.father2.title")}</p>
           </div>
 
           <div className="text-sm">
             <p className="mb-3 italic">"{t("priests.father2.greeting")}"</p>
-            <p className="mb-3">{t("priests.father2.message1")}</p>
+            <p className="text-center text-sm">{t("priests.father2.phone")}</p>
+            {/* <p className="mb-3">{t("priests.father2.message1")}</p>
             <p>{t("priests.father2.blessing")}</p>
             <p className="mt-3 text-right font-serif italic text-xs">
               {t("priests.father2.signature")}
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -72,22 +76,24 @@ const PriestMessage: React.FC = () => {
               />
             </div>
             <p className="font-semibold text-center text-sm">
-              Father Stefan Marković
+              {t("priests.father3.name")}
             </p>
+            <p className="text-center text-sm">{t("priests.father3.title")}</p>
           </div>
 
           <div className="text-sm">
             <p className="mb-3 italic">
-              "Grace and peace from our Lord Jesus Christ."
+              <p className="mb-3 italic">"{t("priests.father3.greeting")}"</p>
             </p>
-            <p className="mb-3">
-              Father Stefan brings youthful energy and fresh theological
-              insights to our parish community.
+            <p className="text-center text-sm">{t("priests.father3.phone")}</p>
+            {/* <p className="mb-3">{t("priests.father2.message1")}</p>
+            <p>{t("priests.father3.blessing")}</p>
+            <p className="mt-3 text-right font-serif italic text-xs">
+              {t("priests.father3.signature")}
             </p>
-            <p>With God's blessing and your prayers.</p>
             <p className="mt-3 text-right font-serif italic text-xs">
               — Father Stefan
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

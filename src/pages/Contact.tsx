@@ -88,7 +88,7 @@ const ContactPage: React.FC = () => {
   };
 
   const handleGetDirections = () => {
-    const address = "Birger Jarlsgatan 98, 114 20 Stockholm, Sweden";
+    const address = "Bägerstavägen 68, 120 47 Enskede Gård, Stockholm, Sweden";
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
       address
     )}`;
@@ -125,9 +125,9 @@ const ContactPage: React.FC = () => {
                     <h3 className="font-serif text-lg mb-2 text-orthodox-blue">
                       {t("contact.address.title")}
                     </h3>
-                    <p>Birger Jarlsgatan 98</p>
-                    <p>114 20 Stockholm</p>
-                    <p>Sweden</p>
+                    <p>Bägerstavägen 68, 120 47</p>
+                    <p>120 47 Enskede Gård</p>
+                    <p>Stockholm, Sweden</p>
                     <button
                       onClick={handleGetDirections}
                       className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
@@ -351,8 +351,8 @@ const ContactPage: React.FC = () => {
               </div>
 
               <Map
-                address="Birger Jarlsgatan 98, 114 20 Stockholm, Sweden"
-                coordinates={[59.3348, 18.0686]}
+                address="Bägerstavägen 68, 120 47 Enskede Gård Stockholm, Sweden"
+                coordinates={[59.296242, 18.074015]}
               />
             </div>
           </div>

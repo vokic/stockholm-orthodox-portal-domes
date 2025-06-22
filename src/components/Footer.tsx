@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   };
 
   const handleAddressClick = () => {
-    const address = "Birger Jarlsgatan 98, 114 20 Stockholm, Sweden";
+    const address = "Bägerstavägen 68, 120 47 Enskede Gård, Stockholm, Sweden";
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
       address
     )}`;

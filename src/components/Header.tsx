@@ -19,21 +19,22 @@ const Header: React.FC = () => {
   const { showNavbar } = useScrollBehavior();
 
   const languages = [
-    { code: "en", label: t("lang.english") || "English", short: "EN" },
-    { code: "sv", label: t("lang.swedish") || "Svenska", short: "SV" },
     {
       code: "sr_lat",
-      label: t("lang.serbian_lat") || "Srpski (latinica)",
-      short: "SR",
-    },
+      label: "Srpski (latinica)",
+      short: "SR lat",
+    }, // label: t("lang.serbian_lat") || "Srpski (latinica)",
     {
       code: "sr_cyr",
-      label: t("lang.serbian_cyr") || "Српски (ћирилица)",
-      short: "СР",
-    },
-    { code: "ru", label: t("lang.russian") || "Русский", short: "RU" },
-    { code: "el", label: t("lang.greek") || "Ελληνικά", short: "EL" },
-    { code: "mk", label: t("lang.macedonian") || "Македонски", short: "MK" },
+      label: "Српски (ћирилица)",
+      short: "СР ћир",
+    }, // label: t("lang.serbian_cyr") || "Српски (ћирилица)",
+    { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
+
+    { code: "ru", label: "Русский", short: "RU" }, // label: t("lang.russian") || "Русский",
+    { code: "el", label: "Ελληνικά", short: "EL" }, // label: t("lang.greek") || "Ελληνικά",
+    { code: "mk", label: "Македонски", short: "MK" }, // label: t("lang.macedonian") || "Македонски",
+    { code: "en", label: "English", short: "EN" }, // label: t("lang.english") || "English",
   ];
 
   const getCurrentLanguageShort = () => {

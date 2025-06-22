@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchContentfulEntries } from "../../lib/contentful";
 import { useQuery } from "@tanstack/react-query";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ServiceAnnouncement {
   id: string;
@@ -199,6 +200,7 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
 };
 
 const ServiceAnnouncements: React.FC = () => {
+  const { t } = useLanguage();
   const { data: announcements = [], isLoading } = useQuery({
     queryKey: ["serviceAnnouncements"],
     queryFn: fetchServiceAnnouncements,
@@ -210,6 +212,7 @@ const ServiceAnnouncements: React.FC = () => {
         <div className="container-custom">
           <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">
             Obaveštenje
+            {t("home.announcements")}
           </h2>
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
             <div className="text-gray-600">Loading announcements...</div>
@@ -232,7 +235,7 @@ const ServiceAnnouncements: React.FC = () => {
       <div className="container-custom">
         {/* Title outside the card, centered */}
         <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">
-          Obaveštenje
+          {t("home.announcements")}
         </h2>
 
         {/* Single card with uniform styling */}
@@ -253,7 +256,7 @@ const ServiceAnnouncements: React.FC = () => {
 
           <div className="mt-4 text-right">
             <span className="text-sm text-gray-400 font-medium italic">
-              Datum Objave:{" "}
+              {t("home.publishDate")}
               {new Date(announcement.publishedDate).toLocaleDateString(
                 "en-US",
                 {
