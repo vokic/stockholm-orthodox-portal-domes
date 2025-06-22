@@ -208,13 +208,8 @@ const ServiceAnnouncements: React.FC = () => {
     return (
       <section className="section">
         <div className="container-custom">
-          <div className="card">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-serif">Obaveštenje</h2>
-              <span className="text-sm text-gray-600">
-                Datum Objave: Loading...
-              </span>
-            </div>
+          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">Obaveštenje</h2>
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
             <div className="text-gray-600">Loading announcements...</div>
           </div>
         </div>
@@ -233,46 +228,46 @@ const ServiceAnnouncements: React.FC = () => {
   return (
     <section className="section">
       <div className="container-custom">
-        <div className="md:card md:p-6 p-0">
-          <div className="mb-4">
-            <h2 className="text-2xl font-serif">Obaveštenje</h2>
-          </div>
-          <div className="bg-white rounded-lg md:border md:border-gray-200 md:shadow-sm hover:shadow-md transition-shadow md:p-6 p-0">
-            <h3 className="text-xl font-serif text-orthodox-blue mb-4">
-              {announcement.title}
-            </h3>
-            {announcement.description && (
-              <div
-                className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
-                dangerouslySetInnerHTML={{ __html: announcement.description }}
-              />
-            )}
+        {/* Title outside the card, centered */}
+        <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">Obaveštenje</h2>
+        
+        {/* Single card with uniform styling */}
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6">
+          <h3 className="text-xl font-serif text-orthodox-blue mb-4">
+            {announcement.title}
+          </h3>
+          {announcement.description && (
             <div
-              className="text-gray-700 mb-4"
-              dangerouslySetInnerHTML={{ __html: announcement.content }}
+              className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
+              dangerouslySetInnerHTML={{ __html: announcement.description }}
             />
-          </div>
-          {/* Date moved below the card */}
-          <div className="mt-4 text-center">
-            <span className="text-sm text-gray-600 font-medium">
-              Datum Objave:{" "}
-              {new Date(announcement.publishedDate).toLocaleDateString(
-                "en-US",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }
-              )}{" "}
-              {new Date(announcement.publishedDate).toLocaleTimeString(
-                "en-US",
-                {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                }
-              )}
-            </span>
-          </div>
+          )}
+          <div
+            className="text-gray-700 mb-4"
+            dangerouslySetInnerHTML={{ __html: announcement.content }}
+          />
+        </div>
+        
+        {/* Date below the card, to the right */}
+        <div className="mt-4 text-right">
+          <span className="text-sm text-gray-600 font-medium italic">
+            Datum Objave:{" "}
+            {new Date(announcement.publishedDate).toLocaleDateString(
+              "en-US",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )}{" "}
+            {new Date(announcement.publishedDate).toLocaleTimeString(
+              "en-US",
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            )}
+          </span>
         </div>
       </div>
     </section>

@@ -103,13 +103,22 @@ const Header: React.FC = () => {
             </DropdownMenu>
           </nav>
 
-          {/* Medium screens navigation - simplified */}
+          {/* Medium screens navigation - with social icons */}
           <nav className="hidden md:flex lg:hidden gap-3 items-center flex-shrink-0">
             <Link to="/" className={`${getNavLinkClasses('/')} text-sm`}>{t('nav.home')}</Link>
             <Link to="/about" className={`${getNavLinkClasses('/about')} text-sm`}>{t('nav.aboutUs')}</Link>
             <Link to="/calendar" className={`${getNavLinkClasses('/calendar')} text-sm`}>{t('nav.calendar')}</Link>
             <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-sm`}>{t('nav.contact')}</Link>
             <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-3 py-1 rounded font-medium transition-colors whitespace-nowrap text-sm">{t('nav.donate')}</Link>
+            
+            <div className="flex items-center gap-2">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Facebook size={20} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Instagram size={20} />
+              </a>
+            </div>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -131,17 +140,8 @@ const Header: React.FC = () => {
             </DropdownMenu>
           </nav>
 
-          {/* Mobile Menu - for small and medium screens */}
+          {/* Mobile Menu - no social icons in header */}
           <div className="md:hidden flex items-center gap-1 flex-shrink-0">
-            <div className="flex items-center gap-1">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Facebook size={18} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Instagram size={18} />
-              </a>
-            </div>
-            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue text-xs px-2 h-7">
