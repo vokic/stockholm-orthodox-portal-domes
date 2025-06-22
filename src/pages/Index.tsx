@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -21,6 +20,9 @@ const HomePage: React.FC = () => {
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
   const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
   const [eventsLoading, setEventsLoading] = useState(true);
+
+  // POPUP CONTROL: Change this to false to disable the popup completely
+  const POPUP_ENABLED = true;
 
   // Fetch events and get the first upcoming event
   useEffect(() => {
@@ -56,15 +58,18 @@ const HomePage: React.FC = () => {
     };
   }, []);
 
-  // Automatic popup logic with conditions
+  // Automatic popup logic with conditions - now controlled by POPUP_ENABLED flag
   useEffect(() => {
+    if (!POPUP_ENABLED) return; // Exit early if popup is disabled
+
     const hasSeenPopup = sessionStorage.getItem('hasSeenHolidayPopup');
     const isFirstVisit = !hasSeenPopup;
     
     // Show popup automatically only if:
-    // 1. User hasn't seen it in this session
-    // 2. There's an upcoming event within 30 days
-    // 3. Events have finished loading
+    // 1. Popup is enabled
+    // 2. User hasn't seen it in this session
+    // 3. There's an upcoming event within 30 days
+    // 4. Events have finished loading
     if (isFirstVisit && !eventsLoading && upcomingEvent) {
       const timer = setTimeout(() => {
         setShowHolidayPopup(true);
@@ -73,7 +78,7 @@ const HomePage: React.FC = () => {
       
       return () => clearTimeout(timer);
     }
-  }, [eventsLoading, upcomingEvent]);
+  }, [eventsLoading, upcomingEvent, POPUP_ENABLED]);
 
   const handleGetDirections = () => {
     const address = "Storgatan 15, 114 51 Stockholm, Sweden";
@@ -173,10 +178,10 @@ const HomePage: React.FC = () => {
         <DonationSection />
       </main>
       
-      <Footer onHolidayPopupOpen={() => setShowHolidayPopup(true)} />
+      <Footer onHolidayPopupOpen={() => POPUP_ENABLED && setShowHolidayPopup(true)} />
       
-      {/* Holiday popup - only render if there's an upcoming event */}
-      {upcomingEvent && (
+      {/* Holiday popup - only render if enabled and there's an upcoming event */}
+      {POPUP_ENABLED && upcomingEvent && (
         <HolidayPopup 
           event={upcomingEvent}
           open={showHolidayPopup}

@@ -20,14 +20,19 @@ const Header: React.FC = () => {
   const { showNavbar } = useScrollBehavior();
 
   const languages = [
-    { code: 'en', label: t('lang.english') || 'English' },
-    { code: 'sv', label: t('lang.swedish') || 'Svenska' },
-    { code: 'sr_lat', label: t('lang.serbian_lat') || 'Srpski (latinica)' },
-    { code: 'sr_cyr', label: t('lang.serbian_cyr') || 'Српски (ћирилица)' },
-    { code: 'ru', label: t('lang.russian') || 'Русский' },
-    { code: 'el', label: t('lang.greek') || 'Ελληνικά' },
-    { code: 'mk', label: t('lang.macedonian') || 'Македонски' },
+    { code: 'en', label: t('lang.english') || 'English', short: 'EN' },
+    { code: 'sv', label: t('lang.swedish') || 'Svenska', short: 'SV' },
+    { code: 'sr_lat', label: t('lang.serbian_lat') || 'Srpski (latinica)', short: 'SR' },
+    { code: 'sr_cyr', label: t('lang.serbian_cyr') || 'Српски (ћирилица)', short: 'СР' },
+    { code: 'ru', label: t('lang.russian') || 'Русский', short: 'RU' },
+    { code: 'el', label: t('lang.greek') || 'Ελληνικά', short: 'EL' },
+    { code: 'mk', label: t('lang.macedonian') || 'Македонски', short: 'MK' },
   ];
+
+  const getCurrentLanguageShort = () => {
+    const currentLang = languages.find(lang => lang.code === language);
+    return currentLang?.short || 'EN';
+  };
 
   const isActiveLink = (path: string) => location.pathname === path;
 
@@ -69,19 +74,19 @@ const Header: React.FC = () => {
             <Link to="/contact" className={getNavLinkClasses('/contact')}>{t('nav.contact')}</Link>
             <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-4 xl:px-6 py-2 rounded font-medium transition-colors whitespace-nowrap text-sm xl:text-base">{t('nav.donate')}</Link>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Facebook size={18} />
+                <Facebook size={22} />
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Instagram size={18} />
+                <Instagram size={22} />
               </a>
             </div>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue whitespace-nowrap text-xs">
-                  {language.toUpperCase()}
+                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue whitespace-nowrap text-xs h-9">
+                  {getCurrentLanguageShort()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -108,8 +113,8 @@ const Header: React.FC = () => {
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue text-xs px-2">
-                  {language.toUpperCase()}
+                <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue text-xs px-2 h-9">
+                  {getCurrentLanguageShort()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -130,17 +135,17 @@ const Header: React.FC = () => {
           <div className="md:hidden flex items-center gap-1 flex-shrink-0">
             <div className="flex items-center gap-1">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Facebook size={16} />
+                <Facebook size={18} />
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
-                <Instagram size={16} />
+                <Instagram size={18} />
               </a>
             </div>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-white text-orthodox-blue border-white hover:bg-orthodox-gold hover:text-orthodox-blue text-xs px-2 h-7">
-                  {language.toUpperCase()}
+                  {getCurrentLanguageShort()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -171,6 +176,16 @@ const Header: React.FC = () => {
             <Link to="/articles" className={`${getNavLinkClasses('/articles')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.articles')}</Link>
             <Link to="/contact" className={`${getNavLinkClasses('/contact')} text-lg`} onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
             <Link to="/donate" className="bg-orthodox-gold text-orthodox-blue hover:bg-opacity-90 px-6 py-2 rounded font-medium transition-colors text-center text-lg" onClick={() => setIsMenuOpen(false)}>{t('nav.donate')}</Link>
+            
+            {/* Social media icons below donate button on mobile */}
+            <div className="flex items-center justify-center gap-4 pt-2 border-t border-orthodox-gold/30">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Facebook size={24} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orthodox-gold">
+                <Instagram size={24} />
+              </a>
+            </div>
           </nav>
         )}
       </div>

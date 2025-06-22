@@ -233,9 +233,27 @@ const ServiceAnnouncements: React.FC = () => {
   return (
     <section className="section">
       <div className="container-custom">
-        <div className="card">
-          <div className="flex justify-between items-center mb-4">
+        <div className="md:card md:p-6 p-0">
+          <div className="mb-4">
             <h2 className="text-2xl font-serif">Obaveštenje</h2>
+          </div>
+          <div className="bg-white rounded-lg md:border md:border-gray-200 md:shadow-sm hover:shadow-md transition-shadow md:p-6 p-0">
+            <h3 className="text-xl font-serif text-orthodox-blue mb-4">
+              {announcement.title}
+            </h3>
+            {announcement.description && (
+              <div
+                className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
+                dangerouslySetInnerHTML={{ __html: announcement.description }}
+              />
+            )}
+            <div
+              className="text-gray-700 mb-4"
+              dangerouslySetInnerHTML={{ __html: announcement.content }}
+            />
+          </div>
+          {/* Date moved below the card */}
+          <div className="mt-4 text-center">
             <span className="text-sm text-gray-600 font-medium">
               Datum Objave:{" "}
               {new Date(announcement.publishedDate).toLocaleDateString(
@@ -254,21 +272,6 @@ const ServiceAnnouncements: React.FC = () => {
                 }
               )}
             </span>
-          </div>
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6">
-            <h3 className="text-xl font-serif text-orthodox-blue mb-4">
-              {announcement.title}
-            </h3>
-            {announcement.description && (
-              <div
-                className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
-                dangerouslySetInnerHTML={{ __html: announcement.description }}
-              />
-            )}
-            <div
-              className="text-gray-700"
-              dangerouslySetInnerHTML={{ __html: announcement.content }}
-            />
           </div>
         </div>
       </div>
