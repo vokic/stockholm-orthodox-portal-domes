@@ -208,7 +208,9 @@ const ServiceAnnouncements: React.FC = () => {
     return (
       <section className="section">
         <div className="container-custom">
-          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">Obaveštenje</h2>
+          <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">
+            Obaveštenje
+          </h2>
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
             <div className="text-gray-600">Loading announcements...</div>
           </div>
@@ -229,8 +231,10 @@ const ServiceAnnouncements: React.FC = () => {
     <section className="section">
       <div className="container-custom">
         {/* Title outside the card, centered */}
-        <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">Obaveštenje</h2>
-        
+        <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">
+          Obaveštenje
+        </h2>
+
         {/* Single card with uniform styling */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow p-6">
           <h3 className="text-xl font-serif text-orthodox-blue mb-4">
@@ -246,28 +250,27 @@ const ServiceAnnouncements: React.FC = () => {
             className="text-gray-700 mb-4"
             dangerouslySetInnerHTML={{ __html: announcement.content }}
           />
-        </div>
-        
-        {/* Date below the card, to the right */}
-        <div className="mt-4 text-right">
-          <span className="text-sm text-gray-600 font-medium italic">
-            Datum Objave:{" "}
-            {new Date(announcement.publishedDate).toLocaleDateString(
-              "en-US",
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }
-            )}{" "}
-            {new Date(announcement.publishedDate).toLocaleTimeString(
-              "en-US",
-              {
-                hour: "2-digit",
-                minute: "2-digit",
-              }
-            )}
-          </span>
+
+          <div className="mt-4 text-right">
+            <span className="text-sm text-gray-400 font-medium italic">
+              Datum Objave:{" "}
+              {new Date(announcement.publishedDate).toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}{" "}
+              {new Date(announcement.publishedDate).toLocaleTimeString(
+                "en-US",
+                {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }
+              )}
+            </span>
+          </div>
         </div>
       </div>
     </section>

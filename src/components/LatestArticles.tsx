@@ -66,7 +66,7 @@ const LatestArticles: React.FC = () => {
             <p className="text-gray-600 mb-4 line-clamp-2">{article.excerpt}</p>
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-500 italic">
-                By {article.author}
+                {/* By {article.author} */}
               </span>
               <Link
                 to={`/articles/${article.id}`}
