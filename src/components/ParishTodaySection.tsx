@@ -1,26 +1,27 @@
-
 import React from "react";
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from "../context/LanguageContext";
 
 interface ParishTodaySectionProps {
   onImageClick?: (imageSrc: string) => void;
 }
 
-const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({ onImageClick }) => {
+const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({
+  onImageClick,
+}) => {
   const { t } = useLanguage();
 
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop",
-      alt: t('about.parishToday.image1Alt'),
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-1.jpg",
+      alt: t("about.parishToday.image1Alt"),
     },
     {
-      src: "https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop",
-      alt: t('about.parishToday.image2Alt'),
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-2.jpg",
+      alt: t("about.parishToday.image2Alt"),
     },
     {
-      src: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop",
-      alt: t('about.parishToday.image3Alt'),
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-3.jpg",
+      alt: t("about.parishToday.image3Alt"),
     },
   ];
 
@@ -29,20 +30,16 @@ const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({ onImageClick })
       <div className="container-custom">
         <div className="card">
           <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
-            {t('about.parishToday.title')}
+            {t("about.parishToday.title")}
           </h2>
-          
+
           {/* Text content in centered column */}
           <div className="max-w-4xl mx-auto mb-8">
-            <p className="mb-6 text-center">
-              {t('about.parishToday.p1')}
-            </p>
-            <p className="mb-6 text-center">
-              {t('about.parishToday.p2')}
-            </p>
-            <p className="text-center">
-              {t('about.parishToday.p3')}
-            </p>
+            <p className="mb-6 ">{t("about.parishToday.p1")}</p>
+            <p className="mb-6 ">{t("about.parishToday.p2")}</p>
+            <p className="mb-6 ">{t("about.parishToday.p3")}</p>
+            <p className="mb-6 ">{t("about.parishToday.p4")}</p>
+            <p className="">{t("about.parishToday.p5")}</p>
           </div>
 
           {/* Images in symmetric grid */}

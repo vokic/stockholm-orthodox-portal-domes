@@ -325,14 +325,10 @@ const AboutPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
                   <p className="mb-4">{t("about.historyText.p1")}</p>
-                  <p className="mb-4">{t("about.historyText.p2")}</p>
-                  <p className="mb-4">{t("about.historyText.p3")}</p>
                   <div className="ornament">
                     <SerbianCross size={32} className="text-orthodox-gold" />
                   </div>
-                  <p className="mb-4">{t("about.historyText.p4")}</p>
-                  <p className="mb-4">{t("about.historyText.p5")}</p>
-                  <p className="mb-4">{t("about.historyText.p6")}</p>
+                  <p className="mb-4">{t("about.historyText.p2")}</p>
                 </div>
                 <div className="space-y-4">
                   <img
