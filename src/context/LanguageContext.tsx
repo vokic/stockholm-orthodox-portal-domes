@@ -1786,7 +1786,7 @@ const translations = {
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("sr_cyr");
 
   // Translation function
   const t = (key: string): string => {

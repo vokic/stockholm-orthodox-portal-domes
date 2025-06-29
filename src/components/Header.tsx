@@ -20,15 +20,16 @@ const Header: React.FC = () => {
 
   const languages = [
     {
-      code: "sr_lat",
-      label: "Srpski (latinica)",
-      short: "SR lat",
-    }, // label: t("lang.serbian_lat") || "Srpski (latinica)",
-    {
       code: "sr_cyr",
       label: "Српски (ћирилица)",
       short: "СР ћир",
     }, // label: t("lang.serbian_cyr") || "Српски (ћирилица)",
+    {
+      code: "sr_lat",
+      label: "Srpski (latinica)",
+      short: "SR lat",
+    }, // label: t("lang.serbian_lat") || "Srpski (latinica)",
+
     { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
 
     { code: "ru", label: "Русский", short: "RU" }, // label: t("lang.russian") || "Русский",
@@ -39,7 +40,7 @@ const Header: React.FC = () => {
 
   const getCurrentLanguageShort = () => {
     const currentLang = languages.find((lang) => lang.code === language);
-    return currentLang?.short || "EN";
+    return currentLang?.short || "sr_cyr";
   };
 
   const isActiveLink = (path: string) => location.pathname === path;
