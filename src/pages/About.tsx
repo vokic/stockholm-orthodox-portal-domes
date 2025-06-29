@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -20,6 +21,18 @@ const AboutPage: React.FC = () => {
 
   // All standalone images on the page for modal viewing
   const allPageImages = [
+    {
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-1.jpg",
+      alt: t("about.parishToday.image1Alt"),
+    },
+    {
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-2.jpg",
+      alt: t("about.parishToday.image2Alt"),
+    },
+    {
+      src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-3.jpg",
+      alt: t("about.parishToday.image3Alt"),
+    },
     {
       src: "/images/about/sveti-sava-1.jpg",
       alt: t("about.svetiSava.image0Alt"),
