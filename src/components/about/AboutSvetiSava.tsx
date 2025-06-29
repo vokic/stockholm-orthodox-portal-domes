@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -59,15 +58,13 @@ const AboutSvetiSava: React.FC<AboutSvetiSavaProps> = ({ onImageClick }) => {
           </div>
 
           {/* Images in symmetric grid with proper aspect ratio */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="flex justify-center">
               <img
                 src="/images/about/sveti-sava-1.jpg"
                 alt={t("about.svetiSava.image1Alt")}
                 className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                onClick={() =>
-                  onImageClick("/images/about/sveti-sava-1.jpg")
-                }
+                onClick={() => onImageClick("/images/about/sveti-sava-1.jpg")}
               />
             </div>
             <div className="flex justify-center">
@@ -75,9 +72,7 @@ const AboutSvetiSava: React.FC<AboutSvetiSavaProps> = ({ onImageClick }) => {
                 src="/images/about/sveti-sava-2.jpg"
                 alt={t("about.svetiSava.image2Alt")}
                 className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                onClick={() =>
-                  onImageClick("/images/about/sveti-sava-2.jpg")
-                }
+                onClick={() => onImageClick("/images/about/sveti-sava-2.jpg")}
               />
             </div>
             <div className="flex justify-center">
@@ -85,9 +80,15 @@ const AboutSvetiSava: React.FC<AboutSvetiSavaProps> = ({ onImageClick }) => {
                 src="/images/about/sveti-sava-3.jpg"
                 alt={t("about.svetiSava.image3Alt")}
                 className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                onClick={() =>
-                  onImageClick("/images/about/sveti-sava-3.jpg")
-                }
+                onClick={() => onImageClick("/images/about/sveti-sava-3.jpg")}
+              />
+            </div>
+            <div className="flex justify-center">
+              <img
+                src="/images/about/sveti-sava-4.jpg"
+                alt={t("about.svetiSava.image3Alt")}
+                className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
+                onClick={() => onImageClick("/images/about/sveti-sava-4.jpg")}
               />
             </div>
           </div>

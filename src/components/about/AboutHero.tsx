@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -9,9 +8,11 @@ const AboutHero: React.FC = () => {
     <div
       className="bg-orthodox-blue text-white py-16"
       style={{
-        backgroundImage: "url('/placeholder.svg')",
+        backgroundImage: "url('images/about/crkva-stockholm-spolja-1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundBlendMode: "multiply",
       }}
     >
       <div className="container-custom rounded-lg p-8">
