@@ -390,13 +390,13 @@ const AboutPage: React.FC = () => {
                 <p className="">{t("about.svetiSava.p6a")}</p>
               </div>
 
-              {/* Images in symmetric grid */}
+              {/* Images in symmetric grid with proper aspect ratio */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex justify-center">
                   <img
                     src="/images/about/sveti-sava-1.jpg"
                     alt={t("about.svetiSava.image1Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
                     onClick={() =>
                       handleImageClick("/images/about/sveti-sava-1.jpg")
                     }
@@ -406,7 +406,7 @@ const AboutPage: React.FC = () => {
                   <img
                     src="/images/about/sveti-sava-2.jpg"
                     alt={t("about.svetiSava.image2Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
                     onClick={() =>
                       handleImageClick("/images/about/sveti-sava-2.jpg")
                     }
@@ -416,7 +416,7 @@ const AboutPage: React.FC = () => {
                   <img
                     src="/images/about/sveti-sava-3.jpg"
                     alt={t("about.svetiSava.image3Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
+                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
                     onClick={() =>
                       handleImageClick("/images/about/sveti-sava-3.jpg")
                     }
