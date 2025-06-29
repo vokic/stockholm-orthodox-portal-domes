@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -49,7 +50,7 @@ const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
+                  className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
                   onClick={() => onImageClick?.(image.src)}
                 />
               </div>
