@@ -351,51 +351,74 @@ const AboutPage: React.FC = () => {
 
               {/* Text content in centered column */}
               <div className="max-w-4xl mx-auto mb-8">
-                <h3 className="text-xl font-serif mb-6 text-center">
-                  {t("about.svetiSava.subtitle")}
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle1")}
                 </h3>
-                <p className="mb-6 text-center">{t("about.svetiSava.p1")}</p>
-                <p className="mb-6 text-center">{t("about.svetiSava.p2")}</p>
-                <p className="mb-6 text-center">{t("about.svetiSava.p3")}</p>
-                <p className="mb-6 text-center">{t("about.svetiSava.p4")}</p>
-                <p className="text-center">{t("about.svetiSava.p5")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p1a")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p1b")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p1c")}</p>
+
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle2")}
+                </h3>
+                <p className="mb-6 ">{t("about.svetiSava.p2a")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p2b")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p2c")}</p>
+
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle3")}
+                </h3>
+                <p className="mb-6 ">{t("about.svetiSava.p3a")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p3b")}</p>
+
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle4")}
+                </h3>
+                <p className="mb-6 ">{t("about.svetiSava.p4a")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p4b")}</p>
+
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle5")}
+                </h3>
+                <p className="mb-6 ">{t("about.svetiSava.p5a")}</p>
+                <p className="mb-6 ">{t("about.svetiSava.p5b")}</p>
+
+                <h3 className="text-xl font-serif mb-6">
+                  {t("about.svetiSava.subtitle6")}
+                </h3>
+                <p className="mb-6">{t("about.svetiSava.p6a")}</p>
+                <p className="">{t("about.svetiSava.p6a")}</p>
               </div>
 
               {/* Images in symmetric grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex justify-center">
                   <img
-                    src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop"
+                    src="/images/about/sveti-sava-1.jpg"
                     alt={t("about.svetiSava.image1Alt")}
                     className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() =>
-                      handleImageClick(
-                        "https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop"
-                      )
+                      handleImageClick("/images/about/sveti-sava-1.jpg")
                     }
                   />
                 </div>
                 <div className="flex justify-center">
                   <img
-                    src="https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop"
+                    src="/images/about/sveti-sava-2.jpg"
                     alt={t("about.svetiSava.image2Alt")}
                     className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() =>
-                      handleImageClick(
-                        "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&h=900&fit=crop"
-                      )
+                      handleImageClick("/images/about/sveti-sava-2.jpg")
                     }
                   />
                 </div>
                 <div className="flex justify-center">
                   <img
-                    src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop"
+                    src="/images/about/sveti-sava-3.jpg"
                     alt={t("about.svetiSava.image3Alt")}
                     className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm"
                     onClick={() =>
-                      handleImageClick(
-                        "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop"
-                      )
+                      handleImageClick("/images/about/sveti-sava-3.jpg")
                     }
                   />
                 </div>
