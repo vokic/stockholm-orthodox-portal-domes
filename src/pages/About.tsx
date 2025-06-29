@@ -36,6 +36,15 @@ const AboutPage: React.FC = () => {
       src: "/images/about/srpska-pravoslavna-crkva-stockholm-danas-3.jpg",
       alt: t("about.parishToday.image3Alt"),
     },
+    // History section images
+    {
+      src: "/images/about/crkva-stockholm-stari-izgled.jpg",
+      alt: t("about.gallery.churchHistory"),
+    },
+    {
+      src: "/images/about/crkva-stockholm-spolja-1.jpg",
+      alt: t("about.gallery.churchHistory"),
+    },
     {
       src: "/images/about/sveti-sava-1.jpg",
       alt: t("about.svetiSava.image0Alt"),
