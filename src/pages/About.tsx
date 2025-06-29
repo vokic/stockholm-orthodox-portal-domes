@@ -3,14 +3,17 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
-import { Clock, MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
-import Gallery from "../components/Gallery";
-import Map from "../components/Map";
 import ParishTodaySection from "../components/ParishTodaySection";
 import OurMissionSection from "../components/OurMissionSection";
 import OurCommunitySection from "../components/OurCommunitySection";
-import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
-import SerbianCross from "@/components/SerbianCross";
+import AboutHero from "../components/about/AboutHero";
+import AboutHistory from "../components/about/AboutHistory";
+import AboutSvetiSava from "../components/about/AboutSvetiSava";
+import AboutPriests from "../components/about/AboutPriests";
+import AboutLocationHours from "../components/about/AboutLocationHours";
+import AboutCommunityStats from "../components/about/AboutCommunityStats";
+import AboutGallery from "../components/about/AboutGallery";
+import AboutImageModal from "../components/about/AboutImageModal";
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -126,132 +129,9 @@ const AboutPage: React.FC = () => {
     setIsLoading(false);
   };
 
-  // Working hours data
-  const workingHours = [
-    { day: t("about.hours.mondayFriday"), hours: "09:00 - 16:00" },
-    { day: t("about.hours.saturday"), hours: "09:00 - 19:00" },
-    { day: t("about.hours.sunday"), hours: "09:00 - 14:00" },
-  ];
-
-  // Church Now gallery images
-  const churchNowImages = [
-    {
-      src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop",
-      alt: t("about.gallery.churchNow.alt1"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop",
-      alt: t("about.gallery.churchNow.alt2"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=600&fit=crop",
-      alt: t("about.gallery.churchNow.alt3"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt4"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt5"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt6"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt7"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt8"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.churchNow.alt9"),
-    },
-  ];
-
-  // Old photos gallery images
-  const oldPhotosImages = [
-    {
-      src: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop",
-      alt: t("about.gallery.oldPhotos.alt1"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop",
-      alt: t("about.gallery.oldPhotos.alt2"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=800&h=600&fit=crop",
-      alt: t("about.gallery.oldPhotos.alt3"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt4"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt5"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt6"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt7"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt8"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt9"),
-    },
-  ];
-
-  // Interior gallery images
-  const interiorImages = [
-    {
-      src: "https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop",
-      alt: t("about.gallery.interior.alt1"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop",
-      alt: t("about.gallery.interior.alt2"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop",
-      alt: t("about.gallery.interior.alt3"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt4"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt5"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt6"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt7"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt8"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.interior.alt9"),
-    },
-  ];
+  const handleCloseModal = () => {
+    setSelectedImageIndex(null);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -259,21 +139,7 @@ const AboutPage: React.FC = () => {
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <div
-          className="bg-orthodox-blue text-white py-16"
-          style={{
-            backgroundImage: "url('/placeholder.svg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="container-custom rounded-lg p-8">
-            <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
-              {t("about.title")}
-            </h1>
-            <p className="text-lg mt-2">{t("about.intro")}</p>
-          </div>
-        </div>
+        <AboutHero />
 
         {/* Parish Today Section */}
         <ParishTodaySection onImageClick={handleImageClick} />
@@ -285,505 +151,35 @@ const AboutPage: React.FC = () => {
         <OurCommunitySection onImageClick={handleImageClick} />
 
         {/* Gallery Section */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t("about.gallery.title")}
-              </h2>
-
-              {/* Church Now Section */}
-              <div className="mb-12">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">
-                  {t("about.gallery.churchNow.title")}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {t("about.gallery.churchNow.description")}
-                </p>
-                <Gallery images={churchNowImages} />
-              </div>
-
-              {/* Old Photos Section */}
-              <div className="mb-12">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">
-                  {t("about.gallery.oldPhotos.title")}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {t("about.gallery.oldPhotos.description")}
-                </p>
-                <Gallery images={oldPhotosImages} />
-              </div>
-
-              {/* Interior Section */}
-              <div>
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue">
-                  {t("about.gallery.interior.title")}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {t("about.gallery.interior.description")}
-                </p>
-                <Gallery images={interiorImages} />
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutGallery />
 
         {/* History Section */}
-        <section className="section bg-orthodox-cream">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t("about.history")}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="md:col-span-2">
-                  <p className="mb-4">{t("about.historyText.p1")}</p>
-                  <div className="ornament">
-                    <SerbianCross size={32} className="text-orthodox-gold" />
-                  </div>
-                  <p className="mb-4">{t("about.historyText.p2")}</p>
-                </div>
-                <div className="space-y-4">
-                  <img
-                    src="/placeholder.svg"
-                    alt={t("about.gallery.churchHistory")}
-                    className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
-                    onClick={() => handleImageClick("/placeholder.svg")}
-                  />
-                  <img
-                    src="/placeholder.svg"
-                    alt={t("about.gallery.churchInterior")}
-                    className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
-                    onClick={() => handleImageClick("/placeholder.svg")}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutHistory onImageClick={handleImageClick} />
 
         {/* Sveti Sava Section */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-8 text-orthodox-blue border-b border-orthodox-gold pb-2 text-center">
-                {t("about.svetiSava.title")}
-              </h2>
-
-              {/* Text content in centered column */}
-              <div className="max-w-4xl mx-auto mb-8">
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle1")}
-                </h3>
-                <p className="mb-6 ">{t("about.svetiSava.p1a")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p1b")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p1c")}</p>
-
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle2")}
-                </h3>
-                <p className="mb-6 ">{t("about.svetiSava.p2a")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p2b")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p2c")}</p>
-
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle3")}
-                </h3>
-                <p className="mb-6 ">{t("about.svetiSava.p3a")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p3b")}</p>
-
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle4")}
-                </h3>
-                <p className="mb-6 ">{t("about.svetiSava.p4a")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p4b")}</p>
-
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle5")}
-                </h3>
-                <p className="mb-6 ">{t("about.svetiSava.p5a")}</p>
-                <p className="mb-6 ">{t("about.svetiSava.p5b")}</p>
-
-                <h3 className="text-xl font-serif mb-6">
-                  {t("about.svetiSava.subtitle6")}
-                </h3>
-                <p className="mb-6">{t("about.svetiSava.p6a")}</p>
-                <p className="">{t("about.svetiSava.p6a")}</p>
-              </div>
-
-              {/* Images in symmetric grid with proper aspect ratio */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="flex justify-center">
-                  <img
-                    src="/images/about/sveti-sava-1.jpg"
-                    alt={t("about.svetiSava.image1Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                    onClick={() =>
-                      handleImageClick("/images/about/sveti-sava-1.jpg")
-                    }
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <img
-                    src="/images/about/sveti-sava-2.jpg"
-                    alt={t("about.svetiSava.image2Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                    onClick={() =>
-                      handleImageClick("/images/about/sveti-sava-2.jpg")
-                    }
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <img
-                    src="/images/about/sveti-sava-3.jpg"
-                    alt={t("about.svetiSava.image3Alt")}
-                    className="rounded-lg cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
-                    onClick={() =>
-                      handleImageClick("/images/about/sveti-sava-3.jpg")
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutSvetiSava onImageClick={handleImageClick} />
 
         {/* Our Priests Section */}
-        <section className="section bg-orthodox-cream">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t("about.priests")}
-              </h2>
-
-              {/* Three Priests - Horizontal Card Layout */}
-              <div className="space-y-8">
-                {/* First Priest */}
-                <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
-                  <div className="md:w-1/3">
-                    <img
-                      src="/placeholder.svg"
-                      alt={t("about.priest1.imageAlt")}
-                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => handleImageClick("/placeholder.svg")}
-                    />
-                  </div>
-
-                  <div className="md:w-2/3">
-                    <h3 className="text-xl font-serif mb-3">
-                      {t("about.priest1.name")}
-                    </h3>
-
-                    <p className="mb-3">
-                      Father Milos has been serving our parish community for
-                      over 15 years, bringing wisdom and compassion to all who
-                      seek spiritual guidance. His dedication to Orthodox
-                      traditions and modern pastoral care has made him a beloved
-                      figure in our community.
-                    </p>
-                    <p className="mb-3">
-                      With a doctorate in Theology from the University of
-                      Belgrade, he specializes in liturgical studies and has
-                      authored several articles on Orthodox spirituality.
-                    </p>
-
-                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                      <p className="font-medium text-orthodox-blue">Contact:</p>
-                      <p>
-                        <a
-                          href="tel:+46701234567"
-                          className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                        >
-                          +46 70 123 45 67
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Second Priest - Shorter text */}
-                <div className="flex flex-col md:flex-row-reverse gap-6 p-6 bg-white rounded-lg shadow-sm">
-                  <div className="md:w-1/3">
-                    <img
-                      src="/placeholder.svg"
-                      alt={t("about.priest2.imageAlt")}
-                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => handleImageClick("/placeholder.svg")}
-                    />
-                  </div>
-
-                  <div className="md:w-2/3">
-                    <h3 className="text-xl font-serif mb-3">
-                      {t("about.priest2.name")}
-                    </h3>
-
-                    <p className="mb-3">
-                      Father Stefan joined our parish five years ago and brings
-                      fresh energy to our spiritual community.
-                    </p>
-
-                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                      <p className="font-medium text-orthodox-blue">Contact:</p>
-                      <p>
-                        <a
-                          href="tel:+46702345678"
-                          className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                        >
-                          +46 70 234 56 78
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Third Priest - Longer text */}
-                <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
-                  <div className="md:w-1/3">
-                    <img
-                      src="/placeholder.svg"
-                      alt="Father Nikola portrait"
-                      className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => handleImageClick("/placeholder.svg")}
-                    />
-                  </div>
-
-                  <div className="md:w-2/3">
-                    <h3 className="text-xl font-serif mb-3">
-                      Father Nikola Petrović
-                    </h3>
-
-                    <p className="mb-3">
-                      Father Nikola brings over 20 years of monastic experience
-                      to our parish, having served at the Hilandar Monastery on
-                      Mount Athos before joining our community. His deep
-                      spiritual insight and contemplative approach enrich our
-                      liturgical life in ways that touch the hearts of all who
-                      encounter his wisdom.
-                    </p>
-                    <p className="mb-3">
-                      As our senior confessor, he provides spiritual counseling
-                      and guidance to parishioners seeking deeper understanding
-                      of Orthodox mystical traditions and prayer life. His
-                      extensive knowledge of patristic literature and Byzantine
-                      theology makes him an invaluable resource for those
-                      pursuing advanced spiritual development.
-                    </p>
-                    <p className="mb-3">
-                      Father Nikola also leads our monastery retreat programs
-                      and has established strong connections with Orthodox
-                      communities across Europe. His multilingual abilities
-                      allow him to serve our diverse international congregation
-                      with particular expertise in Church Slavonic and ancient
-                      Greek liturgical traditions.
-                    </p>
-                    <p className="mb-3">
-                      Beyond his pastoral duties, he is actively involved in
-                      interfaith dialogue and has published numerous scholarly
-                      articles on Eastern Orthodox theology and spirituality in
-                      both Serbian and Swedish academic journals.
-                    </p>
-
-                    <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                      <p className="font-medium text-orthodox-blue">Contact:</p>
-                      <p>
-                        <a
-                          href="tel:+46703456789"
-                          className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                        >
-                          +46 70 345 67 89
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutPriests onImageClick={handleImageClick} />
 
         {/* Location and Working Hours Section */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
-                <MapPin className="text-orthodox-gold" />
-                {t("about.locationHours.title")}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-serif mb-4 flex items-center gap-2">
-                    <Clock className="text-orthodox-gold" />
-                    {t("about.locationHours.openingHours")}
-                  </h3>
-
-                  <div className="bg-orthodox-cream p-6 rounded-lg mb-6">
-                    <ul className="space-y-4">
-                      {workingHours.map((item, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between items-center border-b border-dashed border-gray-300 pb-2"
-                        >
-                          <span className="font-medium">{item.day}</span>
-                          <span className="bg-orthodox-gold bg-opacity-20 px-3 py-1 rounded text-orthodox-blue">
-                            {item.hours}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <h3 className="text-xl font-serif mb-4">
-                    {t("about.locationHours.contactInfo")}
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.address")}:
-                      </span>
-                      <span>{t("about.locationHours.addressValue")}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.phone")}:
-                      </span>
-                      <span>{t("about.locationHours.phoneValue")}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.email")}:
-                      </span>
-                      <span>{t("about.locationHours.emailValue")}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.priest")}:
-                      </span>
-                      <span>{t("about.locationHours.priestValue")}</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-serif mb-4">
-                    {t("about.locationHours.findUs")}
-                  </h3>
-                  <p className="mb-4">{t("about.locationHours.findUsText")}</p>
-
-                  {/* Map Component */}
-                  <Map className="mt-4" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutLocationHours />
 
         {/* Our Community Section */}
-        <section className="section bg-orthodox-cream">
-          <div className="container-custom">
-            <div className="card">
-              <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                {t("about.community")}
-              </h2>
-
-              <p className="mb-4">{t("about.communityText.p1")}</p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-orthodox-gold mb-2">
-                    150+
-                  </div>
-                  <p>{t("about.communityText.families")}</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-orthodox-gold mb-2">
-                    15+
-                  </div>
-                  <p>{t("about.communityText.nationalities")}</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-orthodox-gold mb-2">
-                    35+
-                  </div>
-                  <p>{t("about.communityText.years")}</p>
-                </div>
-              </div>
-
-              <p className="mb-4">{t("about.communityText.p2")}</p>
-
-              <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>{t("about.communityText.activities.sunday")}</li>
-                <li>{t("about.communityText.activities.youth")}</li>
-                <li>{t("about.communityText.activities.bible")}</li>
-                <li>{t("about.communityText.activities.charity")}</li>
-                <li>{t("about.communityText.activities.cultural")}</li>
-                <li>{t("about.communityText.activities.fellowship")}</li>
-              </ul>
-
-              <p>{t("about.communityText.p3")}</p>
-            </div>
-          </div>
-        </section>
+        <AboutCommunityStats />
       </main>
 
       <Footer />
 
       {/* Modal for standalone images */}
-      <Dialog
-        open={selectedImageIndex !== null}
-        onOpenChange={(open) => !open && setSelectedImageIndex(null)}
-      >
-        <DialogContent className="max-w-5xl p-0 bg-black/90 border-none">
-          <DialogClose className="absolute right-3 top-3 z-10 text-white hover:text-gray-300">
-            <X className="h-6 w-6" />
-          </DialogClose>
-
-          {selectedImageIndex !== null && (
-            <div className="w-full h-full flex items-center justify-center p-4 relative">
-              {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 border-4 border-t-orthodox-gold border-opacity-50 rounded-full animate-spin"></div>
-                </div>
-              )}
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateImages("prev");
-                }}
-                className="absolute left-4 z-10 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition-colors"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-
-              <img
-                src={allPageImages[selectedImageIndex].src}
-                alt={allPageImages[selectedImageIndex].alt}
-                className={`max-h-[80vh] max-w-full object-contain transition-opacity duration-300 ${
-                  isLoading ? "opacity-0" : "opacity-100"
-                }`}
-                onLoad={handleImageLoaded}
-              />
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigateImages("next");
-                }}
-                className="absolute right-4 z-10 bg-black/40 text-white rounded-full p-2 hover:bg-black/60 transition-colors"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-
-              <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm">
-                {selectedImageIndex + 1} / {allPageImages.length}
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      <AboutImageModal
+        selectedImageIndex={selectedImageIndex}
+        allPageImages={allPageImages}
+        isLoading={isLoading}
+        onClose={handleCloseModal}
+        onNavigate={navigateImages}
+        onImageLoaded={handleImageLoaded}
+      />
     </div>
   );
 };
