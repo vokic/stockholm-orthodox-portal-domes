@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import Gallery from "../Gallery";
@@ -9,39 +8,43 @@ const AboutGallery: React.FC = () => {
   // Church Now gallery images
   const churchNowImages = [
     {
-      src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-spolja-1.jpg",
       alt: t("about.gallery.churchNow.alt1"),
     },
     {
-      src: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-spolja-2.jpg",
       alt: t("about.gallery.churchNow.alt2"),
     },
     {
-      src: "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-spolja-3.jpg",
       alt: t("about.gallery.churchNow.alt3"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-4.jpg",
       alt: t("about.gallery.churchNow.alt4"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-5.jpg",
       alt: t("about.gallery.churchNow.alt5"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-6.jpg",
       alt: t("about.gallery.churchNow.alt6"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-7.jpg",
       alt: t("about.gallery.churchNow.alt7"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-8.jpg",
       alt: t("about.gallery.churchNow.alt8"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-spolja-9.jpg",
+      alt: t("about.gallery.churchNow.alt9"),
+    },
+    {
+      src: "images/about/crkva-stockholm-spolja-10.jpg",
       alt: t("about.gallery.churchNow.alt9"),
     },
   ];
@@ -49,79 +52,63 @@ const AboutGallery: React.FC = () => {
   // Old photos gallery images
   const oldPhotosImages = [
     {
-      src: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-stari-izgled.jpg",
       alt: t("about.gallery.oldPhotos.alt1"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800&h=600&fit=crop",
-      alt: t("about.gallery.oldPhotos.alt2"),
-    },
-    {
-      src: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=800&h=600&fit=crop",
-      alt: t("about.gallery.oldPhotos.alt3"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt4"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt5"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt6"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt7"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt8"),
-    },
-    {
-      src: "/placeholder.svg",
-      alt: t("about.gallery.oldPhotos.alt9"),
     },
   ];
 
   // Interior gallery images
   const interiorImages = [
     {
-      src: "https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-unutra-1.jpg",
       alt: t("about.gallery.interior.alt1"),
     },
     {
-      src: "https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-unutra-2.jpg",
       alt: t("about.gallery.interior.alt2"),
     },
     {
-      src: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=600&fit=crop",
+      src: "images/about/crkva-stockholm-unutra-3.jpg",
       alt: t("about.gallery.interior.alt3"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-4.jpg",
       alt: t("about.gallery.interior.alt4"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-5.jpg",
       alt: t("about.gallery.interior.alt5"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-6.jpg",
       alt: t("about.gallery.interior.alt6"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-7.jpg",
       alt: t("about.gallery.interior.alt7"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-8.jpg",
       alt: t("about.gallery.interior.alt8"),
     },
     {
-      src: "/placeholder.svg",
+      src: "images/about/crkva-stockholm-unutra-9.jpg",
+      alt: t("about.gallery.interior.alt9"),
+    },
+    {
+      src: "images/about/crkva-stockholm-unutra-10.jpg",
+      alt: t("about.gallery.interior.alt9"),
+    },
+    {
+      src: "images/about/crkva-stockholm-unutra-11.jpg",
+      alt: t("about.gallery.interior.alt9"),
+    },
+    {
+      src: "images/about/crkva-stockholm-unutra-12.jpg",
+      alt: t("about.gallery.interior.alt9"),
+    },
+    {
+      src: "images/about/crkva-stockholm-unutra-13.jpg",
       alt: t("about.gallery.interior.alt9"),
     },
   ];

@@ -1,14 +1,24 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import SerbianCross from "../SerbianCross";
 
 interface AboutHistoryProps {
-  onImageClick: (imageSrc: string) => void;
+  onImageClick?: (imageSrc: string) => void;
 }
 
 const AboutHistory: React.FC<AboutHistoryProps> = ({ onImageClick }) => {
   const { t } = useLanguage();
+
+  const images = [
+    {
+      src: "/images/about/crkva-stockholm-stari-izgled.jpg",
+      alt: t("about.gallery.churchHistory"),
+    },
+    {
+      src: "/images/about/crkva-stockholm-spolja-1.jpg",
+      alt: t("about.gallery.churchHistory"),
+    },
+  ];
 
   return (
     <section className="section bg-orthodox-cream">
@@ -26,18 +36,16 @@ const AboutHistory: React.FC<AboutHistoryProps> = ({ onImageClick }) => {
               <p className="mb-4">{t("about.historyText.p2")}</p>
             </div>
             <div className="space-y-4">
-              <img
-                src="/placeholder.svg"
-                alt={t("about.gallery.churchHistory")}
-                className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick("/placeholder.svg")}
-              />
-              <img
-                src="/placeholder.svg"
-                alt={t("about.gallery.churchInterior")}
-                className="rounded-lg w-full cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => onImageClick("/placeholder.svg")}
-              />
+              {images.map((image, index) => (
+                <div key={index} className="flex justify-center">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity w-full max-w-sm h-80 object-cover"
+                    onClick={() => onImageClick?.(image.src)}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
