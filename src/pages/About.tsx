@@ -21,6 +21,18 @@ const AboutPage: React.FC = () => {
   // All standalone images on the page for modal viewing
   const allPageImages = [
     {
+      src: "/images/about/sveti-sava-1.jpg",
+      alt: t("about.svetiSava.image0Alt"),
+    },
+    {
+      src: "/images/about/sveti-sava-2.jpg",
+      alt: t("about.svetiSava.image0Alt"),
+    },
+    {
+      src: "/images/about/sveti-sava-3.jpg",
+      alt: t("about.svetiSava.image0Alt"),
+    },
+    {
       src: "https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&h=600&fit=crop",
       alt: t("about.svetiSava.image1Alt"),
     },
