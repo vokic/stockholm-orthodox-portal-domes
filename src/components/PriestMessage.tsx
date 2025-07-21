@@ -28,8 +28,10 @@ const PriestMessage: React.FC = () => {
           </div>
 
           <div className="text-sm">
-            <p className="mb-3 italic">"{t("priests.father1.greeting")}"</p>
+            <p className="text-center mb-3">{t("priests.father1.greeting")}</p>
+            {/* <p className="mb-3 italic">"{t("priests.father1.greeting")}"</p> */}
             <p className="text-center text-sm">{t("priests.father1.phone")}</p>
+
             {/* <p className="mb-3">{t("priests.father1.message1")}</p>
             <p>{t("priests.father1.blessing")}</p>
             <p className="mt-3 text-right font-serif italic text-xs">
@@ -55,8 +57,10 @@ const PriestMessage: React.FC = () => {
           </div>
 
           <div className="text-sm">
-            <p className="mb-3 italic">"{t("priests.father2.greeting")}"</p>
+            <p className="text-center mb-3">{t("priests.father2.greeting")}</p>
+            {/* <p className="mb-3 italic">"{t("priests.father2.greeting")}"</p> */}
             <p className="text-center text-sm">{t("priests.father2.phone")}</p>
+
             {/* <p className="mb-3">{t("priests.father2.message1")}</p>
             <p>{t("priests.father2.blessing")}</p>
             <p className="mt-3 text-right font-serif italic text-xs">
@@ -82,17 +86,14 @@ const PriestMessage: React.FC = () => {
           </div>
 
           <div className="text-sm">
-            <p className="mb-3 italic">
-              <p className="mb-3 italic">"{t("priests.father3.greeting")}"</p>
-            </p>
+            <p className="text-center mb-3">{t("priests.father3.greeting")}</p>
+            {/* <p className="mb-3 italic">"{t("priests.father3.greeting")}"</p> */}
             <p className="text-center text-sm">{t("priests.father3.phone")}</p>
-            {/* <p className="mb-3">{t("priests.father2.message1")}</p>
+
+            {/* <p className="mb-3">{t("priests.father3.message1")}</p>
             <p>{t("priests.father3.blessing")}</p>
             <p className="mt-3 text-right font-serif italic text-xs">
               {t("priests.father3.signature")}
-            </p>
-            <p className="mt-3 text-right font-serif italic text-xs">
-              — Father Stefan
             </p> */}
           </div>
         </div>

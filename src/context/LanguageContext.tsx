@@ -770,23 +770,20 @@ const translations = {
     "home.publishDate": "Датум објаве: ",
 
     //Priests
-    "priests.father1.name": "Отац Душан Раковић",
-    "priests.father1.title": "Протојереј Ставрофор",
-    "priests.father1.phone": "Контакт: 073 501 66 95",
-    "priests.father1.greeting":
-      "Отац Душан Раковић дугогодишњи је парох и стуб наше црквене заједнице у Стокхолму. Познат је по својој мудрости, мирноћи и преданој пастирској бризи за све вернике.",
+    "priests.father1.name": "Арсеније Гардовић",
+    "priests.father1.title": "Протојереј-ставрофор",
+    "priests.father1.phone": "Контакт: 073 717 14 61",
+    "priests.father1.greeting": "I. парохија Стокхолмска",
 
-    "priests.father2.name": "Отац Арсеније Гардовић",
-    "priests.father2.title": "Протојереј Ставрофор",
-    "priests.father2.phone": "Контакт: 073 717 14 61",
-    "priests.father2.greeting":
-      "Отац Арсеније Гардовић уноси топлину и присност у свакодневни живот парохије. Посебно је посвећен раду са породицама и очувању православне традиције међу верницима у дијаспори.",
+    "priests.father2.name": "Душан Д. Раковић",
+    "priests.father2.title": "Протојереј-ставрофор",
+    "priests.father2.phone": "Контакт: 073 501 66 95",
+    "priests.father2.greeting": "II. парохија Стокхолмска",
 
-    "priests.father3.name": "Отац Димитрије Раковић",
-    "priests.father3.title": "Протонамесник",
-    "priests.father3.phone": "Контакт: 073 023 67 60",
-    "priests.father3.greeting":
-      "Отац Димитрије Раковић представља млађу снагу свештенства са искреним приступом и блиским односом према омладини. Активно ради на повезивању младих са црквом кроз савремени и отворен дијалог.",
+    "priests.father3.name": "Димитрије Раковић",
+    "priests.father3.title": "Јереј",
+    "priests.father3.phone": "Контакт: 073 023 67 70",
+    "priests.father3.greeting": "III. парохија Стокхолмска",
 
     // Services
     "services.schedule": "Распоред богослужења",
