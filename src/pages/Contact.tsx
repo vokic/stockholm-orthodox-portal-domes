@@ -203,7 +203,7 @@ const ContactPage: React.FC = () => {
                     </h3>
                     <div className="flex items-center gap-3">
                       <a
-                        href="https://facebook.com"
+                        href="https://www.facebook.com/profile.php?id=100069273553241"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-orthodox-blue hover:text-orthodox-gold transition-colors"
@@ -215,7 +215,7 @@ const ContactPage: React.FC = () => {
                         />
                       </a>
                       <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/spcstockholm/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-orthodox-blue hover:text-orthodox-gold transition-colors"

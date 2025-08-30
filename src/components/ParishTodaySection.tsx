@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -37,9 +36,9 @@ const ParishTodaySection: React.FC<ParishTodaySectionProps> = ({
           {/* Text content in centered column */}
           <div className="max-w-4xl mx-auto mb-8">
             <p className="mb-6 ">{t("about.parishToday.p1")}</p>
-            <p className="mb-6 ">{t("about.parishToday.p2")}</p>
+            {/* <p className="mb-6 ">{t("about.parishToday.p2")}</p>
             <p className="mb-6 ">{t("about.parishToday.p3")}</p>
-            <p className="mb-6 ">{t("about.parishToday.p4")}</p>
+            <p className="mb-6 ">{t("about.parishToday.p4")}</p> */}
             <p className="">{t("about.parishToday.p5")}</p>
           </div>
 

@@ -30,17 +30,17 @@ const Header: React.FC = () => {
       short: "SR lat",
     }, // label: t("lang.serbian_lat") || "Srpski (latinica)",
 
-    { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
+    // { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
 
-    { code: "ru", label: "Русский", short: "RU" }, // label: t("lang.russian") || "Русский",
-    { code: "el", label: "Ελληνικά", short: "EL" }, // label: t("lang.greek") || "Ελληνικά",
-    { code: "mk", label: "Македонски", short: "MK" }, // label: t("lang.macedonian") || "Македонски",
-    { code: "en", label: "English", short: "EN" }, // label: t("lang.english") || "English",
+    // { code: "ru", label: "Русский", short: "RU" }, // label: t("lang.russian") || "Русский",
+    // { code: "el", label: "Ελληνικά", short: "EL" }, // label: t("lang.greek") || "Ελληνικά",
+    // { code: "mk", label: "Македонски", short: "MK" }, // label: t("lang.macedonian") || "Македонски",
+    // { code: "en", label: "English", short: "EN" }, // label: t("lang.english") || "English",
   ];
 
   const getCurrentLanguageShort = () => {
     const currentLang = languages.find((lang) => lang.code === language);
-    return currentLang?.short || "sr_cyr";
+    return currentLang?.short || "СР ћир";
   };
 
   const isActiveLink = (path: string) => location.pathname === path;
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
 
             <div className="flex items-center gap-3">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100069273553241"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/spcstockholm/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
@@ -146,7 +146,7 @@ const Header: React.FC = () => {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setLanguage(lang.code as Language)}
+                    onClick={() => setLanguage(lang.code)}
                     className={language === lang.code ? "font-bold" : ""}
                   >
                     {lang.label}
@@ -188,7 +188,7 @@ const Header: React.FC = () => {
 
             <div className="flex items-center gap-2">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100069273553241"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
@@ -196,7 +196,7 @@ const Header: React.FC = () => {
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/spcstockholm/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
@@ -219,7 +219,7 @@ const Header: React.FC = () => {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setLanguage(lang.code as Language)}
+                    onClick={() => setLanguage(lang.code)}
                     className={language === lang.code ? "font-bold" : ""}
                   >
                     {lang.label}
@@ -245,7 +245,7 @@ const Header: React.FC = () => {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setLanguage(lang.code as Language)}
+                    onClick={() => setLanguage(lang.code)}
                     className={language === lang.code ? "font-bold" : ""}
                   >
                     {lang.label}
@@ -313,7 +313,7 @@ const Header: React.FC = () => {
             {/* Social media icons below donate button on mobile */}
             <div className="flex items-center justify-center gap-4 pt-2 border-t border-orthodox-gold/30">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100069273553241"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
@@ -321,7 +321,7 @@ const Header: React.FC = () => {
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/spcstockholm/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"

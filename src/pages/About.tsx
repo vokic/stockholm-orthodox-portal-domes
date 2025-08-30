@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -14,6 +13,7 @@ import AboutLocationHours from "../components/about/AboutLocationHours";
 import AboutCommunityStats from "../components/about/AboutCommunityStats";
 import AboutGallery from "../components/about/AboutGallery";
 import AboutImageModal from "../components/about/AboutImageModal";
+import ParishesSection from "@/components/ParishesSection";
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
@@ -154,19 +154,22 @@ const AboutPage: React.FC = () => {
         <ParishTodaySection onImageClick={handleImageClick} />
 
         {/* Our Mission Section */}
-        <OurMissionSection onImageClick={handleImageClick} />
+        {/* <OurMissionSection onImageClick={handleImageClick} /> */}
 
         {/* Our Community Section */}
-        <OurCommunitySection onImageClick={handleImageClick} />
+        {/* <OurCommunitySection onImageClick={handleImageClick} /> */}
+
+        {/* Parishes Section */}
+        <ParishesSection />
 
         {/* Gallery Section */}
         <AboutGallery />
 
         {/* History Section */}
-        <AboutHistory onImageClick={handleImageClick} />
+        {/* <AboutHistory onImageClick={handleImageClick} /> */}
 
         {/* Sveti Sava Section */}
-        <AboutSvetiSava onImageClick={handleImageClick} />
+        {/* <AboutSvetiSava onImageClick={handleImageClick} /> */}
 
         {/* Our Priests Section */}
         <AboutPriests onImageClick={handleImageClick} />
@@ -175,7 +178,7 @@ const AboutPage: React.FC = () => {
         <AboutLocationHours />
 
         {/* Our Community Section */}
-        <AboutCommunityStats />
+        {/* <AboutCommunityStats /> */}
       </main>
 
       <Footer />

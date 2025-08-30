@@ -60,17 +60,17 @@ const BlogPage: React.FC = () => {
   const getCategoryDisplayName = (category: string) => {
     switch (category?.toLowerCase()) {
       case "all":
-        return "All";
+        return "Све";
       case "news":
-        return "News";
+        return "Новости";
       case "events":
-        return "Events";
+        return "Догађаји";
       case "texts":
-        return "Texts";
+        return "Текстови";
       case "community":
-        return "Community";
+        return "Заједница";
       case "history":
-        return "History";
+        return "Историја";
       default:
         return (
           category?.charAt(0).toUpperCase() + category?.slice(1) || "Other"
@@ -102,7 +102,7 @@ const BlogPage: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t("nav.blog") || "Članci / Blog"}
             </h1>
-            <p className="text-white">{t("home.churchDescription")}</p>
+            <p className="text-white">{t("articles.description")}</p>
           </div>
         </div>
 
@@ -180,7 +180,7 @@ const BlogPage: React.FC = () => {
                           </p>
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-gray-500 italic">
-                              By {post.author}
+                              Аутор: {post.author}
                             </span>
                             <Link
                               to={`/articles/${post.slug}`}

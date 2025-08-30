@@ -157,7 +157,7 @@ const HomePage: React.FC = () => {
                     {t("home.getDirections")}
                   </button>
                 </div>
-                <div className="aspect-video rounded overflow-hidden">
+                <div className="aspect-video rounded overflow-hidden flex justify-center items-center">
                   <Map />
                 </div>
               </div>
@@ -170,7 +170,14 @@ const HomePage: React.FC = () => {
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold">{t("home.phone")}</p>
-                    <p>{t("home.phoneValue")}</p>
+                    <p>
+                      <a
+                        href={`tel:${t("home.phoneValue")}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {t("home.phoneValue")}
+                      </a>
+                    </p>
                   </div>
                   <div>
                     <p className="font-semibold">{t("home.email")}</p>
@@ -179,6 +186,15 @@ const HomePage: React.FC = () => {
                   <div>
                     <p className="font-semibold">{t("home.officeHours")}</p>
                     <p>{t("home.officeHoursValue")}</p>
+                    <p>{t("home.officeHoursValue1")}</p>
+                    <p>{t("home.officeHoursValue2")}</p> <br />
+                    <p className="font-semibold">
+                      {t("home.officeHoursValue3")}
+                    </p>
+                    <p>{t("home.officeHoursValue4")}</p>
+                    <p>{t("home.officeHoursValue5")}</p>
+                    <p>{t("home.officeHoursValue6")}</p>
+                    <br />
                     <p>{t("home.officeHoursValue.info")}</p>
                   </div>
                 </div>

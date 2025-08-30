@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -17,9 +16,8 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
             {t("about.priests")}
           </h2>
 
-          {/* Three Priests - Horizontal Card Layout */}
           <div className="space-y-8">
-            {/* First Priest */}
+            {/* First Parish */}
             <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
@@ -30,39 +28,36 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3">
+              <div className="md:w-2/3 text-justify">
+                <p className="font-semibold mb-1">Свештеник:</p>
+                <p className="mb-1">Протојереј-ставрофор Арсеније Гардовић</p>
+                <p className="mb-4">Моб.тел. 073 717 14 61</p>
+
                 <h3 className="text-xl font-serif mb-3">
-                  {t("about.priest1.name")}
+                  I ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-
-                <p className="mb-3">
-                  Father Milos has been serving our parish community for
-                  over 15 years, bringing wisdom and compassion to all who
-                  seek spiritual guidance. His dedication to Orthodox
-                  traditions and modern pastoral care has made him a beloved
-                  figure in our community.
+                <p>
+                  У састав Прве парохије улазе следеће општине и делови града:
                 </p>
-                <p className="mb-3">
-                  With a doctorate in Theology from the University of
-                  Belgrade, he specializes in liturgical studies and has
-                  authored several articles on Orthodox spirituality.
-                </p>
-
-                <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                  <p className="font-medium text-orthodox-blue">Contact:</p>
-                  <p>
-                    <a
-                      href="tel:+46701234567"
-                      className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                    >
-                      +46 70 123 45 67
-                    </a>
-                  </p>
-                </div>
+                <ol className="list-decimal list-inside pl-6 space-y-1">
+                  <li>Märsta</li>
+                  <li>Upplands Väsby</li>
+                  <li>Sollentuna</li>
+                  <li>Lidingö</li>
+                  <li>Sundbyberg</li>
+                  <li>Huddinge</li>
+                  <li>Skärholmen</li>
+                  <li>Spånga-Tensta</li>
+                  <li>Hägersten</li>
+                  <li>Kungsholmen</li>
+                  <li>Maria-Gamla stan</li>
+                  <li>Farsta</li>
+                  <li>Älvsjö</li>
+                </ol>
               </div>
             </div>
 
-            {/* Second Priest - Shorter text */}
+            {/* Second Parish */}
             <div className="flex flex-col md:flex-row-reverse gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
@@ -73,31 +68,34 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3">
+              <div className="md:w-2/3 text-justify">
+                <p className="font-semibold mb-1">Свештеник:</p>
+                <p className="mb-1">Протојереј – ставрофор Душан Д. Раковић</p>
+                <p className="mb-4">Моб.тел. 073 501 66 95</p>
+
                 <h3 className="text-xl font-serif mb-3">
-                  {t("about.priest2.name")}
+                  II ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-
-                <p className="mb-3">
-                  Father Stefan joined our parish five years ago and brings
-                  fresh energy to our spiritual community.
+                <p>
+                  У састав Друге парохије улазе следеће општине и делови града:
                 </p>
-
-                <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                  <p className="font-medium text-orthodox-blue">Contact:</p>
-                  <p>
-                    <a
-                      href="tel:+46702345678"
-                      className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                    >
-                      +46 70 234 56 78
-                    </a>
-                  </p>
-                </div>
+                <ol className="list-decimal list-inside pl-6 space-y-1">
+                  <li>Solna</li>
+                  <li>Täby</li>
+                  <li>Vallentuna</li>
+                  <li>Haninge</li>
+                  <li>Nacka </li>
+                  <li>Tyresö</li>
+                  <li>Rinkeby</li>
+                  <li>Kista</li>
+                  <li>Enskede-Årsta</li>
+                  <li>Liljeholmen</li>
+                  <li>Norrmalm</li>
+                </ol>
               </div>
             </div>
 
-            {/* Third Priest - Longer text */}
+            {/* Third Parish */}
             <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
@@ -108,53 +106,29 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3">
+              <div className="md:w-2/3 text-justify">
+                <p className="font-semibold mb-1">Свештеник:</p>
+                <p className="mb-1">Јереј Димитрије Раковић</p>
+                <p className="mb-4">Моб.тел. 073 023 67 70</p>
+
                 <h3 className="text-xl font-serif mb-3">
-                  Father Nikola Petrović
+                  III ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-
-                <p className="mb-3">
-                  Father Nikola brings over 20 years of monastic experience
-                  to our parish, having served at the Hilandar Monastery on
-                  Mount Athos before joining our community. His deep
-                  spiritual insight and contemplative approach enrich our
-                  liturgical life in ways that touch the hearts of all who
-                  encounter his wisdom.
+                <p>
+                  У састав Треће парохије улазе следеће општине и делови града:
                 </p>
-                <p className="mb-3">
-                  As our senior confessor, he provides spiritual counseling
-                  and guidance to parishioners seeking deeper understanding
-                  of Orthodox mystical traditions and prayer life. His
-                  extensive knowledge of patristic literature and Byzantine
-                  theology makes him an invaluable resource for those
-                  pursuing advanced spiritual development.
-                </p>
-                <p className="mb-3">
-                  Father Nikola also leads our monastery retreat programs
-                  and has established strong connections with Orthodox
-                  communities across Europe. His multilingual abilities
-                  allow him to serve our diverse international congregation
-                  with particular expertise in Church Slavonic and ancient
-                  Greek liturgical traditions.
-                </p>
-                <p className="mb-3">
-                  Beyond his pastoral duties, he is actively involved in
-                  interfaith dialogue and has published numerous scholarly
-                  articles on Eastern Orthodox theology and spirituality in
-                  both Serbian and Swedish academic journals.
-                </p>
-
-                <div className="mt-4 p-3 bg-orthodox-gold bg-opacity-10 rounded-lg">
-                  <p className="font-medium text-orthodox-blue">Contact:</p>
-                  <p>
-                    <a
-                      href="tel:+46703456789"
-                      className="text-orthodox-blue underline hover:text-orthodox-gold transition-colors"
-                    >
-                      +46 70 345 67 89
-                    </a>
-                  </p>
-                </div>
+                <ol className="list-decimal list-inside pl-6 space-y-1">
+                  <li>Värmde </li>
+                  <li>Järfälla</li>
+                  <li>Botkyrka</li>
+                  <li>Danderyd</li>
+                  <li>Hässelby-Vällingby</li>
+                  <li>Katarina-Sofia</li>
+                  <li>Skarpnäck</li>
+                  <li>Vantör</li>
+                  <li>Östermalm</li>
+                  <li>Bromma</li>
+                </ol>
               </div>
             </div>
           </div>

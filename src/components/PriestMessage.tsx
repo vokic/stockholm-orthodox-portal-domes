@@ -30,7 +30,14 @@ const PriestMessage: React.FC = () => {
           <div className="text-sm">
             <p className="text-center mb-3">{t("priests.father1.greeting")}</p>
             {/* <p className="mb-3 italic">"{t("priests.father1.greeting")}"</p> */}
-            <p className="text-center text-sm">{t("priests.father1.phone")}</p>
+            <p className="text-center text-sm">
+              <a
+                href={`tel:${t("priests.father1.phone")}`}
+                className="text-blue-600 hover:underline"
+              >
+                {t("priests.father1.phone")}
+              </a>
+            </p>
 
             {/* <p className="mb-3">{t("priests.father1.message1")}</p>
             <p>{t("priests.father1.blessing")}</p>
@@ -59,7 +66,14 @@ const PriestMessage: React.FC = () => {
           <div className="text-sm">
             <p className="text-center mb-3">{t("priests.father2.greeting")}</p>
             {/* <p className="mb-3 italic">"{t("priests.father2.greeting")}"</p> */}
-            <p className="text-center text-sm">{t("priests.father2.phone")}</p>
+            <p className="text-center text-sm">
+              <a
+                href={`tel:${t("priests.father2.phone")}`}
+                className="text-blue-600 hover:underline"
+              >
+                {t("priests.father1.phone")}
+              </a>
+            </p>
 
             {/* <p className="mb-3">{t("priests.father2.message1")}</p>
             <p>{t("priests.father2.blessing")}</p>
@@ -88,7 +102,14 @@ const PriestMessage: React.FC = () => {
           <div className="text-sm">
             <p className="text-center mb-3">{t("priests.father3.greeting")}</p>
             {/* <p className="mb-3 italic">"{t("priests.father3.greeting")}"</p> */}
-            <p className="text-center text-sm">{t("priests.father3.phone")}</p>
+            <p className="text-center text-sm">
+              <a
+                href={`tel:${t("priests.father3.phone")}`}
+                className="text-blue-600 hover:underline"
+              >
+                {t("priests.father1.phone")}
+              </a>
+            </p>
 
             {/* <p className="mb-3">{t("priests.father3.message1")}</p>
             <p>{t("priests.father3.blessing")}</p>

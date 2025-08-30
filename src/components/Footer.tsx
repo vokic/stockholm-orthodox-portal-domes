@@ -83,20 +83,9 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               {t("footer.services")}
             </h3>
             <ul className="space-y-2">
-              <li>
-                {t("footer.sundayLiturgy") || (
-                  <>
-                    {t("services.sunday")}: {t("services.sundayTime")}
-                  </>
-                )}
-              </li>
-              <li>
-                {t("footer.saturdayVespers") || (
-                  <>
-                    {t("services.saturday")}: {t("services.saturdayTime")}
-                  </>
-                )}
-              </li>
+              <li>{t("footer.svetaLiturgija1")}</li>
+              <li>{t("footer.svetaLiturgija2")}</li>
+              <li>{t("footer.svetaLiturgija3")}</li>
               <li>
                 <Link
                   to="/calendar"
@@ -123,10 +112,14 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                   {t("footer.addressValue")}
                 </button>
               </li>
+
               <li>
                 <strong>{t("footer.phone")}:</strong>{" "}
                 <a
-                  href={`tel:${t("footer.phoneValue").replace(/\s+/g, "")}`}
+                  href={`tel:${(t("footer.phoneValue") || "").replace(
+                    /\s+/g,
+                    ""
+                  )}`}
                   className="text-white hover:text-orthodox-gold transition-colors underline"
                 >
                   {t("footer.phoneValue")}
@@ -144,7 +137,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               <li className="pt-3">
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/profile.php?id=100069273553241"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orthodox-gold hover:text-white transition-colors"
@@ -152,7 +145,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                     <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
                   </a>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/spcstockholm/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orthodox-gold hover:text-white transition-colors"

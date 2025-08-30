@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { Clock, MapPin } from "lucide-react";
@@ -9,9 +8,9 @@ const AboutLocationHours: React.FC = () => {
 
   // Working hours data
   const workingHours = [
-    { day: t("about.hours.mondayFriday"), hours: "09:00 - 16:00" },
-    { day: t("about.hours.saturday"), hours: "09:00 - 19:00" },
-    { day: t("about.hours.sunday"), hours: "09:00 - 14:00" },
+    { day: t("about.hours.mondayFriday"), hours: "09 - 13 i 17 - 18" },
+    { day: t("about.hours.saturday"), hours: "09- 14" },
+    { day: t("about.hours.sunday"), hours: "09- 14" },
   ];
 
   return (
@@ -60,19 +59,22 @@ const AboutLocationHours: React.FC = () => {
                   <span className="font-bold min-w-[100px]">
                     {t("about.locationHours.phone")}:
                   </span>
-                  <span>{t("about.locationHours.phoneValue")}</span>
+
+                  <a
+                    href={`tel:${(t("footer.phoneValue") || "").replace(
+                      /\s+/g,
+                      ""
+                    )}`}
+                    className="text-orthodox-blue hover:text-orthodox-gold transition-colors underline"
+                  >
+                    {t("footer.phoneValue")}
+                  </a>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold min-w-[100px]">
                     {t("about.locationHours.email")}:
                   </span>
                   <span>{t("about.locationHours.emailValue")}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold min-w-[100px]">
-                    {t("about.locationHours.priest")}:
-                  </span>
-                  <span>{t("about.locationHours.priestValue")}</span>
                 </li>
               </ul>
             </div>
@@ -81,7 +83,7 @@ const AboutLocationHours: React.FC = () => {
               <h3 className="text-xl font-serif mb-4">
                 {t("about.locationHours.findUs")}
               </h3>
-              <p className="mb-4">{t("about.locationHours.findUsText")}</p>
+              <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
 
               {/* Map Component */}
               <Map className="mt-4" />

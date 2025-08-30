@@ -29,9 +29,8 @@ const Donate: React.FC = () => {
               {t("donate.title")}
             </h1>
             <p className="text-xl">
-              Support our church community and help us continue our spiritual
-              mission. Your generous donations help maintain our beautiful
-              church, support our ministries, and serve our community.
+              Подржите нашу црквену заједницу и помозите нам да наставимо нашу
+              духовну мисију.
             </p>
           </div>
         </div>
@@ -46,45 +45,38 @@ const Donate: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                    Bank Transfer Details
+                    Уплата на банковни рачун (Bankgiro)
                   </h3>
                   <p className="mb-4">
-                    You can make a direct bank transfer to our church account.
-                    All donations are used for church maintenance, religious
-                    services, and community programs.
+                    Можете извршити директан банковни трансфер на рачун цркве.
+                    Све донације се користе за одржавање цркве, верске службе и
+                    програме заједнице.
                   </p>
 
                   <div className="bg-gray-50 p-4 rounded-md">
                     <p>
-                      <strong>Bank:</strong> Nordea Bank
+                      <strong>Број рачуна:</strong> 822 - 2705
                     </p>
-                    <p>
-                      <strong>Account Name:</strong> Orthodox Church of Saint
-                      Sava
-                    </p>
-                    <p>
-                      <strong>Account Number:</strong> 3300 12 34567
-                    </p>
-                    <p>
+                    {/* <p>
                       <strong>IBAN:</strong> SE45 3000 0000 0330 0123 4567
                     </p>
                     <p>
                       <strong>BIC/SWIFT:</strong> NDEASESS
-                    </p>
+                    </p> */}
                     <p className="mt-2 text-sm text-gray-600">
-                      Please include your name and "Donation to Saint Sava
-                      Church" in the reference field.
+                      Молимо Вас да у пољу за референцу упишете Ваше име и
+                      назнаку "Прилог"
                     </p>
                   </div>
                 </div>
 
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                    SWISH Payment
+                    SWISH Уплата
                   </h3>
                   <p className="mb-4">
-                    For quick and easy donations, use SWISH to transfer directly
-                    to our church account:
+                    За брзе и једноставне донације, користите SWISH да бисте их
+                    директно пребацили на наш црквени рачун:
                   </p>
 
                   <div className="bg-gray-50 p-6 rounded-md text-center">
@@ -100,10 +92,10 @@ const Donate: React.FC = () => {
                       </div>
                     </div>
                     <p className="mt-4 font-medium text-orthodox-blue">
-                      SWISH Number: 070-123 45 67
+                      SWISH Broj: 123 668 65 70
                     </p>
                     <p className="text-sm text-gray-600">
-                      Include "Donation Saint Sava" in the message
+                      Молимо Вас да у поруци упишете Ваше име и назнаку "Прилог"
                     </p>
                   </div>
                 </div>
@@ -114,29 +106,28 @@ const Donate: React.FC = () => {
               </div>
 
               <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                Other Ways to Support Our Church
+                Остали начини да подржимо нашу цркву
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="font-semibold mb-2 text-orthodox-blue">
-                    Volunteer Your Time
+                    {/* Volunteer Your Time */}
                   </h4>
                   <p className="mb-4">
-                    We welcome volunteers to help with church maintenance,
-                    liturgical assistance, choir participation, Sunday school
-                    teaching, and organizing community events. Your time and
-                    talents are precious gifts to our parish family.
+                    Позивамо све који желе да помогну нашу цркву – кроз
+                    одржавање, појање у хору или друге врсте доприноса. Ваше
+                    време и дарови су велики благослов нашој парохији.
                   </p>
                   <a
                     href="/contact"
                     className="text-orthodox-blue hover:text-orthodox-gold underline"
                   >
-                    Contact us to volunteer →
+                    Контактирајте нас да бисте волонтирали →
                   </a>
                 </div>
 
-                <div>
+                {/* <div>
                   <h4 className="font-semibold mb-2 text-orthodox-blue">
                     Donate Items
                   </h4>
@@ -152,10 +143,10 @@ const Donate: React.FC = () => {
                   >
                     Contact us about item donations →
                   </a>
-                </div>
+                </div> */}
               </div>
 
-              <div className="mt-8 p-4 bg-orthodox-cream rounded-lg">
+              {/* <div className="mt-8 p-4 bg-orthodox-cream rounded-lg">
                 <h4 className="font-semibold mb-2 text-orthodox-blue">
                   Memorial Donations
                 </h4>
@@ -164,7 +155,7 @@ const Donate: React.FC = () => {
                   These gifts help preserve our church for future generations
                   while keeping the memory of the departed alive in our prayers.
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
