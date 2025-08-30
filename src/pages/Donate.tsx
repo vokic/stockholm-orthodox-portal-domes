@@ -39,7 +39,7 @@ const Donate: React.FC = () => {
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                Donation Options
+                Опције за донирање
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -109,7 +109,7 @@ const Donate: React.FC = () => {
                 Остали начини да подржимо нашу цркву
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
                 <div>
                   <h4 className="font-semibold mb-2 text-orthodox-blue">
                     {/* Volunteer Your Time */}
