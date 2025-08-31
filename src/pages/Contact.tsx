@@ -155,7 +155,7 @@ const ContactPage: React.FC = () => {
                       </p>
                       <p>
                         <span className="font-medium">
-                          Father Milos Petrović:
+                          Otac Milos Petrović:
                         </span>{" "}
                         <a
                           href="tel:+46701234567"
@@ -166,7 +166,7 @@ const ContactPage: React.FC = () => {
                       </p>
                       <p>
                         <span className="font-medium">
-                          Father Stefan Jovanović:
+                          Otac Stefan Jovanović:
                         </span>{" "}
                         <a
                           href="tel:+46702345678"
@@ -177,7 +177,7 @@ const ContactPage: React.FC = () => {
                       </p>
                       <p>
                         <span className="font-medium">
-                          Father Nikola Petrović:
+                          Otac Nikola Petrović:
                         </span>{" "}
                         <a
                           href="tel:+46703456789"
