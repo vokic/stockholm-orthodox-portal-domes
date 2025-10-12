@@ -206,13 +206,14 @@ const ServicesPage: React.FC = () => {
 
                 <ul className="list-disc pl-6 mb-6 space-y-2">
                   <li>
-                    <strong>Monday to Friday:</strong> 09:00 - 16:00
+                    <strong>Monday to Friday:</strong> 09:00 - 13:00 and 17:00 -
+                    18:00
                   </li>
                   <li>
-                    <strong>Saturday:</strong> 09:00 - 19:00
+                    <strong>Saturday:</strong> 08:00 - 14:00
                   </li>
                   <li>
-                    <strong>Sunday:</strong> 09:00 - 14:00
+                    <strong>Sunday:</strong> 08:00 - 14:00
                   </li>
                 </ul>
 

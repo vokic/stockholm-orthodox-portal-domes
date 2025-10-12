@@ -80,22 +80,27 @@ const Donate: React.FC = () => {
                   </p>
 
                   <div className="bg-gray-50 p-6 rounded-md text-center">
-                    <div className="bg-white p-4 rounded-lg inline-block shadow-sm">
-                      <div className="w-48 h-48 bg-gradient-to-br from-blue-100 to-blue-200 border-2 border-orthodox-blue border-dashed flex items-center justify-center text-orthodox-blue text-sm font-medium">
+                    <div className="p-4 rounded-lg inline-block shadow-sm">
+                      <div className="w-48 h-48 flex items-center justify-center text-orthodox-blue text-sm font-medium">
                         <div className="text-center">
-                          <div className="text-2xl mb-2">📱</div>
-                          <div>SWISH QR Code</div>
-                          <div className="text-xs mt-1">
+                          <img src="/images/swish-qr-code.svg"></img>
+                          {/* <div className="text-xs mt-1">
                             Scan with SWISH app
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
-                    <p className="mt-4 font-medium text-orthodox-blue">
-                      SWISH Broj: 123 668 65 70
+                    <p>
+                      <strong>SWISH Broj: </strong> 123 668 65 70
                     </p>
-                    <p className="text-sm text-gray-600">
-                      Молимо Вас да у поруци упишете Ваше име и назнаку "Прилог"
+                    <p className="text-sm mt-2 text-gray-600">
+                      {" "}
+                      Скенирајте QR код помоћу
+                      <a href="https://apps.apple.com/se/app/swish-betalningar/id563204724">
+                        <b> Swish апликације </b>
+                      </a>
+                      (или упишите наведени број у одговарајуће поље), а у
+                      поруци напишите Ваше име и назнаку "Прилог".
                     </p>
                   </div>
                 </div>
