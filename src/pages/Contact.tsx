@@ -126,12 +126,12 @@ const ContactPage: React.FC = () => {
         </div>
 
         {/* Info Section */}
-        <section className="section bg-orthodox-cream">
+        {/* <section className="section bg-orthodox-cream">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
-              {/* Quick Contact */}
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-8"> */}
+        {/* Quick Contact */}
 
-              {/* <div className="card">
+        {/* <div className="card">
                 <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
                   {t("home.contactInfo")}
                 </h3>
@@ -167,16 +167,16 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
               </div> */}
-              {/* ovo ide u prethodni div ukoliko mora da se vraca
+        {/* ovo ide u prethodni div ukoliko mora da se vraca
                 
                 <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
                   <p className="text-sm">{t("home.churchIntro")}</p>
                 </div> */}
-              {/* <Link to="/contact" className="btn-primary inline-block mt-4">
+        {/* <Link to="/contact" className="btn-primary inline-block mt-4">
                   {t("home.contactUs")}
                 </Link> */}
-              {/* Location */}
-              <div className="card">
+        {/* Location */}
+        {/* <div className="card">
                 <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
                   {t("home.visitOurChurch")}
                 </h3>
@@ -191,12 +191,12 @@ const ContactPage: React.FC = () => {
                     <ExternalLink size={16} />
                     {t("home.getDirections")}
                   </button>
-                </div>
-                <div className="aspect-video rounded overflow-hidden flex justify-center items-center">
-                  <Map />
-                </div>
+                </div> */}
+        {/* <div className="rounded overflow-hidden flex justify-center items-center my-8 sm:my-10">
+                  <Map className="h-72 sm:h-96" />
+                </div> */}
 
-                {/* <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+        {/* <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
                    <p className="text-sm">{t("home.churchIntro")}</p>
                   <p className="text-sm">
                     Za sve informacije, pitanja i duhovne razovore, kliknite na
@@ -207,24 +207,20 @@ const ContactPage: React.FC = () => {
                 <Link to="/contact" className="btn-primary inline-block mt-4">
                   {t("home.contactUs")}
                 </Link> */}
-              </div>
+        {/* </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="section">
           <div className="container-custom">
             <div className="card">
               <h1 className="text-xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
-                {/* <MapPin className="text-orthodox-gold" /> */}
-                {/* {t("about.locationHours.title")} */}
-                {/* <Clock className="text-orthodox-gold" /> */}
-                {t("about.locationHours.openingHours")}
+                {t("about.locationHours.title")}
               </h1>
 
-              <h3 className="text-xl font-serif mb-4 flex items-center gap-2"></h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Working Hours - Left Side */}
                 <div>
                   <div className="bg-orthodox-cream p-6 rounded-lg mb-6">
                     <ul className="space-y-4">
@@ -242,55 +238,34 @@ const ContactPage: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="mt-6 text-center">
+                  <div className="mt-6 text-center lg:text-left">
                     <Link to="/calendar" className="btn-primary inline-block">
                       {t("home.viewFullCalendarBogosluzenja")}
                     </Link>
                   </div>
-
-                  {/* <h3 className="text-xl font-serif mb-4">
-                    {t("about.locationHours.contactInfo")}
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.address")}:
-                      </span>
-                      <span>{t("about.locationHours.addressValue")}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.phone")}:
-                      </span>
-
-                      <a
-                        href={`tel:${(t("footer.phoneValue") || "").replace(
-                          /\s+/g,
-                          ""
-                        )}`}
-                        className="text-orthodox-blue hover:text-orthodox-gold transition-colors underline"
-                      >
-                        {t("footer.phoneValue")}
-                      </a>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold min-w-[100px]">
-                        {t("about.locationHours.email")}:
-                      </span>
-                      <span>{t("about.locationHours.emailValue")}</span>
-                    </li>
-                  </ul> */}
                 </div>
 
-                {/* <div>
-                  <h3 className="text-xl font-serif mb-4">
-                    {t("about.locationHours.findUs")}
-                  </h3>
-                  <p className="mb-4">{t("home.visitOurChurchIntro")}</p> */}
-
-                {/* Map Component */}
-                {/* <Map className="mt-4" />
-                </div> */}
+                {/* Map - Right Side */}
+                <div>
+                  {/* <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                    {t("home.visitOurChurch")}
+                  </h3> */}
+                  <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
+                  <div className="mb-4">
+                    <p className="font-semibold">{t("home.addressLabel")}</p>
+                    <p>{t("home.address")}</p>
+                    <button
+                      onClick={handleGetDirections}
+                      className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                    >
+                      <ExternalLink size={16} />
+                      {t("home.getDirections")}
+                    </button>
+                  </div>
+                  <div className="w-full rounded overflow-hidden">
+                    <Map className="h-72 lg:h-full min-h-[300px]" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
