@@ -1,7 +1,6 @@
-
-import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { Calendar } from 'lucide-react';
+import React from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { Calendar } from "lucide-react";
 
 const EventsList: React.FC = () => {
   const { t } = useLanguage();
@@ -9,19 +8,19 @@ const EventsList: React.FC = () => {
   // Sample events data
   const events = [
     {
-      date: 'May 10, 2025',
-      name: 'Parish Feast Day',
-      description: 'Annual celebration of our parish patron saint.',
+      date: "05. 10, 2025",
+      name: "Parish Feast Day",
+      description: "Annual celebration of our parish patron saint.",
     },
     {
-      date: 'May 15, 2025',
-      name: 'Community Lunch',
-      description: 'Fellowship and community building after Divine Liturgy.',
+      date: "05. 15, 2025",
+      name: "Community Lunch",
+      description: "Fellowship and community building after Divine Liturgy.",
     },
     {
-      date: 'May 22, 2025',
-      name: 'Bible Study',
-      description: 'Weekly Bible study and discussion group.',
+      date: "05. 22, 2025",
+      name: "Bible Study",
+      description: "Weekly Bible study and discussion group.",
     },
   ];
 
@@ -29,9 +28,9 @@ const EventsList: React.FC = () => {
     <div className="card">
       <div className="flex items-center mb-4 text-orthodox-blue">
         <Calendar className="mr-2" size={20} />
-        <h3 className="font-serif">{t('home.upcomingEvents')}</h3>
+        <h3 className="font-serif">{t("home.upcomingEvents")}</h3>
       </div>
-      
+
       <ul className="divide-y">
         {events.map((event, index) => (
           <li key={index} className="py-3">
@@ -41,10 +40,13 @@ const EventsList: React.FC = () => {
           </li>
         ))}
       </ul>
-      
+
       <div className="mt-4">
-        <a href="/events" className="text-orthodox-blue hover:text-orthodox-gold">
-          {t('events.calendar')} →
+        <a
+          href="/events"
+          className="text-orthodox-blue hover:text-orthodox-gold"
+        >
+          {t("events.calendar")} →
         </a>
       </div>
     </div>

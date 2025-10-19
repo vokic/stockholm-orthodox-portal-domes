@@ -130,40 +130,18 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* Priest's Message Section */}
-        <section className="section">
+        {/* <section className="section">
           <div className="container-custom">
             <PriestMessage />
           </div>
-        </section>
+        </section> */}
 
         {/* Info Section */}
         <section className="section bg-orthodox-cream">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Location */}
-              <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                  {t("home.visitOurChurch")}
-                </h3>
-                <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
-                <div className="mb-4">
-                  <p className="font-semibold">{t("home.addressLabel")}</p>
-                  <p>{t("home.address")}</p>
-                  <button
-                    onClick={handleGetDirections}
-                    className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
-                  >
-                    <ExternalLink size={16} />
-                    {t("home.getDirections")}
-                  </button>
-                </div>
-                <div className="aspect-video rounded overflow-hidden flex justify-center items-center">
-                  <Map />
-                </div>
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
               {/* Quick Contact */}
-              <div className="card">
+              {/* <div className="card">
                 <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
                   {t("home.contactInfo")}
                 </h3>
@@ -198,12 +176,48 @@ const HomePage: React.FC = () => {
                     <p>{t("home.officeHoursValue.info")}</p>
                   </div>
                 </div>
+              </div> */}
+              {/* ovo ide u prethodni div ukoliko mora da se vraca
+                
                 <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
                   <p className="text-sm">{t("home.churchIntro")}</p>
-                </div>
-                <Link to="/contact" className="btn-primary inline-block mt-4">
+                </div> */}
+              {/* <Link to="/contact" className="btn-primary inline-block mt-4">
                   {t("home.contactUs")}
-                </Link>
+                </Link> */}
+              {/* Location */}
+              <div className="card">
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                  {t("home.visitOurChurch")}
+                </h3>
+                <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
+                <div className="mb-4">
+                  <p className="font-semibold">{t("home.addressLabel")}</p>
+                  <p>{t("home.address")}</p>
+                  <button
+                    onClick={handleGetDirections}
+                    className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                  >
+                    <ExternalLink size={16} />
+                    {t("home.getDirections")}
+                  </button>
+                </div>
+                <div className="rounded overflow-hidden flex justify-center items-center my-8 sm:my-10">
+                  <Map className="h-72 sm:h-96" />
+                </div>
+
+                <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                  {/* <p className="text-sm">{t("home.churchIntro")}</p> */}
+                  <p className="text-sm">
+                    Za sve informacije, pitanja i duhovne razovore, kliknite na
+                    link dole za telefonske brojeve sveštenika i radna vremena.
+                  </p>
+                </div>
+                <div className="text-center">
+                  <Link to="/contact" className="btn-primary inline-block mt-4">
+                    {t("home.contactUs")}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

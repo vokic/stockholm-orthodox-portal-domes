@@ -84,8 +84,8 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
             </h3>
             <ul className="space-y-2">
               <li>{t("footer.svetaLiturgija1")}</li>
-              <li>{t("footer.svetaLiturgija2")}</li>
-              <li>{t("footer.svetaLiturgija3")}</li>
+              {/* <li>{t("footer.svetaLiturgija2")}</li>
+              <li>{t("footer.svetaLiturgija3")}</li> */}
               <li>
                 <Link
                   to="/calendar"
@@ -114,6 +114,15 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
               </li>
 
               <li>
+                <Link
+                  to="/contact"
+                  className="text-orthodox-gold hover:underline"
+                >
+                  {t("footer.ostaleKontaktInformacije")} &rarr;
+                </Link>
+              </li>
+
+              {/* <li>
                 <strong>{t("footer.phone")}:</strong>{" "}
                 <a
                   href={`tel:${(t("footer.phoneValue") || "").replace(
@@ -124,8 +133,8 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                 >
                   {t("footer.phoneValue")}
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <strong>{t("footer.email")}:</strong>{" "}
                 <a
                   href={`mailto:${t("footer.emailValue")}`}
@@ -133,7 +142,8 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                 >
                   {t("footer.emailValue")}
                 </a>
-              </li>
+              </li> */}
+
               <li className="pt-3">
                 <div className="flex items-center gap-3">
                   <a

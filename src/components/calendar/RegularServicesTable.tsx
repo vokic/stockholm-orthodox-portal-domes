@@ -2,19 +2,25 @@ import React from "react";
 
 const regularServices = [
   {
-    day: "Недеља, субота, празник:",
+    day: "Јутрење - субота, недеља и празник:",
     //name: "Divine Liturgy",
-    time: "9:00 ч",
+    time: "8:00 ч",
     //description: "Main service in Serbian and English every Sunday.",
   },
   {
-    day: "Свакидашње јутрење: ",
+    day: "Св. литургија - субота, недеља и празник: ",
     // name: "Vespers",
     time: "9:00 ч",
     //description: "Evening prayers before major feasts and on Saturdays.",
   },
   {
-    day: "Свакидашње вечерње:",
+    day: "Јутрење - понедељак и петак:",
+    //name: "Akathist",
+    time: "9:00 ч",
+    //description: "Midweek prayer service.",
+  },
+  {
+    day: "Вечерње - понедељак и петак:",
     //name: "Akathist",
     time: "17:00 ч",
     //description: "Midweek prayer service.",
@@ -37,12 +43,12 @@ const RegularServicesTable: React.FC = () => {
           })}
         </span>
       </div>
-      <div className="overflow-x-auto bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4 border-orthodox-gold">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4  border-b-1 border-r-1 border-orthodox-gold">
+        <table className="w-full border-collapse border">
           <thead>
             <tr className="text-white">
               <th className="px-6 py-4 text-left font-bold text-lg font-serif">
-                Дан
+                Богослужење
               </th>
               {/* <th className="px-6 py-4 text-left font-bold text-lg font-serif">
                 Служба

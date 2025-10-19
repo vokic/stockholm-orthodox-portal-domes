@@ -31,7 +31,7 @@ const BlogPostPage: React.FC = () => {
 
   const formatDate = (dateString: string) => {
     try {
-      return format(new Date(dateString), "MMMM d, yyyy");
+      return format(new Date(dateString), "dd. MM. yyyy.");
     } catch {
       return dateString;
     }
@@ -242,8 +242,8 @@ const BlogPostPage: React.FC = () => {
               <div className="flex items-center justify-center gap-2 text-sm">
                 <CalendarIcon size={16} />
                 <span>{formatDate(post.date)}</span>
-                <span className="mx-2">•</span>
-                <span>Аутор: {post.author}</span>
+                {/* <span className="mx-2">•</span> */}
+                {/* <span>Аутор: {post.author}</span> */}
               </div>
             </div>
           </div>

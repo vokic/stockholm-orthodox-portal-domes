@@ -160,7 +160,7 @@ const AboutPage: React.FC = () => {
         {/* <OurCommunitySection onImageClick={handleImageClick} /> */}
 
         {/* Parishes Section */}
-        <ParishesSection />
+        {/* <ParishesSection /> */}
 
         {/* Gallery Section */}
         <AboutGallery />
@@ -172,10 +172,10 @@ const AboutPage: React.FC = () => {
         {/* <AboutSvetiSava onImageClick={handleImageClick} /> */}
 
         {/* Our Priests Section */}
-        <AboutPriests onImageClick={handleImageClick} />
+        {/* <AboutPriests onImageClick={handleImageClick} /> */}
 
         {/* Location and Working Hours Section */}
-        <AboutLocationHours />
+        {/* <AboutLocationHours /> */}
 
         {/* Our Community Section */}
         {/* <AboutCommunityStats /> */}

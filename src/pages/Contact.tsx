@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { useToast } from "../hooks/use-toast";
 import Map from "../components/Map";
 import ReCAPTCHA from "react-google-recaptcha";
-import { ExternalLink, Facebook, Instagram } from "lucide-react";
+import { Clock, ExternalLink, Facebook, Instagram, MapPin } from "lucide-react";
+import AboutPriests from "@/components/about/AboutPriests";
+import { log } from "console";
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
@@ -16,6 +19,14 @@ const ContactPage: React.FC = () => {
   const [message, setMessage] = useState("");
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Working hours data
+  const workingHours = [
+    { day: t("about.hours.mondayFridayPre"), hours: "09 - 13" },
+    { day: t("about.hours.mondayFridayPosle"), hours: "17 - 18" },
+    { day: t("about.hours.saturday"), hours: "08- 14" },
+    { day: t("about.hours.sunday"), hours: "08- 14" },
+  ];
 
   const handleCaptchaChange = (value: string | null) => {
     setCaptchaValue(value);
@@ -95,6 +106,10 @@ const ContactPage: React.FC = () => {
     window.open(googleMapsUrl, "_blank");
   };
 
+  const handleImageClick = (imageSrc: string) => {
+    console.log("Image clicked:", imageSrc);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -106,16 +121,187 @@ const ContactPage: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t("nav.contact")}
             </h1>
-            <p className="text-white">{t("home.churchDescription")}</p>
+            {/* <p className="text-white">{t("home.churchDescription")}</p> */}
           </div>
         </div>
 
-        {/* Contact Information and Form Section */}
+        {/* Info Section */}
+        <section className="section bg-orthodox-cream">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+              {/* Quick Contact */}
+
+              {/* <div className="card">
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                  {t("home.contactInfo")}
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold">{t("home.phone")}</p>
+                    <p>
+                      <a
+                        href={`tel:${t("home.phoneValue")}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {t("home.phoneValue")}
+                      </a>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">{t("home.email")}</p>
+                    <p>{t("home.emailValue")}</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold">{t("home.officeHours")}</p>
+                    <p>{t("home.officeHoursValue")}</p>
+                    <p>{t("home.officeHoursValue1")}</p>
+                    <p>{t("home.officeHoursValue2")}</p> <br />
+                    <p className="font-semibold">
+                      {t("home.officeHoursValue3")}
+                    </p>
+                    <p>{t("home.officeHoursValue4")}</p>
+                    <p>{t("home.officeHoursValue5")}</p>
+                    <p>{t("home.officeHoursValue6")}</p>
+                    <br />
+                    <p>{t("home.officeHoursValue.info")}</p>
+                  </div>
+                </div>
+              </div> */}
+              {/* ovo ide u prethodni div ukoliko mora da se vraca
+                
+                <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                  <p className="text-sm">{t("home.churchIntro")}</p>
+                </div> */}
+              {/* <Link to="/contact" className="btn-primary inline-block mt-4">
+                  {t("home.contactUs")}
+                </Link> */}
+              {/* Location */}
+              <div className="card">
+                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                  {t("home.visitOurChurch")}
+                </h3>
+                <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
+                <div className="mb-4">
+                  <p className="font-semibold">{t("home.addressLabel")}</p>
+                  <p>{t("home.address")}</p>
+                  <button
+                    onClick={handleGetDirections}
+                    className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                  >
+                    <ExternalLink size={16} />
+                    {t("home.getDirections")}
+                  </button>
+                </div>
+                <div className="aspect-video rounded overflow-hidden flex justify-center items-center">
+                  <Map />
+                </div>
+
+                {/* <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                   <p className="text-sm">{t("home.churchIntro")}</p>
+                  <p className="text-sm">
+                    Za sve informacije, pitanja i duhovne razovore, kliknite na
+                    link dole za telefonske brojeve sveštenika i radna vremena.
+                  </p>
+                </div>
+
+                <Link to="/contact" className="btn-primary inline-block mt-4">
+                  {t("home.contactUs")}
+                </Link> */}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Contact Information */}
-              <div className="card">
+            <div className="card">
+              <h1 className="text-xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
+                {/* <MapPin className="text-orthodox-gold" /> */}
+                {/* {t("about.locationHours.title")} */}
+                {/* <Clock className="text-orthodox-gold" /> */}
+                {t("about.locationHours.openingHours")}
+              </h1>
+
+              <h3 className="text-xl font-serif mb-4 flex items-center gap-2"></h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <div className="bg-orthodox-cream p-6 rounded-lg mb-6">
+                    <ul className="space-y-4">
+                      {workingHours.map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex justify-between items-center border-b border-dashed border-gray-300 pb-2"
+                        >
+                          <span className="font-medium">{item.day}</span>
+                          <span className="bg-orthodox-gold bg-opacity-20 px-3 py-1 rounded text-orthodox-blue">
+                            {item.hours}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <Link to="/calendar" className="btn-primary inline-block">
+                      {t("home.viewFullCalendarBogosluzenja")}
+                    </Link>
+                  </div>
+
+                  {/* <h3 className="text-xl font-serif mb-4">
+                    {t("about.locationHours.contactInfo")}
+                  </h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold min-w-[100px]">
+                        {t("about.locationHours.address")}:
+                      </span>
+                      <span>{t("about.locationHours.addressValue")}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold min-w-[100px]">
+                        {t("about.locationHours.phone")}:
+                      </span>
+
+                      <a
+                        href={`tel:${(t("footer.phoneValue") || "").replace(
+                          /\s+/g,
+                          ""
+                        )}`}
+                        className="text-orthodox-blue hover:text-orthodox-gold transition-colors underline"
+                      >
+                        {t("footer.phoneValue")}
+                      </a>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold min-w-[100px]">
+                        {t("about.locationHours.email")}:
+                      </span>
+                      <span>{t("about.locationHours.emailValue")}</span>
+                    </li>
+                  </ul> */}
+                </div>
+
+                {/* <div>
+                  <h3 className="text-xl font-serif mb-4">
+                    {t("about.locationHours.findUs")}
+                  </h3>
+                  <p className="mb-4">{t("home.visitOurChurchIntro")}</p> */}
+
+                {/* Map Component */}
+                {/* <Map className="mt-4" />
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Information and Form Section */}
+        {/* <section className="section">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8"> */}
+        {/* Contact Information */}
+        {/* <div className="card">
                 <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                   {t("contact.info")}
                 </h2>
@@ -238,10 +424,10 @@ const ContactPage: React.FC = () => {
                     <p>{t("contact.hours.sunday")}</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              {/* Contact Form */}
-              <div className="card">
+        {/* Contact Form */}
+        {/* <div className="card">
                 <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
                   {t("contact.form.title")}
                 </h2>
@@ -305,10 +491,10 @@ const ContactPage: React.FC = () => {
                       onChange={(e) => setMessage(e.target.value)}
                       disabled={isSubmitting}
                     ></textarea>
-                  </div>
+                  </div> */}
 
-                  {/* reCAPTCHA */}
-                  <div className="pt-2">
+        {/* reCAPTCHA */}
+        {/* <div className="pt-2">
                     <div className="flex justify-center mb-4">
                       <ReCAPTCHA
                         sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Replace with your actual site key
@@ -329,10 +515,10 @@ const ContactPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Map Section */}
-        <section className="section bg-orthodox-cream">
+        {/* <section className="section bg-orthodox-cream">
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
@@ -356,7 +542,9 @@ const ContactPage: React.FC = () => {
               />
             </div>
           </div>
-        </section>
+        </section> */}
+        {/* Our Priests Section */}
+        <AboutPriests onImageClick={handleImageClick} />
       </main>
 
       <Footer />

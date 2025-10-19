@@ -80,7 +80,7 @@ const BlogPage: React.FC = () => {
 
   const formatDate = (dateString: string) => {
     try {
-      return format(new Date(dateString), "MMMM d, yyyy");
+      return format(new Date(dateString), "dd. MM. yyyy.");
     } catch {
       return dateString;
     }
@@ -180,7 +180,7 @@ const BlogPage: React.FC = () => {
                           </p>
                           <div className="flex items-center justify-between">
                             <span className="text-sm text-gray-500 italic">
-                              Аутор: {post.author}
+                              {/* Аутор: {post.author} */}
                             </span>
                             <Link
                               to={`/articles/${post.slug}`}

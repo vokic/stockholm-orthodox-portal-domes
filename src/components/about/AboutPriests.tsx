@@ -29,17 +29,23 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
               </div>
 
               <div className="md:w-2/3 text-justify">
-                <p className="font-semibold mb-1">Свештеник:</p>
-                <p className="mb-1">Протојереј-ставрофор Арсеније Гардовић</p>
-                <p className="mb-4">Моб.тел. 073 717 14 61</p>
+                {/* <p className="font-semibold mb-1">Свештеник:</p> */}
+                <p className="mb-1">Протојереј - ставрофор</p>
+                <p className="mb-1 text-lg font-semibold">Арсеније Гардовић</p>
+                <a
+                  href={`tel:${t("priests.father1.phone")}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {t("priests.father1.phone")}
+                </a>
 
-                <h3 className="text-xl font-serif mb-3">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   I ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-                <p>
+                <p className="mb-4">
                   У састав Прве парохије улазе следеће општине и делови града:
                 </p>
-                <ol className="list-decimal list-inside pl-6 space-y-1">
+                <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Märsta</li>
                   <li>Upplands Väsby</li>
                   <li>Sollentuna</li>
@@ -69,17 +75,23 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
               </div>
 
               <div className="md:w-2/3 text-justify">
-                <p className="font-semibold mb-1">Свештеник:</p>
-                <p className="mb-1">Протојереј – ставрофор Душан Д. Раковић</p>
-                <p className="mb-4">Моб.тел. 073 501 66 95</p>
+                {/* <p className="font-semibold mb-1">Свештеник:</p> */}
+                <p className="mb-1">Протојереј - ставрофор</p>
+                <p className="mb-1 text-lg font-semibold">Душан Д. Раковић</p>
+                <a
+                  href={`tel:${t("priests.father2.phone")}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {t("priests.father2.phone")}
+                </a>
 
-                <h3 className="text-xl font-serif mb-3">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   II ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-                <p>
+                <p className="mb-4">
                   У састав Друге парохије улазе следеће општине и делови града:
                 </p>
-                <ol className="list-decimal list-inside pl-6 space-y-1">
+                <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Solna</li>
                   <li>Täby</li>
                   <li>Vallentuna</li>
@@ -107,17 +119,23 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
               </div>
 
               <div className="md:w-2/3 text-justify">
-                <p className="font-semibold mb-1">Свештеник:</p>
-                <p className="mb-1">Јереј Димитрије Раковић</p>
-                <p className="mb-4">Моб.тел. 073 023 67 70</p>
+                {/* <p className="font-semibold mb-1">Свештеник:</p> */}
+                <p className="mb-1">Протојереј</p>
+                <p className="mb-1 text-lg font-semibold">Димитрије Раковић</p>
+                <a
+                  href={`tel:${t("priests.father3.phone")}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {t("priests.father3.phone")}
+                </a>
 
-                <h3 className="text-xl font-serif mb-3">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   III ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
-                <p>
+                <p className="mb-4">
                   У састав Треће парохије улазе следеће општине и делови града:
                 </p>
-                <ol className="list-decimal list-inside pl-6 space-y-1">
+                <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Värmde </li>
                   <li>Järfälla</li>
                   <li>Botkyrka</li>
