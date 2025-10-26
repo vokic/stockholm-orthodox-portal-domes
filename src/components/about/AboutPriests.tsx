@@ -39,7 +39,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father1.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3">
+                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
                   I ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
@@ -85,7 +85,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father2.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3">
+                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
                   II ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
@@ -129,14 +129,14 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father3.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3">
+                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
                   III ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
                   У састав Треће парохије улазе следеће општине и делови града:
                 </p>
                 <ol className="list-decimal list-inside pl-2 space-y-1">
-                  <li>Värmde </li>
+                  <li>Värmdö </li>
                   <li>Järfälla</li>
                   <li>Botkyrka</li>
                   <li>Danderyd</li>

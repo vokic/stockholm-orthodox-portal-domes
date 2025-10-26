@@ -32,7 +32,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({
         </TabsList>
       </Tabs>
 
-      <Toggle
+      {/* <Toggle
         pressed={showPastEvents}
         onPressedChange={onShowPastEventsChange}
         aria-label="Toggle past events"
@@ -40,7 +40,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({
       >
         <History size={16} />
         <span className="text-sm">Past Events</span>
-      </Toggle>
+      </Toggle> */}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const ParishesSection: React.FC = () => {
 
           <div className="max-w-4xl mx-auto mb-8">
             <section>
-              <h3 className="font-semibold text-lg mb-4 mt-6">
+              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
                 I ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
@@ -51,7 +51,7 @@ const ParishesSection: React.FC = () => {
             {/* Repeat for II and III parishes with same ol class */}
             <section>
               <hr />
-              <h3 className="font-semibold text-lg mb-4 mt-6">
+              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
                 II ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
@@ -81,14 +81,14 @@ const ParishesSection: React.FC = () => {
 
             <section>
               <hr />
-              <h3 className="font-semibold text-lg mb-4 mt-6">
+              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
                 III ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
                 У састав Треће парохије улазе следеће општине и делови града:
               </p>
               <ol className="list-decimal list-inside pl-6 mb-4 space-y-1">
-                <li>Värmde</li>
+                <li>Värmdö</li>
                 <li>Järfälla</li>
                 <li>Botkyrka</li>
                 <li>Danderyd</li>

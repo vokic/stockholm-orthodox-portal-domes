@@ -33,15 +33,15 @@ const RegularServicesTable: React.FC = () => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-serif">Света литургија</h2>
-        <span className="text-sm text-gray-600">
+        <h2 className="text-2xl font-serif">Редовни распоред</h2>
+        {/* <span className="text-sm text-gray-600">
           Osveženo:{" "}
           {new Date(lastUpdated).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })}
-        </span>
+        </span> */}
       </div>
       <div className="overflow-x-auto bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4  border-b-1 border-r-1 border-orthodox-gold">
         <table className="w-full border-collapse border">
