@@ -16,9 +16,9 @@ const ParishesSection: React.FC = () => {
             }
           </h2>
 
-          <div className="max-w-4xl mx-auto mb-8">
+          <div className="max-w-4xl mx-auto mb-8 text-left">
             <section>
-              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
+              <h3 className="font-semibold text-lg mb-4 mt-6">
                 I ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
@@ -51,7 +51,7 @@ const ParishesSection: React.FC = () => {
             {/* Repeat for II and III parishes with same ol class */}
             <section>
               <hr />
-              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
+              <h3 className="font-semibold text-lg mb-4 mt-6 ">
                 II ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
@@ -81,7 +81,7 @@ const ParishesSection: React.FC = () => {
 
             <section>
               <hr />
-              <h3 className="font-semibold text-lg mb-4 mt-6 text-left">
+              <h3 className="font-semibold text-lg mb-4 mt-6">
                 III ПАРОХИЈА СТОКХОЛМСКА
               </h3>
               <p>
