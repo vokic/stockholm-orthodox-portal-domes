@@ -230,7 +230,7 @@ const ContactPage: React.FC = () => {
                           className="flex justify-between items-center border-b border-dashed border-gray-300 pb-2"
                         >
                           <span className="font-medium">{item.day}</span>
-                          <span className="bg-orthodox-gold bg-opacity-20 px-3 py-1 rounded text-orthodox-blue">
+                          <span className="bg-orthodox-gold bg-opacity-20 px-3 py-1 rounded text-orthodox-blue whitespace-nowrap">
                             {item.hours}
                           </span>
                         </li>
