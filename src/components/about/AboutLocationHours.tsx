@@ -8,9 +8,9 @@ const AboutLocationHours: React.FC = () => {
 
   // Working hours data
   const workingHours = [
-    { day: t("about.hours.mondayFriday"), hours: "09 - 13 i 17 - 18" },
-    { day: t("about.hours.saturday"), hours: "08- 14" },
-    { day: t("about.hours.sunday"), hours: "08- 14" },
+    { day: t("about.hours.mondayFriday"), hours: "9 - 13 i 17 - 18" },
+    { day: t("about.hours.saturday"), hours: "8 - 14" },
+    { day: t("about.hours.sunday"), hours: "8 - 14" },
   ];
 
   return (

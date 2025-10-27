@@ -21,10 +21,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
             <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
-                  src="/placeholder.svg"
+                  src="/images/arsenije.webp"
                   alt={t("about.priest1.imageAlt")}
                   className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onImageClick("/placeholder.svg")}
+                  onClick={() => onImageClick("/images/arsenije.webp")}
                 />
               </div>
 
@@ -67,10 +67,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
             <div className="flex flex-col md:flex-row-reverse gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
-                  src="/placeholder.svg"
+                  src="/images/dusan.webp"
                   alt={t("about.priest2.imageAlt")}
                   className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onImageClick("/placeholder.svg")}
+                  onClick={() => onImageClick("/images/dusan.webp")}
                 />
               </div>
 
@@ -111,10 +111,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
             <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-sm">
               <div className="md:w-1/3">
                 <img
-                  src="/placeholder.svg"
+                  src="/images/dimitrije.webp"
                   alt="Father Nikola portrait"
                   className="rounded-lg w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => onImageClick("/placeholder.svg")}
+                  onClick={() => onImageClick("/images/dimitrije.webp")}
                 />
               </div>
 

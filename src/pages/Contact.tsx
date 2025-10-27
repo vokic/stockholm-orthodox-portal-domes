@@ -22,10 +22,10 @@ const ContactPage: React.FC = () => {
 
   // Working hours data
   const workingHours = [
-    { day: t("about.hours.mondayFridayPre"), hours: "09 - 13" },
+    { day: t("about.hours.mondayFridayPre"), hours: "9 - 13" },
     { day: t("about.hours.mondayFridayPosle"), hours: "17 - 18" },
-    { day: t("about.hours.saturday"), hours: "08- 14" },
-    { day: t("about.hours.sunday"), hours: "08- 14" },
+    { day: t("about.hours.saturday"), hours: "8- 14" },
+    { day: t("about.hours.sunday"), hours: "8- 14" },
   ];
 
   const handleCaptchaChange = (value: string | null) => {

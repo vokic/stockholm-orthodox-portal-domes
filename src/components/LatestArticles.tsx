@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { getLatestArticles } from "../data/blogData";
+import { format } from "date-fns";
 
 const LatestArticles: React.FC = () => {
   const { t } = useLanguage();
@@ -24,13 +25,11 @@ const LatestArticles: React.FC = () => {
 
   // Function to format date properly
   const formatDate = (dateString: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    try {
+      return format(new Date(dateString), "dd. MM. yyyy.");
+    } catch {
+      return dateString;
+    }
   };
 
   if (loading) {

@@ -52,7 +52,7 @@ const PriestMessage: React.FC = () => {
           <div className="flex flex-col items-center mb-4">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-3">
               <img
-                src="/images/arsenije.jpg"
+                src="/images/arsenije.webp"
                 alt={t("priests.father2.name")}
                 className="w-full h-full object-cover"
               />
