@@ -28,7 +28,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3 text-justify">
+              <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
                 <p className="mb-1">Протојереј - ставрофор</p>
                 <p className="mb-1 text-lg font-semibold">Арсеније Гардовић</p>
@@ -39,7 +39,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father1.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   I ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
@@ -74,7 +74,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3 text-justify">
+              <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
                 <p className="mb-1">Протојереј - ставрофор</p>
                 <p className="mb-1 text-lg font-semibold">Душан Д. Раковић</p>
@@ -85,7 +85,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father2.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   II ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
@@ -118,7 +118,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 />
               </div>
 
-              <div className="md:w-2/3 text-justify">
+              <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
                 <p className="mb-1">Протојереј</p>
                 <p className="mb-1 text-lg font-semibold">Димитрије Раковић</p>
@@ -129,7 +129,7 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father3.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3 text-left">
+                <h3 className="text-xl font-serif mb-2 mt-3">
                   III ПАРОХИЈА СТОКХОЛМСКА
                 </h3>
                 <p className="mb-4">
