@@ -1,22 +1,26 @@
-
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React, { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import CalendarHero from '../components/calendar/CalendarHero';
-import CalendarFilters from '../components/calendar/CalendarFilters';
-import AllEventsView from '../components/calendar/AllEventsView';
-import FilteredEventsView from '../components/calendar/FilteredEventsView';
-import RegularServicesTable from '../components/calendar/RegularServicesTable';
-import ServiceAnnouncements from '../components/calendar/ServiceAnnouncements';
-import { useCalendarData } from '../hooks/useCalendarData';
+import CalendarHero from "../components/calendar/CalendarHero";
+import CalendarFilters from "../components/calendar/CalendarFilters";
+import AllEventsView from "../components/calendar/AllEventsView";
+import FilteredEventsView from "../components/calendar/FilteredEventsView";
+import RegularServicesTable from "../components/calendar/RegularServicesTable";
+import ServiceAnnouncements from "../components/calendar/ServiceAnnouncements";
+import { useCalendarData } from "../hooks/useCalendarData";
 
 const Calendar: React.FC = () => {
-  const [view, setView] = useState<'all' | 'service' | 'event' | 'slava'>('all');
+  const [view, setView] = useState<"all" | "service" | "event" | "slava">(
+    "all"
+  );
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
 
-  const { events, loading, formatDate, formatMonthYear, getFilteredEvents } = useCalendarData();
+  const { events, loading, formatDate, formatMonthYear, getFilteredEvents } =
+    useCalendarData();
   const filteredEvents = getFilteredEvents(view, showPastEvents);
+
+  console.log("Events:", events, "View:", view);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -30,7 +34,7 @@ const Calendar: React.FC = () => {
             <div className="card mb-6">
               <RegularServicesTable />
             </div>
-            
+
             <div className="card">
               <CalendarFilters
                 view={view}
@@ -39,7 +43,10 @@ const Calendar: React.FC = () => {
                 onShowPastEventsChange={setShowPastEvents}
               />
 
-              <Tabs value={view} onValueChange={(value) => setView(value as any)}>
+              <Tabs
+                value={view}
+                onValueChange={(value) => setView(value as any)}
+              >
                 <TabsContent value="all" className="mt-0">
                   <AllEventsView
                     events={filteredEvents}
@@ -47,6 +54,7 @@ const Calendar: React.FC = () => {
                     formatDate={formatDate}
                     formatMonthYear={formatMonthYear}
                     totalEventsCount={events.length}
+                    view={view}
                   />
                 </TabsContent>
 

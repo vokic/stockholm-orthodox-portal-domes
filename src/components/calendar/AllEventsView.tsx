@@ -10,6 +10,7 @@ interface AllEventsViewProps {
   formatDate: (dateString: string) => string;
   formatMonthYear: (dateString: string) => string;
   totalEventsCount: number;
+  view: "all" | "service" | "event" | "slava";
 }
 
 const AllEventsView: React.FC<AllEventsViewProps> = ({
@@ -56,35 +57,37 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
   if (Object.keys(groupedEvents).length === 0) {
     return (
       <div>
-        <h2 className="text-2xl font-serif mb-4">All Events</h2>
-        <p className="text-gray-600">No events to display.</p>
-        <p className="text-sm text-gray-500 mt-2">
+        <h2 className="text-2xl font-serif mb-4">Sva dešavanja</h2>
+        <p className="text-gray-600">Nema dešavanja za prikazati.</p>
+        {/*         <p className="text-sm text-gray-500 mt-2">
           Total events loaded: {totalEventsCount}
-        </p>
+        </p> */}
       </div>
     );
   }
 
   return (
     <div>
-      {/* <h2 className="text-2xl font-serif mb-4">All Events</h2>
-      {Object.entries(groupedEvents).map(([monthYear, monthEvents], monthIndex) => (
-        <div key={monthYear}>
-          {monthIndex > 0 && <Separator className="my-8" />}
-          <div className="mb-6">
-            <MonthHeader monthYear={monthYear} />
-            <div className="divide-y pl-4">
-              {monthEvents.map((event) => (
-                <EventCard 
-                  key={event.id} 
-                  event={event} 
-                  formatDate={formatDate} 
-                />
-              ))}
+      <h2 className="text-2xl font-serif mb-4">All Events</h2>
+      {Object.entries(groupedEvents).map(
+        ([monthYear, monthEvents], monthIndex) => (
+          <div key={monthYear}>
+            {monthIndex > 0 && <Separator className="my-8" />}
+            <div className="mb-6">
+              <MonthHeader monthYear={monthYear} />
+              <div className="divide-y pl-4">
+                {monthEvents.map((event) => (
+                  <EventCard
+                    key={event.id}
+                    event={event}
+                    formatDate={formatDate}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))} */}
+        )
+      )}
     </div>
   );
 };

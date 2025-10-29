@@ -139,84 +139,42 @@ const HomePage: React.FC = () => {
         {/* Info Section */}
         <section className="section bg-orthodox-cream">
           <div className="container-custom">
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
-              {/* Quick Contact */}
-              {/* <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                  {t("home.contactInfo")}
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold">{t("home.phone")}</p>
-                    <p>
-                      <a
-                        href={`tel:${t("home.phoneValue")}`}
-                        className="text-blue-600 hover:underline"
-                      >
-                        {t("home.phoneValue")}
-                      </a>
-                    </p>
+            <div className="card">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left side - Text content */}
+                <div>
+                  <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
+                    {t("home.visitOurChurch")}
+                  </h3>
+                  <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
+                  <div className="mb-4">
+                    <p className="font-semibold">{t("home.addressLabel")}</p>
+                    <p>{t("home.address")}</p>
+                    <button
+                      onClick={handleGetDirections}
+                      className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
+                    >
+                      <ExternalLink size={16} />
+                      {t("home.getDirections")}
+                    </button>
                   </div>
-                  <div>
-                    <p className="font-semibold">{t("home.email")}</p>
-                    <p>{t("home.emailValue")}</p>
+
+                  <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                    <p className="text-sm">{t("home.churchIntro")}</p>
                   </div>
-                  <div>
-                    <p className="font-semibold">{t("home.officeHours")}</p>
-                    <p>{t("home.officeHoursValue")}</p>
-                    <p>{t("home.officeHoursValue1")}</p>
-                    <p>{t("home.officeHoursValue2")}</p> <br />
-                    <p className="font-semibold">
-                      {t("home.officeHoursValue3")}
-                    </p>
-                    <p>{t("home.officeHoursValue4")}</p>
-                    <p>{t("home.officeHoursValue5")}</p>
-                    <p>{t("home.officeHoursValue6")}</p>
-                    <br />
-                    <p>{t("home.officeHoursValue.info")}</p>
+                  <div className="text-center">
+                    <Link
+                      to="/contact"
+                      className="btn-primary inline-block mt-4"
+                    >
+                      {t("home.contactUs")}
+                    </Link>
                   </div>
-                </div>
-              </div> */}
-              {/* ovo ide u prethodni div ukoliko mora da se vraca
-                
-                <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
-                  <p className="text-sm">{t("home.churchIntro")}</p>
-                </div> */}
-              {/* <Link to="/contact" className="btn-primary inline-block mt-4">
-                  {t("home.contactUs")}
-                </Link> */}
-              {/* Location */}
-              <div className="card">
-                <h3 className="text-xl font-serif mb-4 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                  {t("home.visitOurChurch")}
-                </h3>
-                <p className="mb-4">{t("home.visitOurChurchIntro")}</p>
-                <div className="mb-4">
-                  <p className="font-semibold">{t("home.addressLabel")}</p>
-                  <p>{t("home.address")}</p>
-                  <button
-                    onClick={handleGetDirections}
-                    className="flex items-center gap-2 mt-2 text-orthodox-blue hover:text-orthodox-gold transition-colors duration-150 underline"
-                  >
-                    <ExternalLink size={16} />
-                    {t("home.getDirections")}
-                  </button>
-                </div>
-                <div className="rounded overflow-hidden flex justify-center items-center my-8 sm:my-10">
-                  <Map className="h-72 sm:h-96" />
                 </div>
 
-                <div className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
-                  {/* <p className="text-sm">{t("home.churchIntro")}</p> */}
-                  <p className="text-sm">
-                    Za sve informacije, pitanja i duhovne razovore, kliknite na
-                    link dole za telefonske brojeve sveštenika i radna vremena.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <Link to="/contact" className="btn-primary inline-block mt-4">
-                    {t("home.contactUs")}
-                  </Link>
+                {/* Right side - Map */}
+                <div className="rounded overflow-hidden flex justify-center items-center">
+                  <Map className="h-72 sm:h-96 w-full" />
                 </div>
               </div>
             </div>
