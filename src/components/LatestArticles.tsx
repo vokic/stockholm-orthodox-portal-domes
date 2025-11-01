@@ -26,7 +26,7 @@ const LatestArticles: React.FC = () => {
   // Function to format date properly
   const formatDate = (dateString: string) => {
     try {
-      return format(new Date(dateString), "dd. MM. yyyy.");
+      return format(new Date(dateString), "dd.MM.yyyy.");
     } catch {
       return dateString;
     }

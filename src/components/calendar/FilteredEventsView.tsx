@@ -1,24 +1,23 @@
-
-import React from 'react';
-import { Event } from '../../services/eventService';
-import EventsList from './EventsList';
+import React from "react";
+import { Event } from "../../services/eventService";
+import EventsList from "./EventsList";
 import { Separator } from "@/components/ui/separator";
-import MonthHeader from './MonthHeader';
+import MonthHeader from "./MonthHeader";
+import { useLanguage } from "@/context/LanguageContext";
+import { format } from "date-fns";
 
 interface FilteredEventsViewProps {
   events: Event[];
   loading: boolean;
-  formatDate: (dateString: string) => string;
-  eventType: 'service' | 'event' | 'slava';
+  eventType: "service" | "event" | "slava";
   title: string;
-  formatMonthYear?: (dateString: string) => string;
 }
 
-const groupEventsByMonth = (events: Event[], formatMonthYear: (dateString: string) => string) => {
+const groupEventsByMonth = (events: Event[]) => {
   const grouped: { [key: string]: Event[] } = {};
-  events.forEach(event => {
+  events.forEach((event) => {
     if (event.date) {
-      const monthYear = formatMonthYear(event.date);
+      const monthYear = format(new Date(event.date), "MMMM yyyy");
       if (!grouped[monthYear]) {
         grouped[monthYear] = [];
       }
@@ -29,11 +28,11 @@ const groupEventsByMonth = (events: Event[], formatMonthYear: (dateString: strin
   const sortedGrouped: { [key: string]: Event[] } = {};
   Object.keys(grouped)
     .sort((a, b) => {
-      const dateA = new Date(a + ' 1');
-      const dateB = new Date(b + ' 1');
+      const dateA = new Date(a + " 1");
+      const dateB = new Date(b + " 1");
       return dateA.getTime() - dateB.getTime();
     })
-    .forEach(key => {
+    .forEach((key) => {
       sortedGrouped[key] = grouped[key];
     });
 
@@ -43,36 +42,35 @@ const groupEventsByMonth = (events: Event[], formatMonthYear: (dateString: strin
 const FilteredEventsView: React.FC<FilteredEventsViewProps> = ({
   events,
   loading,
-  formatDate,
-  formatMonthYear,
   eventType,
-  title
+  title,
 }) => {
+  const { t } = useLanguage();
+
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "Date TBD";
+    try {
+      return format(new Date(dateString), "dd.MM.yyyy.");
+    } catch {
+      return dateString;
+    }
+  };
+
   if (loading) {
-    return <div className="text-center py-10 text-gray-400">Loading {eventType}s...</div>;
+    return (
+      <div className="text-center py-10 text-gray-400">
+        Loading {eventType}s...
+      </div>
+    );
   }
 
-  const formatMonthYearFallback = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-  };
-  const monthHeaderFn = formatMonthYear || formatMonthYearFallback;
-
-  const groupedEvents = groupEventsByMonth(events, monthHeaderFn);
+  const groupedEvents = groupEventsByMonth(events);
 
   if (Object.keys(groupedEvents).length === 0) {
-    const message = eventType === 'service'
-      ? 'No special services currently scheduled.'
-      : eventType === 'event'
-      ? 'No events currently scheduled.'
-      : eventType === 'slava'
-      ? 'No slavas currently scheduled.'
-      : 'No events to display.';
-
     return (
       <div>
         <h2 className="text-2xl font-serif mb-4">{title}</h2>
-        <p className="text-gray-600">{message}</p>
+        <p className="text-gray-600">{t("events.noEvents")}</p>
       </div>
     );
   }
@@ -80,19 +78,21 @@ const FilteredEventsView: React.FC<FilteredEventsViewProps> = ({
   return (
     <div>
       <h2 className="text-2xl font-serif mb-4">{title}</h2>
-      {Object.entries(groupedEvents).map(([monthYear, monthEvents], monthIndex) => (
-        <div key={monthYear}>
-          {monthIndex > 0 && <Separator className="my-8" />}
-          <div className="mb-6">
-            <MonthHeader monthYear={monthYear} />
-            <EventsList
-              events={monthEvents}
-              formatDate={formatDate}
-              eventType={eventType}
-            />
+      {Object.entries(groupedEvents).map(
+        ([monthYear, monthEvents], monthIndex) => (
+          <div key={monthYear}>
+            {monthIndex > 0 && <Separator className="my-8" />}
+            <div className="mb-6">
+              <MonthHeader monthYear={monthYear} />
+              <EventsList
+                events={monthEvents}
+                formatDate={formatDate}
+                eventType={eventType}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };

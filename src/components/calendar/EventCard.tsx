@@ -1,23 +1,18 @@
 import React from "react";
 import { Calendar as CalendarIcon, Clock, MapPin, Star } from "lucide-react";
-import { Event } from "../../services/eventService";
+import { useLanguage } from "@/context/LanguageContext";
+import { format } from "date-fns";
 
-interface EventCardProps {
-  event: Event;
-  formatDate: (dateString: string) => string;
-}
+const EventCard = ({ event }) => {
+  const { t, language } = useLanguage();
+  const translatedType = t(`events.${event.type}`);
 
-const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
-  const getEventTypeLabel = (type: string) => {
-    switch (type) {
-      case "service":
-        return "Service";
-      case "event":
-        return "Event";
-      case "slava":
-        return "Slava";
-      default:
-        return "Event";
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "Date TBD";
+    try {
+      return format(new Date(dateString), "dd.MM.yyyy.");
+    } catch {
+      return dateString;
     }
   };
 
@@ -39,12 +34,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
     : "py-4";
 
   return (
-    <div className={cardClasses}>
+    <div className={cardClasses} key={`${event.id}-${language}`}>
       {event.highlight && (
         <div className="flex items-center gap-1 mb-2">
           <Star size={16} className="text-orthodox-gold fill-orthodox-gold" />
           <span className="text-sm font-medium text-orthodox-gold">
-            Featured Event
+            {t("events.highlited")}
           </span>
         </div>
       )}
@@ -82,13 +77,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, formatDate }) => {
             <span>{event.location}</span>
           </div>
         )}
+
         <div className="flex-shrink-0">
           <span
             className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getEventTypeColor(
               event.type
             )}`}
           >
-            {getEventTypeLabel(event.type)}
+            {translatedType}
           </span>
         </div>
       </div>

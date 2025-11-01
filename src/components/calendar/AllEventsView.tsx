@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { Event } from "../../services/eventService";
 import EventCard from "./EventCard";
 import MonthHeader from "./MonthHeader";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface AllEventsViewProps {
   events: Event[];
@@ -20,6 +21,8 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
   formatMonthYear,
   totalEventsCount,
 }) => {
+  const { t } = useLanguage();
+
   const groupEventsByMonth = (events: Event[]) => {
     const grouped: { [key: string]: Event[] } = {};
     events.forEach((event) => {
@@ -68,7 +71,7 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
 
   return (
     <div>
-      <h2 className="text-2xl font-serif mb-4">All Events</h2>
+      <h2 className="text-2xl font-serif mb-4">{t("events.sviDogadjaji")}</h2>
       {Object.entries(groupedEvents).map(
         ([monthYear, monthEvents], monthIndex) => (
           <div key={monthYear}>

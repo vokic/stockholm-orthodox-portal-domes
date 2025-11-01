@@ -9,8 +9,10 @@ import FilteredEventsView from "../components/calendar/FilteredEventsView";
 import RegularServicesTable from "../components/calendar/RegularServicesTable";
 import ServiceAnnouncements from "../components/calendar/ServiceAnnouncements";
 import { useCalendarData } from "../hooks/useCalendarData";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Calendar: React.FC = () => {
+  const { t } = useLanguage();
   const [view, setView] = useState<"all" | "service" | "event" | "slava">(
     "all"
   );
@@ -65,7 +67,7 @@ const Calendar: React.FC = () => {
                     formatDate={formatDate}
                     formatMonthYear={formatMonthYear}
                     eventType="service"
-                    title="Special Services"
+                    title={t("events.crkveneSluzbe")}
                   />
                 </TabsContent>
 
@@ -76,7 +78,7 @@ const Calendar: React.FC = () => {
                     formatDate={formatDate}
                     formatMonthYear={formatMonthYear}
                     eventType="event"
-                    title="Community Events"
+                    title={t("events.crkveniDogadjaji")}
                   />
                 </TabsContent>
 
@@ -87,7 +89,7 @@ const Calendar: React.FC = () => {
                     formatDate={formatDate}
                     formatMonthYear={formatMonthYear}
                     eventType="slava"
-                    title="Serbian Slavas"
+                    title={t("events.srpskeSlave")}
                   />
                 </TabsContent>
               </Tabs>

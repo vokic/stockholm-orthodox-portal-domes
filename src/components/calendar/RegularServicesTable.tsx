@@ -4,25 +4,25 @@ const regularServices = [
   {
     day: "Јутрење - субота, недеља и празник:",
     //name: "Divine Liturgy",
-    time: "8:00 ч",
+    time: "8:00",
     //description: "Main service in Serbian and English every Sunday.",
   },
   {
     day: "Св. литургија - субота, недеља и празник: ",
     // name: "Vespers",
-    time: "9:00 ч",
+    time: "9:00",
     //description: "Evening prayers before major feasts and on Saturdays.",
   },
   {
     day: "Јутрење - понедељак и петак:",
     //name: "Akathist",
-    time: "9:00 ч",
+    time: "9:00",
     //description: "Midweek prayer service.",
   },
   {
     day: "Вечерње - понедељак и петак:",
     //name: "Akathist",
-    time: "17:00 ч",
+    time: "17:00",
     //description: "Midweek prayer service.",
   },
 ];

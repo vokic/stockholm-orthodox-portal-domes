@@ -3,9 +3,10 @@ import { useLanguage } from "../context/LanguageContext";
 import { Calendar, Clock, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fetchEvents, Event } from "../services/eventService";
+import { format } from "date-fns";
 
 const CombinedEventsSchedule: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -40,30 +41,17 @@ const CombinedEventsSchedule: React.FC = () => {
     };
   }, []);
 
-  // Function to format date based on current language
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const isSerbian = language === "sr_cyr" || language === "sr_lat";
-    const locale = isSerbian ? "sr-RS" : "en-US";
-
-    return date.toLocaleDateString(locale, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    if (!dateString) return "Date TBD";
+    try {
+      return format(new Date(dateString), "dd.MM.yyyy.");
+    } catch {
+      return dateString;
+    }
   };
 
   const getEventTypeLabel = (type: string) => {
-    switch (type) {
-      case "service":
-        return t("service") || "Service";
-      case "event":
-        return t("event") || "Event";
-      case "slava":
-        return "Slava";
-      default:
-        return t("event") || "Event";
-    }
+    return t(`events.${type}`);
   };
 
   const getEventTypeColor = (type: string) => {
@@ -120,7 +108,7 @@ const CombinedEventsSchedule: React.FC = () => {
                         className="text-orthodox-gold fill-orthodox-gold"
                       />
                       <span className="text-xs font-medium text-orthodox-gold">
-                        Featured
+                        {t("events.highlited")}
                       </span>
                     </div>
                   )}
@@ -134,7 +122,9 @@ const CombinedEventsSchedule: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock size={16} className="text-orthodox-blue" />
-                      <span className="text-sm">{event.time}</span>
+                      <span className="text-sm">
+                        {event.time || "Time TBD"}
+                      </span>
                     </div>
                   </div>
 
