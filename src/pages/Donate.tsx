@@ -39,23 +39,20 @@ const Donate: React.FC = () => {
           <div className="container-custom">
             <div className="card">
               <h2 className="text-2xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2">
-                Опције за донирање
+                {t("donate.title")}
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                    Уплата на банковни рачун (Bankgiro)
+                    {t("donate.subtitle1")}
                   </h3>
-                  <p className="mb-4">
-                    Можете извршити директан банковни трансфер на рачун цркве.
-                    Све донације се користе за одржавање цркве, верске службе и
-                    програме заједнице.
-                  </p>
+                  <p className="mb-4">{t("donate.info1")}</p>
 
                   <div className="bg-gray-50 p-4 rounded-md">
                     <p>
-                      <strong>Број рачуна:</strong> 822 - 2705
+                      <strong>{t("donate.number1")}</strong>
+                      {t("donate.number2")}
                     </p>
                     {/* <p>
                       <strong>IBAN:</strong> SE45 3000 0000 0330 0123 4567
@@ -64,20 +61,16 @@ const Donate: React.FC = () => {
                       <strong>BIC/SWIFT:</strong> NDEASESS
                     </p> */}
                     <p className="mt-2 text-sm text-gray-600">
-                      Молимо Вас да у пољу за референцу упишете Ваше име и
-                      назнаку "Прилог"
+                      {t("donate.info3")}
                     </p>
                   </div>
                 </div>
 
                 <div>
                   <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                    SWISH Уплата
+                    {t("donate.subtitle2")}
                   </h3>
-                  <p className="mb-4">
-                    За брзе и једноставне донације, користите SWISH да бисте их
-                    директно пребацили на наш црквени рачун:
-                  </p>
+                  <p className="mb-4">{t("donate.info2")}</p>
 
                   <div className="bg-gray-50 p-6 rounded-md text-center">
                     <div className="p-4 rounded-lg inline-block shadow-sm">
@@ -91,16 +84,11 @@ const Donate: React.FC = () => {
                       </div>
                     </div>
                     <p>
-                      <strong>SWISH Broj: </strong> 123 668 65 70
+                      <strong>{t("donate.number3")}</strong>
+                      {t("donate.number4")}
                     </p>
                     <p className="text-sm mt-2 text-gray-600">
-                      {" "}
-                      Скенирајте QR код помоћу
-                      <a href="https://apps.apple.com/se/app/swish-betalningar/id563204724">
-                        <b> Swish апликације </b>
-                      </a>
-                      (или упишите наведени број у одговарајуће поље), а у
-                      поруци напишите Ваше име и назнаку "Прилог".
+                      {t("donate.scan")}
                     </p>
                   </div>
                 </div>
@@ -111,7 +99,7 @@ const Donate: React.FC = () => {
               </div>
 
               <h3 className="font-serif text-xl mb-4 text-orthodox-blue">
-                Остали начини да подржимо нашу цркву
+                {t("donate.info4")}
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
@@ -119,16 +107,12 @@ const Donate: React.FC = () => {
                   <h4 className="font-semibold mb-2 text-orthodox-blue">
                     {/* Volunteer Your Time */}
                   </h4>
-                  <p className="mb-4">
-                    Позивамо све који желе да помогну нашу цркву – кроз
-                    одржавање, појање у хору или друге врсте доприноса. Ваше
-                    време и дарови су велики благослов нашој парохији.
-                  </p>
+                  <p className="mb-4">{t("donate.subtitle4")}</p>
                   <a
                     href="/contact"
                     className="text-orthodox-blue hover:text-orthodox-gold underline"
                   >
-                    Контактирајте нас да бисте волонтирали →
+                    {t("donate.volunteer")}
                   </a>
                 </div>
 

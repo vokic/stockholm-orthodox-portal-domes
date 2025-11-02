@@ -264,7 +264,25 @@
   "calendar.table.time3": "Jutrenje - ponedeljak i petak:",
   "calendar.table.time4": "Večernje - ponedeljak i petak:",
 
-  "donate.title": "Pružite podršku našoj crkvi",
+  "donate.title": "Opcije za doniranje",
+  "donate.subtitle1": "Uplata na bankovni račun (Bankgiro)",
+  "donate.info1": "Možete izvršiti direktan bankovni transfer na račun crkve. Sve donacije se koriste za održavanje crkve, verske službe i programe zajednice.",
+  "donate.number1": "Broj računa:",
+  "donate.number2": "822 - 2705",
+  "donate.info3": "Molimo Vas da u polju za referencu upišete Vaše ime i naznaku \"Prilog\"",
+
+  "donate.subtitle2": "SWISH Uplata",
+  "donate.info2": "Za brze i jednostavne donacije, koristite SWISH da biste ih direktno prebacili na naš crkveni račun:",
+  "donate.number3": "SWISH Broj:",
+  "donate.number4": "123 668 65 70",
+  "donate.scan": "Skenirajte QR kod pomoću Swish aplikacije (ili upišite navedeni broj u odgovarajuće polje), a u poruci napišite Vaše ime i naznaku \"Prilog\".",
+
+  "donate.subtitle3": "Ostali načini da podržimo našu crkvu",
+
+  "donate.info4": "Ostali načini da podržimo našu crkvu",
+  "donate.subtitle4": "Pozivamo sve koji žele da pomognu našu crkvu – kroz održavanje, pojanje u horu ili druge vrste doprinosa. Vaše vreme i darovi su veliki blagoslov našoj parohiji.",
+  "donate.volunteer": "Kontaktirajte nas da biste volontirali →",
+
   "donate.text": "Uključite se u podršku misiji i radu naše crkve.",
   "donate.button": "Prilog",
   "donate.options": "Opcije za doniranje",
