@@ -30,8 +30,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
 
               <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
-                <p className="mb-1">Протојереј - ставрофор</p>
-                <p className="mb-1 text-lg font-semibold">Арсеније Гардовић</p>
+                <p className="mb-1"> {t("priests.father1.title")}</p>
+                <p className="mb-1 text-lg font-semibold">
+                  {t("priests.father1.name")}
+                </p>
                 <a
                   href={`tel:${t("priests.father1.phone")}`}
                   className="text-blue-600 hover:underline"
@@ -39,12 +41,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                   {t("priests.father1.phone")}
                 </a>
 
-                <h3 className="text-xl font-serif mb-2 mt-3">
-                  I ПАРОХИЈА СТОКХОЛМСКА
+                <h3 className="text-xl font-serif mb-2 mt-3 uppercase">
+                  {t("priests.father1.greeting")}
                 </h3>
-                <p className="mb-4">
-                  У састав Прве парохије улазе следеће општине и делови града:
-                </p>
+                <p className="mb-4">{t("priests.father1.sastav")}</p>
                 <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Märsta</li>
                   <li>Upplands Väsby</li>
@@ -76,8 +76,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
 
               <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
-                <p className="mb-1">Протојереј - ставрофор</p>
-                <p className="mb-1 text-lg font-semibold">Душан Д. Раковић</p>
+                <p className="mb-1"> {t("priests.father2.title")}</p>
+                <p className="mb-1 text-lg font-semibold">
+                  {t("priests.father2.name")}
+                </p>
                 <a
                   href={`tel:${t("priests.father2.phone")}`}
                   className="text-blue-600 hover:underline"
@@ -86,11 +88,9 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 </a>
 
                 <h3 className="text-xl font-serif mb-2 mt-3">
-                  II ПАРОХИЈА СТОКХОЛМСКА
+                  {t("priests.father2.greeting")}
                 </h3>
-                <p className="mb-4">
-                  У састав Друге парохије улазе следеће општине и делови града:
-                </p>
+                <p className="mb-4">{t("priests.father2.sastav")}</p>
                 <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Solna</li>
                   <li>Täby</li>
@@ -120,8 +120,10 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
 
               <div className="md:w-2/3 text-left">
                 {/* <p className="font-semibold mb-1">Свештеник:</p> */}
-                <p className="mb-1">Протојереј</p>
-                <p className="mb-1 text-lg font-semibold">Димитрије Раковић</p>
+                <p className="mb-1"> {t("priests.father3.title")}</p>
+                <p className="mb-1 text-lg font-semibold">
+                  {t("priests.father3.name")}
+                </p>
                 <a
                   href={`tel:${t("priests.father3.phone")}`}
                   className="text-blue-600 hover:underline"
@@ -130,11 +132,9 @@ const AboutPriests: React.FC<AboutPriestsProps> = ({ onImageClick }) => {
                 </a>
 
                 <h3 className="text-xl font-serif mb-2 mt-3">
-                  III ПАРОХИЈА СТОКХОЛМСКА
+                  {t("priests.father3.greeting")}
                 </h3>
-                <p className="mb-4">
-                  У састав Треће парохије улазе следеће општине и делови града:
-                </p>
+                <p className="mb-4">{t("priests.father3.sastav")}</p>
                 <ol className="list-decimal list-inside pl-2 space-y-1">
                   <li>Värmdö </li>
                   <li>Järfälla</li>

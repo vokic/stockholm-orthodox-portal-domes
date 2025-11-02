@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Toggle } from "@/components/ui/toggle";
 import { History } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CalendarFiltersProps {
   view: "all" | "service" | "event" | "slava";
@@ -16,6 +17,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({
   showPastEvents,
   onShowPastEventsChange,
 }) => {
+  const { t } = useLanguage();
   return (
     <div className="flex items-center justify-between mb-4">
       <Tabs
@@ -25,10 +27,10 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({
         }
       >
         <TabsList>
-          <TabsTrigger value="all">Све</TabsTrigger>
-          <TabsTrigger value="service">Службе</TabsTrigger>
-          <TabsTrigger value="event">Догађаји</TabsTrigger>
-          <TabsTrigger value="slava">Славе</TabsTrigger>
+          <TabsTrigger value="all"> {t("events.all")}</TabsTrigger>
+          <TabsTrigger value="service">{t("events.service")}</TabsTrigger>
+          <TabsTrigger value="event">{t("events.event")}</TabsTrigger>
+          <TabsTrigger value="slava">{t("events.slava")}</TabsTrigger>
         </TabsList>
       </Tabs>
 

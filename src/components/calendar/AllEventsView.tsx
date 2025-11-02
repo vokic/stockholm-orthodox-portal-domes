@@ -4,6 +4,8 @@ import { Event } from "../../services/eventService";
 import EventCard from "./EventCard";
 import MonthHeader from "./MonthHeader";
 import { useLanguage } from "@/context/LanguageContext";
+import { format } from "date-fns";
+import { sr } from "date-fns/locale"; // Import Serbian locale
 
 interface AllEventsViewProps {
   events: Event[];
@@ -27,7 +29,16 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
     const grouped: { [key: string]: Event[] } = {};
     events.forEach((event) => {
       if (event.date) {
-        const monthYear = formatMonthYear(event.date);
+        const date = new Date(event.date);
+        const month = date
+          .toLocaleDateString("en-US", { month: "long" })
+          .toLowerCase();
+        const year = date.getFullYear();
+
+        // Translate the month
+        const translatedMonth = t(`months.${month}`);
+        const monthYear = `${translatedMonth} ${year}`;
+
         if (!grouped[monthYear]) {
           grouped[monthYear] = [];
         }
@@ -38,9 +49,28 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
     const sortedGrouped: { [key: string]: Event[] } = {};
     Object.keys(grouped)
       .sort((a, b) => {
-        const dateA = new Date(a + " 1");
-        const dateB = new Date(b + " 1");
-        return dateA.getTime() - dateB.getTime();
+        // Parse back to compare dates
+        const parseMonthYear = (str: string) => {
+          const parts = str.split(" ");
+          const year = parseInt(parts[parts.length - 1]);
+          // Get original English month name for comparison
+          const translatedMonth = parts.slice(0, -1).join(" ");
+          // Find the month index by checking all translations
+          let monthIndex = 0;
+          for (let i = 0; i < 12; i++) {
+            const date = new Date(2000, i, 1);
+            const englishMonth = date
+              .toLocaleDateString("en-US", { month: "long" })
+              .toLowerCase();
+            if (t(`months.${englishMonth}`) === translatedMonth) {
+              monthIndex = i;
+              break;
+            }
+          }
+          return new Date(year, monthIndex, 1);
+        };
+
+        return parseMonthYear(a).getTime() - parseMonthYear(b).getTime();
       })
       .forEach((key) => {
         sortedGrouped[key] = grouped[key];

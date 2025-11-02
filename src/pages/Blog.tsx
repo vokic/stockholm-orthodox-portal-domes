@@ -62,15 +62,15 @@ const BlogPage: React.FC = () => {
       case "all":
         return "Све";
       case "news":
-        return "Новости";
+        return t("articles.filter.news") || "News";
       case "events":
-        return "Догађаји";
+        return t("articles.filter.happenings") || "Events";
       case "texts":
-        return "Текстови";
+        return t("articles.filter.texts") || "Texts";
       case "community":
-        return "Заједница";
+        return t("articles.filter.community") || "Community";
       case "history":
-        return "Историја";
+        return t("articles.filter.history") || "History";
       default:
         return (
           category?.charAt(0).toUpperCase() + category?.slice(1) || "Other"
@@ -139,7 +139,7 @@ const BlogPage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {currentPosts.length === 0 ? (
                     <div className="col-span-full text-center text-gray-600">
-                      {t("noArticles") || "No articles found."}
+                      {t("articles.noArticles") || "No articles found."}
                     </div>
                   ) : (
                     currentPosts.map((post) => (

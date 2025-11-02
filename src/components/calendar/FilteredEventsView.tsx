@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import MonthHeader from "./MonthHeader";
 import { useLanguage } from "@/context/LanguageContext";
 import { format } from "date-fns";
+import { sr } from "date-fns/locale"; // Import Serbian locale
 
 interface FilteredEventsViewProps {
   events: Event[];
@@ -17,7 +18,10 @@ const groupEventsByMonth = (events: Event[]) => {
   const grouped: { [key: string]: Event[] } = {};
   events.forEach((event) => {
     if (event.date) {
-      const monthYear = format(new Date(event.date), "MMMM yyyy");
+      // Use Serbian locale here
+      const monthYear = format(new Date(event.date), "MMMM yyyy", {
+        locale: sr,
+      });
       if (!grouped[monthYear]) {
         grouped[monthYear] = [];
       }
@@ -59,7 +63,8 @@ const FilteredEventsView: React.FC<FilteredEventsViewProps> = ({
   if (loading) {
     return (
       <div className="text-center py-10 text-gray-400">
-        Loading {eventType}s...
+        {/* Loading {eventType}s... */}
+        ...
       </div>
     );
   }

@@ -51,19 +51,22 @@
   "home.publishDate": "Датум објаве: ",
 
   "priests.father1.name": "Арсеније Гардовић",
-  "priests.father1.title": "Протојереј-ставрофор",
+  "priests.father1.title": "Протојереј - ставрофор",
   "priests.father1.phone": "073 717 14 61",
-  "priests.father1.greeting": "I. парохија Стокхолмска",
+  "priests.father1.greeting": "I ПАРОХИЈА СТОКХОЛМСКА",
+  "priests.father1.sastav": "У састав Прве парохије улазе следеће општине и делови града:",
 
   "priests.father2.name": "Душан Д. Раковић",
-  "priests.father2.title": "Протојереј-ставрофор",
+  "priests.father2.title": "Протојереј - ставрофор",
   "priests.father2.phone": "073 501 66 95",
-  "priests.father2.greeting": "II. парохија Стокхолмска",
+  "priests.father2.greeting": "II ПАРОХИЈА СТОКХОЛМСКА",
+  "priests.father2.sastav": "У састав Друге парохије улазе следеће општине и делови града:",
 
   "priests.father3.name": "Димитрије Раковић",
-  "priests.father3.title": "Јереј",
+  "priests.father3.title": "Протојереј",
   "priests.father3.phone": "073 023 67 70",
-  "priests.father3.greeting": "III. парохија Стокхолмска",
+  "priests.father3.greeting": "III ПАРОХИЈА СТОКХОЛМСКА",
+  "priests.father3.sastav": "У састав Треће парохије улазе следеће општине и делови града:",
 
   "services.schedule": "Распоред богослужења",
   "services.sunday": "Недељна Литургија",
@@ -83,6 +86,7 @@
   "articles.filter.history": "Историја",
   "articles.readMore": "Прочитај више",
   "articles.description": "Овде можете пронаћи најновије вести, догађаје и текстове из наше заједнице.",
+  "articles.noArticles": "Нема доступних чланака у овој категорији.",
 
   "about.title": "О нашој цркви",
   "about.intro": "Српска православна црква у Стокхолму је духовни дом за све који желе да живе вером, очувају традицију и буду део топле заједнице у срцу Шведске.",
@@ -251,8 +255,14 @@
   "contact.findus": "Пронађите нас",
   "contact.directions.title": "Упутства",
 
-  "calendar.title": "Календар",
+  "calendar.title": "Редовни распоред",
   "calendar.info": "Будите информисани о нашим службама, догађајима и прославама.",
+  "calendar.table.name": "Богослужење",
+  "calendar.table.time": "Време",
+  "calendar.table.time1": "Јутрење - субота, недеља и празник:",
+  "calendar.table.time2": "Св. литургија - субота, недеља и празник:",
+  "calendar.table.time3": "Јутрење - понедељак и петак:",
+  "calendar.table.time4": "Вечерње - понедељак и петак:",
 
   "donate.title": "Пружите подршку нашој цркви",
   "donate.text": "Укључите се у подршку мисији и раду наше цркве.",
@@ -316,5 +326,18 @@
   "footer.phoneValue": "+46 31 70 70 70",
   "footer.emailValue": "adresa_crkve@crkva_svetog_save.com",
   "footer.copyright": "Садржај је власништво његових аутора.",
-  "footer.ostaleKontaktInformacije": "Остале контакт информације"
+  "footer.ostaleKontaktInformacije": "Остале контакт информације",
+
+  "months.january": "Јануар",
+  "months.february": "Фебруар",
+  "months.march": "Март",
+  "months.april": "Април",
+  "months.may": "Мај",
+  "months.june": "Јун",
+  "months.july": "Јул",
+  "months.august": "Август",
+  "months.september": "Септембар",
+  "months.october": "Октобар",
+  "months.november": "Новембар",
+  "months.december": "Децембар"
 }
