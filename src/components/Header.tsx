@@ -30,7 +30,7 @@ const Header: React.FC = () => {
       short: "SR lat",
     }, // label: t("lang.serbian_lat") || "Srpski (latinica)",
 
-    // { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
+    { code: "sv", label: "Svenska", short: "SV" }, // label: t("lang.swedish") || "Svenska",
 
     // { code: "ru", label: "Русский", short: "RU" }, // label: t("lang.russian") || "Русский",
     // { code: "el", label: "Ελληνικά", short: "EL" }, // label: t("lang.greek") || "Ελληνικά",

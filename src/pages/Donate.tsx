@@ -28,10 +28,7 @@ const Donate: React.FC = () => {
             <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
               {t("donate.title")}
             </h1>
-            <p className="text-xl">
-              Подржите нашу црквену заједницу и помозите нам да наставимо нашу
-              духовну мисију.
-            </p>
+            <p className="text-xl">{t("donate.subtitle")}</p>
           </div>
         </div>
 

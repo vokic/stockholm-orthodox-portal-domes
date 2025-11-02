@@ -60,7 +60,7 @@ const BlogPage: React.FC = () => {
   const getCategoryDisplayName = (category: string) => {
     switch (category?.toLowerCase()) {
       case "all":
-        return "Све";
+        return t("articles.filter.all") || "All";
       case "news":
         return t("articles.filter.news") || "News";
       case "events":

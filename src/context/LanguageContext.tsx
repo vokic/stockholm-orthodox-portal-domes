@@ -3,6 +3,7 @@
 import { createContext, useState, useContext } from "react";
 import sr_cyr from "../lang/sr_cyr.json";
 import sr_lat from "../lang/sr_lat.json";
+import sv from "../lang/sv.json";
 
 interface Language {
   code: string;
@@ -25,6 +26,7 @@ interface LanguageContext {
 const languageData = {
   sr_cyr,
   sr_lat,
+  sv,
   // ...
 };
 
