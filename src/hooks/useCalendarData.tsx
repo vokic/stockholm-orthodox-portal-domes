@@ -75,13 +75,21 @@ export const useCalendarData = () => {
       view === "all" ? events : events.filter((event) => event.type === view);
 
     if (!showPastEvents) {
-      const today = new Date();
-      const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const todayTimestamp = today.getTime();
 
       filtered = filtered.filter((event) => {
         if (!event.date) return false;
+
         const eventDate = new Date(event.date);
-        return eventDate >= currentMonth;
+        const normalizedEventDate = new Date(
+          eventDate.getFullYear(),
+          eventDate.getMonth(),
+          eventDate.getDate()
+        );
+
+        return normalizedEventDate.getTime() >= todayTimestamp;
       });
     }
 
