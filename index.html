@@ -1,62 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sveti Sava Orthodox Church Stockholm</title>
+  <title>Srpska Pravoslavna Crkva Sveti Sava Stockholm | Свети Сава Стокхолм</title>
   <meta name="description"
-    content="Serbian Orthodox Church in Stockholm serving the spiritual needs of the Orthodox faithful in Sweden" />
+    content="Srpska pravoslavna crkva Sveti Sava u Stokholmu. Bogosluženja, krštenja, venčanja i pravoslavne aktivnosti. Bägerstavägen 68, Enskede Gård." />
   <meta name="keywords"
-    content="orthodox church, serbian orthodox, stockholm, church services, liturgy, sveti sava, orthodox faith, sweden" />
-  <meta name="author" content="Serbian Orthodox Church Stockholm" />
+    content="pravoslavna crkva stockholm, srpska crkva stockholm, sveti sava, богослужење, liturgija, церковь стокгольм, orthodox church sweden" />
+  <meta name="author" content="Srpska Pravoslavna Crkva Sveti Sava Stockholm" />
 
-  <!-- Open Graph Meta Tags for social sharing -->
-  <meta property="og:title" content="Sveti Sava Orthodox Church Stockholm" />
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Srpska Pravoslavna Crkva Sveti Sava Stockholm" />
   <meta property="og:description"
-    content="Serbian Orthodox Church in Stockholm serving the spiritual needs of the Orthodox faithful in Sweden" />
+    content="Srpska pravoslavna crkva Sveti Sava u Stokholmu. Bogosluženja, krštenja, venčanja i pravoslavne aktivnosti." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://crkvastokholm.se" />
-  <meta property="og:image" content="https://crkvastokholm.se/church-image.jpg" />
-
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@serbianorthodox" />
-  <meta name="twitter:image" content="https://crkvastokholm.se/church-image.jpg" />
+  <meta property="og:site_name" content="Crkva Sveti Sava Stockholm" />
+  <meta property="og:locale" content="sr_RS" />
+  <meta property="og:locale:alternate" content="sv_SE" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://crkvastokholm.se" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-
 
   <!-- Robots -->
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-  <!-- Alternate language versions -->
-  <link rel="alternate" hreflang="en" href="https://crkvastokholm.se/" />
-  <link rel="alternate" hreflang="sv" href="https://crkvastokholm.se/sv/" />
-  <link rel="alternate" hreflang="sr" href="https://crkvastokholm.se/sr-lat/" />
-  <link rel="alternate" hreflang="ru" href="https://crkvastokholm.se/ru/" />
-  <link rel="alternate" hreflang="el" href="https://crkvastokholm.se/el/" />
-  <link rel="alternate" hreflang="mk" href="https://crkvastokholm.se/mk/" />
+  <!-- Language alternates -->
+  <link rel="alternate" hreflang="sr-Latn" href="https://crkvastokholm.se/" />
+  <link rel="alternate" hreflang="sr-Cyrl" href="https://crkvastokholm.se/" />
+  <link rel="alternate" hreflang="sv" href="https://crkvastokholm.se/" />
   <link rel="alternate" hreflang="x-default" href="https://crkvastokholm.se/" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.gpteng.co" />
+
+  <!-- Geo tags for local SEO -->
+  <meta name="geo.region" content="SE-AB" />
+  <meta name="geo.placename" content="Stockholm" />
+  <meta name="geo.position" content="59.2907;18.0824" />
+  <meta name="ICBM" content="59.2907, 18.0824" />
 </head>
 
 <body>
   <div id="root"></div>
-  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
   <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Srpska Pravoslavna Crkva Sveti Sava Stockholm",
+      "alternateName": "Свети Сава Стокхолм",
+      "url": "https://crkvastokholm.se",
+      "logo": "https://crkvastokholm.se/logo.png",
+      "image": "https://crkvastokholm.se/church-image.jpg",
+      "description": "Srpska pravoslavna crkva u Stokholmu",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bägerstavägen 68",
+        "addressLocality": "Stockholm",
+        "postalCode": "120 47",
+        "addressCountry": "SE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "59.2907",
+        "longitude": "18.0824"
+      },
+      "telephone": "+46-XX-XXX-XXXX",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "12:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100069273553241",
+        "https://www.instagram.com/spcstockholm/"
+      ]
+    }
+    </script>
 </body>
 
 </html>
