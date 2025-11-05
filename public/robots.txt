@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stockholmorthodoxchurch.com/sitemap.xml
+Sitemap: https://crkvastokholm.se/sitemap.xml
