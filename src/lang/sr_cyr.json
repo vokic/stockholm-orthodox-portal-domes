@@ -40,7 +40,10 @@
   "home.viewAllArticles": "Погледај још чланака",
   "home.viewAll": "Види све",
   "home.viewFullCalendar": "Види цео распоред",
-  "home.viewFullCalendarBogosluzenja": "Види цео распоред богослужења",
+
+  "home.viewFullCalendarInfo": "У горе наведеним терминима црква је отворена за посете. Кликните да видите распоред богослужења.",
+
+  "home.viewFullCalendarBogosluzenja": "Види распоред богослужења",
   "home.priests.title": "Свештеници",
   "home.visitOurChurch": "Посетите цркву",
   "home.visitOurChurchIntro": "Црква се налази у срцу насеља Enskede Gård, надомак станице метроа истог имена, као и трамвајске станице Linde. Лако нас је пронаћи, добро сте дошли!",
@@ -259,10 +262,14 @@
   "calendar.info": "Будите информисани о нашим службама, догађајима и прославама.",
   "calendar.table.name": "Богослужење",
   "calendar.table.time": "Време",
-  "calendar.table.time1": "Јутрење - субота, недеља и празник:",
-  "calendar.table.time2": "Св. литургија - субота, недеља и празник:",
-  "calendar.table.time3": "Јутрење - понедељак и петак:",
-  "calendar.table.time4": "Вечерње - понедељак и петак:",
+
+  "calendar.table.time1": "Јутрење - недеља:",
+  "calendar.table.time2": "Литургија - субота, недеља и празник:",
+  "calendar.table.time3": "Јутрење - радни дани:",
+  "calendar.table.time4": "Вечерње - радни дани:",
+
+  "calendar.table.description": " Горе наведени редовни распоред важи, осим ако у календару испод није назначено другачије. Црква је отворена за посете и ван времена богослужења.",
+  "calendar.table.link": "Кликните овде за целокупно радно време →",
 
   "donate.title": "Опције за донирање",
   "donate.subtitle": "Подржите нашу црквену заједницу и помозите нам да наставимо нашу духовну мисију",

@@ -40,7 +40,10 @@
   "home.viewAllArticles": "Se fler artiklar",
   "home.viewAll": "Se alla",
   "home.viewFullCalendar": "Se hela schemat",
-  "home.viewFullCalendarBogosluzenja": "Se hela gudstjänstschemat",
+  "home.viewFullCalendarBogosluzenja": "Se gudstjänstschemat",
+
+  "home.viewFullCalendarInfo": "Kyrkan är öppen för besök under ovan nämnda tider. Klicka för att se gudstjänstschemat.",
+
   "home.priests.title": "Präster",
   "home.visitOurChurch": "Besök kyrkan",
   "home.visitOurChurchIntro": "Kyrkan ligger i hjärtat av Enskede Gård, nära tunnelbanestationen med samma namn, samt spårvagnsstationen Linde. Vi är lätta att hitta, välkomna!",
@@ -259,10 +262,14 @@
   "calendar.info": "Håll dig informerad om våra gudstjänster, evenemang och firanden.",
   "calendar.table.name": "Gudstjänst",
   "calendar.table.time": "Tid",
+
   "calendar.table.time1": "Morgongudstjänst - lördag, söndag och helgdag:",
-  "calendar.table.time2": "Helig liturgi - lördag, söndag och helgdag:",
+  "calendar.table.time2": "Hellig liturgi - lördag, söndag och helgdag:",
   "calendar.table.time3": "Morgongudstjänst - måndag och fredag:",
   "calendar.table.time4": "Aftongudstjänst - måndag och fredag:",
+
+  "calendar.table.description": " Ovanstående ordinarie schema gäller, om inte annat anges i kalendern nedan. Kyrkan är öppen för besök utanför gudstjänsttider.",
+  "calendar.table.link": "Klicka här för fullständiga öppettider →",
 
   "donate.title": "Donationsalternativ",
 

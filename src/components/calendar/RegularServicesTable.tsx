@@ -28,7 +28,7 @@ const RegularServicesTable: React.FC = () => {
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-serif">{t("calendar.title")}</h2>
+        <h2 className="text-2xl font-serif">{t("calendar.title")} xxxx</h2>
       </div>
 
       <div className="overflow-x-auto bg-gradient-to-r from-orthodox-blue to-orthodox-blue/80 rounded-lg border-l-4 border-b-1 border-r-1 border-orthodox-gold">
@@ -53,6 +53,15 @@ const RegularServicesTable: React.FC = () => {
           </tbody>
         </table>
       </div>
+      <p className="mt-4">
+        {t("calendar.table.description")}{" "}
+        <a
+          className="text-orthodox-blue hover:text-orthodox-gold"
+          href="/contact"
+        >
+          {t("calendar.table.link")}
+        </a>
+      </p>
     </div>
   );
 };
