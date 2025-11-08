@@ -238,7 +238,9 @@ const ContactPage: React.FC = () => {
                     </ul>
                   </div>
 
-                  <p>{t("home.viewFullCalendarInfo")}</p>
+                  <p className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
+                    {t("home.viewFullCalendarInfo")}
+                  </p>
 
                   <div className="mt-6 text-center lg:text-left">
                     <Link to="/calendar" className="btn-primary inline-block">
