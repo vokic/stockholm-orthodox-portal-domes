@@ -62,7 +62,7 @@ const RegularServicesTable: React.FC = () => {
         ></a> */}
       </p>
       <div className="flex justify-center mb-4">
-        <Link to="/calendar" className="mt-4 btn-primary inline-block">
+        <Link to="/contact" className="mt-4 btn-primary inline-block">
           {t("calendar.table.link")}
         </Link>
       </div>
