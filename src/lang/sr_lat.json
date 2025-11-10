@@ -43,7 +43,7 @@
 
   "home.viewFullCalendarInfo": "U gore navedenim terminima crkva je otvorena za posete. Kliknite da vidite raspored bogosluženja.",
 
-  "home.viewFullCalendarBogosluzenja": "Vidi raspored bogosluženja",
+  "home.viewFullCalendarBogosluzenja": "Pogledaj raspored bogosluženja",
   "home.priests.title": "Sveštenici",
   "home.visitOurChurch": "Posetite crkvu",
   "home.visitOurChurchIntro": "Crkva se nalazi u srcu naselja Enskede Gård, nadomak stanice metroa istog imena, kao i tramvajske stanice Linde. Lako nas je pronaći, dobro ste došli!",
@@ -269,7 +269,7 @@
   "calendar.table.time4": "Večernje - radni dani:",
 
   "calendar.table.description": " Gore navedeni redovni raspored važi, osim ako u kalendaru ispod nije naznačeno drugačije. Crkva je otvorena za posete i van vremena bogosluženja.",
-  "calendar.table.link": "Kliknite ovde za celokupno radno vreme →",
+  "calendar.table.link": "Pogledaj radno vreme →",
 
   "donate.title": "Opcije za doniranje",
   "donate.subtitle": "Podržite našu crkvenu zajednicu i pomozite nam da nastavimo našu duhovnu misiju",

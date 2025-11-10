@@ -1,5 +1,6 @@
 import { useLanguage } from "@/context/LanguageContext";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RegularServicesTable: React.FC = () => {
   const { t } = useLanguage();
@@ -55,13 +56,16 @@ const RegularServicesTable: React.FC = () => {
       </div>
       <p className="mt-4 p-3 bg-orthodox-blue bg-opacity-10 rounded">
         {t("calendar.table.description")}{" "}
-        <a
+        {/* <a
           className="text-orthodox-blue hover:text-orthodox-gold "
           href="/contact"
-        >
-          {t("calendar.table.link")}
-        </a>
+        ></a> */}
       </p>
+      <div className="flex justify-center mb-4">
+        <Link to="/calendar" className="mt-4 btn-primary inline-block">
+          {t("calendar.table.link")}
+        </Link>
+      </div>
     </div>
   );
 };
