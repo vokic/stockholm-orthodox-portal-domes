@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
@@ -18,52 +19,38 @@ import { ExternalLink } from "lucide-react";
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
-  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
-  const [eventsLoading, setEventsLoading] = useState(true);
 
   // POPUP CONTROL: Change this to false to disable the popup completely
   const POPUP_ENABLED = false;
 
-  // Fetch events and get the first upcoming event
-  useEffect(() => {
-    let mounted = true;
+  // Fetch events using React Query
+  const { data: events = [], isLoading: eventsLoading } = useQuery({
+    queryKey: ["events"],
+    queryFn: fetchEvents,
+  });
 
-    fetchEvents()
-      .then((events) => {
-        if (mounted) {
-          const today = new Date();
-          const thirtyDaysFromNow = new Date();
-          thirtyDaysFromNow.setDate(today.getDate() + 30);
+  // Calculate upcoming event with useMemo
+  const upcomingEvent = useMemo(() => {
+    if (!events.length) return null;
+    
+    const today = new Date();
+    const thirtyDaysFromNow = new Date();
+    thirtyDaysFromNow.setDate(today.getDate() + 30);
 
-          // Find the first upcoming event within the next 30 days
-          const nextEvent = events
-            .filter((event) => {
-              if (!event.date) return false;
-              const eventDate = new Date(event.date);
-              return eventDate >= today && eventDate <= thirtyDaysFromNow;
-            })
-            .sort(
-              (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-            )[0];
-
-          setUpcomingEvent(nextEvent || null);
-          setEventsLoading(false);
-        }
+    // Find the first upcoming event within the next 30 days
+    return events
+      .filter((event) => {
+        if (!event.date) return false;
+        const eventDate = new Date(event.date);
+        return eventDate >= today && eventDate <= thirtyDaysFromNow;
       })
-      .catch((error) => {
-        console.error("Error loading events for popup:", error);
-        if (mounted) {
-          setEventsLoading(false);
-        }
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+      .sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      )[0] || null;
+  }, [events]);
 
   // Automatic popup logic with conditions - now controlled by POPUP_ENABLED flag
-  useEffect(() => {
+  React.useEffect(() => {
     if (!POPUP_ENABLED) return; // Exit early if popup is disabled
 
     const hasSeenPopup = sessionStorage.getItem("hasSeenHolidayPopup");

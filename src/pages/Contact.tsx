@@ -107,7 +107,7 @@ const ContactPage: React.FC = () => {
   };
 
   const handleImageClick = (imageSrc: string) => {
-    console.log("Image clicked:", imageSrc);
+    // Image click handler - can be extended for modal/lightbox functionality
   };
 
   return (

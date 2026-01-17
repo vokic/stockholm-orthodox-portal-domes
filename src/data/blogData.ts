@@ -41,19 +41,13 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     }
     
     if (!data || !Array.isArray(data.items) || data.items.length === 0) {
-      console.log('No blog posts found or empty response');
       return [];
     }
-    
-    console.log('Fetched blog posts:', data.items.length);
-    console.log('Raw data:', data);
     
     const posts = data.items.map((entry: any) => {
       const fields = entry.fields || {};
       let imageUrl = undefined;
       let images: string[] = [];
-      
-      console.log('Processing entry:', entry.sys.id, 'Fields:', fields);
       
       // Handle the image field - it's an array of asset links
       const imageField = fields.image;
@@ -63,7 +57,6 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         images = imageField.map((imageLink: any) => {
           if (imageLink.sys && imageLink.sys.id) {
             const resolvedUrl = resolveContentfulAsset(data.includes, imageLink.sys.id);
-            console.log('Resolved image URL:', resolvedUrl);
             if (resolvedUrl && !resolvedUrl.startsWith("http")) {
               return `https:${resolvedUrl}`;
             }
@@ -74,8 +67,6 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         
         // Set the first image as the main image URL
         imageUrl = images[0];
-      } else {
-        console.log('No image field found for entry:', entry.sys.id);
       }
       
       const title = fields.title || 'Untitled';
@@ -93,7 +84,6 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
         images,
       };
       
-      console.log('Final post object:', post);
       return post;
     });
     

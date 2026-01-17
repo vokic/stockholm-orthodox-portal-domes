@@ -69,13 +69,6 @@ export const fetchEvents = async (): Promise<Event[]> => {
     }
 
     return data.items.map((item: any) => {
-      console.log(
-        "Processing event entry:",
-        item.sys.id,
-        "Fields:",
-        item.fields
-      );
-
       // Parse dateTime field if it exists
       let date = "";
       let time = "";
@@ -101,10 +94,6 @@ export const fetchEvents = async (): Promise<Event[]> => {
           description = item.fields.description;
         } else if (item.fields.description.content) {
           // Convert rich text object to HTML
-          console.log(
-            "Description is rich text object:",
-            item.fields.description
-          );
           description = convertRichTextToHtml(item.fields.description);
         } else {
           description = "";
@@ -122,7 +111,6 @@ export const fetchEvents = async (): Promise<Event[]> => {
         highlight: item.fields.highlight || false,
       };
 
-      console.log("Final event object:", event);
       return event;
     });
   } catch (error) {

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
@@ -18,38 +19,31 @@ import {
 const BlogPage: React.FC = () => {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9;
 
   const categories = ["all", "news", "events", "texts", "community", "history"];
 
-  useEffect(() => {
-    let mounted = true;
-    getBlogPosts().then((data) => {
-      if (mounted) {
-        setPosts(data || []);
-        setLoading(false);
-      }
-    });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // Fetch blog posts using React Query
+  const { data: posts = [], isLoading: loading, error } = useQuery({
+    queryKey: ["blogPosts"],
+    queryFn: getBlogPosts,
+  });
 
   // Reset to first page when category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory]);
 
-  const filteredPosts =
-    selectedCategory === "all"
+  // Filter posts with useMemo
+  const filteredPosts = useMemo(() => {
+    return selectedCategory === "all"
       ? posts
       : posts.filter(
           (post) =>
             post.category?.toLowerCase() === selectedCategory.toLowerCase()
         );
+  }, [posts, selectedCategory]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
@@ -134,6 +128,10 @@ const BlogPage: React.FC = () => {
               <div className="text-center py-10 text-gray-400">
                 {t("loading") || "Loading articles..."}
               </div>
+            ) : error ? (
+              <div className="text-center py-10 text-red-600">
+                {t("articles.errorLoading") || "Error loading articles. Please try again later."}
+              </div>
             ) : (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -158,10 +156,6 @@ const BlogPage: React.FC = () => {
                             alt={post.title}
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                              console.log(
-                                "Image failed to load:",
-                                post.imageUrl
-                              );
                               e.currentTarget.src =
                                 "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop";
                             }}

@@ -18,11 +18,9 @@ const Calendar: React.FC = () => {
   );
   const [showPastEvents, setShowPastEvents] = useState<boolean>(false);
 
-  const { events, loading, formatDate, formatMonthYear, getFilteredEvents } =
+  const { events, loading, error, formatDate, formatMonthYear, getFilteredEvents } =
     useCalendarData();
   const filteredEvents = getFilteredEvents(view, showPastEvents);
-
-  console.log("Events:", events, "View:", view);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -50,47 +48,71 @@ const Calendar: React.FC = () => {
                 onValueChange={(value) => setView(value as any)}
               >
                 <TabsContent value="all" className="mt-0">
-                  <AllEventsView
-                    events={filteredEvents}
-                    loading={loading}
-                    formatDate={formatDate}
-                    formatMonthYear={formatMonthYear}
-                    totalEventsCount={events.length}
-                    view={view}
-                  />
+                  {error ? (
+                    <div className="text-center py-8 text-red-600">
+                      {t("calendar.errorLoadingEvents") || "Error loading events. Please try again later."}
+                    </div>
+                  ) : (
+                    <AllEventsView
+                      events={filteredEvents}
+                      loading={loading}
+                      formatDate={formatDate}
+                      formatMonthYear={formatMonthYear}
+                      totalEventsCount={events.length}
+                      view={view}
+                    />
+                  )}
                 </TabsContent>
 
                 <TabsContent value="service" className="mt-0">
-                  <FilteredEventsView
-                    events={filteredEvents}
-                    loading={loading}
-                    formatDate={formatDate}
-                    formatMonthYear={formatMonthYear}
-                    eventType="service"
-                    title={t("events.crkveneSluzbe")}
-                  />
+                  {error ? (
+                    <div className="text-center py-8 text-red-600">
+                      {t("calendar.errorLoadingEvents") || "Error loading events. Please try again later."}
+                    </div>
+                  ) : (
+                    <FilteredEventsView
+                      events={filteredEvents}
+                      loading={loading}
+                      formatDate={formatDate}
+                      formatMonthYear={formatMonthYear}
+                      eventType="service"
+                      title={t("events.crkveneSluzbe")}
+                    />
+                  )}
                 </TabsContent>
 
                 <TabsContent value="event" className="mt-0">
-                  <FilteredEventsView
-                    events={filteredEvents}
-                    loading={loading}
-                    formatDate={formatDate}
-                    formatMonthYear={formatMonthYear}
-                    eventType="event"
-                    title={t("events.crkveniDogadjaji")}
-                  />
+                  {error ? (
+                    <div className="text-center py-8 text-red-600">
+                      {t("calendar.errorLoadingEvents") || "Error loading events. Please try again later."}
+                    </div>
+                  ) : (
+                    <FilteredEventsView
+                      events={filteredEvents}
+                      loading={loading}
+                      formatDate={formatDate}
+                      formatMonthYear={formatMonthYear}
+                      eventType="event"
+                      title={t("events.crkveniDogadjaji")}
+                    />
+                  )}
                 </TabsContent>
 
                 <TabsContent value="slava" className="mt-0">
-                  <FilteredEventsView
-                    events={filteredEvents}
-                    loading={loading}
-                    formatDate={formatDate}
-                    formatMonthYear={formatMonthYear}
-                    eventType="slava"
-                    title={t("events.srpskeSlave")}
-                  />
+                  {error ? (
+                    <div className="text-center py-8 text-red-600">
+                      {t("calendar.errorLoadingEvents") || "Error loading events. Please try again later."}
+                    </div>
+                  ) : (
+                    <FilteredEventsView
+                      events={filteredEvents}
+                      loading={loading}
+                      formatDate={formatDate}
+                      formatMonthYear={formatMonthYear}
+                      eventType="slava"
+                      title={t("events.srpskeSlave")}
+                    />
+                  )}
                 </TabsContent>
               </Tabs>
             </div>

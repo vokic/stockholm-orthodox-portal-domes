@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
 import { Pencil, Info, Facebook, Instagram } from "lucide-react";
@@ -15,40 +16,30 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
   const currentYear = new Date().getFullYear();
   const [showHolidayPopup, setShowHolidayPopup] = useState(false);
 
-  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
-  const [eventsLoading, setEventsLoading] = useState(true);
+  // Fetch events using React Query
+  const { data: events = [], isLoading: eventsLoading } = useQuery({
+    queryKey: ["events"],
+    queryFn: fetchEvents,
+  });
 
-  useEffect(() => {
-    let mounted = true;
-    fetchEvents()
-      .then((events) => {
-        if (!mounted) return;
-        const today = new Date();
-        const thirtyDaysFromNow = new Date();
-        thirtyDaysFromNow.setDate(today.getDate() + 30);
+  // Calculate upcoming event with useMemo
+  const upcomingEvent = useMemo(() => {
+    if (!events.length) return null;
+    
+    const today = new Date();
+    const thirtyDaysFromNow = new Date();
+    thirtyDaysFromNow.setDate(today.getDate() + 30);
 
-        const nextEvent = events
-          .filter((event) => {
-            if (!event.date) return false;
-            const eventDate = new Date(event.date);
-            return eventDate >= today && eventDate <= thirtyDaysFromNow;
-          })
-          .sort(
-            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-          )[0];
-
-        setUpcomingEvent(nextEvent || null);
-        setEventsLoading(false);
+    return events
+      .filter((event) => {
+        if (!event.date) return false;
+        const eventDate = new Date(event.date);
+        return eventDate >= today && eventDate <= thirtyDaysFromNow;
       })
-      .catch((error) => {
-        console.error("Error loading upcoming event for footer popup:", error);
-        if (mounted) setEventsLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+      .sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      )[0] || null;
+  }, [events]);
 
   const handlePopupOpen = () => {
     setShowHolidayPopup(true);

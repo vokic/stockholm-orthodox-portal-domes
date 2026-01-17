@@ -40,8 +40,6 @@ const BlogPostPage: React.FC = () => {
   const renderContent = (content: any) => {
     if (!content) return "";
 
-    console.log("Rendering content:", content);
-
     // Handle Contentful rich text format
     if (content.content && Array.isArray(content.content)) {
       const processNode = (node: any): string => {
@@ -163,7 +161,6 @@ const BlogPostPage: React.FC = () => {
         .filter(Boolean)
         .join("");
 
-      console.log("Final rendered content:", renderedContent);
       return renderedContent;
     }
 

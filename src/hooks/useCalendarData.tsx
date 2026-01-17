@@ -1,46 +1,28 @@
-import { useEffect, useState } from "react";
+import { useMemo, useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "../context/LanguageContext";
 import { fetchEvents, Event } from "../services/eventService";
 
 export const useCalendarData = () => {
   const { language } = useLanguage();
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  
+  const { data: events = [], isLoading, error } = useQuery({
+    queryKey: ["events"],
+    queryFn: fetchEvents,
+  });
 
-  useEffect(() => {
-    let mounted = true;
-
-    fetchEvents()
-      .then((data) => {
-        if (mounted) {
-          console.log("Fetched events:", data);
-
-          // Sort all events by date (oldest first)
-          const sortedEvents = (data || []).sort((a, b) => {
-            if (!a.date && !b.date) return 0;
-            if (!a.date) return 1;
-            if (!b.date) return -1;
-            return new Date(a.date).getTime() - new Date(b.date).getTime();
-          });
-
-          setEvents(sortedEvents);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading events:", error);
-        if (mounted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // Sort events by date (oldest first) with useMemo
+  const sortedEvents = useMemo(() => {
+    return [...events].sort((a, b) => {
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+  }, [events]);
 
   // Function to format date based on current language
-  const formatDate = (dateString: string) => {
+  const formatDate = useCallback((dateString: string) => {
     if (!dateString) return "Date TBD";
     const date = new Date(dateString);
     const isSerbian = language === "sr_cyr" || language === "sr_lat";
@@ -51,10 +33,10 @@ export const useCalendarData = () => {
       month: "long",
       day: "numeric",
     });
-  };
+  }, [language]);
 
   // Function to format month/year header based on current language
-  const formatMonthYear = (dateString: string) => {
+  const formatMonthYear = useCallback((dateString: string) => {
     if (!dateString) return "Date TBD";
     const date = new Date(dateString);
     const isSerbian = language === "sr_cyr" || language === "sr_lat";
@@ -64,15 +46,15 @@ export const useCalendarData = () => {
       year: "numeric",
       month: "long",
     });
-  };
+  }, [language]);
 
   // Filter events based on view and past events toggle
-  const getFilteredEvents = (
+  const getFilteredEvents = useCallback((
     view: "all" | "service" | "event" | "slava",
     showPastEvents: boolean
   ) => {
     let filtered =
-      view === "all" ? events : events.filter((event) => event.type === view);
+      view === "all" ? sortedEvents : sortedEvents.filter((event) => event.type === view);
 
     if (!showPastEvents) {
       const now = new Date();
@@ -94,11 +76,12 @@ export const useCalendarData = () => {
     }
 
     return filtered;
-  };
+  }, [sortedEvents]);
 
   return {
-    events,
-    loading,
+    events: sortedEvents,
+    loading: isLoading,
+    error,
     formatDate,
     formatMonthYear,
     getFilteredEvents,

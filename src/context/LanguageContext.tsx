@@ -1,6 +1,6 @@
 // src/context/LanguageContext.tsx
 
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useCallback, ReactNode } from "react";
 import sr_cyr from "../lang/sr_cyr.json";
 import sr_lat from "../lang/sr_lat.json";
 import sv from "../lang/sv.json";
@@ -30,21 +30,19 @@ const languageData = {
   // ...
 };
 
-console.log(languageData);
-
 const LanguageContext = createContext<LanguageContext>({
   language: "sr_cyr",
   setLanguage: () => {},
   t: (key: string) => key,
 });
 
-const LanguageProvider = ({ children }) => {
+const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState("sr_cyr");
 
-  const t = (key: string) => {
-    const value = languageData[language]?.[key];
+  const t = useCallback((key: string) => {
+    const value = languageData[language as keyof typeof languageData]?.[key];
     return typeof value === "string" ? value : key;
-  };
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

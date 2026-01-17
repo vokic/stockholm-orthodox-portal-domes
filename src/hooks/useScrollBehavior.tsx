@@ -1,10 +1,10 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useScrollBehavior = () => {
   const [showGoToTop, setShowGoToTop] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,35 +17,32 @@ export const useScrollBehavior = () => {
       if (currentScrollY < 50) {
         // Always show navbar at top
         setShowNavbar(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      } else if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
         // Hide navbar when scrolling down (after 100px)
         setShowNavbar(false);
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScrollYRef.current) {
         // Show navbar when scrolling up
         setShowNavbar(true);
       }
       
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
     };
 
-    // Throttle scroll events for better performance
-    let timeoutId: NodeJS.Timeout;
+    // Use requestAnimationFrame for better performance
+    let rafId: number;
     const throttledHandleScroll = () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      timeoutId = setTimeout(handleScroll, 10);
+      rafId = requestAnimationFrame(handleScroll);
     };
 
     window.addEventListener('scroll', throttledHandleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', throttledHandleScroll);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
       }
     };
-  }, [lastScrollY]);
+  }, []); // Empty dependency array
 
   return { showGoToTop, showNavbar };
 };

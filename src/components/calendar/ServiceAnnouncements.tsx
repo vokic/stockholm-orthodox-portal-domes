@@ -153,13 +153,6 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
 
     return data.items
       .map((item: any) => {
-        console.log(
-          "Processing announcement entry:",
-          item.sys.id,
-          "Fields:",
-          item.fields
-        );
-
         // Handle content - convert rich text to HTML
         let content = "";
         if (item.fields.content) {
@@ -201,7 +194,7 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
 
 const ServiceAnnouncements: React.FC = () => {
   const { t } = useLanguage();
-  const { data: announcements = [], isLoading } = useQuery({
+  const { data: announcements = [], isLoading, error } = useQuery({
     queryKey: ["serviceAnnouncements"],
     queryFn: fetchServiceAnnouncements,
   });
@@ -220,6 +213,11 @@ const ServiceAnnouncements: React.FC = () => {
         </div>
       </section>
     );
+  }
+
+  // Show error state
+  if (error) {
+    return null; // Silently fail for announcements
   }
 
   // Don't render anything if no announcements
