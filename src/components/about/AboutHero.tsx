@@ -15,11 +15,11 @@ const AboutHero: React.FC = () => {
         backgroundBlendMode: "multiply",
       }}
     >
-      <div className="container-custom rounded-lg p-8">
+      <div className="container-custom">
         <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
           {t("about.title")}
         </h1>
-        <p className="text-lg mt-2">{t("about.intro")}</p>
+        <p className="text-white">{t("about.intro")}</p>
       </div>
     </div>
   );

@@ -41,9 +41,9 @@ const CalendarHero: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-orthodox-blue text-white py-12">
+    <div className="bg-orthodox-blue text-white py-16">
       <div className="container-custom">
-        <h1 className="text-3xl md:text-4xl font-bold font-serif text-orthodox-gold mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-orthodox-gold">
           {t("calendar.title")}
         </h1>
         <p className="text-white">{t("calendar.info")}</p>
