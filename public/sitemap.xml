@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://crkvastokholm.se/</loc>
+    <loc>https://www.crkvastokholm.se/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://crkvastokholm.se/about</loc>
+    <loc>https://www.crkvastokholm.se/about</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://crkvastokholm.se/calendar</loc>
+    <loc>https://www.crkvastokholm.se/calendar</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://crkvastokholm.se/articles</loc>
+    <loc>https://www.crkvastokholm.se/articles</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://crkvastokholm.se/contact</loc>
+    <loc>https://www.crkvastokholm.se/contact</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://crkvastokholm.se/donate</loc>
+    <loc>https://www.crkvastokholm.se/donate</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

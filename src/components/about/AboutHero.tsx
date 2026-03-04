@@ -8,7 +8,7 @@ const AboutHero: React.FC = () => {
     <div
       className="bg-orthodox-blue text-white py-16"
       style={{
-        backgroundImage: "url('images/about/crkva-stockholm-spolja-1.jpg')",
+        backgroundImage: "url('/images/about/crkva-stockholm-spolja-1.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "rgba(0, 0, 0, 0.5)",

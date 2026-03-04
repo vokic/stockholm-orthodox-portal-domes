@@ -119,6 +119,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.facebook")}
               >
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
@@ -127,6 +128,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.instagram")}
               >
                 <Instagram size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
@@ -192,6 +194,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.facebook")}
               >
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
@@ -200,6 +203,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.instagram")}
               >
                 <Instagram size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
@@ -258,6 +262,7 @@ const Header: React.FC = () => {
               size="icon"
               className="text-white hover:text-orthodox-gold hover:bg-orthodox-blue/20 w-10 h-10 [&_svg]:!w-8 [&_svg]:!h-8"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")}
             >
               {isMenuOpen ? <X /> : <Menu />}
             </Button>
@@ -317,6 +322,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.facebook")}
               >
                 <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>
@@ -325,6 +331,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orthodox-gold"
+                aria-label={t("aria.instagram")}
               >
                 <Instagram size={30} strokeWidth={1.5} absoluteStrokeWidth />
               </a>

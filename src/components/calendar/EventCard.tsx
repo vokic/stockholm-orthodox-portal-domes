@@ -14,7 +14,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const translatedType = t(`events.${event.type}`);
 
   const formatDate = (dateString: string) => {
-    if (!dateString) return "Date TBD";
+    if (!dateString) return t("dateTBD");
     try {
       return format(new Date(dateString), "dd.MM.yyyy.");
     } catch {
@@ -57,7 +57,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </div>
         <div className="flex items-center gap-2">
           <Clock size={18} className="text-orthodox-blue" />
-          <span>{event.time || "Time TBD"}</span>
+          <span>{event.time || t("timeTBD")}</span>
         </div>
       </div>
 

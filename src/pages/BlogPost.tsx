@@ -8,12 +8,14 @@ import { useLanguage } from "../context/LanguageContext";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { getBlogPost, BlogPost } from "../data/blogData";
 import { format } from "date-fns";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const BlogPostPage: React.FC = () => {
   const { t } = useLanguage();
   const { slugOrId } = useParams<{ slugOrId: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  useDocumentTitle(post?.title);
 
   useEffect(() => {
     if (!slugOrId) return;
@@ -189,12 +191,12 @@ const BlogPostPage: React.FC = () => {
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center py-10 text-gray-600">
-            <h1 className="text-2xl font-bold mb-4">Article not found</h1>
+            <h1 className="text-2xl font-bold mb-4">{t("blogPost.notFound")}</h1>
             <Link
               to="/articles"
               className="text-orthodox-blue hover:text-orthodox-gold"
             >
-              ← Back to all Articles
+              ← {t("blogPost.backToArticles")}
             </Link>
           </div>
         </main>
@@ -262,7 +264,7 @@ const BlogPostPage: React.FC = () => {
               {galleryImages.length > 0 && (
                 <div className="mt-8 pt-6 border-t">
                   <h3 className="text-xl font-serif font-bold text-orthodox-blue mb-4">
-                    Галерија
+                    {t("blogPost.gallery")}
                   </h3>
                   <Gallery images={galleryImages} className="mb-6" />
                 </div>
@@ -273,7 +275,7 @@ const BlogPostPage: React.FC = () => {
                   to="/articles"
                   className="text-orthodox-blue hover:text-orthodox-gold"
                 >
-                  ← Повратак на све чланке
+                  ← {t("blogPost.backToArticles")}
                 </Link>
               </div>
             </div>

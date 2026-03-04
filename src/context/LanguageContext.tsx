@@ -30,8 +30,21 @@ const LanguageContext = createContext<LanguageContext>({
   t: (key: string) => key,
 });
 
+const getInitialLanguage = (): string => {
+  try {
+    const saved = localStorage.getItem("language");
+    if (saved && saved in languageData) return saved;
+  } catch {}
+  return "sr_cyr";
+};
+
 const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState("sr_cyr");
+  const [language, setLanguageState] = useState(getInitialLanguage);
+
+  const setLanguage = useCallback((lang: string) => {
+    setLanguageState(lang);
+    try { localStorage.setItem("language", lang); } catch {}
+  }, []);
 
   const t = useCallback((key: string) => {
     const value = languageData[language as keyof typeof languageData]?.[key];

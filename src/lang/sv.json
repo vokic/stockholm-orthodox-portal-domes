@@ -160,7 +160,7 @@
   "about.locationHours.email": "E-post",
   "about.locationHours.addressValue": "Bägerstavägen 68, 120 47, Enskede Gård",
   "about.locationHours.phoneValue": "+46 8 123 456 78",
-  "about.locationHours.emailValue": "info@crkva.se (korrigera)",
+  "about.locationHours.emailValue": "info@crkva.se",
   "about.priests": "Präster",
   "about.svetiSava.title": "Om Sankt Sava",
   "about.svetiSava.subtitle1": "Sankt Sava som andlig och nationell upplysare",
@@ -420,5 +420,24 @@
   "aria.previousImage": "Föregående bild",
   "aria.nextImage": "Nästa bild",
   "aria.goToTop": "Gå till toppen",
-  "aria.googleMap": "Google-karta"
+  "aria.googleMap": "Google-karta",
+  "aria.openMenu": "Öppna meny",
+  "aria.closeMenu": "Stäng meny",
+  "aria.facebook": "Facebook",
+  "aria.instagram": "Instagram",
+
+  "notFound.title": "404",
+  "notFound.message": "Sidan du söker kunde inte hittas.",
+  "notFound.backHome": "Tillbaka till startsidan",
+
+  "blogPost.notFound": "Artikeln hittades inte",
+  "blogPost.backToArticles": "Tillbaka till alla artiklar",
+  "blogPost.gallery": "Galleri",
+
+  "dateTBD": "Datum meddelas",
+  "timeTBD": "Tid meddelas",
+
+  "allEvents.loading": "Laddar evenemang...",
+  "allEvents.title": "Alla evenemang",
+  "allEvents.noEvents": "Inga evenemang att visa."
 }

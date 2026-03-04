@@ -142,6 +142,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orthodox-gold hover:text-white transition-colors"
+                    aria-label={t("aria.facebook")}
                   >
                     <Facebook size={30} strokeWidth={1.5} absoluteStrokeWidth />
                   </a>
@@ -150,6 +151,7 @@ const Footer: React.FC<FooterProps> = ({ onHolidayPopupOpen }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-orthodox-gold hover:text-white transition-colors"
+                    aria-label={t("aria.instagram")}
                   >
                     <Instagram
                       size={30}

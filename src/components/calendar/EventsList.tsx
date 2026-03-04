@@ -66,7 +66,7 @@ const EventsList: React.FC<EventsListProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={18} className="text-orthodox-blue" />
-                <span>{event.time || "Time TBD"}</span>
+                <span>{event.time || t("timeTBD")}</span>
               </div>
             </div>
 

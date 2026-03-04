@@ -194,7 +194,7 @@ const fetchServiceAnnouncements = async (): Promise<ServiceAnnouncement[]> => {
 };
 
 const ServiceAnnouncements: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data: announcements = [], isLoading, error } = useQuery({
     queryKey: ["serviceAnnouncements"],
     queryFn: fetchServiceAnnouncements,
@@ -205,11 +205,10 @@ const ServiceAnnouncements: React.FC = () => {
       <section className="section">
         <div className="container-custom">
           <h2 className="text-2xl font-serif mb-6 text-orthodox-blue text-center">
-            Obaveštenje
             {t("home.announcements")}
           </h2>
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-            <div className="text-gray-600">Loading announcements...</div>
+            <div className="text-gray-600">{t("loading")}</div>
           </div>
         </div>
       </section>
@@ -257,7 +256,7 @@ const ServiceAnnouncements: React.FC = () => {
             <span className="text-sm text-gray-400 font-medium italic">
               {t("home.publishDate")}
               {new Date(announcement.publishedDate).toLocaleDateString(
-                "en-US",
+                language === "sv" ? "sv-SE" : "sr-RS",
                 {
                   year: "numeric",
                   month: "long",

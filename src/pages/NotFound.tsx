@@ -1,19 +1,12 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
 import SerbianCross from "@/components/SerbianCross";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+  const { t } = useLanguage();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -25,13 +18,13 @@ const NotFound = () => {
             <SerbianCross size={32} className="text-orthodox-gold" />
           </div>
           <h1 className="text-4xl font-bold font-serif mb-4 text-orthodox-blue">
-            404
+            {t("notFound.title")}
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            We're sorry, the page you're looking for cannot be found.
+            {t("notFound.message")}
           </p>
           <Link to="/" className="btn-primary">
-            Return to Home
+            {t("notFound.backHome")}
           </Link>
         </div>
       </main>

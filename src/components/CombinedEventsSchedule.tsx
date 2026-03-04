@@ -26,7 +26,7 @@ const CombinedEventsSchedule: React.FC = () => {
   }, [events]);
 
   const formatDate = (dateString: string) => {
-    if (!dateString) return "Date TBD";
+    if (!dateString) return t("dateTBD");
     try {
       return format(new Date(dateString), "dd.MM.yyyy.");
     } catch {
@@ -105,7 +105,7 @@ const CombinedEventsSchedule: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Clock size={16} className="text-orthodox-blue" />
                       <span className="text-sm">
-                        {event.time || "Time TBD"}
+                        {event.time || t("timeTBD")}
                       </span>
                     </div>
                   </div>

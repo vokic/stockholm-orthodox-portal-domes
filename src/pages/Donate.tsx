@@ -2,21 +2,12 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
-import { useToast } from "../hooks/use-toast";
 import SerbianCross from "@/components/SerbianCross";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const Donate: React.FC = () => {
   const { t } = useLanguage();
-  const { toast } = useToast();
-
-  const handleDonation = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast({
-      title: "Thank You for Your Donation",
-      description: "Your support helps maintain our church and its ministries.",
-      duration: 5000,
-    });
-  };
+  useDocumentTitle(t("donate.title"));
 
   return (
     <div className="flex flex-col min-h-screen">

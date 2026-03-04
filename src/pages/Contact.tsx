@@ -8,9 +8,11 @@ import Map from "../components/Map";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Clock, ExternalLink, Facebook, Instagram, MapPin } from "lucide-react";
 import AboutPriests from "@/components/about/AboutPriests";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const ContactPage: React.FC = () => {
   const { t } = useLanguage();
+  useDocumentTitle(t("nav.contact"));
   const { toast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -127,9 +129,9 @@ const ContactPage: React.FC = () => {
         <section className="section">
           <div className="container-custom">
             <div className="card">
-              <h1 className="text-xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
+              <h2 className="text-xl font-serif mb-6 text-orthodox-blue border-b border-orthodox-gold pb-2 flex items-center gap-2">
                 {t("about.locationHours.title")}
-              </h1>
+              </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Working Hours - Left Side */}

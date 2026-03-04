@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import {
   Dialog,
@@ -22,12 +23,13 @@ interface HolidayPopupProps {
 
 const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }) => {
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
 
   // Format date based on current language
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const isSerbian = language === 'sr_cyr' || language === 'sr_lat';
-    const locale = isSerbian ? 'sr-RS' : 'en-US';
+    const locale = isSerbian ? 'sr-RS' : 'sv-SE';
 
     return date.toLocaleDateString(locale, {
       year: 'numeric',
@@ -127,7 +129,7 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
           </Button>
           <Button 
             onClick={() => {
-              window.location.href = '/calendar';
+              navigate('/calendar');
               onOpenChange(false);
             }}
             className="bg-orthodox-gold hover:bg-orthodox-gold/90 text-white"

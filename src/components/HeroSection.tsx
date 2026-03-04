@@ -27,6 +27,7 @@ const HeroSection: React.FC = () => {
           alt="Beautiful Orthodox church with golden domes"
           className="absolute w-full h-full object-cover"
           style={imageStyle}
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-orthodox-blue opacity-40"></div>
       </div>

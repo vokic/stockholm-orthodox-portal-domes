@@ -15,9 +15,11 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../components/ui/pagination";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const BlogPage: React.FC = () => {
   const { t } = useLanguage();
+  useDocumentTitle(t("nav.blog"));
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9;

@@ -160,7 +160,7 @@
   "about.locationHours.email": "Imejl",
   "about.locationHours.addressValue": "Bägerstavägen 68, 120 47, Enskede Gård",
   "about.locationHours.phoneValue": "+46 8 123 456 78",
-  "about.locationHours.emailValue": "info@crkva.se (popraviti)",
+  "about.locationHours.emailValue": "info@crkva.se",
   "about.priests": "Sveštenici",
   "about.svetiSava.title": "O Svetom Savi",
   "about.svetiSava.subtitle1": "Sveti Sava kao duhovni i narodni prosvetitelj",
@@ -419,5 +419,24 @@
   "aria.previousImage": "Prethodna slika",
   "aria.nextImage": "Sledeća slika",
   "aria.goToTop": "Na vrh stranice",
-  "aria.googleMap": "Gugl mapa"
+  "aria.googleMap": "Gugl mapa",
+  "aria.openMenu": "Otvori meni",
+  "aria.closeMenu": "Zatvori meni",
+  "aria.facebook": "Fejsbuk",
+  "aria.instagram": "Instagram",
+
+  "notFound.title": "404",
+  "notFound.message": "Stranica koju tražite nije pronađena.",
+  "notFound.backHome": "Nazad na početnu",
+
+  "blogPost.notFound": "Članak nije pronađen",
+  "blogPost.backToArticles": "Nazad na sve članke",
+  "blogPost.gallery": "Galerija",
+
+  "dateTBD": "Datum biće određen",
+  "timeTBD": "Vreme biće određeno",
+
+  "allEvents.loading": "Učitavanje događaja...",
+  "allEvents.title": "Svi događaji",
+  "allEvents.noEvents": "Nema događaja za prikaz."
 }

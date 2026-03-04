@@ -83,15 +83,15 @@ const AllEventsView: React.FC<AllEventsViewProps> = ({
 
   if (loading) {
     return (
-      <div className="text-center py-10 text-gray-400">Loading events...</div>
+      <div className="text-center py-10 text-gray-400">{t("allEvents.loading")}</div>
     );
   }
 
   if (Object.keys(groupedEvents).length === 0) {
     return (
       <div>
-        <h2 className="text-2xl font-serif mb-4">Sva dešavanja</h2>
-        <p className="text-gray-600">Nema dešavanja za prikazati.</p>
+        <h2 className="text-2xl font-serif mb-4">{t("allEvents.title")}</h2>
+        <p className="text-gray-600">{t("allEvents.noEvents")}</p>
         {/*         <p className="text-sm text-gray-500 mt-2">
           Total events loaded: {totalEventsCount}
         </p> */}

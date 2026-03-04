@@ -10,9 +10,11 @@ import RegularServicesTable from "../components/calendar/RegularServicesTable";
 import ServiceAnnouncements from "../components/calendar/ServiceAnnouncements";
 import { useCalendarData } from "../hooks/useCalendarData";
 import { useLanguage } from "@/context/LanguageContext";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const Calendar: React.FC = () => {
   const { t } = useLanguage();
+  useDocumentTitle(t("nav.calendar"));
   const [view, setView] = useState<"all" | "service" | "event" | "slava">(
     "all"
   );

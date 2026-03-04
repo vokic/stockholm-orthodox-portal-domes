@@ -3,20 +3,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import ParishTodaySection from "../components/ParishTodaySection";
-import OurMissionSection from "../components/OurMissionSection";
-import OurCommunitySection from "../components/OurCommunitySection";
 import AboutHero from "../components/about/AboutHero";
-import AboutHistory from "../components/about/AboutHistory";
-import AboutSvetiSava from "../components/about/AboutSvetiSava";
-import AboutPriests from "../components/about/AboutPriests";
-import AboutLocationHours from "../components/about/AboutLocationHours";
-import AboutCommunityStats from "../components/about/AboutCommunityStats";
 import AboutGallery from "../components/about/AboutGallery";
 import AboutImageModal from "../components/about/AboutImageModal";
-import ParishesSection from "@/components/ParishesSection";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
+  useDocumentTitle(t("nav.aboutUs"));
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
   );

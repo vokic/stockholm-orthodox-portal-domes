@@ -24,8 +24,6 @@ const RegularServicesTable: React.FC = () => {
     },
   ];
 
-  const lastUpdated = "2024-06-15";
-
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4">

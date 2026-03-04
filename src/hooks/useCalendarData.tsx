@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { fetchEvents, Event } from "../services/eventService";
 
 export const useCalendarData = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ["events"],
@@ -23,10 +23,10 @@ export const useCalendarData = () => {
 
   // Function to format date based on current language
   const formatDate = useCallback((dateString: string) => {
-    if (!dateString) return "Date TBD";
+    if (!dateString) return t("dateTBD");
     const date = new Date(dateString);
     const isSerbian = language === "sr_cyr" || language === "sr_lat";
-    const locale = isSerbian ? "sr-RS" : "en-US";
+    const locale = isSerbian ? "sr-RS" : "sv-SE";
 
     return date.toLocaleDateString(locale, {
       year: "numeric",
@@ -37,10 +37,10 @@ export const useCalendarData = () => {
 
   // Function to format month/year header based on current language
   const formatMonthYear = useCallback((dateString: string) => {
-    if (!dateString) return "Date TBD";
+    if (!dateString) return t("dateTBD");
     const date = new Date(dateString);
     const isSerbian = language === "sr_cyr" || language === "sr_lat";
-    const locale = isSerbian ? "sr-RS" : "en-US";
+    const locale = isSerbian ? "sr-RS" : "sv-SE";
 
     return date.toLocaleDateString(locale, {
       year: "numeric",
