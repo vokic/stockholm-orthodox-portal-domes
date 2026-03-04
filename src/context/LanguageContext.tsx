@@ -17,12 +17,6 @@ interface LanguageContext {
   t: (key: string) => string;
 }
 
-// const languages: Language[] = [
-//   { code: "sr_cir", label: "Srpski (cirilica)", short: "SR cir" },
-//   { code: "sr_lat", label: "Srpski (latinica)", short: "SR lat" },
-//   // ...
-// ];
-
 const languageData = {
   sr_cyr,
   sr_lat,

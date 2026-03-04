@@ -3,9 +3,11 @@ import React from 'react';
 import { ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
 import { useScrollBehavior } from '../hooks/useScrollBehavior';
+import { useLanguage } from '../context/LanguageContext';
 
 const GoToTopButton: React.FC = () => {
   const { showGoToTop } = useScrollBehavior();
+  const { t } = useLanguage();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -27,7 +29,7 @@ const GoToTopButton: React.FC = () => {
         transition-all duration-300 ease-in-out
         ${showGoToTop ? 'animate-fade-in' : 'animate-fade-out'}
       `}
-      aria-label="Go to top"
+      aria-label={t("aria.goToTop")}
     >
       <ChevronUp className="h-5 w-5" />
     </Button>

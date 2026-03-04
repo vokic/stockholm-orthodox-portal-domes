@@ -3,19 +3,51 @@
 
 import { fetchContentfulEntries, resolveContentfulAsset } from "../lib/contentful";
 
+interface ContentfulRichTextNode {
+  nodeType: string;
+  value?: string;
+  marks?: { type: string }[];
+  content?: ContentfulRichTextNode[];
+  data?: Record<string, unknown>;
+}
+
+interface ContentfulRichText {
+  nodeType: string;
+  content: ContentfulRichTextNode[];
+}
+
+interface ContentfulAssetLink {
+  sys: { id: string };
+}
+
+interface ContentfulBlogEntry {
+  sys: { id: string };
+  fields: {
+    title?: string;
+    slug?: string;
+    excerpt?: string;
+    content?: ContentfulRichText;
+    date?: string;
+    author?: string;
+    category?: string;
+    pinned?: boolean;
+    image?: ContentfulAssetLink[];
+  };
+}
+
 // Define types you expect from Contentful
 export interface BlogPost {
   id: string;
-  slug: string; // Add slug field
+  slug: string;
   title: string;
   excerpt: string;
-  content?: any;
+  content?: ContentfulRichText;
   date: string;
   author: string;
   category?: string;
   pinned?: boolean;
   imageUrl?: string;
-  images?: string[]; // Array of all images
+  images?: string[];
 }
 
 // Helper function to generate URL-friendly slugs
@@ -44,17 +76,17 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       return [];
     }
     
-    const posts = data.items.map((entry: any) => {
+    const posts = data.items.map((entry: ContentfulBlogEntry) => {
       const fields = entry.fields || {};
       let imageUrl = undefined;
       let images: string[] = [];
-      
+
       // Handle the image field - it's an array of asset links
       const imageField = fields.image;
-      
+
       if (imageField && Array.isArray(imageField) && imageField.length > 0) {
         // Get all images from the array
-        images = imageField.map((imageLink: any) => {
+        images = imageField.map((imageLink: ContentfulAssetLink) => {
           if (imageLink.sys && imageLink.sys.id) {
             const resolvedUrl = resolveContentfulAsset(data.includes, imageLink.sys.id);
             if (resolvedUrl && !resolvedUrl.startsWith("http")) {

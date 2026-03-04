@@ -1,4 +1,5 @@
 import React from "react";
+import DOMPurify from "dompurify";
 import { Calendar as CalendarIcon, Clock, MapPin, Star } from "lucide-react";
 import { Event } from "../../services/eventService";
 import { useLanguage } from "@/context/LanguageContext";
@@ -80,7 +81,7 @@ const EventsList: React.FC<EventsListProps> = ({
             {event.description && (
               <div
                 className="text-gray-700 mb-2 prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: event.description }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(event.description) }}
               />
             )}
 

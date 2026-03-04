@@ -1,5 +1,36 @@
 import { fetchContentfulEntries } from "../lib/contentful";
 
+interface ContentfulRichTextMark {
+  type: string;
+}
+
+interface ContentfulRichTextNode {
+  nodeType: string;
+  value?: string;
+  marks?: ContentfulRichTextMark[];
+  content?: ContentfulRichTextNode[];
+  data?: { uri?: string };
+}
+
+interface ContentfulRichText {
+  content: ContentfulRichTextNode[];
+}
+
+interface ContentfulEntry {
+  sys: { id: string };
+  fields: {
+    title?: string;
+    name?: string;
+    description?: string | ContentfulRichText;
+    dateTime?: string;
+    date?: string;
+    time?: string;
+    location?: string;
+    type?: "service" | "event" | "slava";
+    highlight?: boolean;
+  };
+}
+
 export interface Event {
   id: string;
   title: string;
@@ -12,18 +43,18 @@ export interface Event {
 }
 
 // Helper function to convert Contentful rich text to HTML
-const convertRichTextToHtml = (richTextObj: any): string => {
+const convertRichTextToHtml = (richTextObj: ContentfulRichText): string => {
   if (!richTextObj || !richTextObj.content) {
     return "";
   }
 
-  const processNode = (node: any): string => {
+  const processNode = (node: ContentfulRichTextNode): string => {
     if (node.nodeType === "text") {
-      let text = node.value;
+      let text = node.value || "";
 
       // Apply formatting based on marks
       if (node.marks && node.marks.length > 0) {
-        node.marks.forEach((mark: any) => {
+        node.marks.forEach((mark: ContentfulRichTextMark) => {
           switch (mark.type) {
             case "bold":
               text = `<strong>${text}</strong>`;
@@ -68,7 +99,7 @@ export const fetchEvents = async (): Promise<Event[]> => {
       return [];
     }
 
-    return data.items.map((item: any) => {
+    return data.items.map((item: ContentfulEntry) => {
       // Parse dateTime field if it exists
       let date = "";
       let time = "";

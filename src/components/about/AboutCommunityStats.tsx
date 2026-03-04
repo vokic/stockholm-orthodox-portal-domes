@@ -13,41 +13,41 @@ const AboutCommunityStats: React.FC = () => {
             {t("about.community")}
           </h2>
 
-          <p className="mb-4">{t("about.communityText.p1")}</p>
+          <p className="mb-4">{t("about.community.p1")}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
             <div className="text-center">
               <div className="text-4xl font-bold text-orthodox-gold mb-2">
                 150+
               </div>
-              <p>{t("about.communityText.families")}</p>
+              <p>{t("about.community.stats.families")}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-orthodox-gold mb-2">
                 15+
               </div>
-              <p>{t("about.communityText.nationalities")}</p>
+              <p>{t("about.community.stats.nationalities")}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-orthodox-gold mb-2">
                 35+
               </div>
-              <p>{t("about.communityText.years")}</p>
+              <p>{t("about.community.stats.years")}</p>
             </div>
           </div>
 
-          <p className="mb-4">{t("about.communityText.p2")}</p>
+          <p className="mb-4">{t("about.community.p2")}</p>
 
           <ul className="list-disc pl-6 mb-6 space-y-2">
-            <li>{t("about.communityText.activities.sunday")}</li>
-            <li>{t("about.communityText.activities.youth")}</li>
-            <li>{t("about.communityText.activities.bible")}</li>
-            <li>{t("about.communityText.activities.charity")}</li>
-            <li>{t("about.communityText.activities.cultural")}</li>
-            <li>{t("about.communityText.activities.fellowship")}</li>
+            <li>{t("about.community.activities.sunday")}</li>
+            <li>{t("about.community.activities.youth")}</li>
+            <li>{t("about.community.activities.bible")}</li>
+            <li>{t("about.community.activities.charity")}</li>
+            <li>{t("about.community.activities.cultural")}</li>
+            <li>{t("about.community.activities.fellowship")}</li>
           </ul>
 
-          <p>{t("about.communityText.p3")}</p>
+          <p>{t("about.community.p3")}</p>
         </div>
       </div>
     </section>

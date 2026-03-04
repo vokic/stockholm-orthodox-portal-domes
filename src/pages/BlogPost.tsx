@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Gallery from "../components/Gallery";
@@ -253,7 +254,7 @@ const BlogPostPage: React.FC = () => {
               <div
                 className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
                 dangerouslySetInnerHTML={{
-                  __html: renderContent(post.content),
+                  __html: DOMPurify.sanitize(renderContent(post.content)),
                 }}
               />
 

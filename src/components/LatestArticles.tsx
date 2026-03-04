@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { getLatestArticles } from "../data/blogData";
+import { getLatestArticles, BlogPost } from "../data/blogData";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 
 const LatestArticles: React.FC = () => {
   const { t } = useLanguage();
-  const [articles, setArticles] = useState<Array<any>>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    let mounted = true;
-    getLatestArticles(3).then((data) => {
-      if (mounted) {
-        setArticles(data || []);
-        setLoading(false);
-      }
-    });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const { data: articles = [], isLoading: loading } = useQuery<BlogPost[]>({
+    queryKey: ["latest-articles"],
+    queryFn: () => getLatestArticles(3),
+  });
 
   // Function to format date properly
   const formatDate = (dateString: string) => {
@@ -35,7 +26,7 @@ const LatestArticles: React.FC = () => {
   if (loading) {
     return (
       <div className="text-center py-10 text-gray-400">
-        {t("loading") || "Loading articles..."}
+        {t("loading")}
       </div>
     );
   }
@@ -65,13 +56,12 @@ const LatestArticles: React.FC = () => {
             <p className="text-gray-600 mb-4 line-clamp-2">{article.excerpt}</p>
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-500 italic">
-                {/* By {article.author} */}
               </span>
               <Link
                 to={`/articles/${article.id}`}
                 className="text-orthodox-blue hover:text-orthodox-gold font-medium"
               >
-                {t("home.readMore") || "Read More"} →
+                {t("home.readMore")} →
               </Link>
             </div>
           </div>

@@ -8,10 +8,8 @@
  * https://www.contentful.com/developers/docs/references/content-delivery-api/
  */
 
-// === POPULATED BY USER ===
-const CONTENTFUL_SPACE_ID = 'mtl81t81i86c';
-const CONTENTFUL_ACCESS_TOKEN = 'V8nJcpHC_zBJJDQ8APcQU1WcjoagLVy3oOnG206m0hY';
-// =========================
+const CONTENTFUL_SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+const CONTENTFUL_ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
 const API_BASE = `https://cdn.contentful.com`;
 
@@ -19,10 +17,19 @@ function isConfigured() {
   return !!(CONTENTFUL_SPACE_ID && CONTENTFUL_ACCESS_TOKEN);
 }
 
+interface ContentfulAsset {
+  sys: { id: string };
+  fields: { file?: { url?: string } };
+}
+
+interface ContentfulIncludes {
+  Asset?: ContentfulAsset[];
+}
+
 // Helper for resolving Contentful asset URL for media fields
-export function resolveContentfulAsset(includes: any, assetId: string) {
+export function resolveContentfulAsset(includes: ContentfulIncludes, assetId: string) {
   if (!includes || !Array.isArray(includes.Asset)) return undefined;
-  const file = includes.Asset.find((a: any) => a.sys.id === assetId);
+  const file = includes.Asset.find((a: ContentfulAsset) => a.sys.id === assetId);
   if (file && file.fields && file.fields.file && file.fields.file.url) {
     return file.fields.file.url.startsWith('http')
       ? file.fields.file.url

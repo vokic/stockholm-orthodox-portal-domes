@@ -366,5 +366,58 @@
   "months.september": "September",
   "months.october": "Oktober",
   "months.november": "November",
-  "months.december": "December"
+  "months.december": "December",
+
+  "loading": "Laddar...",
+  "service": "Gudstjänst",
+  "event": "Evenemang",
+
+  "home.loadingEvents": "Laddar evenemang...",
+  "home.noUpcomingEvents": "Inga kommande evenemang",
+
+  "articles.errorLoading": "Kunde inte ladda artiklar",
+
+  "calendar.errorLoadingEvents": "Kunde inte ladda evenemang",
+
+  "contact.form.captchaRequired": "CAPTCHA krävs",
+  "contact.form.completeCaptcha": "Vänligen fyll i CAPTCHA-verifieringen",
+  "contact.form.errorTitle": "Fel",
+  "contact.form.errorMessage": "Kunde inte skicka meddelandet. Försök igen senare.",
+  "contact.form.successTitle": "Meddelande skickat",
+  "contact.form.successMessage": "Tack för ditt meddelande! Vi återkommer så snart som möjligt.",
+  "contact.form.sending": "Skickar...",
+
+  "popup.upcomingService": "Kommande gudstjänst",
+  "popup.close": "Stäng",
+  "popup.viewAllServices": "Se alla gudstjänster",
+
+  "footer.editContent": "Redigera innehåll",
+  "footer.holidayPopupOpenLabel": "Visa helgdagsinfo",
+
+  "about.hours.mondayFriday": "Måndag - fredag:",
+
+  "about.gallery.churchNow.alt1": "Kyrkan utifrån, vy 1",
+  "about.gallery.churchNow.alt2": "Kyrkan utifrån, vy 2",
+  "about.gallery.churchNow.alt3": "Kyrkan utifrån, vy 3",
+  "about.gallery.churchNow.alt4": "Kyrkan utifrån, vy 4",
+  "about.gallery.churchNow.alt5": "Kyrkan utifrån, vy 5",
+  "about.gallery.churchNow.alt6": "Kyrkan utifrån, vy 6",
+  "about.gallery.churchNow.alt7": "Kyrkan utifrån, vy 7",
+  "about.gallery.churchNow.alt8": "Kyrkan utifrån, vy 8",
+  "about.gallery.churchNow.alt9": "Kyrkan utifrån, vy 9",
+  "about.gallery.oldPhotos.alt1": "Gamla fotografier av kyrkan",
+  "about.gallery.interior.alt1": "Kyrkans interiör, vy 1",
+  "about.gallery.interior.alt2": "Kyrkans interiör, vy 2",
+  "about.gallery.interior.alt3": "Kyrkans interiör, vy 3",
+  "about.gallery.interior.alt4": "Kyrkans interiör, vy 4",
+  "about.gallery.interior.alt5": "Kyrkans interiör, vy 5",
+  "about.gallery.interior.alt6": "Kyrkans interiör, vy 6",
+  "about.gallery.interior.alt7": "Kyrkans interiör, vy 7",
+  "about.gallery.interior.alt8": "Kyrkans interiör, vy 8",
+  "about.gallery.interior.alt9": "Kyrkans interiör, vy 9",
+
+  "aria.previousImage": "Föregående bild",
+  "aria.nextImage": "Nästa bild",
+  "aria.goToTop": "Gå till toppen",
+  "aria.googleMap": "Google-karta"
 }

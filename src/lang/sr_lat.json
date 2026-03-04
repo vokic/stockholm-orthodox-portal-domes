@@ -365,5 +365,58 @@
   "months.september": "Septembar",
   "months.october": "Oktobar",
   "months.november": "Novembar",
-  "months.december": "Decembar"
+  "months.december": "Decembar",
+
+  "loading": "Učitavanje...",
+  "service": "Bogosluženje",
+  "event": "Događaj",
+
+  "home.loadingEvents": "Učitavanje događaja...",
+  "home.noUpcomingEvents": "Nema predstojećih događaja",
+
+  "articles.errorLoading": "Greška pri učitavanju članaka",
+
+  "calendar.errorLoadingEvents": "Greška pri učitavanju događaja",
+
+  "contact.form.captchaRequired": "CAPTCHA je obavezan",
+  "contact.form.completeCaptcha": "Molimo popunite CAPTCHA verifikaciju",
+  "contact.form.errorTitle": "Greška",
+  "contact.form.errorMessage": "Poruka nije mogla biti poslata. Pokušajte ponovo kasnije.",
+  "contact.form.successTitle": "Poruka poslata",
+  "contact.form.successMessage": "Hvala na vašoj poruci! Odgovorićemo vam što pre.",
+  "contact.form.sending": "Slanje...",
+
+  "popup.upcomingService": "Predstojeće bogosluženje",
+  "popup.close": "Zatvori",
+  "popup.viewAllServices": "Pogledaj sva bogosluženja",
+
+  "footer.editContent": "Uredi sadržaj",
+  "footer.holidayPopupOpenLabel": "Prikaži informacije o praznicima",
+
+  "about.hours.mondayFriday": "Ponedeljak - petak:",
+
+  "about.gallery.churchNow.alt1": "Crkva spolja, pogled 1",
+  "about.gallery.churchNow.alt2": "Crkva spolja, pogled 2",
+  "about.gallery.churchNow.alt3": "Crkva spolja, pogled 3",
+  "about.gallery.churchNow.alt4": "Crkva spolja, pogled 4",
+  "about.gallery.churchNow.alt5": "Crkva spolja, pogled 5",
+  "about.gallery.churchNow.alt6": "Crkva spolja, pogled 6",
+  "about.gallery.churchNow.alt7": "Crkva spolja, pogled 7",
+  "about.gallery.churchNow.alt8": "Crkva spolja, pogled 8",
+  "about.gallery.churchNow.alt9": "Crkva spolja, pogled 9",
+  "about.gallery.oldPhotos.alt1": "Stare fotografije crkve",
+  "about.gallery.interior.alt1": "Unutrašnjost crkve, pogled 1",
+  "about.gallery.interior.alt2": "Unutrašnjost crkve, pogled 2",
+  "about.gallery.interior.alt3": "Unutrašnjost crkve, pogled 3",
+  "about.gallery.interior.alt4": "Unutrašnjost crkve, pogled 4",
+  "about.gallery.interior.alt5": "Unutrašnjost crkve, pogled 5",
+  "about.gallery.interior.alt6": "Unutrašnjost crkve, pogled 6",
+  "about.gallery.interior.alt7": "Unutrašnjost crkve, pogled 7",
+  "about.gallery.interior.alt8": "Unutrašnjost crkve, pogled 8",
+  "about.gallery.interior.alt9": "Unutrašnjost crkve, pogled 9",
+
+  "aria.previousImage": "Prethodna slika",
+  "aria.nextImage": "Sledeća slika",
+  "aria.goToTop": "Na vrh stranice",
+  "aria.googleMap": "Gugl mapa"
 }

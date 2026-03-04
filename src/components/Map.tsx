@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 interface MapProps {
   className?: string;
@@ -11,8 +12,9 @@ const Map: React.FC<MapProps> = ({
   address = "Bägerstavägen 68, 120 47 Enskede Gård, Stockholm, Sweden",
   coordinates = [59.3348, 18.0686],
 }) => {
+  const { t } = useLanguage();
   // Create a Google Maps embed URL with the address
-  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(
+  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_KEY}&q=${encodeURIComponent(
     address
   )}&zoom=15&maptype=roadmap&language=en`;
 
@@ -27,7 +29,7 @@ const Map: React.FC<MapProps> = ({
         allowFullScreen={true}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Google Map"
+        title={t("aria.googleMap")}
       ></iframe>
     </div>
   );

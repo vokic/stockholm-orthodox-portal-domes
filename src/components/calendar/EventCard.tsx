@@ -1,9 +1,15 @@
 import React from "react";
+import DOMPurify from "dompurify";
 import { Calendar as CalendarIcon, Clock, MapPin, Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { Event } from "@/services/eventService";
 import { format } from "date-fns";
 
-const EventCard = ({ event }) => {
+interface EventCardProps {
+  event: Event;
+}
+
+const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const { t, language } = useLanguage();
   const translatedType = t(`events.${event.type}`);
 
@@ -66,7 +72,7 @@ const EventCard = ({ event }) => {
       {event.description && (
         <div
           className="text-gray-700 mb-2 prose prose-sm max-w-none"
-          dangerouslySetInnerHTML={{ __html: event.description }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(event.description) }}
         />
       )}
 

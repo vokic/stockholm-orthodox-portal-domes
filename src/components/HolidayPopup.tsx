@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { 
-  Dialog, 
-  DialogContent, 
+import DOMPurify from 'dompurify';
+import {
+  Dialog,
+  DialogContent,
   DialogHeader, 
   DialogTitle,
   DialogDescription,
@@ -97,7 +98,7 @@ const HolidayPopup: React.FC<HolidayPopupProps> = ({ event, open, onOpenChange }
               {event.description && (
                 <div 
                   className="text-gray-700 break-words mb-1 prose prose-sm max-w-none"
-                  dangerouslySetInnerHTML={{ __html: event.description }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(event.description) }}
                 />
               )}
 

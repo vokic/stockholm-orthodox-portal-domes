@@ -1,45 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
+import DOMPurify from "dompurify";
 import { useLanguage } from "../context/LanguageContext";
 import { Calendar, Clock, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fetchEvents, Event } from "../services/eventService";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 
 const CombinedEventsSchedule: React.FC = () => {
   const { t } = useLanguage();
-  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    let mounted = true;
+  const { data: events = [], isLoading: loading } = useQuery<Event[]>({
+    queryKey: ["events-home"],
+    queryFn: fetchEvents,
+  });
 
-    fetchEvents()
-      .then((events) => {
-        if (mounted) {
-          // Filter to get upcoming events (next 5)
-          const today = new Date();
-          const upcoming = events
-            .filter((event) => event.date && new Date(event.date) >= today)
-            .sort(
-              (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-            )
-            .slice(0, 5);
-
-          setUpcomingEvents(upcoming);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading events:", error);
-        if (mounted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const upcomingEvents = useMemo(() => {
+    const today = new Date();
+    return events
+      .filter((event) => event.date && new Date(event.date) >= today)
+      .sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      )
+      .slice(0, 5);
+  }, [events]);
 
   const formatDate = (dateString: string) => {
     if (!dateString) return "Date TBD";
@@ -80,8 +64,6 @@ const CombinedEventsSchedule: React.FC = () => {
     <div className="card">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center text-orthodox-blue">
-          {/* <Calendar className="mr-2" size={24} />
-          <h3 className="text-xl font-serif">{t("home.upcomingEvents")}</h3> */}
         </div>
         <Link
           to="/calendar"
@@ -139,7 +121,7 @@ const CombinedEventsSchedule: React.FC = () => {
                   {event.description && (
                     <div
                       className="text-gray-600 text-sm mb-2 line-clamp-2 prose prose-sm max-w-none"
-                      dangerouslySetInnerHTML={{ __html: event.description }}
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(event.description) }}
                     />
                   )}
 

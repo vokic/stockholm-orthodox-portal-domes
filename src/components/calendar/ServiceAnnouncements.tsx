@@ -1,4 +1,5 @@
 import React from "react";
+import DOMPurify from "dompurify";
 import { fetchContentfulEntries } from "../../lib/contentful";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/context/LanguageContext";
@@ -244,12 +245,12 @@ const ServiceAnnouncements: React.FC = () => {
           {announcement.description && (
             <div
               className="text-gray-600 mb-4 pb-3 border-b border-gray-100"
-              dangerouslySetInnerHTML={{ __html: announcement.description }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(announcement.description) }}
             />
           )}
           <div
             className="text-gray-700 mb-4"
-            dangerouslySetInnerHTML={{ __html: announcement.content }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(announcement.content) }}
           />
 
           <div className="mt-4 text-right">
